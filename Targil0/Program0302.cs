@@ -8,10 +8,13 @@ namespace Targil0
         {
             welcom0302();
             welcom8721();
+            check();
             Console.ReadKey();
 
         }
         static partial void welcom8721();
+
+        static partial void check();
 
         private static void welcom0302()
         {
