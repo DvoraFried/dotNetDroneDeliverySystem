@@ -12,7 +12,7 @@ namespace Targil0
 
         }
         static partial void welcom8721();
-
+        //note
         private static void welcom0302()
         {
             Console.WriteLine("enter your name");
