@@ -2,8 +2,8 @@
 
 namespace IDAL.DO
 {
-    enum weightCategories { light , medium, heavy}
-    enum quadocopterState { empty, maintenance , Shipping }
-    enum priority { usual ,rapid, emergency }
+    public enum weightCategories { light , medium, heavy}
+    public enum quadocopterState { empty, maintenance , Shipping }
+    public enum priority { usual ,rapid, emergency }
 
 }
