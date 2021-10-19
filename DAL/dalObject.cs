@@ -25,21 +25,51 @@ namespace DalObject
         static void Initialize()
         {
             Random rnd = new Random();
-
+//rendering id number for the 2 baseStations
             for (int i = 0; i < 2;i++)
             {
                 myBaseStations[i].id = rnd.Next(100, 1000);
             }
-
-            /*            for (int i = 0; i < 5; i++)
-                        {
-                            myQuadocopters[i].quadoWeight = rnd.Next(0,3);
-                        }*/
+//rendering a state for five quadocopter
+            for (int i = 0; i < 5; i++)
+            {
+                int num = rnd.Next(0,3);
+                switch (num)
+                {
+                    case 0:
+                        myQuadocopters[i].quadoState = quadocopterState.empty;
+                        break;
+                    case 1:
+                        myQuadocopters[i].quadoState = quadocopterState.maintenance;
+                        break;
+                    case 2:
+                        myQuadocopters[i].quadoState = quadocopterState.Shipping;
+                        break;
+                }
+            }
+//rendering for ten customers id number and name
             for (int i = 0; i < 10; i++)
             {
-                int num= rnd.Next(1000, 10000); ;
+                int num= rnd.Next(1000, 10000); 
                 myCustomers[i].id = num;
                 myCustomers[i].name= /*"customer"+*/num.ToString();
+            }
+//rendering for ten customers id number and name
+            for (int i = 0; i < 10; i++)
+            {
+                int num = rnd.Next(0, 3);
+                switch (num)
+                {
+                    case 0:
+                        myPackages[i].packagePriority = priority.emergency;
+                        break;
+                    case 1:
+                        myPackages[i].packagePriority = priority.rapid;
+                        break;
+                    case 2:
+                        myPackages[i].packagePriority = priority.usual;
+                        break;
+                }
             }
 
 
