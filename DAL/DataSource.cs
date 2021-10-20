@@ -46,7 +46,7 @@ namespace DalObject
                 Config.quadocoptersIndex++;
                 myQuadocopters[i].id = Config.quadocoptersIndex ;
                 myQuadocopters[i].model ="model "+(Config.quadocoptersIndex ).ToString();
-                //~~~~~~~~~~~~~~~~~~~~~~weight category is missing here!!~~~~~~~~~~~~~~~~
+                //~~~~~~~~~~~~~~~~~~~~~~weight category is missing here in this line!!~~~~~~~~~~~~~~~~
                 myQuadocopters[i].battery = rnd.Next(10,101);
 
                 int num = rnd.Next(0,3);
@@ -112,7 +112,7 @@ namespace DalObject
                         break;
                 }
                 myPackages[i].quadocopterId = 0;
-                //~~~~~~~~~~~~~~~~~~~~~~~`there is times to write here!!,i'm not sure what to do:(~~~~~~~~~~~~~~~
+                //~~~~~~~~~~~~~~~~~~~~~~~`there is times to write here at this line but i'm not sure what to do:(~~~~~~~~~~~~~~~
             }
             
             
