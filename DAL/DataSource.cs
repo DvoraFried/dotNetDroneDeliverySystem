@@ -115,8 +115,6 @@ namespace DalObject
                 //~~~~~~~~~~~~~~~~~~~~~~~`there is times to write here at this line but i'm not sure what to do:(~~~~~~~~~~~~~~~
             }
             
-            
-
         }
     }
 
