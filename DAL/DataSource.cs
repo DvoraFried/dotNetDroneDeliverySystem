@@ -9,10 +9,10 @@ namespace DalObject
 {
     public class DataSource
     {
-        static internal baseStation[] myBaseStations = new baseStation[5];
-        static internal quadocopter[] myQuadocopters = new quadocopter[10];
+        static internal Station[] myBaseStations = new Station[5];
+        static internal Drone[] myQuadocopters = new Drone[10];
         static internal customer[] myCustomers = new customer[100];
-        static internal package[] myPackages = new package[1000];
+        static internal Parcel[] myPackages = new Parcel[1000];
         internal class Config
         {
             static internal int baseStationsIndex = 0;
@@ -32,11 +32,11 @@ namespace DalObject
             for (int i = 0; i < 2;i++)
             {
                 Config.baseStationsIndex++;
-                myBaseStations[i].id = Config.baseStationsIndex + 1;
-                myBaseStations[i].name = "station"+(Config.baseStationsIndex + 1).ToString();
-                myBaseStations[i].loadStation = rnd.Next(2, 4);
-                myBaseStations[i].longitude = rnd.Next(0, 24);
-                myBaseStations[i].latitude = rnd.Next(0,180);
+                myBaseStations[i].Id = Config.baseStationsIndex + 1;
+                myBaseStations[i].Name = "station"+(Config.baseStationsIndex + 1).ToString();
+                myBaseStations[i].ChargeSlots = rnd.Next(2, 4);
+                myBaseStations[i].Longitude = rnd.Next(0, 24);
+                myBaseStations[i].Latitude = rnd.Next(0,180);
             }
 //=====================================================================           
 //rendering information for five quadocopter
@@ -111,7 +111,7 @@ namespace DalObject
                         myPackages[i].packagePriority = priority.usual;
                         break;
                 }
-                myPackages[i].quadocopterId = 0;
+                myPackages[i].DroneId = 0;
                 //~~~~~~~~~~~~~~~~~~~~~~~`there is times to write here at this line but i'm not sure what to do:(~~~~~~~~~~~~~~~
             }
             

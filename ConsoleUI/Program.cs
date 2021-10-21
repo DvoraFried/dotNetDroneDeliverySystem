@@ -1,6 +1,6 @@
 ﻿using System;
 
-void addingOptions()
+/*void addingOptions()
 {
     Console.WriteLine("1 - Add base station");
     Console.WriteLine("2 - Add quadocopter");
@@ -33,7 +33,7 @@ void displayLists()
     Console.WriteLine("4 - display packages list");
     Console.WriteLine("5 - display packages that have not yet been associated with a skimmer list");
     Console.WriteLine("6 - display base stations with available charging stations");
-}
+}*/
 
 
 namespace ConsoleUI
