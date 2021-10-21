@@ -11,7 +11,7 @@ namespace DalObject
     {
         static internal Station[] myBaseStations = new Station[5];
         static internal Drone[] myQuadocopters = new Drone[10];
-        static internal customer[] myCustomers = new customer[100];
+        static internal Customer[] myCustomers = new Customer[100];
         static internal Parcel[] myPackages = new Parcel[1000];
         internal class Config
         {
@@ -44,22 +44,22 @@ namespace DalObject
             for (int i = 0; i < 5; i++)
             {
                 Config.quadocoptersIndex++;
-                myQuadocopters[i].id = Config.quadocoptersIndex ;
-                myQuadocopters[i].model ="model "+(Config.quadocoptersIndex ).ToString();
+                myQuadocopters[i].Id = Config.quadocoptersIndex ;
+                myQuadocopters[i].Model ="model "+(Config.quadocoptersIndex ).ToString();
                 //~~~~~~~~~~~~~~~~~~~~~~weight category is missing here in this line!!~~~~~~~~~~~~~~~~
-                myQuadocopters[i].battery = rnd.Next(10,101);
+                myQuadocopters[i].Battery = rnd.Next(10,101);
 
                 int num = rnd.Next(0,3);
                 switch (num)
                 {
                     case 0:
-                        myQuadocopters[i].quadoState = quadocopterState.empty;
+                        myQuadocopters[i].Status = DroneStatuses.empty;
                         break;
                     case 1:
-                        myQuadocopters[i].quadoState = quadocopterState.maintenance;
+                        myQuadocopters[i].Status = DroneStatuses.maintenance;
                         break;
                     case 2:
-                        myQuadocopters[i].quadoState = quadocopterState.Shipping;
+                        myQuadocopters[i].Status = DroneStatuses.Shipping;
                         break;
                 }
             }
@@ -82,19 +82,19 @@ namespace DalObject
             {
                 Config.packagesIndex++;
                 myPackages[i].id = Config.packagesIndex;
-                myPackages[i].senderId= rnd.Next(1, (Config.customersIndex)+1);
-                myPackages[i].getterId = rnd.Next(1, (Config.customersIndex) + 1);
+                myPackages[i].SenderId= rnd.Next(1, (Config.customersIndex)+1);
+                myPackages[i].TargetId = rnd.Next(1, (Config.customersIndex) + 1);
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {
                     case 0:
-                        myPackages[i].packageWeight = weightCategories.light;
+                        myPackages[i].Weight = WeightCategories.light;
                         break;
                     case 1:
-                        myPackages[i].packageWeight = weightCategories.medium;
+                        myPackages[i].Weight = WeightCategories.medium;
                         break;
                     case 2:
-                        myPackages[i].packageWeight = weightCategories.heavy;
+                        myPackages[i].Weight = WeightCategories.heavy;
                         break;
                 }
                 
@@ -102,13 +102,13 @@ namespace DalObject
                 switch (num)
                 {
                     case 0:
-                        myPackages[i].packagePriority = priority.emergency;
+                        myPackages[i].Priority = Priorities.emergency;
                         break;
                     case 1:
-                        myPackages[i].packagePriority = priority.rapid;
+                        myPackages[i].Priority = Priorities.rapid;
                         break;
                     case 2:
-                        myPackages[i].packagePriority = priority.usual;
+                        myPackages[i].Priority = Priorities.usual;
                         break;
                 }
                 myPackages[i].DroneId = 0;

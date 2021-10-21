@@ -11,8 +11,8 @@ namespace IDAL.DO
         public int id { get;set;}
         public int  SenderId { get;set;}
         public int TargetId { get;set;}
-        public weightCategories Weight { get;set;}
-        public priorities Priority { get;set;}
+        public WeightCategories Weight { get;set;}
+        public Priorities Priority { get;set;}
         public int DroneId { get;set;}
         public DateTime Requested { get;set;}
         public DateTime Scheduled { get;set;}
