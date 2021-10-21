@@ -45,27 +45,27 @@ namespace DalObject
 //=====================================================================
 //the function addcustomer render information for one customer
 //=====================================================================
-            public static void AddCustomer()
+            public static void AddCustomer(int idS,string nameS,string phoneS,double longitudeS,double latitudeS)
             {
                 int idx = DataSource.Config.CustomersIndex;
                 DataSource.Config.CustomersIndex++;
-                DataSource.MyCustomers[idx].Id = DataSource.Config.CustomersIndex;//customer id number
-                DataSource.MyCustomers[idx].Name = "customer" + (DataSource.Config.CustomersIndex).ToString();//customer name
-                DataSource.MyCustomers[idx].Phone = rnd.Next(5000000, 60000000).ToString();//customner phone
-                DataSource.MyCustomers[idx].Longitude = rnd.Next(0, 24);//the customer location
-                DataSource.MyCustomers[idx].Latitude = rnd.Next(0, 180);//the customer location
+                DataSource.MyCustomers[idx].Id = idS;//customer id number
+                DataSource.MyCustomers[idx].Name = nameS;//customer name
+                DataSource.MyCustomers[idx].Phone = phoneS;//customner phone
+                DataSource.MyCustomers[idx].Longitude = longitudeS;//the customer location
+                DataSource.MyCustomers[idx].Latitude = latitudeS;//the customer location
                 DataSource.Config.CustomersIndex++;//updating index
 
             }
 //=====================================================================
 //the function addparcel render information for one parcel
 //=====================================================================
-            public static void AddParcel(WeightCategories weightS,Priorities priorityS)
+            public static void AddParcel(int senderIdS,int targetIdS,WeightCategories weightS,Priorities priorityS)
             {
                 int idx = DataSource.Config.ParcelIndex;
                 DataSource.MyParcel[idx].id = DataSource.Config.ParcelIndex;//parcel id number
-                DataSource.MyParcel[idx].SenderId = rnd.Next(1, (DataSource.Config.CustomersIndex) + 1);//render a sender id 
-                DataSource.MyParcel[idx].TargetId = rnd.Next(1, (DataSource.Config.CustomersIndex) + 1);//render a sender id
+                DataSource.MyParcel[idx].SenderId = senderIdS;//render a sender id 
+                DataSource.MyParcel[idx].TargetId = targetIdS;//render a sender id
                 DataSource.MyParcel[idx].Weight = weightS;//the weight
                 DataSource.MyParcel[idx].Priority = priorityS;//the priority
                 DataSource.MyParcel[idx].DroneId = -1;//i stil have no idea what is it

@@ -38,44 +38,12 @@ namespace DalObject
             {
                 DalObject.Add.AddCustomer();
             }
-//=====================================================================            
-//rendering information for 10 packages
-//=====================================================================
+
             for (int i = 0; i < 10; i++)
             {
-                Config.ParcelIndex++;
-                MyParcel[i].id = Config.ParcelIndex;
-                MyParcel[i].SenderId= rnd.Next(1, (Config.CustomersIndex)+1);
-                MyParcel[i].TargetId = rnd.Next(1, (Config.CustomersIndex) + 1);
-                int num = rnd.Next(0, 3);
-                switch (num)
-                {
-                    case 0:
-                        MyParcel[i].Weight = WeightCategories.light;
-                        break;
-                    case 1:
-                        MyParcel[i].Weight = WeightCategories.medium;
-                        break;
-                    case 2:
-                        MyParcel[i].Weight = WeightCategories.heavy;
-                        break;
-                }
-                
-                num = rnd.Next(0, 3);
-                switch (num)
-                {
-                    case 0:
-                        MyParcel[i].Priority = Priorities.emergency;
-                        break;
-                    case 1:
-                        MyParcel[i].Priority = Priorities.rapid;
-                        break;
-                    case 2:
-                        MyParcel[i].Priority = Priorities.usual;
-                        break;
-                }
-                MyParcel[i].DroneId = 0;
-                
+                DalObject.Add.AddParcel();
+
+
             }
             
         }
