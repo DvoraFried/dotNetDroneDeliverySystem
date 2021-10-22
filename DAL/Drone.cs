@@ -10,7 +10,7 @@ namespace IDAL.DO
     {
         public int Id { get; set; }
         public string Model { get;set;}
-        public WeightCategories Weight { get;set;}
+        public WeightCategories MaxWeight { get; set;}
         public double Battery { get;set;}
         public DroneStatuses Status  { get;set;}
 

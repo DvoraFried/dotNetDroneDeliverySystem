@@ -8,15 +8,15 @@ namespace IDAL.DO
 {
     public struct Parcel
     {
-        public int id { get;set;}
+        public int Id { get;set;}
         public int  SenderId { get;set;}
         public int TargetId { get;set;}
         public WeightCategories Weight { get;set;}
         public Priorities Priority { get;set;}
         public int DroneId { get;set;}
-        public DateTime Requested { get;set;}
-        public DateTime Scheduled { get;set;}
-        public DateTime PickUp { get;set;}
-        public DateTime Delivered { get;set;}
+        public DateTime Requested { get;set;}//יצירת חבילה למשלוח
+        public DateTime Scheduled { get; set; }//שיוך חבילה לרחפן
+        public DateTime PickUp { get;set;}//איסוף חבילה מלקוח
+        public DateTime Delivered { get;set;}//זמן הגעת חבילה למקבל
     };
 }

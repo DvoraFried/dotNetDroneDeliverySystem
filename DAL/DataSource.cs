@@ -24,6 +24,7 @@ namespace DalObject
 
         static void Initialize()
         {
+            Random rnd = new Random();
             for (int i = 0; i < 2;i++)
             {
                 DalObject.Add.AddStation();
@@ -31,17 +32,63 @@ namespace DalObject
 
             for (int i = 0; i < 5; i++)
             {
-                DalObject.Add.AddDrone();
+                int num = rnd.Next(0, 3);
+                switch (num)
+                {
+                    case 0:
+                        DalObject.Add.AddDrone(WeightCategories.light);
+                        break;
+                    case 1:
+                        DalObject.Add.AddDrone(WeightCategories.medium);
+                        break;
+                    case 2:
+                        DalObject.Add.AddDrone(WeightCategories.heavy);
+                        break;
+                }
+                
             }
 
             for (int i = 0; i < 10; i++)
             {
-                DalObject.Add.AddCustomer();
+                DalObject.Add.AddCustomer(Config.CustomersIndex, "customer" + (Config.CustomersIndex).ToString(),
+                rnd.Next(5000000, 60000000).ToString(), rnd.Next(0, 24), rnd.Next(0, 180));
+ 
             }
 
             for (int i = 0; i < 10; i++)
             {
-                DalObject.Add.AddParcel();
+                WeightCategories weightS;
+                int num = rnd.Next(0, 3);
+                switch (num)
+                {
+                    case 0:
+                        weightS = WeightCategories.light;
+                        break;
+                    case 1:
+                        weightS = WeightCategories.medium;
+                        break;
+                    case 2:
+                        weightS = WeightCategories.heavy;
+                        break;
+                }
+
+                Priorities priorityS;
+                num = rnd.Next(0, 3);
+                switch (num)
+                {
+                    case 0:
+                        priorityS = Priorities.emergency;
+                        break;
+                    case 1:
+                        priorityS = Priorities.rapid;
+                        break;
+                    case 2:
+                        priorityS = Priorities.usual;
+                        break;
+                }
+                //~~~~~~~~i want to send random weight and priority here but i ran into a compilation error so i didnt use random~~~~~
+                DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
+                MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.usual);
 
 
             }
