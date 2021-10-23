@@ -79,20 +79,18 @@ namespace DalObject
                 switch (num)
                 {
                     case 0:
-                        priorityS = Priorities.emergency;
+                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.emergency);         
                         break;
                     case 1:
-                        priorityS = Priorities.rapid;
+                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.rapid);
                         break;
                     case 2:
-                        priorityS = Priorities.usual;
+                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.usual);
                         break;
                 }
-                //~~~~~~~~i want to send random weight and priority here but i ran into a compilation error so i didnt use random~~~~~
-                DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
-                MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.usual);
-
-
             }
             
         }
