@@ -84,7 +84,6 @@ namespace DalObject
         //=====================================================================
         //                     2. class update - update functions 
         //=====================================================================
-
         public class Update
         {
             //=====================================================================
@@ -110,7 +109,6 @@ namespace DalObject
                         }
                     }
                 }
-                Console.WriteLine("there is no empty drone you can use :(");
             }
             //=====================================================================
             //the function 
@@ -133,7 +131,6 @@ namespace DalObject
                         }
                     }
                 }
-                Console.WriteLine("we cannot find the parcel for you:(");
             }
             //=====================================================================
             //the function 
@@ -155,7 +152,6 @@ namespace DalObject
                         }
                     }
                 }
-                Console.WriteLine("wrong information, your delivery doesnt axict(");
             }
             //=====================================================================
             //the function 
@@ -215,8 +211,6 @@ namespace DalObject
                 }
 
             }
-
-
         }
         //=====================================================================
         //                     3. class returnObject - return functions 
@@ -284,7 +278,93 @@ namespace DalObject
                 return defaultVal;
             }
         }
-
+        //=====================================================================
+        //             4. class returnArrayObject - return array
+        //=====================================================================
+        public class returnArrayObject
+        {
+            //=====================================================================
+            //returns stations list
+            //=====================================================================
+            public static Station[] returnStationArray()
+            {
+                Station[] returnBaseStations = new Station[DataSource.Config.StationsIndex];
+                for(int i=0;i< DataSource.Config.StationsIndex; i++)
+                {
+                    returnBaseStations[i] = DataSource.MyBaseStations[i];
+                }
+                return returnBaseStations;
+            }
+            //=====================================================================
+            //returns drones list
+            //=====================================================================
+            public static Drone[] returnDroneArray()
+            {
+                Drone[] returnDrones = new Drone[DataSource.Config.DronesIndex];
+                for (int i = 0; i < DataSource.Config.DronesIndex; i++)
+                {
+                    returnDrones[i] = DataSource.MyDrones[i];
+                }
+                return returnDrones;
+            }
+            //=====================================================================
+            //returns customer list
+            //=====================================================================
+            public static Customer[] returnCustomerArray()
+            {
+                Customer[] returnCustomers = new Customer[DataSource.Config.CustomersIndex];
+                for (int i = 0; i < DataSource.Config.CustomersIndex; i++)
+                {
+                    returnCustomers[i] = DataSource.MyCustomers[i];
+                }
+                return returnCustomers;
+            }
+            //=====================================================================
+            //returns parcels list
+            //=====================================================================
+            public static Parcel[] returnParcelArray()
+            {
+                Parcel[] returnParcels = new Parcel[DataSource.Config.ParcelIndex];
+                for (int i = 0; i < DataSource.Config.ParcelIndex; i++)
+                {
+                    returnParcels[i] = DataSource.MyParcel[i];
+                }
+                return returnParcels;
+            }
+            //=====================================================================
+            //returns a list of not scheduled parcels
+            //=====================================================================
+            public static List<Parcel> returnNotScheduledParcel()
+            {
+                int idx = 0;
+                List<Parcel> notScheduledParcel = new List<Parcel>();
+                for (int i = 0; i < DataSource.Config.ParcelIndex; i++)
+                {
+                    if (DataSource.MyParcel[i].DroneId == null)
+                    {
+                        notScheduledParcel[idx] = DataSource.MyParcel[i];
+                        idx++;
+                    }
+                }
+                return notScheduledParcel;
+            }
+            //=====================================================================
+            //returns a list of station with empty cherge slots
+            //=====================================================================
+            public static List<Station> returnStationWithChargeSlots()
+            {
+                int idx = 0;
+                List<Station> stationWithChargeSlots = new List<Station>();
+                for (int i = 0; i < DataSource.Config.StationsIndex; i++)
+                {
+                    if (DataSource.MyBaseStations[i].ChargeSlots>0)
+                    {
+                        stationWithChargeSlots[idx] = DataSource.MyBaseStations[i];
+                        idx++;
+                    }
+                }
+                return stationWithChargeSlots;
+            }
+        }
     }
-
 }
