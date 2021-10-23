@@ -223,25 +223,65 @@ namespace DalObject
         //=====================================================================
         public class returnObject
         {
-            public static Station returnStation(int stationIdS)
+            //=====================================================================
+            //returns station or 0
+            //=====================================================================
+            public static IDAL.DO.Station returnStation<Station>(int StationIdS)
             {
-                foreach(Station element in DataSource.MyBaseStations)
+                for (int i = 0; i < DataSource.Config.StationsIndex; i++)
                 {
-                    if (element.Id == stationIdS)
+                    if (DataSource.MyBaseStations[i].Id == StationIdS)
                     {
-                        return element;
+                        return DataSource.MyBaseStations[i];
                     }
                 }
+                var defaultVal = default(IDAL.DO.Station);
+                return defaultVal;
             }
-            public static Station returnStation(int stationIdS)
+            //=====================================================================
+            //returns drone or 0
+            //=====================================================================
+            public static IDAL.DO.Drone returnDrone<Drone>(int DroneIdS)
             {
-                foreach (Station element in DataSource.MyBaseStations)
+                for (int i = 0; i < DataSource.Config.DronesIndex; i++)
                 {
-                    if (element.Id == stationIdS)
+                    if (DataSource.MyDrones[i].Id == DroneIdS)
                     {
-                        return element;
+                        return DataSource.MyDrones[i];
                     }
                 }
+                var defaultVal = default(IDAL.DO.Drone);
+                return defaultVal;
+            }
+            //=====================================================================
+            //returns customer or 0
+            //=====================================================================
+            public static IDAL.DO.Customer returnCustomer<Customer>(int CustomerIdS)
+            {
+                for (int i = 0; i < DataSource.Config.CustomersIndex; i++)
+                {
+                    if (DataSource.MyCustomers[i].Id == CustomerIdS)
+                    {
+                        return DataSource.MyCustomers[i];
+                    }
+                }
+                var defaultVal = default(IDAL.DO.Customer);
+                return defaultVal;
+            }
+            //=====================================================================
+            //returns parcel or 0
+            //=====================================================================
+            public static IDAL.DO.Parcel returnParcel<Parcel>(int ParcelIdS)
+            {
+                for (int i = 0; i < DataSource.Config.ParcelIndex; i++)
+                {
+                    if (DataSource.MyParcel[i].Id == ParcelIdS)
+                    {
+                        return DataSource.MyParcel[i];
+                    }
+                }
+                var defaultVal = default(IDAL.DO.Parcel);
+                return defaultVal;
             }
         }
 
