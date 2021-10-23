@@ -13,12 +13,14 @@ namespace DalObject
         static internal Drone[] MyDrones = new Drone[10];
         static internal Customer[] MyCustomers = new Customer[100];
         static internal Parcel[] MyParcel = new Parcel[1000];
+        static internal List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
         internal class Config
         {
             static internal int StationsIndex = 0;
             static internal int DronesIndex=0;
             static internal int CustomersIndex = 0;
             static internal int ParcelIndex = 0;
+            static internal int ChargeSlotsIndex = 0;
             static internal int IdNumber;
         }
 
