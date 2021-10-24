@@ -25,18 +25,18 @@ namespace ConsoleUI
                     longitude = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("longitude: ");
                     latitude = Convert.ToDouble(Console.ReadLine());
-                    // כאן צריך לעשות add station  אבל הפונקציה שלנו לא מקבלת נתונים
+                    // כאן צריך לעשות addStation  אבל הפונקציה שלנו לא מקבלת נתונים
                     break;
                 case 2:
-                    Console.WriteLine("enter a drone number: ");
+                    Console.WriteLine("drone number: ");
                     id = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("enter a drone Model: ");
+                    Console.WriteLine("Model: ");
                     string Model = Console.ReadLine();
-                    Console.WriteLine("enter a wieght category: ");
+                    Console.WriteLine("wieght category: ");
                     //
-                    Console.WriteLine("enter a battery status: ");
+                    Console.WriteLine("battery status: ");
                     double battery = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("enter a drone status: ");
+                    Console.WriteLine("drone status: ");
                     //
                     break;
                 case 3:
@@ -74,31 +74,101 @@ namespace ConsoleUI
 
         static void update()
         {
-            Console.WriteLine("1 - Assign a package to a skimmer");
+            Console.WriteLine("1 - Schedule parcel to drone");
             Console.WriteLine("2 - ");
             Console.WriteLine("3 - ");
             Console.WriteLine("4 - Sending a skimmer for charging at a base station");
             Console.WriteLine("5 - Release skimmer from charging at base station");
-
-
+            int id, choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("parcel's id: ");
+                    DalObject.DalObject.Update.Scheduled(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 2:
+                    Console.WriteLine("parcel's id: ");
+                    id = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("sender id: ");
+                    DalObject.DalObject.Update.PickUp(id, Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 3:
+                    Console.WriteLine("parcel's id: ");
+                    id = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("customer id: ");
+                    DalObject.DalObject.Update.Delivered(id, Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 4:
+                    Console.WriteLine("drone id: ");
+                    id = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("station id: ");
+                    DalObject.DalObject.Update.Charge(id, Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 5:
+                    Console.WriteLine("drone id: ");
+                    DalObject.DalObject.Update.releaseCharge(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                default:
+                    Console.WriteLine("~~~invalid input~~~"); break;
+            }
         }
 
         static void display()
         {
             Console.WriteLine("1 - Base Station display");
-            Console.WriteLine("2 - Skimmer display");
+            Console.WriteLine("2 - Drone display");
             Console.WriteLine("3 - customer display");
-            Console.WriteLine("4 - package display");
+            Console.WriteLine("4 - parcel display");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("station id: ");
+                    DalObject.DalObject.returnObject.returnStation<IDAL.DO.Station>(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 2:
+                    Console.WriteLine("drone id: ");
+                    DalObject.DalObject.returnObject.returnDrone<IDAL.DO.Drone>(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 3:
+                    Console.WriteLine("customer id: ");
+                    DalObject.DalObject.returnObject.returnCustomer<IDAL.DO.Customer>(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case 4:
+                    Console.WriteLine("parcel id: ");
+                    DalObject.DalObject.returnObject.returnParcel<IDAL.DO.Parcel>(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                default:
+                    Console.WriteLine("~~~invalid input~~~"); break;
+            }
         }
 
         static void displayLists()
         {
             Console.WriteLine("1 - display base stations list");
-            Console.WriteLine("2 - display skimmers list");
+            Console.WriteLine("2 - display drons list");
             Console.WriteLine("3 - display customer list");
-            Console.WriteLine("4 - display packages list");
-            Console.WriteLine("5 - display packages that have not yet been associated with a skimmer list");
+            Console.WriteLine("4 - display parcels list");
+            Console.WriteLine("5 - display parcels that have not yet been associated with a drone list");
             Console.WriteLine("6 - display base stations with available charging stations");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    DalObject.DalObject.returnArrayObject.returnStationArray(); break;
+                case 2:
+                    DalObject.DalObject.returnArrayObject.returnDroneArray(); break;
+                case 3:
+                    DalObject.DalObject.returnArrayObject.returnCustomerArray(); break;
+                case 4:
+                    DalObject.DalObject.returnArrayObject.returnParcelArray(); break;
+                case 5:
+                    DalObject.DalObject.returnArrayObject.returnNotScheduledParcel(); break;
+                case 6:
+                    DalObject.DalObject.returnArrayObject.returnStationWithChargeSlots(); break;
+                default:
+                    Console.WriteLine("~~~invalid input~~~"); break;
+            }
         }
         static void Main(string[] args)
         {
