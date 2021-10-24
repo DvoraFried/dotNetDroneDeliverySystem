@@ -1,4 +1,5 @@
 ﻿using System;
+using IDAL.DO;
 
 namespace ConsoleUI
 {
@@ -15,28 +16,17 @@ namespace ConsoleUI
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("id: ");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("name: ");
-                    string name = Console.ReadLine();
+
                     Console.WriteLine("chargs lots: ");
                     int ChargeSlots = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("longitude: ");
                     longitude = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("longitude: ");
                     latitude = Convert.ToDouble(Console.ReadLine());
-                    // כאן צריך לעשות addStation  אבל הפונקציה שלנו לא מקבלת נתונים
+                    DalObject.DalObject.Add.AddStation(longitude, latitude, ChargeSlots);
                     break;
                 case 2:
-                    Console.WriteLine("drone number: ");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Model: ");
-                    string Model = Console.ReadLine();
                     Console.WriteLine("wieght category: ");
-                    //
-                    Console.WriteLine("battery status: ");
-                    double battery = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("drone status: ");
                     //
                     break;
                 case 3:
@@ -50,22 +40,18 @@ namespace ConsoleUI
                     longitude = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("longitude: ");
                     latitude = Convert.ToDouble(Console.ReadLine());
-                    // כאן צריך לעשות add customer אבל הפונקציה שלנו לא מקבלת נתונים
+                    DalObject.DalObject.Add.AddCustomer(id, userName, phone, longitude, latitude);
                     break;
                 case 4:
-                    Console.WriteLine("parcel id: ");
-                    id = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("sender id: ");
                     int senderId = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("sender id: ");
+                    Console.WriteLine("customer id: ");
                     int customerId = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("wieght category: ");
                     //
                     Console.WriteLine("priority: ");
                     //
-                    Console.WriteLine("drone id: ");
-                    int droneId = Convert.ToInt32(Console.ReadLine());
-                    // כאן צריך לעשות add parcel אבל הפונקציה שלנו לא מקבלת נתונים
+                  //  DalObject.DalObject.Add.AddParcel(senderId, customerId,/* ??, ??*/ );
                     break;
                 default:
                     Console.WriteLine("~~~invalid input~~~"); break;     
@@ -141,7 +127,7 @@ namespace ConsoleUI
                 default:
                     Console.WriteLine("~~~invalid input~~~"); break;
             }
-        }
+        } 
 
         static void displayLists()
         {

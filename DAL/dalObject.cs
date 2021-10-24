@@ -18,19 +18,14 @@ namespace DalObject
             //=====================================================================
             //the function addstation render information for one station
             //=====================================================================
-            public static void AddStation()
+            public static void AddStation(double LongitudeS, double LatitudeS, int ChargeSlotsS = 2)
             {
-                int cS= DalObject.rnd.Next(2, 5);
                 int idx = DataSource.Config.StationsIndex;
                 DataSource.MyBaseStations[idx].Id = DataSource.Config.StationsIndex;//station id number
                 DataSource.MyBaseStations[idx].Name = "station" + (DataSource.Config.StationsIndex).ToString();//station name 
-                DataSource.MyBaseStations[idx].ChargeSlots = cS; //number of charge slots for the station
-/*                for(int i=DataSource.Config.ChargeSlotsIndex;i< DataSource.Config.ChargeSlotsIndex + cS;)
-                {
-                    DataSource.MyChargeSlots[i].StationId = DataSource.MyBaseStations[idx].Id;
-                }*/
-                DataSource.MyBaseStations[idx].Longitude = DalObject.rnd.Next(0, 24);//the station location 
-                DataSource.MyBaseStations[idx].Latitude = DalObject.rnd.Next(0, 180);//the station location
+                DataSource.MyBaseStations[idx].ChargeSlots = ChargeSlotsS; //number of charge slots for the station
+                DataSource.MyBaseStations[idx].Longitude = LongitudeS;//the station location 
+                DataSource.MyBaseStations[idx].Latitude = LatitudeS;//the station location
                 DataSource.Config.StationsIndex++;//update the index
             }
 
@@ -42,7 +37,6 @@ namespace DalObject
                 int idx = DataSource.Config.DronesIndex;
                 DataSource.MyDrones[idx].Id = DataSource.Config.DronesIndex;//drone id
                 DataSource.MyDrones[idx].Model = "model " + (DataSource.Config.DronesIndex).ToString();//drone model
-                int num = rnd.Next(0, 3);
                 DataSource.MyDrones[idx].MaxWeight = weightS;//weight category
                 DataSource.MyDrones[idx].Battery = 100;//the battery will be 100%
                 DataSource.MyDrones[idx].Status = DroneStatuses.empty;//and the drone is in "empty" status 
