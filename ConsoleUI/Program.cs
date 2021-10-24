@@ -16,7 +16,6 @@ namespace ConsoleUI
             switch (choice)
             {
                 case 1:
-
                     Console.WriteLine("chargs lots: ");
                     int ChargeSlots = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("longitude: ");
@@ -27,7 +26,7 @@ namespace ConsoleUI
                     break;
                 case 2:
                     Console.WriteLine("wieght category: ");
-                    //
+                    DalObject.DalObject.Add.AddDrone((WeightCategories)Convert.ToInt32(Console.ReadLine()));
                     break;
                 case 3:
                     Console.WriteLine("id: ");
@@ -48,10 +47,10 @@ namespace ConsoleUI
                     Console.WriteLine("customer id: ");
                     int customerId = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("wieght category: ");
-                    //
+                    WeightCategories weightCat = (WeightCategories)Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("priority: ");
-                    //
-                  //  DalObject.DalObject.Add.AddParcel(senderId, customerId,/* ??, ??*/ );
+                    Priorities prioritiesCat = (Priorities)Convert.ToInt32(Console.ReadLine());
+                    DalObject.DalObject.Add.AddParcel(senderId, customerId, weightCat, prioritiesCat);
                     break;
                 default:
                     Console.WriteLine("~~~invalid input~~~"); break;     
@@ -76,7 +75,8 @@ namespace ConsoleUI
                     Console.WriteLine("parcel's id: ");
                     id = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("sender id: ");
-                    DalObject.DalObject.Update.PickUp(id, Convert.ToInt32(Console.ReadLine()));
+                    int sid = Convert.ToInt32(Console.ReadLine());
+                    DalObject.DalObject.Update.PickUp(id, sid);
                     break;
                 case 3:
                     Console.WriteLine("parcel's id: ");
@@ -118,7 +118,7 @@ namespace ConsoleUI
                     break;
                 case 3:
                     Console.WriteLine("customer id: ");
-                    DalObject.DalObject.returnObject.returnCustomer<IDAL.DO.Customer>(Convert.ToInt32(Console.ReadLine()));
+                    DalObject.DalObject.returnObject.returnCustomer<Customer>(Convert.ToInt32(Console.ReadLine()));
                     break;
                 case 4:
                     Console.WriteLine("parcel id: ");
