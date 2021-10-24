@@ -29,7 +29,7 @@ namespace DalObject
             Random rnd = new Random();
             for (int i = 0; i < 2;i++)
             {
-                DalObject.Add.AddStation();
+                DalObject.Add.AddStation(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
             }
 
             for (int i = 0; i < 5; i++)

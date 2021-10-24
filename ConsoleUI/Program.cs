@@ -162,9 +162,9 @@ namespace ConsoleUI
             while (choice != 5)
             {
                 Console.WriteLine("Type your selection:");
-                Console.WriteLine("1 - Insert options");
-                Console.WriteLine("2 - Update options");
-                Console.WriteLine("3 - Display options");
+                Console.WriteLine("1 - add");
+                Console.WriteLine("2 - Update");
+                Console.WriteLine("3 - Display");
                 Console.WriteLine("4 - List view options");
                 Console.WriteLine("5 - Exit:");
                 choice = Convert.ToInt32(Console.ReadLine());
