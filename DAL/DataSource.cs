@@ -24,7 +24,7 @@ namespace DalObject
             static internal int IdNumber;
         }
 
-        static void Initialize()
+        public static void Initialize()
         {
             Random rnd = new Random();
             for (int i = 0; i < 2;i++)

@@ -129,7 +129,6 @@ namespace ConsoleUI
                 case 1:
                     Console.WriteLine("station id: ");
                     printStation((((DalObject.DalObject.returnObject.returnStation<IDAL.DO.Station>(Convert.ToInt32(Console.ReadLine()))))));
-
                     break;
                 case 2:
                     Console.WriteLine("drone id: ");
@@ -166,13 +165,13 @@ namespace ConsoleUI
                 case 2:
                     foreach (Drone element in DalObject.DalObject.returnArrayObject.returnDroneArray()) { printDrone(element); }; break;
                 case 3:
-                    foreach (Customer element in DalObject.DalObject.returnArrayObject.returnCustomerArray()) {printCustomer(element) } ; break;
+                    foreach (Customer element in DalObject.DalObject.returnArrayObject.returnCustomerArray()) { printCustomer(element); } ; break;
                 case 4:
-                    foreach ( DalObject.DalObject.returnArrayObject.returnParcelArray(); break;
+                    foreach (Parcel element in DalObject.DalObject.returnArrayObject.returnParcelArray()) { printParcel(element);}; break;
                 case 5:
-                    DalObject.DalObject.returnArrayObject.returnNotScheduledParcel(); break;
+                    foreach (Parcel element in DalObject.DalObject.returnArrayObject.returnNotScheduledParcel()) { printParcel(element); }; break;
                 case 6:
-                    DalObject.DalObject.returnArrayObject.returnStationWithChargeSlots(); break;
+                    foreach (Station element in DalObject.DalObject.returnArrayObject.returnStationWithChargeSlots()) { printStation(element); }; break;
                 default:
                     Console.WriteLine("~~~invalid input~~~"); break;
             }

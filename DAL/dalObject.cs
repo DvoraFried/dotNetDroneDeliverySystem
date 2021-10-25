@@ -9,6 +9,7 @@ namespace DalObject
 {
     public class DalObject
     {
+        DalObject() { DataSource.Initialize(); }
         static Random rnd = new Random();
         //=====================================================================
         //                     1. class add - add function
