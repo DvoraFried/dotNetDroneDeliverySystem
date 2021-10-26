@@ -8,19 +8,19 @@ namespace ConsoleUI
 
         static void printStation(Station station)
         {
-            Console.WriteLine("id:" + station.Id + "      Name:" + station.Name + "        ChargeSlots:" + station.ChargeSlots + "      Latitude:" + station.Latitude + "      Longitude" + station.Longitude);
+            Console.WriteLine($"id: {station.Id}     Name: {station.Name}     ChargeSlots: {station.ChargeSlots}     Latitude: {station.Latitude}     Longitude: {station.Longitude)}");
         }
         static void printCustomer(Customer customer)
         {
-            Console.WriteLine("id:" + customer.Id + "      Name:" + customer.Name + "        Phone:" + customer.Phone + "      Latitude:" + customer.Latitude + "      Longitude" + customer.Longitude);
+            Console.WriteLine($"id: {customer.Id}     Name: {customer.Name}     Phone: {customer.Phone}     Latitude: {customer.Latitude}     Longitude {customer.Longitude}");
         }
         static void printDrone(Drone drone)
         {
-            Console.WriteLine("id:" + drone.Id + "      Model:" + drone.Model + "        Status:" + drone.Status + "      Battery:" + drone.Battery + "      Max whight:" + drone.MaxWeight);
+            Console.WriteLine($"id: {drone.Id}     Model: {drone.Model}     Status: {drone.Status}     Battery: {drone.Battery}     Max whight: {drone.MaxWeight}");
         }
         static void printParcel(Parcel parcel)
         {
-            Console.WriteLine("id:" + parcel.Id + "      Weight:" + parcel.Weight + "        Priority:" + parcel.Priority);
+            Console.WriteLine($"id: {parcel.Id}     Weight: {parcel.Weight}     Priority: {parcel.Priority}");
         }
 
         static void adding()
@@ -176,6 +176,7 @@ namespace ConsoleUI
                     Console.WriteLine("~~~invalid input~~~"); break;
             }
         }
+
         static void Main(string[] args)
         {
             int choice = 0;
