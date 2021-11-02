@@ -8,7 +8,7 @@ namespace ConsoleUI
         //bbbb
         static void printStation(Station station)
         {
-            Console.WriteLine($"id: {station.Id}     Name: {station.Name}     ChargeSlots: {station.ChargeSlots}     Latitude: {station.Latitude}     Longitude: {station.Longitude)}");
+            Console.WriteLine($"id: {station.Id}     Name: {station.Name}     ChargeSlots: {station.ChargeSlots}     Latitude: {station.Latitude}     Longitude: {station.Longitude}");
         }
         static void printCustomer(Customer customer)
         {
