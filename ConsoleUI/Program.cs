@@ -5,10 +5,6 @@ namespace ConsoleUI
 {
     class Program
     {
-        /// <summary>
-        /// ////////////////////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="station"></param>
 
         static void printStation(Station station)
         {
