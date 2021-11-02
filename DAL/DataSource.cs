@@ -9,19 +9,19 @@ namespace DalObject
 {
     public class DataSource
     {
-        static internal Station[] MyBaseStations = new Station[5];
-        static internal Drone[] MyDrones = new Drone[10];
-        static internal Customer[] MyCustomers = new Customer[100];
-        static internal Parcel[] MyParcel = new Parcel[1000];
+        static internal List<Station> MyBaseStations = new List<Station>();
+        static internal List<Drone> MyDrones = new List<Drone>();
+        static internal List<Customer> MyCustomers = new List<Customer>();
+        static internal List<Parcel> MyParcel = new List<Parcel>();
         static internal List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
         internal class Config
         {
-            static internal int StationsIndex = 0;
-            static internal int DronesIndex=0;
-            static internal int CustomersIndex = 0;
-            static internal int ParcelIndex = 0;
-            static internal int ChargeSlotsIndex = 0;
-            static internal int IdNumber;
+           // static internal int StationsIndex = 0;
+           // static internal int DronesIndex=0;
+           // static internal int CustomersIndex = 0;
+           // static internal int ParcelIndex = 0;
+           // static internal int ChargeSlotsIndex = 0;
+           static internal int IdNumber;
         }
 
         public static void Initialize()
