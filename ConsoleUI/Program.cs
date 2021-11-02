@@ -5,10 +5,14 @@ namespace ConsoleUI
 {
     class Program
     {
+        /// <summary>
+        /// ////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="station"></param>
 
         static void printStation(Station station)
         {
-            Console.WriteLine($"id: {station.Id}     Name: {station.Name}     ChargeSlots: {station.ChargeSlots}     Latitude: {station.Latitude}     Longitude: {station.Longitude)}");
+            Console.WriteLine($"id: {station.Id}     Name: {station.Name}     ChargeSlots: {station.ChargeSlots}     Latitude: {station.Latitude}     Longitude: {station.Longitude}");
         }
         static void printCustomer(Customer customer)
         {
