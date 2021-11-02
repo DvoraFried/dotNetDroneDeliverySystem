@@ -52,7 +52,7 @@ namespace DalObject
 
             for (int i = 0; i < 10; i++)
             {
-                DalObject.Add.AddCustomer(Config.CustomersIndex, "customer" + (Config.CustomersIndex).ToString(),
+                DalObject.Add.AddCustomer(MyCustomers.Count, "customer" + (MyCustomers.Count).ToString(),
                 rnd.Next(5000000, 60000000).ToString(), rnd.Next(0, 24), rnd.Next(0, 180));
  
             }
@@ -79,16 +79,16 @@ namespace DalObject
                 switch (num)
                 {
                     case 0:
-                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
-                        MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.emergency);         
+                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.emergency);         
                         break;
                     case 1:
-                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
-                        MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.rapid);
+                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.rapid);
                         break;
                     case 2:
-                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id,
-                        MyCustomers[rnd.Next(1, (Config.CustomersIndex) + 1)].Id, WeightCategories.medium, Priorities.usual);
+                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.usual);
                         break;
                 }
             }

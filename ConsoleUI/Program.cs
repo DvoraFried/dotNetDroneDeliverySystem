@@ -5,7 +5,6 @@ namespace ConsoleUI
 {
     class Program
     {
-
         static void printStation(Station station)
         {
             Console.WriteLine($"id: {station.Id}     Name: {station.Name}     ChargeSlots: {station.ChargeSlots}     Latitude: {station.Latitude}     Longitude: {station.Longitude}");
