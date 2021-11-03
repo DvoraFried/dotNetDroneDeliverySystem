@@ -166,22 +166,25 @@ namespace DalObject
             //=====================================================================
             //returns a list of not scheduled parcels
             //=====================================================================
-            IEnumerator<Parcel> returnNotScheduledParcel()
+            public static List<Parcel> returnNotScheduledParcel()
             {
+                List<Parcel> notScheduledParcel = new List<Parcel>();
                 foreach (Parcel element in DataSource.MyParcel){
-                    if (element.DroneId == -1) yield return element;
+                    if (element.DroneId == -1) notScheduledParcel.Add(element);
                 }
+                return notScheduledParcel;
             }
             //=====================================================================
             //returns a list of station with empty cherge slots
             //=====================================================================
-            IEnumerator<Station> returnStationWithChargeSlots()
+            public static List<Station> returnStationWithChargeSlots()
             {
+                List<Station> stationWithChargeSlots = new List<Station>();
                 foreach (Station element in DataSource.MyBaseStations)
                 {
-                    if (element.ChargeSlots > 0) 
-                        yield return element;
+                    if (element.ChargeSlots > 0) stationWithChargeSlots.Add(element);
                 }             
+                return stationWithChargeSlots;
             }
         }
     }
