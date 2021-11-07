@@ -14,29 +14,17 @@ namespace DalObject
         static internal List<Customer> MyCustomers = new List<Customer>();
         static internal List<Parcel> MyParcel = new List<Parcel>();
         static internal List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
-        internal class Config
-        {
-           // static internal int StationsIndex = 0;
-           // static internal int DronesIndex=0;
-           // static internal int CustomersIndex = 0;
-           // static internal int ParcelIndex = 0;
-           // static internal int ChargeSlotsIndex = 0;
-           static internal int IdNumber;
-        }
-
+        internal class Config {static internal int IdNumber;}
         public static void Initialize()
         {
             Random rnd = new Random();
-            for (int i = 0; i < 2;i++)
-            {
+            for (int i = 0; i < 2;i++) {
                 DalObject.Add.AddStation(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
             }
 
-            for (int i = 0; i < 5; i++)
-            {
+            for (int i = 0; i < 5; i++) {
                 int num = rnd.Next(0, 3);
-                switch (num)
-                {
+                switch (num) {
                     case 0:
                         DalObject.Add.AddDrone(WeightCategories.light);
                         break;
@@ -46,23 +34,18 @@ namespace DalObject
                     case 2:
                         DalObject.Add.AddDrone(WeightCategories.heavy);
                         break;
-                }
-                
+                }                
             }
 
-            for (int i = 0; i < 10; i++)
-            {
+            for (int i = 0; i < 10; i++) {
                 DalObject.Add.AddCustomer(MyCustomers.Count, "customer" + (MyCustomers.Count).ToString(),
                 rnd.Next(5000000, 60000000).ToString(), rnd.Next(0, 24), rnd.Next(0, 180));
- 
             }
 
-            for (int i = 0; i < 10; i++)
-            {
+            for (int i = 0; i < 10; i++) {
                 WeightCategories weightS;
                 int num = rnd.Next(0, 3);
-                switch (num)
-                {
+                switch (num) {
                     case 0:
                         weightS = WeightCategories.light;
                         break;
@@ -76,8 +59,7 @@ namespace DalObject
 
                 Priorities priorityS;
                 num = rnd.Next(0, 3);
-                switch (num)
-                {
+                switch (num) {
                     case 0:
                         DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
                         MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.emergency);         
