@@ -26,6 +26,8 @@ namespace IDAL
 
             public IEnumerable<Station> returnStationArray();
             public IEnumerable<Drone> returnDroneArray();
+
+            public double[] powerRequest();
         }
 
     }

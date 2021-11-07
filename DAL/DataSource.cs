@@ -8,31 +8,38 @@ using IDAL.DO;
 namespace DalObject
 {
     public class DataSource
+  
     {
         static internal List<Station> MyBaseStations = new List<Station>();
         static internal List<Drone> MyDrones = new List<Drone>();
         static internal List<Customer> MyCustomers = new List<Customer>();
         static internal List<Parcel> MyParcel = new List<Parcel>();
         static internal List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
-        internal class Config {static internal int IdNumber;}
-        public static void Initialize()
+        internal class Config {
+            static double available;
+            static double carryLightWeight;
+            static double carrymediumWeight;
+            static double carryHeavyWeight;
+            static double SkimmerLoadingRate;
+        }
+/*        public static void Initialize()
         {
             Random rnd = new Random();
             for (int i = 0; i < 2;i++) {
-                DalObject.Add.AddStation(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
+                DalObject.AddStation(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
             }
 
             for (int i = 0; i < 5; i++) {
                 int num = rnd.Next(0, 3);
                 switch (num) {
                     case 0:
-                        DalObject.Add.AddDrone(WeightCategories.light);
+                        DalObject.AddDrone(WeightCategories.light);
                         break;
                     case 1:
-                        DalObject.Add.AddDrone(WeightCategories.medium);
+                        DalObject.AddDrone(WeightCategories.medium);
                         break;
                     case 2:
-                        DalObject.Add.AddDrone(WeightCategories.heavy);
+                        DalObject.AddDrone(WeightCategories.heavy);
                         break;
                 }                
             }
@@ -61,21 +68,21 @@ namespace DalObject
                 num = rnd.Next(0, 3);
                 switch (num) {
                     case 0:
-                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
                         MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.emergency);         
                         break;
                     case 1:
-                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
                         MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.rapid);
                         break;
                     case 2:
-                        DalObject.Add.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
                         MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.usual);
                         break;
                 }
             }
             
-        }
+        }*/
     }
 
 }

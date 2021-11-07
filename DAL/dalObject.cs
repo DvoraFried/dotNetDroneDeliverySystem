@@ -10,11 +10,11 @@ namespace DalObject
 {
     public class DalObject : IDAL.DO.IDAL
     {
-        DalObject() { DataSource.Initialize(); }
+        DalObject() { /*DataSource.Initialize();*/ }
         static Random rnd = new Random();
- //=====================================================================
- //                     1. class add - add function
- //=====================================================================
+        //=====================================================================
+        //                     1. class add - add function
+        //=====================================================================
 
         //=====================================================================
         //the function addstation render information for one station
@@ -69,10 +69,10 @@ namespace DalObject
             addP.Requested = DateTime.Now;
             addP.DroneId = -1;
             DataSource.MyParcel.Add(addP);
-        }        
- //=====================================================================
- //                     2. class update - update functions 
- //=====================================================================
+        }
+        //=====================================================================
+        //                     2. class update - update functions 
+        //=====================================================================
         public void Scheduled(int parcelIdS)
         {
             Parcel upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
@@ -107,9 +107,9 @@ namespace DalObject
         public void releaseCharge(int DroneIdS)
         {
         }
- //=====================================================================
- //                     3. class returnObject - return functions 
- //=====================================================================
+        //=====================================================================
+        //                     3. class returnObject - return functions 
+        //=====================================================================
 
         public Station returnStation(int StationIdS)
         {
@@ -130,42 +130,53 @@ namespace DalObject
         {
             return DataSource.MyParcel.First(parcel => parcel.Id == ParcelIdS);
         }
-//=====================================================================
-//             4. class returnArrayObject - return array
-//=====================================================================
+        //=====================================================================
+        //             4. class returnArrayObject - return array
+        //=====================================================================
 
         public IEnumerable<Station> returnStationArray()
         {
-            foreach (Station element in DataSource.MyBaseStations)   { yield return element; }
+            foreach (Station element in DataSource.MyBaseStations) { yield return element; }
         }
 
         public IEnumerable<Drone> returnDroneArray()
         {
-            foreach (Drone element in DataSource.MyDrones)   { yield return element; }
+            foreach (Drone element in DataSource.MyDrones) { yield return element; }
         }
 
-        public IEnumerable<Customer>returnCustomerArray()
+        public IEnumerable<Customer> returnCustomerArray()
         {
-            foreach (Customer element in DataSource.MyCustomers)    { yield return element; }
+            foreach (Customer element in DataSource.MyCustomers) { yield return element; }
         }
 
         public IEnumerable<Parcel> returnParcelArray()
         {
-            foreach (Parcel element in DataSource.MyParcel)  {yield return element; }
+            foreach (Parcel element in DataSource.MyParcel) { yield return element; }
         }
         //=====================================================================
         //returns a list of not scheduled parcels
         //=====================================================================
         public IEnumerable<Parcel> returnNotScheduledParcel()
         {
-            foreach (Parcel element in DataSource.MyParcel)     { if (element.DroneId == -1) yield return element;}
+            foreach (Parcel element in DataSource.MyParcel) { if (element.DroneId == -1) yield return element; }
         }
         //=====================================================================
         //returns a list of station with empty cherge slots
         //=====================================================================
         public IEnumerable<Station> returnStationWithChargeSlots()
         {
-            foreach (Station element in DataSource.MyBaseStations)   { if (element.ChargeSlots > 0) yield return element; }
+            foreach (Station element in DataSource.MyBaseStations) { if (element.ChargeSlots > 0) yield return element; }
+        }
+
+        public double[] powerRequest()
+        {
+            double[] arr = new double[5];
+            arr[0] = ((double)IDAL.DO.DroneStatuses.empty);
+            arr[1] = ((double)IDAL.DO.WeightCategories.light);
+            arr[2] = ((double)IDAL.DO.WeightCategories.medium);
+            arr[3] = ((double)IDAL.DO.WeightCategories.heavy);
+            //arr[4] = //קצב טעינה - ראו בהמשך
+            return arr;
         }
     }
 }
