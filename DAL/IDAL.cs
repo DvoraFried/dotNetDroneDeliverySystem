@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace IDAL
 {
-    interface IDal
+    namespace DO
     {
-        class Add { };
-        class Update { };
-        class returnObject { };
-        class returnArrayObject { };
+        interface IDAL
+        {
+            public static void AddStation(double LongitudeS, double LatitudeS, int ChargeSlotsS);
+        }
     }
 }

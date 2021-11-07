@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
+using IDAL;
 
 namespace DalObject
 {
-    public class DalObject
+    public class DalObject : IDAL.IDAL
     {
         DalObject() { DataSource.Initialize(); }
         static Random rnd = new Random();
         //=====================================================================
         //                     1. class add - add function
         //=====================================================================
-        public class Add
-        {
+/*        public class Add
+        {*/
             //=====================================================================
             //the function addstation render information for one station
             //=====================================================================
@@ -70,12 +71,12 @@ namespace DalObject
                 addP.DroneId = -1;
                 DataSource.MyParcel.Add(addP);
             }
-        }
+/*        }*/
         //=====================================================================
         //                     2. class update - update functions 
         //=====================================================================
-        public class Update
-        {
+/*        public class Update
+        {*/
 
             public static void Scheduled(int parcelIdS)
             {
@@ -111,12 +112,12 @@ namespace DalObject
             public static void releaseCharge(int DroneIdS)
             {
             }
-        }
+ /*       }*/
         //=====================================================================
         //                     3. class returnObject - return functions 
         //=====================================================================
-        public class returnObject
-        {
+ /*       public class returnObject
+        {*/
 
             public static IDAL.DO.Station returnStation<Station>(int StationIdS)
             {
@@ -137,12 +138,12 @@ namespace DalObject
             {
                 return DataSource.MyParcel.First(parcel => parcel.Id == ParcelIdS);
             }
-        }
+    /*    }*/
         //=====================================================================
         //             4. class returnArrayObject - return array
         //=====================================================================
-        public class returnArrayObject
-        {
+/*        public class returnArrayObject
+        {*/
 
             public static List<Station> returnStationArray()
             {
@@ -187,5 +188,5 @@ namespace DalObject
                 return stationWithChargeSlots;
             }
         }
-    }
+  /*  }*/
 }
