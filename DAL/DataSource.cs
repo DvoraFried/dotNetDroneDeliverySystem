@@ -10,10 +10,10 @@ namespace DalObject
     public class DataSource
   
     {
-        static internal List<Station> MyBaseStations = new List<Station>();
-        static internal List<Drone> MyDrones = new List<Drone>();
-        static internal List<Customer> MyCustomers = new List<Customer>();
-        static internal List<Parcel> MyParcel = new List<Parcel>();
+        static internal List<StationDAL> MyBaseStations = new List<StationDAL>();
+        static internal List<DroneDAL> MyDrones = new List<DroneDAL>();
+        static internal List<CustomerDAL> MyCustomers = new List<CustomerDAL>();
+        static internal List<ParcelDAL> MyParcel = new List<ParcelDAL>();
         static internal List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
         internal class Config {
             static double available;

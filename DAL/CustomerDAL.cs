@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IDAL.DO
 {
-    public struct Customer
+    public struct CustomerDAL
     {
         public int Id { get;set;}
         public string Name { get;set;}

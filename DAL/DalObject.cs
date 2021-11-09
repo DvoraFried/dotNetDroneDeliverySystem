@@ -21,7 +21,7 @@ namespace DalObject
         //=====================================================================
         public void AddStation(double LongitudeS, double LatitudeS, int ChargeSlotsS = 2)
         {
-            Station addS = new Station();
+            StationDAL addS = new StationDAL();
             addS.Id = DataSource.MyBaseStations.Count;
             addS.Name = "station" + DataSource.MyBaseStations.Count.ToString();
             addS.ChargeSlots = ChargeSlotsS;
@@ -35,7 +35,7 @@ namespace DalObject
         //=====================================================================
         public void AddDrone(WeightCategories weightS)
         {
-            Drone addD = new Drone();
+            DroneDAL addD = new DroneDAL();
             addD.Id = DataSource.MyDrones.Count;
             addD.Model = "model " + DataSource.MyDrones.Count.ToString();
             addD.MaxWeight = weightS;
@@ -47,7 +47,7 @@ namespace DalObject
         //=====================================================================
         public void AddCustomer(int idS, string nameS, string phoneS, double longitudeS, double latitudeS)
         {
-            Customer addC = new Customer();
+            CustomerDAL addC = new CustomerDAL();
             addC.Id = idS;
             addC.Name = nameS;
             addC.Phone = phoneS;
@@ -60,7 +60,7 @@ namespace DalObject
         //=====================================================================
         public void AddParcel(int senderIdS, int targetIdS, WeightCategories weightS, Priorities priorityS)
         {
-            Parcel addP = new Parcel();
+            ParcelDAL addP = new ParcelDAL();
             addP.Id = DataSource.MyParcel.Count;
             addP.SenderId = senderIdS;
             addP.TargetId = targetIdS;
@@ -75,8 +75,8 @@ namespace DalObject
         //=====================================================================
         public void Scheduled(int parcelIdS)
         {
-            Parcel upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
-            Drone setD = DataSource.MyDrones.First(drone => drone.MaxWeight >= upP.Weight);
+            ParcelDAL upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
+            DroneDAL setD = DataSource.MyDrones.First(drone => drone.MaxWeight >= upP.Weight);
             upP.DroneId = setD.Id;
             upP.Scheduled = DateTime.Now;
             DataSource.MyParcel[DataSource.MyParcel.IndexOf(DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS))] = upP;
@@ -84,14 +84,14 @@ namespace DalObject
 
         public void PickUp(int parcelIdS)
         {
-            Parcel upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
+            ParcelDAL upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
             upP.PickUp = DateTime.Now;
             DataSource.MyParcel[DataSource.MyParcel.IndexOf(DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS))] = upP;
         }
 
         public void Delivered(int parcelIdS)
         {
-            Parcel upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
+            ParcelDAL upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
             upP.Delivered = DateTime.Now;
             DataSource.MyParcel[DataSource.MyParcel.IndexOf(DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS))] = upP;
         }
@@ -111,22 +111,22 @@ namespace DalObject
         //                     3. class returnObject - return functions 
         //=====================================================================
 
-        public Station returnStation(int StationIdS)
+        public StationDAL returnStation(int StationIdS)
         {
             return DataSource.MyBaseStations.First(station => station.Id == StationIdS);
         }
 
-        public Drone returnDrone(int DroneIdS)
+        public DroneDAL returnDrone(int DroneIdS)
         {
             return DataSource.MyDrones.First(drone => drone.Id == DroneIdS);
         }
 
-        public Customer returnCustomer(int CustomerIdS)
+        public CustomerDAL returnCustomer(int CustomerIdS)
         {
             return DataSource.MyCustomers.First(customer => customer.Id == CustomerIdS);
         }
 
-        public Parcel returnParcel(int ParcelIdS)
+        public ParcelDAL returnParcel(int ParcelIdS)
         {
             return DataSource.MyParcel.First(parcel => parcel.Id == ParcelIdS);
         }
@@ -134,38 +134,38 @@ namespace DalObject
         //             4. class returnArrayObject - return array
         //=====================================================================
 
-        public IEnumerable<Station> returnStationArray()
+        public IEnumerable<StationDAL> returnStationArray()
         {
-            foreach (Station element in DataSource.MyBaseStations) { yield return element; }
+            foreach (StationDAL element in DataSource.MyBaseStations) { yield return element; }
         }
 
-        public IEnumerable<Drone> returnDroneArray()
+        public IEnumerable<DroneDAL> returnDroneArray()
         {
-            foreach (Drone element in DataSource.MyDrones) { yield return element; }
+            foreach (DroneDAL element in DataSource.MyDrones) { yield return element; }
         }
 
-        public IEnumerable<Customer> returnCustomerArray()
+        public IEnumerable<CustomerDAL> returnCustomerArray()
         {
-            foreach (Customer element in DataSource.MyCustomers) { yield return element; }
+            foreach (CustomerDAL element in DataSource.MyCustomers) { yield return element; }
         }
 
-        public IEnumerable<Parcel> returnParcelArray()
+        public IEnumerable<ParcelDAL> returnParcelArray()
         {
-            foreach (Parcel element in DataSource.MyParcel) { yield return element; }
+            foreach (ParcelDAL element in DataSource.MyParcel) { yield return element; }
         }
         //=====================================================================
         //returns a list of not scheduled parcels
         //=====================================================================
-        public IEnumerable<Parcel> returnNotScheduledParcel()
+        public IEnumerable<ParcelDAL> returnNotScheduledParcel()
         {
-            foreach (Parcel element in DataSource.MyParcel) { if (element.DroneId == -1) yield return element; }
+            foreach (ParcelDAL element in DataSource.MyParcel) { if (element.DroneId == -1) yield return element; }
         }
         //=====================================================================
         //returns a list of station with empty cherge slots
         //=====================================================================
-        public IEnumerable<Station> returnStationWithChargeSlots()
+        public IEnumerable<StationDAL> returnStationWithChargeSlots()
         {
-            foreach (Station element in DataSource.MyBaseStations) { if (element.ChargeSlots > 0) yield return element; }
+            foreach (StationDAL element in DataSource.MyBaseStations) { if (element.ChargeSlots > 0) yield return element; }
         }
 
         public double[] powerRequest()

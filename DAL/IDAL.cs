@@ -19,13 +19,13 @@ namespace IDAL
             public void PickUp(int parcelIdS);
             public void Delivered(int parcelIdS);
 
-            public Station returnStation(int StationIdS);
-            public Drone returnDrone(int DroneIdS);
-            public Customer returnCustomer(int CustomerIdS);
-            public Parcel returnParcel(int ParcelIdS);
+            public StationDAL returnStation(int StationIdS);
+            public DroneDAL returnDrone(int DroneIdS);
+            public CustomerDAL returnCustomer(int CustomerIdS);
+            public ParcelDAL returnParcel(int ParcelIdS);
 
-            public IEnumerable<Station> returnStationArray();
-            public IEnumerable<Drone> returnDroneArray();
+            public IEnumerable<StationDAL> returnStationArray();
+            public IEnumerable<DroneDAL> returnDroneArray();
 
             public double[] powerRequest();
         }
