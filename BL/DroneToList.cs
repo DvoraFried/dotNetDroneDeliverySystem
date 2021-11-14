@@ -11,7 +11,10 @@ namespace IBL.BO
         public int Id { get; set; }
         public string Model { get; set; }
         EnumBL.WeightCategoriesBL Weight { get; set; }
-        //Battery status
+        public double BatteryStatus { get; set; }
+        //Drone status
+        Position CurrentPosition { get; set; }
+        public int ParcelNun { get; set; }
 
     }
 }

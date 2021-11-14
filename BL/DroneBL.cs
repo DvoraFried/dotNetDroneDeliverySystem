@@ -12,5 +12,10 @@ namespace IBL.BO
         public int IdBL { get; set; }
         public string ModelBL { get; set; }
         public WeightCategoriesBL MaxWeight { get; set; }
+        public double BatteryStatus { get; set; }
+        //Drone status
+        //DeliveryByTransfer
+        Position CurrentPosition { get; set; }
+
     }
 }
