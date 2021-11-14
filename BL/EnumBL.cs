@@ -11,5 +11,7 @@ namespace IBL.BO
         public enum WeightCategoriesBL { light, medium, heavy }
         public enum DroneStatusesBL { empty, maintenance, Shipping }
         public enum PrioritiesBL { usual, rapid, emergency }
+        public enum DeliveryStatus { created, associated, collected, provided }
+
     }
 }
