@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IDAL.DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,8 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                //פה צריך דחיפה של התחנה שיצרנו לדאל
+                //פה צריך דחיפה של התחנה שיצרנו לדאל//i created a function' i think it is fine, will check it tomorrow
+                DalObject.DalObject.AddStation(ConvertToDal.ConvertToStationDal(station));
             }
             public void AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
             {
