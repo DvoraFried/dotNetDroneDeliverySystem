@@ -19,15 +19,9 @@ namespace DalObject
         //=====================================================================
         //the function addstation render information for one station
         //=====================================================================
-        public void AddStation(double LongitudeS, double LatitudeS, int ChargeSlotsS = 2)
+        public void AddStation(StationDAL DALS)
         {
-            StationDAL addS = new StationDAL();
-            addS.Id = DataSource.MyBaseStations.Count;
-            addS.Name = "station" + DataSource.MyBaseStations.Count.ToString();
-            addS.ChargeSlots = ChargeSlotsS;
-            addS.Longitude = LongitudeS;
-            addS.Latitude = LongitudeS;
-            DataSource.MyBaseStations.Add(addS);
+            DataSource.MyBaseStations.Add(DALS);
         }
 
         //=====================================================================

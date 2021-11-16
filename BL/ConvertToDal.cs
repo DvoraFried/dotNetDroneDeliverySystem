@@ -9,15 +9,15 @@ namespace IBL.BO
 {
         public class ConvertToDal
         {
-            public static StationDAL ConvertToStationDal(StationBL BLS)
+            public static StationDAL ConvertToStationDal(StationBL stationBl)
             {
-            StationDAL DALS = new StationDAL();
-            DALS.Id = BLS.getIdBL();
-            DALS.Name = BLS.NameBL;
-            DALS.ChargeSlots = BLS.ChargeSlotsBL;
-            DALS.Longitude = BLS.PositionBL.Longitude;
-            DALS.Latitude = BLS.PositionBL.Latitude;
-            return DALS;           
+            StationDAL stationDal = new StationDAL();
+            stationDal.Id = stationBl.getIdBL();
+            stationDal.Name = stationBl.NameBL;
+            stationDal.ChargeSlots = stationBl.ChargeSlotsBL;
+            stationDal.Longitude = stationBl.PositionBL.Longitude;
+            stationDal.Latitude = stationBl.PositionBL.Latitude;
+            return stationDal;           
             }
         }
 }
