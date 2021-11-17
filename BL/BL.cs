@@ -1,4 +1,5 @@
-﻿using IDAL.DO;
+﻿using DalObject;
+using IDAL.DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace IBL.BO
                     drone.setIdBL(id);
                     drone.ModelBL = model;
                     drone.MaxWeight = weight;
+                    drone.setCurrentPosition(stationId);
                     //כדי לעדכן את הערך 'מיקום' של הרחפן צריך לשלוף את רשימת התחנות
                     //למצוא את התחנה שהמספר המזהה שלה זהה לזה שהזין המשתמש,
                     //ולהעתיק את ערכי המיקום שלה למיקום של הרחפן

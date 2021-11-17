@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DalObject;
+using IDAL.DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +30,14 @@ namespace IBL.BO
         public int BatteryStatus { get; set; }
         //Drone status
         //DeliveryByTransfer
-        public Position CurrentPosition { get; set; }
+        private Position CurrentPosition;
+        public void setCurrentPosition(int stationId)
+        {
+            IEnumerable<StationBL> staions = new List<StationBL>(); //  במקום זה -> צריך למשוך מהדאטא את רשימת התחנות
+            foreach (StationBL elemnt in staions)
+            {
 
+            }
+        }
     }
 }
