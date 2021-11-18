@@ -25,7 +25,7 @@ namespace IBL.BO
         public int getIdBL() { return IdBL; }
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
-        public Position PositionBL { get; set; }
+        public Position Position { get; set; }
         public int DronesInCharging { get; set; }
     }
 }

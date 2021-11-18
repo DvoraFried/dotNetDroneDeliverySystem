@@ -10,16 +10,17 @@ namespace IBL.BO
 {
     public class BL
     {
+        public static IDAL.DO.IDAL iDAL = DALFactory.factory();
         public class Add
         {
-            public void AddStation(int id, string name, Position position, int chargeSlots)
+            public bool AddStation(int id, string name, Position position, int chargeSlots)
             {
                 StationBL station = new StationBL();
                 try
                 {
                     station.set_id(id);
                     station.NameBL = name;
-                    station.PositionBL = position;
+                    station.Position = position;
                     station.ChargeSlotsBL = chargeSlots;
                     station.DronesInCharging = 0;
                 }
@@ -27,31 +28,27 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                //פה צריך דחיפה של התחנה שיצרנו לדאל//i created a function' i think it is fine, will check it tomorrow
-                DalObject.DalObject.AddStation(ConvertToDal.ConvertToStationDal(station));
+                iDAL.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
+                return true;
             }
-            public void AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
+            public bool AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
             {
                 DroneBL drone = new DroneBL();
-                Random rnd = new Random();
                 try
                 {
+                    Random rnd = new Random();
                     drone.setIdBL(id);
                     drone.ModelBL = model;
                     drone.MaxWeight = weight;
                     drone.setCurrentPosition(stationId);
-                    //כדי לעדכן את הערך 'מיקום' של הרחפן צריך לשלוף את רשימת התחנות
-                    //למצוא את התחנה שהמספר המזהה שלה זהה לזה שהזין המשתמש,
-                    //ולהעתיק את ערכי המיקום שלה למיקום של הרחפן
-                    //(במידה ולא קיימת תחנה עם המזהה שהוזן - להוציא שגיאה.
                     drone.BatteryStatus = rnd.Next(20, 41);
-                    //כאן צריך לעדכן מצב רחפן ואין לנו את זה כי לא יודעות איך לעשות - עם אינם או מה
                 }
                 catch (Exception errorMessage)
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                //פה צריך דחיפה של הרחפן שיצרנו לדאל
+                iDAL.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
+                return true;
             }
             public void AddCustomer(int id, string name, string phone, Position position)
             {
@@ -67,7 +64,7 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                //פה צריך דחיפה של משתמש שיצרנו לדאל
+                iDAL.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }
             public void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
             {
@@ -89,7 +86,7 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                //פה צריך דחיפה של החבילה שיצרנו לדאל
+                iDAL.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel)); 
             }
         }
     }

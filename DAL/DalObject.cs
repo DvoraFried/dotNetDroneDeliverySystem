@@ -12,6 +12,18 @@ namespace DalObject
     {
         DalObject() { /*DataSource.Initialize();*/ }
         static Random rnd = new Random();
+
+        static DalObject DOBJ;
+
+        public static DalObject GetDOBJ
+        {
+            get
+            {
+                if (DOBJ == null)
+                    DOBJ = new DalObject();
+                return DOBJ;
+            }
+        }
         //=====================================================================
         //                     1. class add - add function
         //=====================================================================
@@ -19,7 +31,7 @@ namespace DalObject
         //=====================================================================
         //the function addstation render information for one station
         //=====================================================================
-        public void AddStation(StationDAL DALS)
+        public void AddStationDAL(StationDAL DALS)
         {
             DataSource.MyBaseStations.Add(DALS);
         }
@@ -27,42 +39,24 @@ namespace DalObject
         //=====================================================================
         //the function adddrone render information for one drone 
         //=====================================================================
-        public void AddDrone(WeightCategories weightS)
+        public void AddDroneDAL(DroneDAL DALD)
         {
-            DroneDAL addD = new DroneDAL();
-            addD.Id = DataSource.MyDrones.Count;
-            addD.Model = "model " + DataSource.MyDrones.Count.ToString();
-            addD.MaxWeight = weightS;
-            DataSource.MyDrones.Add(addD);
+            DataSource.MyDrones.Add(DALD);
         }
 
         //=====================================================================
         //the function addcustomer render information for one customer
         //=====================================================================
-        public void AddCustomer(int idS, string nameS, string phoneS, double longitudeS, double latitudeS)
+        public void AddCustomerDAL(CustomerDAL DALC)
         {
-            CustomerDAL addC = new CustomerDAL();
-            addC.Id = idS;
-            addC.Name = nameS;
-            addC.Phone = phoneS;
-            addC.Longitude = longitudeS;
-            addC.Latitude = latitudeS;
-            DataSource.MyCustomers.Add(addC);
+            DataSource.MyCustomers.Add(DALC);
         }
         //=====================================================================
         //the function addparcel render information for one parcel
         //=====================================================================
-        public void AddParcel(int senderIdS, int targetIdS, WeightCategories weightS, Priorities priorityS)
+        public void AddParcelDAL(ParcelDAL DALP)
         {
-            ParcelDAL addP = new ParcelDAL();
-            addP.Id = DataSource.MyParcel.Count;
-            addP.SenderId = senderIdS;
-            addP.TargetId = targetIdS;
-            addP.Weight = weightS;
-            addP.Priority = priorityS;
-            addP.Requested = DateTime.Now;
-            addP.DroneId = -1;
-            DataSource.MyParcel.Add(addP);
+            DataSource.MyParcel.Add(DALP);
         }
         //=====================================================================
         //                     2. class update - update functions 

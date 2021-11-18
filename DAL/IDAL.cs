@@ -8,12 +8,12 @@ namespace IDAL
 {
     namespace DO
     {
-        interface IDAL
+        public interface IDAL
         {
-            public void AddStation(StationDAL DALS);
-            public void AddDrone(WeightCategories weightS);
-            public  void AddCustomer(int idS, string nameS, string phoneS, double longitudeS, double latitudeS);
-            public  void AddParcel(int senderIdS, int targetIdS, WeightCategories weightS, Priorities priorityS);
+            public void AddStationDAL(StationDAL DALS);
+            public void AddDroneDAL(DroneDAL DALD);
+            public  void AddCustomerDAL(CustomerDAL DALC);
+            public  void AddParcelDAL(ParcelDAL DALP);
 
             public void Scheduled(int parcelIdS);
             public void PickUp(int parcelIdS);
