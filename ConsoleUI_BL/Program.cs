@@ -1,5 +1,5 @@
 ﻿using System;
-using 
+using IBL.BO;
 namespace ConsoleUI_BL
 {
     class Program
@@ -21,10 +21,11 @@ namespace ConsoleUI_BL
                     longitude = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("longitude: ");
                     latitude = Convert.ToDouble(Console.ReadLine());
-                    
+                    BL.Add.AddStation( longitude, latitude, ChargeSlots);
                     break;
                 case 2:
                     Console.WriteLine("wieght category: ");
+                    
                     break;
                 case 3:
                     Console.WriteLine("id: ");
@@ -73,8 +74,8 @@ namespace ConsoleUI_BL
                     case 3:
                         display(); break;
                     case 4:
-                        displayLists(); break;*/
-                    case 5:
+                        displayLists(); break;
+                    case 5:*/
                         Console.WriteLine("bye!"); break;
                 }
             }

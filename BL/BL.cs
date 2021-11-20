@@ -14,14 +14,16 @@ namespace IBL.BO
 
         public class Add
         {
-            public bool AddStation(int id, string name, Position position, int chargeSlots)
+            public static bool AddStation(double longitude,double  latitude, int chargeSlots)
             {
                 StationBL station = new StationBL();
                 try
                 {
-                    station.set_id(id);
-                    station.NameBL = name;
-                    station.Position = position;
+                    //int id=//here we need to get the index of the current last item in the station list
+                    //station.set_id(id);
+                    //station.NameBL = id.ToString()+"station";
+                    station.Position.Latitude =latitude;
+                    station.Position.Longitude = longitude;
                     station.ChargeSlotsBL = chargeSlots;
                     station.DronesInCharging = 0;
                 }
@@ -32,7 +34,7 @@ namespace IBL.BO
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
                 return true;
             }
-            public bool AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
+            public static bool AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
             {
                 DroneBL drone = new DroneBL();
                 try
@@ -51,7 +53,7 @@ namespace IBL.BO
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 return true;
             }
-            public void AddCustomer(int id, string name, string phone, Position position)
+            public static bool AddCustomer(int id, string name, string phone, Position position)
             {
                 CustomerBL customer = new CustomerBL();
                 try
@@ -66,8 +68,9 @@ namespace IBL.BO
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
+                return true;
             }
-            public void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
+            public static bool AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
             {
                 ParcelBL parcel = new ParcelBL();
                 try
@@ -87,7 +90,8 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel)); 
+                DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
+                return true;
             }
         }
     }
