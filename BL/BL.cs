@@ -10,7 +10,8 @@ namespace IBL.BO
 {
     public class BL
     {
-        public static IDAL.DO.IDAL iDAL = DALFactory.factory();
+        static IDAL.DO.IDAL DalObj = DALFactory.factory();
+
         public class Add
         {
             public bool AddStation(int id, string name, Position position, int chargeSlots)
@@ -28,7 +29,7 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                iDAL.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
+                DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
                 return true;
             }
             public bool AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
@@ -47,7 +48,7 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                iDAL.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
+                DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 return true;
             }
             public void AddCustomer(int id, string name, string phone, Position position)
@@ -64,7 +65,7 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                iDAL.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
+                DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }
             public void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
             {
@@ -86,7 +87,7 @@ namespace IBL.BO
                 {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
-                iDAL.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel)); 
+                DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel)); 
             }
         }
     }
