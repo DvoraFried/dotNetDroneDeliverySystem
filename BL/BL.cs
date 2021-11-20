@@ -14,14 +14,14 @@ namespace IBL.BO
 
         public class Add
         {
-            public static bool AddStation(double longitude,double  latitude, int chargeSlots)
+            public static bool AddStation(int id, string name,double longitude,double  latitude, int chargeSlots)
             {
                 StationBL station = new StationBL();
                 try
                 {
-                    //int id=//here we need to get the index of the current last item in the station list
-                    //station.set_id(id);
-                    //station.NameBL = id.ToString()+"station";
+                    
+                    station.set_id(id);
+                    station.NameBL = name;
                     station.Position.Latitude =latitude;
                     station.Position.Longitude = longitude;
                     station.ChargeSlotsBL = chargeSlots;
@@ -45,6 +45,7 @@ namespace IBL.BO
                     drone.MaxWeight = weight;
                     drone.setCurrentPosition(stationId);
                     drone.BatteryStatus = rnd.Next(20, 41);
+                    //the status of the drone is missing
                 }
                 catch (Exception errorMessage)
                 {
@@ -53,7 +54,7 @@ namespace IBL.BO
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 return true;
             }
-            public static bool AddCustomer(int id, string name, string phone, Position position)
+            public static bool AddCustomer(int id, string name, string phone, double longitude, double latitude)
             {
                 CustomerBL customer = new CustomerBL();
                 try
@@ -61,7 +62,8 @@ namespace IBL.BO
                     customer.setIdBL(id);
                     customer.NameBL = name;
                     customer.PhoneBL = phone;
-                    customer.position = position;
+                    customer.position.Longitude = longitude;
+                    customer.position.Latitude = latitude;
                 }
                 catch (Exception errorMessage)
                 {

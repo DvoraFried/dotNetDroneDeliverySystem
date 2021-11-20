@@ -1,5 +1,6 @@
 ﻿using System;
 using IBL.BO;
+using static IBL.BO.EnumBL;
 namespace ConsoleUI_BL
 {
     class Program
@@ -7,7 +8,7 @@ namespace ConsoleUI_BL
         static void adding()
         {
             Console.WriteLine("1 - Add base station");
-            Console.WriteLine("2 - Add quadocopter");
+            Console.WriteLine("2 - Add drone");
             Console.WriteLine("3 - Add customer");
             Console.WriteLine("4 - Add package");
             int choice = Convert.ToInt32(Console.ReadLine());
@@ -15,17 +16,28 @@ namespace ConsoleUI_BL
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("chargs lots: ");
-                    int ChargeSlots = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("station id: ");
+                    id = Convert.ToInt16(Console.ReadLine());
+                    Console.WriteLine("station name: ");
+                    string name = Console.ReadLine();
                     Console.WriteLine("longitude: ");
                     longitude = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("longitude: ");
                     latitude = Convert.ToDouble(Console.ReadLine());
-                    BL.Add.AddStation( longitude, latitude, ChargeSlots);
+                    Console.WriteLine("chargs lots: ");
+                    int ChargeSlots = Convert.ToInt32(Console.ReadLine());
+                    BL.Add.AddStation(id,name,longitude, latitude, ChargeSlots);
                     break;
                 case 2:
-                    Console.WriteLine("wieght category: ");
-                    
+                    Console.WriteLine("drone id: ");
+                    id = Convert.ToInt16(Console.ReadLine());
+                    Console.WriteLine("drone model: ");
+                    name = Console.ReadLine();
+                    Console.WriteLine("max category: ");
+                    WeightCategoriesBL weightCat = (WeightCategoriesBL)Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("type the station id you want to use: ");
+                    int stationId = Convert.ToInt16(Console.ReadLine());
+                    BL.Add.AddDrone(id, name, weightCat, stationId);
                     break;
                 case 3:
                     Console.WriteLine("id: ");
@@ -38,16 +50,18 @@ namespace ConsoleUI_BL
                     longitude = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("longitude: ");
                     latitude = Convert.ToDouble(Console.ReadLine());
+                    BL.Add.AddCustomer(id, userName, phone, longitude, latitude);
                     break;
                 case 4:
                     Console.WriteLine("sender id: ");
                     int senderId = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("customer id: ");
-                    int customerId = Convert.ToInt32(Console.ReadLine());
+                    int getterId = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("wieght category: ");
-                    WeightCategories weightCat = (WeightCategories)Convert.ToInt32(Console.ReadLine());
+                    weightCat = (WeightCategoriesBL)Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("priority: ");
-                    Priorities prioritiesCat = (Priorities)Convert.ToInt32(Console.ReadLine());
+                    PrioritiesBL priorityCat =(PrioritiesBL)Convert.ToInt32(Console.ReadLine());
+                    BL.Add.AddParcel(senderId, getterId, weightCat, priorityCat);
                     break;
                 default:
                     Console.WriteLine("~~~invalid input~~~"); break;
