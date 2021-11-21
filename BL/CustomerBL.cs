@@ -9,12 +9,12 @@ namespace IBL.BO
 {
     public class CustomerBL
     {
-        public CustomerBL(int id, string name, string phone, double longitude, double latitude)
+        public CustomerBL(int id, string name, string phone, Position p)
         {
             setIdBL(id);
             NameBL = name;
             PhoneBL = phone;
-            Position = new Position(latitude, longitude);
+            Position = p;
         }
 
         private int IdBL;

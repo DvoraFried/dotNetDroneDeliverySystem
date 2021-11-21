@@ -51,7 +51,7 @@ namespace IBL.BO
                 {
                     throw new ObjectExistsInListException("customer");
                 }
-                CustomerBL customer = new CustomerBL(id, name, phone, longitude, latitude);
+                CustomerBL customer = new CustomerBL(id, name, phone, ReturnPosition(latitude, longitude));
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }
 

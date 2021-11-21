@@ -31,9 +31,8 @@ namespace IBL.BO
                 }
                 int stationIndex = DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => (s.Id == id)));
                 string currentName = name != null ? name : DataSource.MyBaseStations[stationIndex].Name;
-                Position position = new Position(DataSource.MyBaseStations[stationIndex].Longitude, DataSource.MyBaseStations[stationIndex].Latitude);
                 int currentChargeLots = chargeslots != -1 ? chargeslots : DataSource.MyBaseStations[stationIndex].ChargeSlots;
-                StationBL station = new StationBL(id, currentName, position, currentChargeLots, DataSource.MyBaseStations[stationIndex].DronesInCharging);
+                StationBL station = new StationBL(id, currentName, ReturnPosition(DataSource.MyBaseStations[stationIndex].Longitude, DataSource.MyBaseStations[stationIndex].Latitude), currentChargeLots, DataSource.MyBaseStations[stationIndex].DronesInCharging);
                 DataSource.MyBaseStations[stationIndex] = ConvertToDal.ConvertToStationDal(station);
             }
 
@@ -45,8 +44,10 @@ namespace IBL.BO
                 int customerIndex = DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => (c.Id == id)));
                 string currentName = name != null ? name : DataSource.MyCustomers[customerIndex].Name;
                 string currentPhone = newPhone != null ? newPhone : DataSource.MyCustomers[customerIndex].Phone;
-                CustomerBL customer = new CustomerBL(id, currentName, currentPhone, DataSource.MyCustomers[customerIndex].Longitude, DataSource.MyCustomers[customerIndex].Latitude);
+                CustomerBL customer = new CustomerBL(id, currentName, currentPhone, ReturnPosition(DataSource.MyBaseStations[customerIndex].Latitude, DataSource.MyBaseStations[customerIndex].Longitude));
             }
+
+
         }
     }
 }
