@@ -75,18 +75,5 @@ namespace IBL.BO
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
             }
         }
-        public class UpDate
-        {
-            public void UpDateDroneName(int id,string newModelName)
-            {
-                int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
-                if (droneBLIndex != -1) 
-                {
-                    DroneBL drone = DronesListBL[droneBLIndex];
-                    drone.ModelBL = newModelName;
-                    DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
-                }; 
-            }
-        }
     }
 }
