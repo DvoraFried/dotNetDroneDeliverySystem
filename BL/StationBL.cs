@@ -9,17 +9,25 @@ namespace IBL.BO
 {
     public class StationBL
     {
-        private int IdBL;
+        public StationBL(int id,string name,Position p, int chargS,int DronesInChargingS)
+        {
+            this.SetId(id);
+            this.NameBL = name;
+            this.Position = p;
+            this.ChargeSlotsBL = chargS;
+            this.DronesInCharging = DronesInChargingS;
+        }
+        private int idBL;
         public void SetId(int idS)
         {
                 if(idS<=0)
                 {
                     throw new UnValidIdException(idS,"station");
                 }
-            IdBL = idS;
+            idBL = idS;
         }
 
-        public int GetIdBL() { return IdBL; }
+        public int GetIdBL() { return idBL; }
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
         public Position Position { get; set; }
