@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DalObject;
+using IDAL.DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static IBL.BO.Excptions;
 
 namespace IBL.BO
 {
@@ -82,11 +85,15 @@ namespace IBL.BO
                     parcel.DroneIdBL = null;
                 }
                 catch (Exception errorMessage)
-                {
+    public partial class BL
+    {
                     throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
                 }
                 //פה צריך דחיפה של החבילה שיצרנו לדאל
             }
         }
+        public static List<DroneBL> DronesListBL = new List<DroneBL>();
+
+        static IDAL.DO.IDAL DalObj = DALFactory.factory();
     }
 }

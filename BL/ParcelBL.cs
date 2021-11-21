@@ -9,34 +9,27 @@ namespace IBL.BO
 {
     public class ParcelBL
     {
-        private int IdBL;
-        public void setIdBL(int idP)
+        public ParcelBL(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
         {
-            IEnumerable<ParcelBL> parcels = new List<ParcelBL>(); //  במקום זה -> צריך למשוך מהדאטא את רשימת התחנות
-            foreach (ParcelBL parcel in parcels)
-            {
-                if (parcel.getIdBL() == idP)
-                {
-                    throw new ArgumentException("~ The ID number already exists in the system ~");
-                }
-            }
-            IdBL = idP;
+            parcelId++;
+            IdBL = parcelId;
+            SenderIdBL = idSender;
+            TargetIdBL = idTarget;
+            Weight = weight;
+            Priority = priority;
+            ScheduledBL = new DateTime();
+            PickUpBL = new DateTime();
+            DeliveredBL = new DateTime();
+            RequestedBL = DateTime.Now;
+            DroneIdBL = null;
         }
-        public int getIdBL() { return IdBL; }
-        private int SenderIdBL;
-        public void setSenderIdBL(int idS)
-        {
-            //לשלוף את רשימת הלקוחות ולעבור עליה (פיינד) - אם אין לקוח עם מספר מזהה כמו שהוזן לשלוח חריגה
-            SenderIdBL = idS;
-        }
-        public int getSenderIdBL() { return SenderIdBL; }
-        private int TargetIdBL;
-        public void setTargetIdBL(int idT)
-        {
-            //לשלוף את רשימת הלקוחות ולעבור עליה (פיינד) - אם אין לקוח עם מספר מזהה כמו שהוזן לשלוח חריגה
-            TargetIdBL = idT;
-        }
-        public int getTargetIdBL() { return TargetIdBL; }
+
+        private static int parcelId = 0;
+        public int GetParcelId() { return parcelId; }
+        public void SetParcelId(int pId) {  parcelId=pId; }
+        public int IdBL { get; set; }
+        public int SenderIdBL { get; set; }
+        public int TargetIdBL { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }
         public DroneBL DroneIdBL { get; set; }

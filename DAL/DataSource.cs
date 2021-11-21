@@ -10,11 +10,11 @@ namespace DalObject
     public class DataSource
   
     {
-        static internal List<StationDAL> MyBaseStations = new List<StationDAL>();
-        static internal List<DroneDAL> MyDrones = new List<DroneDAL>();
-        static internal List<CustomerDAL> MyCustomers = new List<CustomerDAL>();
-        static internal List<ParcelDAL> MyParcel = new List<ParcelDAL>();
-        static internal List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
+        public static List<StationDAL> MyBaseStations = new List<StationDAL>();
+        public static List<DroneDAL> MyDrones = new List<DroneDAL>();
+        public static List<CustomerDAL> MyCustomers = new List<CustomerDAL>();
+        public static List<ParcelDAL> MyParcel = new List<ParcelDAL>();
+        public static List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
         internal class Config {
             static double available;
             static double carryLightWeight;
@@ -26,7 +26,7 @@ namespace DalObject
         {
             Random rnd = new Random();
             for (int i = 0; i < 2;i++) {
-                DalObject.AddStation(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
+                DalObject.AddStationDAL(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
             }
 
             for (int i = 0; i < 5; i++) {
