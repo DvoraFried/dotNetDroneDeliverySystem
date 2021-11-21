@@ -14,10 +14,8 @@ namespace IBL.BO
         {
             public void UpDateDroneName(int id, string newModelName)
             {
+                if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
                 int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
-                if (droneBLIndex == -1) {
-                    throw new ObjectDoesntExistsInListException("drone"); 
-                }
                 DroneBL drone = DronesListBL[droneBLIndex];
                 drone.ModelBL = newModelName;
                 DronesListBL[droneBLIndex] = drone;
@@ -26,14 +24,15 @@ namespace IBL.BO
 
             public void UpDateStationData(int id, string name = null, int chargeSlots = 0)
             {
+                if (!DataSource.MyBaseStations.Any(s => (s.Id == id))) {throw new ObjectDoesntExistsInListException("station");}
                 int stationIndex = DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => (s.Id == id)));
-                if (stationIndex == -1) {
-                    throw new ObjectDoesntExistsInListException("station");
-                }
-                string stationName = name != null ? name : DataSource.MyBaseStations[stationIndex].Name;
-                Position stationPosoition = new Position(DataSource.MyBaseStations[stationIndex].Longitude, DataSource.MyBaseStations[stationIndex].Latitude);
-                int stationChargelots = chargeSlots != 0 ? chargeSlots : DataSource.MyBaseStations[stationIndex].ChargeSlots;
-                StationBL station = new StationBL(id, name, stationPosoition, stationChargelots, DataSource.MyBaseStations[stationIndex].DronesInCharging);
+            }
+            public void UpDateCustomerData(int id, string name, int newPhone)
+            {
+                if(!DataSource.MyCustomers.Any(c => (c.Id == id))) { throw new ObjectDoesntExistsInListException("customer"); }
+                int customerIndex = DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => (c.Id == id)));
+                CustomerBL customer=new CustomerBL()
+
             }
 
             public void UpDateCustomerData(int id, string name = null, string phone = null)
