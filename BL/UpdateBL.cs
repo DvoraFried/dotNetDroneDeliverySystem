@@ -47,7 +47,10 @@ namespace IBL.BO
                 CustomerBL customer = new CustomerBL(id, currentName, currentPhone, ReturnPosition(DataSource.MyBaseStations[customerIndex].Latitude, DataSource.MyBaseStations[customerIndex].Longitude));
             }
 
+            public void SendDroneToCharge(int id)
+            {
 
+            }
         }
     }
 }
