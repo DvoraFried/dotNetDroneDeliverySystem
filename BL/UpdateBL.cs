@@ -14,7 +14,9 @@ namespace IBL.BO
         {
             public void UpDateDroneName(int id, string newModelName)
             {
-                if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
+                if (!DronesListBL.Any(d => (d.getIdBL() == id))) {
+                    throw new ObjectDoesntExistsInListException("drone");
+                }
                 int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
                 DroneBL drone = DronesListBL[droneBLIndex];
                 drone.ModelBL = newModelName;
@@ -22,17 +24,28 @@ namespace IBL.BO
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
             }
 
-            public void UpDateStationData(int id, string name = null, int chargeSlots = 0)
+            public void UpDateStationData(int id, string name = null, int chargeslots = -1)
             {
-                if (!DataSource.MyBaseStations.Any(s => (s.Id == id))) {throw new ObjectDoesntExistsInListException("station");}
+                if (!DataSource.MyBaseStations.Any(s => (s.Id == id))) {
+                    throw new ObjectDoesntExistsInListException("station");
+                }
                 int stationIndex = DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => (s.Id == id)));
+                string currentName = name != null ? name : DataSource.MyBaseStations[stationIndex].Name;
+                Position position = new Position(DataSource.MyBaseStations[stationIndex].Longitude, DataSource.MyBaseStations[stationIndex].Latitude);
+                int currentChargeLots = chargeslots != -1 ? chargeslots : DataSource.MyBaseStations[stationIndex].ChargeSlots;
+                StationBL station = new StationBL(id, currentName, position, currentChargeLots, DataSource.MyBaseStations[stationIndex].DronesInCharging);
+                DataSource.MyBaseStations[stationIndex] = ConvertToDal.ConvertToStationDal(station);
             }
-            public void UpDateCustomerData(int id, string name, int newPhone)
-            {
-                if(!DataSource.MyCustomers.Any(c => (c.Id == id))) { throw new ObjectDoesntExistsInListException("customer"); }
-                int customerIndex = DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => (c.Id == id)));
-                CustomerBL customer=new CustomerBL()
 
+            public void UpDateCustomerData(int id, string name = null, string newPhone = null)
+            {
+                if(!DataSource.MyCustomers.Any(c => (c.Id == id))) { 
+                    throw new ObjectDoesntExistsInListException("customer"); 
+                }
+                int customerIndex = DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => (c.Id == id)));
+                string currentName = name != null ? name : DataSource.MyCustomers[customerIndex].Name;
+                string currentPhone = newPhone != null ? newPhone : DataSource.MyCustomers[customerIndex].Phone;
+                CustomerBL customer = new CustomerBL(id, currentName, currentPhone, DataSource.MyCustomers[customerIndex].Longitude, DataSource.MyCustomers[customerIndex].Latitude);
             }
         }
     }
