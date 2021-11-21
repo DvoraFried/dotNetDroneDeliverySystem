@@ -9,6 +9,21 @@ namespace IBL.BO
 {
     public class ParcelBL
     {
+        public ParcelBL(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
+        {
+            parcelId++;
+            IdBL = parcelId;
+            SenderIdBL = idSender;
+            TargetIdBL = idTarget;
+            Weight = weight;
+            Priority = priority;
+            ScheduledBL = new DateTime();
+            PickUpBL = new DateTime();
+            DeliveredBL = new DateTime();
+            RequestedBL = DateTime.Now;
+            DroneIdBL = null;
+        }
+
         private static int parcelId = 0;
         public int GetParcelId() { return parcelId; }
         public void SetParcelId(int pId) {  parcelId=pId; }

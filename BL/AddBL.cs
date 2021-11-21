@@ -48,29 +48,15 @@ namespace IBL.BO
             public static void AddCustomer(int id, string name, string phone, double longitude, double latitude)
             {
                 if ((DataSource.MyCustomers.Find(c => c.Id == id)).Id != 0) { throw new ObjectExistsInListException("customer"); };
-                CustomerBL customer = new CustomerBL();
-                customer.setIdBL(id);
-                customer.NameBL = name;
-                customer.PhoneBL = phone;
-                customer.Position = ReturnPosition(latitude, longitude);
+                CustomerBL customer = new CustomerBL(id, name, phone, longitude, latitude);
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }
+
             public static void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
             {
                 if ((DataSource.MyCustomers.Find(c => c.Id == idSender)).Id != 0) { throw new ObjectDoesntExistsInListException("sender"); };
                 if ((DataSource.MyCustomers.Find(c => c.Id == idTarget)).Id != 0) { throw new ObjectDoesntExistsInListException("target"); };
-                ParcelBL parcel = new ParcelBL();
-                parcel.SetParcelId(parcel.GetParcelId() + 1);
-                parcel.IdBL = parcel.GetParcelId();
-                parcel.SenderIdBL = idSender;
-                parcel.TargetIdBL = idTarget;
-                parcel.Weight = weight;
-                parcel.Priority = priority;
-                parcel.ScheduledBL = new DateTime();
-                parcel.PickUpBL = new DateTime();
-                parcel.DeliveredBL = new DateTime();
-                parcel.RequestedBL = DateTime.Now;
-                parcel.DroneIdBL = null;
+                ParcelBL parcel = new ParcelBL(idSender, idTarget, weight, priority);
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
             }
         }
