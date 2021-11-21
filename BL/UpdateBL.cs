@@ -22,7 +22,7 @@ namespace IBL.BO
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
             }
 
-            public void UpDateStationData(int id, string name, int chargeSlots)
+            public void UpDateStationData(int id, string name = null, int chargeSlots = 0)
             {
                 if (!DataSource.MyBaseStations.Any(s => (s.Id == id))) {throw new ObjectDoesntExistsInListException("station");}
                 int stationIndex = DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => (s.Id == id)));
@@ -33,6 +33,8 @@ namespace IBL.BO
                 int customerIndex = DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => (c.Id == id)));
                 CustomerBL customer=new CustomerBL()
             }
+
+
         }
     }
 }
