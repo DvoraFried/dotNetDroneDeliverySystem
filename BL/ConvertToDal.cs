@@ -15,8 +15,8 @@ namespace IBL.BO
             stationDal.Id = stationBl.GetIdBL();
             stationDal.Name = stationBl.NameBL;
             stationDal.ChargeSlots = stationBl.ChargeSlotsBL;
-            stationDal.Longitude = stationBl.Position.GetLongitudePosition();
-            stationDal.Latitude = stationBl.Position.GetLatitudePosition();
+            stationDal.Longitude = stationBl.Position.Longitude;
+            stationDal.Latitude = stationBl.Position.Latitude;
             return stationDal;           
             }
             public static DroneDAL ConvertToDroneDal(DroneBL droneBl)
@@ -34,8 +34,8 @@ namespace IBL.BO
             customerDal.Id = customerBl.getIdBL();
             customerDal.Name = customerBl.NameBL;
             customerDal.Phone = customerBl.PhoneBL;
-            customerDal.Longitude = customerBl.Position.GetLongitudePosition();
-            customerDal.Latitude = customerBl.Position.GetLatitudePosition();
+            customerDal.Longitude = customerBl.Position.Longitude;
+            customerDal.Latitude = customerBl.Position.Latitude;
             return customerDal;
            }
             public static ParcelDAL ConvertToParcelDal(ParcelBL parcelBl)

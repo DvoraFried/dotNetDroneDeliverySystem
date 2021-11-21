@@ -16,9 +16,7 @@ namespace IBL.BO
         static IDAL.DO.IDAL DalObj = DALFactory.factory();
         public static Position ReturnPosition(double latitude, double longitude)
         {
-            Position P = new Position();
-            P.SetLatitudePosition(latitude);
-            P.SetLongitudePosition(longitude);
+            Position P = new Position(longitude, latitude);
             return P;
         }
         public class Add
