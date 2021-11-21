@@ -51,6 +51,16 @@ namespace IBL.BO
             {
 
             }
+
+            public void CollectionOfAParcelByDrone(int idD)
+            {
+                DroneBL drone = DronesListBL.Find(d => d.getIdBL() == idD);
+                if(drone == null) { throw new ObjectDoesntExistsInListException("drone"); }
+                if(drone.DroneStatus != 0) { throw new DroneIsNotEmptyException(idD);}
+                int parcelIndex = DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.DroneId == idD));
+                if (parcelIndex == -1) { throw new Exception(); }
+                DataSource.MyParcels[parcelIndex].PickUp = DateTime.Now;
+            }
         }
     }
 }
