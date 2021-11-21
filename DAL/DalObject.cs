@@ -153,7 +153,7 @@ namespace DalObject
         //=====================================================================
         public IEnumerable<StationDAL> returnStationWithChargeSlots()
         {
-            foreach (StationDAL element in DataSource.MyBaseStations) { if (element.ChargeSlots > 0) yield return element; }
+            foreach (StationDAL element in DataSource.MyBaseStations) { if (element.EmptyChargeSlots > 0) yield return element; }
         }
 
         public double[] powerRequest()

@@ -31,7 +31,7 @@ namespace IBL.BO
                 }
                 int stationIndex = DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => (s.Id == id)));
                 string currentName = name != null ? name : DataSource.MyBaseStations[stationIndex].Name;
-                int currentChargeLots = chargeslots != -1 ? chargeslots : DataSource.MyBaseStations[stationIndex].ChargeSlots;
+                int currentChargeLots = chargeslots != -1 ? chargeslots : DataSource.MyBaseStations[stationIndex].EmptyChargeSlots;
                 StationBL station = new StationBL(id, currentName, ReturnPosition(DataSource.MyBaseStations[stationIndex].Longitude, DataSource.MyBaseStations[stationIndex].Latitude), currentChargeLots, DataSource.MyBaseStations[stationIndex].DronesInCharging);
                 DataSource.MyBaseStations[stationIndex] = ConvertToDal.ConvertToStationDal(station);
             }

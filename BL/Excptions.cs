@@ -33,5 +33,9 @@ namespace IBL.BO
         {
             public DroneIsNotEmptyException(int id):base(string.Format($"the drone with the {id} is not empty")) { }
         }
+        public class NoPlaceToChargeException : Exception
+        {
+            public NoPlaceToChargeException() : base(string.Format($"no place to charge the drone")) { }
+        }
     }
 }

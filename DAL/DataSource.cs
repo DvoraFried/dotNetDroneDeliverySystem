@@ -14,13 +14,15 @@ namespace DalObject
         public static List<DroneDAL> MyDrones = new List<DroneDAL>();
         public static List<CustomerDAL> MyCustomers = new List<CustomerDAL>();
         public static List<ParcelDAL> MyParcel = new List<ParcelDAL>();
-        public static List<DroneCharge> MyChargeSlots=new List<DroneCharge> (); 
-        internal class Config {
-            static double available;
-            static double carryLightWeight;
-            static double carrymediumWeight;
-            static double carryHeavyWeight;
-            static double SkimmerLoadingRate;
+        public static List<DroneCharge> MyChargeSlots=new List<DroneCharge> ();
+
+        //satandart drone speed per hour is 120 kilometers
+        public class Config {
+            public static double available=0.25;
+            public static double carryLightWeight=0.5;
+            public static double carrymediumWeight=0.75;
+            public static double carryHeavyWeight=1;
+            public static double SkimmerLoadingRate=50;
         }
 /*        public static void Initialize()
         {

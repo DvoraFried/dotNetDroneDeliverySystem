@@ -14,7 +14,7 @@ namespace IBL.BO
             StationDAL stationDal = new StationDAL();
             stationDal.Id = stationBl.GetIdBL();
             stationDal.Name = stationBl.NameBL;
-            stationDal.ChargeSlots = stationBl.ChargeSlotsBL;
+            stationDal.EmptyChargeSlots = stationBl.ChargeSlotsBL;
             stationDal.Longitude = stationBl.Position.Longitude;
             stationDal.Latitude = stationBl.Position.Latitude;
             return stationDal;           
