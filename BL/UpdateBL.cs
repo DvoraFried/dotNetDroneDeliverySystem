@@ -34,10 +34,12 @@ namespace IBL.BO
                 Position stationPosoition = new Position(DataSource.MyBaseStations[stationIndex].Longitude, DataSource.MyBaseStations[stationIndex].Latitude);
                 int stationChargelots = chargeSlots != 0 ? chargeSlots : DataSource.MyBaseStations[stationIndex].ChargeSlots;
                 StationBL station = new StationBL(id, name, stationPosoition, stationChargelots, DataSource.MyBaseStations[stationIndex].DronesInCharging);
-
             }
 
+            public void UpDateCustomerData(int id, string name = null, string phone = null)
+            {
 
+            }
         }
     }
 }
