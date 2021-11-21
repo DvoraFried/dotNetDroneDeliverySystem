@@ -87,7 +87,6 @@ namespace IBL.BO
                     DroneBL drone = DronesListBL[droneBLIndex];
                     drone.ModelBL = newModelName;
                     DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
-
                 }; 
             }
         }

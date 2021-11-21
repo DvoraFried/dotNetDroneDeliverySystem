@@ -9,26 +9,15 @@ namespace IBL.BO
 {
     public class Position
     {
-        private double Longitude;
-        public void SetLongitudePosition(double lnd)
+        public Position(double lnd, double ltd)
         {
-            if (lnd > 24 || lnd < 0)
-            {
-                throw new UnValidLongitudeException(lnd);
-            }
+            if (lnd > 24 || lnd < 0) { throw new UnValidLongitudeException(lnd); }
+            Longitude = lnd;
+            if (lnd > 24 || lnd < 0) { throw new UnValidLongitudeException(lnd); }
             Longitude = lnd;
         }
-        public double GetLongitudePosition() { return Longitude; }
-
-        private double Latitude;
-        public void SetLatitudePosition(double ltd)
-        {
-            if (ltd < 0 || ltd >180)
-            {
-                throw new UnValidLatitudeException(ltd);
-            }
-            Latitude = ltd;
-        }
-        public double GetLatitudePosition() { return Latitude; }
+        public double Longitude { get; set; }
+        
+        public double Latitude { get; set; }
     }
 }
