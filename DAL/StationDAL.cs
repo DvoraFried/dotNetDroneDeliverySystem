@@ -12,6 +12,7 @@ namespace IDAL.DO
         public int ChargeSlots { get;set;}
         public double Longitude { get;set;}
         public double Latitude { get;set;}
+        public int DronesInCharging { get; set; }
     };
     
 }

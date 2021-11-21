@@ -24,14 +24,20 @@ namespace IBL.BO
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
             }
 
-            public void UpDateStationData(int id, string name, int chargeSlots)
+            public void UpDateStationData(int id, string name = null, int chargeSlots = 0)
             {
                 int stationIndex = DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => (s.Id == id)));
                 if (stationIndex == -1) {
                     throw new ObjectDoesntExistsInListException("station");
                 }
+                string stationName = name != null ? name : DataSource.MyBaseStations[stationIndex].Name;
+                Position stationPosoition = new Position(DataSource.MyBaseStations[stationIndex].Longitude, DataSource.MyBaseStations[stationIndex].Latitude);
+                int stationChargelots = chargeSlots != 0 ? chargeSlots : DataSource.MyBaseStations[stationIndex].ChargeSlots;
+                StationBL station = new StationBL(id, name, stationPosoition, stationChargelots, DataSource.MyBaseStations[stationIndex].DronesInCharging);
 
             }
+
+
         }
     }
 }
