@@ -29,5 +29,9 @@ namespace IBL.BO
         {
             public ObjectDoesntExistsInListException(string type) : base(string.Format($"the {type} is not exsist")) { }
         }
+        public class DroneIsNotEmptyException : Exception
+        {
+            public DroneIsNotEmptyException(int id):base(string.Format($"the drone with the {id} is not empty")) { }
+        }
     }
 }
