@@ -9,24 +9,28 @@ namespace IBL.BO
 {
     public class StationBL
     {
-        private int IdBL;
-        public void set_id(int idS)
+        public StationBL(int id, string name, Position p, int chargS, int DronesInChargingS)
         {
-            IEnumerable<StationBL> stations = new List<StationBL>(); //  במקום זה -> צריך למשוך מהדאטא את רשימת התחנות
-            foreach (StationBL station in stations)
+            this.SetId(id);
+            this.NameBL = name;
+            this.Position = p;
+            this.ChargeSlotsBL = chargS;
+            this.DronesInCharging = DronesInChargingS;
+        }
+        private int idBL;
+        public void SetId(int idS)
+        {
+            if (idS <= 0)
             {
-                if(station.getIdBL() == idS)
-                {
-                    throw new ArgumentException("~ The ID number already exists in the system ~");
-                }
+                throw new UnValidIdException(idS, "station");
             }
-            IdBL = idS;
+            idBL = idS;
         }
 
-        public int getIdBL() { return IdBL; }
+        public int GetIdBL() { return idBL; }
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
-        public Position PositionBL { get; set; }
+        public Position Position { get; set; }
         public int DronesInCharging { get; set; }
     }
 }

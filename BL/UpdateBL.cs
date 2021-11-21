@@ -34,11 +34,6 @@ namespace IBL.BO
                 CustomerBL customer=new CustomerBL()
 
             }
-
-            public void UpDateCustomerData(int id, string name = null, string phone = null)
-            {
-
-            }
         }
     }
 }
