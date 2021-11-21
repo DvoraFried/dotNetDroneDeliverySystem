@@ -5,95 +5,90 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static IBL.BO.Excptions;
 
 namespace IBL.BO
 {
     public class BL
     {
-        static IDAL.DO.IDAL DalObj = DALFactory.factory();
+        public static List<DroneBL> DronesListBL = new List<DroneBL>();
 
+        static IDAL.DO.IDAL DalObj = DALFactory.factory();
+        public static Position ReturnPosition(double latitude, double longitude)
+        {
+            Position P = new Position();
+            P.SetLatitudePosition(latitude);
+            P.SetLongitudePosition(longitude);
+            return P;
+        }
         public class Add
         {
-            public static bool AddStation(int id, string name,double longitude,double  latitude, int chargeSlots)
+            public static void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
             {
+                if ((DataSource.MyBaseStations.Find(s => s.Id == id)).Id!= 0){ throw new ObjectExistsInListException("station"); };
                 StationBL station = new StationBL();
-                try
-                {
-                    
-                    station.set_id(id);
-                    station.NameBL = name;
-                    station.Position.Latitude =latitude;
-                    station.Position.Longitude = longitude;
-                    station.ChargeSlotsBL = chargeSlots;
-                    station.DronesInCharging = 0;
-                }
-                catch (Exception errorMessage)
-                {
-                    throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
-                }
+                station.SetId(id);
+                station.NameBL = name;
+                station.Position = ReturnPosition(latitude,longitude);
+                station.ChargeSlotsBL = chargeSlots;
+                station.DronesInCharging = 0;
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
-                return true;
             }
-            public static bool AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
+            public static void AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
             {
+                if ((DataSource.MyDrones.Find(d => d.Id == id)).Id != 0) { throw new ObjectExistsInListException("drone"); };
                 DroneBL drone = new DroneBL();
-                try
-                {
-                    Random rnd = new Random();
-                    drone.setIdBL(id);
-                    drone.ModelBL = model;
-                    drone.MaxWeight = weight;
-                    drone.setCurrentPosition(stationId);
-                    drone.BatteryStatus = rnd.Next(20, 41);
-                    //the status of the drone is missing
-                }
-                catch (Exception errorMessage)
-                {
-                    throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
-                }
+                Random rnd = new Random();
+                drone.setIdBL(id);
+                drone.ModelBL = model;
+                drone.MaxWeight = weight;
+                drone.setCurrentPosition(stationId);
+                drone.BatteryStatus = rnd.Next(20, 41);
+                //the status of the drone is missing
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
-                return true;
+                DronesListBL.Add(drone);
             }
-            public static bool AddCustomer(int id, string name, string phone, double longitude, double latitude)
+            public static void AddCustomer(int id, string name, string phone, double longitude, double latitude)
             {
+                if ((DataSource.MyCustomers.Find(c => c.Id == id)).Id != 0) { throw new ObjectExistsInListException("customer"); };
                 CustomerBL customer = new CustomerBL();
-                try
-                {
-                    customer.setIdBL(id);
-                    customer.NameBL = name;
-                    customer.PhoneBL = phone;
-                    customer.position.Longitude = longitude;
-                    customer.position.Latitude = latitude;
-                }
-                catch (Exception errorMessage)
-                {
-                    throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
-                }
+                customer.setIdBL(id);
+                customer.NameBL = name;
+                customer.PhoneBL = phone;
+                customer.Position = ReturnPosition(latitude, longitude);
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
-                return true;
             }
-            public static bool AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
+            public static void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
             {
+                if ((DataSource.MyCustomers.Find(c => c.Id == idSender)).Id != 0) { throw new ObjectDoesntExistsInListException("sender"); };
+                if ((DataSource.MyCustomers.Find(c => c.Id == idTarget)).Id != 0) { throw new ObjectDoesntExistsInListException("target"); };
                 ParcelBL parcel = new ParcelBL();
-                try
-                {
-                    //parcel.setIdBL(id); לא כתוב מה לגבי מספר מזהה של החבילה עצמה
-                    parcel.setSenderIdBL(idSender);
-                    parcel.setTargetIdBL(idTarget);
-                    parcel.Weight = weight;
-                    parcel.Priority = priority;
-                    parcel.ScheduledBL = new DateTime();
-                    parcel.PickUpBL = new DateTime();
-                    parcel.DeliveredBL = new DateTime();
-                    parcel.RequestedBL = DateTime.Now;
-                    parcel.DroneIdBL = null;
-                }
-                catch (Exception errorMessage)
-                {
-                    throw new ArgumentException($"{errorMessage}"); //המיין אמור לתפס את זה... מקווה שככה
-                }
+                parcel.SetParcelId(parcel.GetParcelId() + 1);
+                parcel.IdBL = parcel.GetParcelId();
+                parcel.SenderIdBL = idSender;
+                parcel.TargetIdBL = idTarget;
+                parcel.Weight = weight;
+                parcel.Priority = priority;
+                parcel.ScheduledBL = new DateTime();
+                parcel.PickUpBL = new DateTime();
+                parcel.DeliveredBL = new DateTime();
+                parcel.RequestedBL = DateTime.Now;
+                parcel.DroneIdBL = null;
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
-                return true;
+            }
+        }
+        public class UpDate
+        {
+            public void UpDateDroneName(int id,string newModelName)
+            {
+                int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
+                if (droneBLIndex != -1) 
+                {
+                    DroneBL drone = DronesListBL[droneBLIndex];
+                    drone.ModelBL = newModelName;
+                    DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
+
+                }; 
             }
         }
     }
