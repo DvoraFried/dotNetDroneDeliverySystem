@@ -7,27 +7,26 @@ using System.Text;
 using System.Threading.Tasks;
 using static IBL.BO.Excptions;
 
+
 namespace IBL.BO
 {
     public partial class BL
     {
-        public static List<DroneBL> DronesListBL = new List<DroneBL>();
-
-        static IDAL.DO.IDAL DalObj = DALFactory.factory();
         public static Position ReturnPosition(double latitude, double longitude)
         {
             Position P = new Position(longitude, latitude);
             return P;
         }
+
         public class Add
         {
             public static void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
             {
-                if ((DataSource.MyBaseStations.Find(s => s.Id == id)).Id!= 0){ throw new ObjectExistsInListException("station"); };
+                if ((DataSource.MyBaseStations.Find(s => s.Id == id)).Id != 0) { throw new ObjectExistsInListException("station"); };
                 StationBL station = new StationBL();
                 station.SetId(id);
                 station.NameBL = name;
-                station.Position = ReturnPosition(latitude,longitude);
+                station.Position = ReturnPosition(latitude, longitude);
                 station.ChargeSlotsBL = chargeSlots;
                 station.DronesInCharging = 0;
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
@@ -73,19 +72,6 @@ namespace IBL.BO
                 parcel.RequestedBL = DateTime.Now;
                 parcel.DroneIdBL = null;
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
-            }
-        }
-        public class UpDate
-        {
-            public void UpDateDroneName(int id,string newModelName)
-            {
-                int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
-                if (droneBLIndex != -1) 
-                {
-                    DroneBL drone = DronesListBL[droneBLIndex];
-                    drone.ModelBL = newModelName;
-                    DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
-                }; 
             }
         }
     }
