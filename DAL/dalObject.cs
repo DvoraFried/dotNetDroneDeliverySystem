@@ -56,32 +56,32 @@ namespace DalObject
         //=====================================================================
         public void AddParcelDAL(ParcelDAL DALP)
         {
-            DataSource.MyParcel.Add(DALP);
+            DataSource.MyParcels.Add(DALP);
         }
         //=====================================================================
         //                     2. class update - update functions 
         //=====================================================================
         public void Scheduled(int parcelIdS)
         {
-            ParcelDAL upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
+            ParcelDAL upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
             DroneDAL setD = DataSource.MyDrones.First(drone => drone.MaxWeight >= upP.Weight);
             upP.DroneId = setD.Id;
             upP.Scheduled = DateTime.Now;
-            DataSource.MyParcel[DataSource.MyParcel.IndexOf(DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS))] = upP;
+            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
         }
 
         public void PickUp(int parcelIdS)
         {
-            ParcelDAL upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
+            ParcelDAL upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
             upP.PickUp = DateTime.Now;
-            DataSource.MyParcel[DataSource.MyParcel.IndexOf(DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS))] = upP;
+            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
         }
 
         public void Delivered(int parcelIdS)
         {
-            ParcelDAL upP = DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS);
+            ParcelDAL upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
             upP.Delivered = DateTime.Now;
-            DataSource.MyParcel[DataSource.MyParcel.IndexOf(DataSource.MyParcel.First(parcel => parcel.Id == parcelIdS))] = upP;
+            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
         }
         //=====================================================================
         //the function is not requrierd in this targil. yai!
@@ -116,7 +116,7 @@ namespace DalObject
 
         public ParcelDAL returnParcel(int ParcelIdS)
         {
-            return DataSource.MyParcel.First(parcel => parcel.Id == ParcelIdS);
+            return DataSource.MyParcels.First(parcel => parcel.Id == ParcelIdS);
         }
         //=====================================================================
         //             4. class returnArrayObject - return array
@@ -139,14 +139,14 @@ namespace DalObject
 
         public IEnumerable<ParcelDAL> returnParcelArray()
         {
-            foreach (ParcelDAL element in DataSource.MyParcel) { yield return element; }
+            foreach (ParcelDAL element in DataSource.MyParcels) { yield return element; }
         }
         //=====================================================================
         //returns a list of not scheduled parcels
         //=====================================================================
         public IEnumerable<ParcelDAL> returnNotScheduledParcel()
         {
-            foreach (ParcelDAL element in DataSource.MyParcel) { if (element.DroneId == -1) yield return element; }
+            foreach (ParcelDAL element in DataSource.MyParcels) { if (element.DroneId == -1) yield return element; }
         }
         //=====================================================================
         //returns a list of station with empty cherge slots
