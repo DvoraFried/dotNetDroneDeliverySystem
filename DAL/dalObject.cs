@@ -8,5 +8,7 @@ namespace DalObject
 {
     public class DalObject
     {
+
     }
+    
 }
