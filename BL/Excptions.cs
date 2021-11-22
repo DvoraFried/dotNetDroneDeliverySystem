@@ -29,13 +29,17 @@ namespace IBL.BO
         {
             public ObjectDoesntExistsInListException(string type) : base(string.Format($"the {type} is not exsist")) { }
         }
-        public class DroneIsNotEmptyException : Exception
+        public class DroneIsNotInMaintenanceException : Exception
         {
-            public DroneIsNotEmptyException(int id):base(string.Format($"the drone with the {id} is not empty")) { }
+            public DroneIsNotInMaintenanceException(int id):base(string.Format($"the drone with the {id} is not empty")) { }
         }
         public class NoPlaceToChargeException : Exception
         {
             public NoPlaceToChargeException() : base(string.Format($"no place to charge the drone")) { }
+        }
+        public class DroneIsNotInMaintenanceException : Exception
+        {
+            public DroneIsNotInMaintenanceException(): base(string.Format($"the drone is not in charge")) { }
         }
     }
 }

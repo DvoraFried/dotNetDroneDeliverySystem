@@ -19,7 +19,7 @@ namespace IBL.BO
                 if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
                 int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
                 DroneBL drone = DronesListBL[droneBLIndex];
-                if (drone.DroneStatus!= DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(id); }             
+                if (drone.DroneStatus!= DroneStatusesBL.empty) { throw new DroneIsNotInMaintenanceException(id); }             
                 StationDAL station = new StationDAL();
                 foreach (StationDAL element in DataSource.MyBaseStations)
                 {
@@ -48,9 +48,19 @@ namespace IBL.BO
                 DroneInChargeBL droneC = new DroneInChargeBL(drone.getIdBL(), drone.BatteryStatus);
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(droneC, station.Id));
             }
-            public void ReleaseDroneFromCharging()
+            public void ReleaseDroneFromCharging(int id,double timeInCharge)
             {
-
+                if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
+                int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
+                DroneBL drone = DronesListBL[droneBLIndex];
+                if (drone.DroneStatus != DroneStatusesBL.maintenance) { throw new DroneIsNotInMaintenanceException(id); }
+                drone.BatteryStatus = (int)(drone.BatteryStatus+ drone.BatteryStatus * DataSource.Config.DroneLoadingRate);
+                drone.DroneStatus = DroneStatusesBL.empty;
+                DronesListBL[droneBLIndex] = drone;
+                DalObj.ReplaceDroneByIndex(ConvertToDal.ConvertToDroneDal(drone), droneBLIndex);
+                DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
+                //up up the stations charginslot in 1
+                DalObj.DeleteObjFromDroneCharges(drone.getIdBL());
             }
 
         }

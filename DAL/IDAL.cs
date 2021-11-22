@@ -36,6 +36,8 @@ namespace IDAL
             public void ReplaceDroneByIndex(DroneDAL DALD, int idx);
             public void ReplaceCustomerByIndex(CustomerDAL DALC, int idx);
             public void ReplaceParcelByIndex(ParcelDAL DALP, int idx);
+
+            public void DeleteObjFromDroneCharges(int id);
         }
 
     }
