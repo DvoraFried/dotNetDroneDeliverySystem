@@ -53,5 +53,13 @@ namespace IBL.BO
             parcelDal.Delivered = parcelBl.DeliveredBL;
             return parcelDal;
             }
+
+            public static DroneChargeDAL ConvertToDroneChargeDal(DroneInChargeBL droneBl,int stationIdS)
+            {
+            DroneChargeDAL droneChargeDal = new DroneChargeDAL();
+            droneChargeDal.DroneId = droneBl.Id;
+            droneChargeDal.StationId = stationIdS;
+            return droneChargeDal;
+            }
     }
 }

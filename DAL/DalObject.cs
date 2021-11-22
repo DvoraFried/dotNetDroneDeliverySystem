@@ -59,6 +59,14 @@ namespace DalObject
             DataSource.MyParcel.Add(DALP);
         }
         //=====================================================================
+        //the function addparcel render information for one parcel
+        //=====================================================================
+        public void AddDroneCharging(DroneChargeDAL DALDC)
+
+        {
+            DataSource.MyDroneCharges.Add(DALDC);
+        }
+        //=====================================================================
         //                     2. class update - update functions 
         //=====================================================================
         public void Scheduled(int parcelIdS)

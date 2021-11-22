@@ -14,7 +14,7 @@ namespace IDAL
             public void AddDroneDAL(DroneDAL DALD);
             public  void AddCustomerDAL(CustomerDAL DALC);
             public  void AddParcelDAL(ParcelDAL DALP);
-
+            public void AddDroneCharging(DroneChargeDAL DALDC);
             public void Scheduled(int parcelIdS);
             public void PickUp(int parcelIdS);
             public void Delivered(int parcelIdS);
