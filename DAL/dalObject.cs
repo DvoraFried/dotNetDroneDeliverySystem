@@ -166,14 +166,5 @@ namespace DalObject
         {
             DataSource.MyParcels[idx] = DALP;
         }
-        //=====================================================================
-        //DeleteObjFromDroneCharges
-        //=====================================================================
-        public void DeleteObjFromDroneCharges(int id)
-        {
-            DroneChargeDAL droneInC = DataSource.MyDroneCharges.Find(element => element.DroneId == id);
-            DataSource.MyDroneCharges.Remove(droneInC);
-        }
-
     }
 }

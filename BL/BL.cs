@@ -15,5 +15,11 @@ namespace IBL.BO
         public static List<DroneBL> DronesListBL = new List<DroneBL>();
 
         static IDAL.DO.IDAL DalObj = DALFactory.factory();
+
+        public static int updateButteryStatus(DroneBL drone, Position position)
+        {
+            return 0;
+        }
     }
+
 }
