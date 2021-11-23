@@ -37,9 +37,22 @@ namespace IBL.BO
         {
             public NoPlaceToChargeException() : base(string.Format($"no place to charge the drone")) { }
         }
-        public class DroneIsNotInMaintenanceException : Exception
+        //public class DroneIsNotInMaintenanceException : Exception
+        //{
+        //    public DroneIsNotInMaintenanceException(): base(string.Format($"the drone is not in charge")) { }
+        //}
+        public class DroneIsNotEmptyException : Exception
         {
-            public DroneIsNotInMaintenanceException(): base(string.Format($"the drone is not in charge")) { }
+            public DroneIsNotEmptyException() : base(string.Format("the drone is not empty")) { }
+        }
+        public class NoParcelFoundException : Exception
+        {
+            public NoParcelFoundException() : base(string.Format("there is no parcel to collect for this drone")) { }
+        }
+
+        public class NoDeliveryInTransferExcepyion : Exception
+        {
+            public NoDeliveryInTransferExcepyion() : base(string.Format("There is no delivery in transfer to this drone")) { }
         }
     }
 }

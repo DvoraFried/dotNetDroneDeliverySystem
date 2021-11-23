@@ -66,6 +66,16 @@ namespace IBL.BO
                 DataSource.MyDrones[droneIndex] = ConvertToDal.ConvertToDroneDal(drone);
                 DronesListBL[droneIndex] = drone;
             }
+
+            public void DeliveryOfAParcelByDrone(int idD)
+            {
+                int droneIndex = DronesListBL.IndexOf(DronesListBL.First(d => d.getIdBL() == idD));
+                if (droneIndex == -1) {
+                    throw new ObjectDoesntExistsInListException("drone"); }
+                DroneBL drone = DronesListBL[droneIndex];
+                if (drone.DroneStatus != EnumBL.DroneStatusesBL.maintenance) {
+                    throw new NoDeliveryInTransferExcepyion(); }
+            }
         }
     }
 }
