@@ -14,7 +14,7 @@ namespace IBL.BO
             StationDAL stationDal = new StationDAL();
             stationDal.Id = stationBl.GetIdBL();
             stationDal.Name = stationBl.NameBL;
-            stationDal.ChargeSlots = stationBl.ChargeSlotsBL;
+            stationDal.EmptyChargeSlots = stationBl.ChargeSlotsBL;
             stationDal.Longitude = stationBl.Position.Longitude;
             stationDal.Latitude = stationBl.Position.Latitude;
             return stationDal;           
@@ -52,6 +52,14 @@ namespace IBL.BO
             parcelDal.PickUp = parcelBl.PickUpBL;
             parcelDal.Delivered = parcelBl.DeliveredBL;
             return parcelDal;
+            }
+
+            public static DroneChargeDAL ConvertToDroneChargeDal(DroneInChargeBL droneBl,int stationIdS)
+            {
+            DroneChargeDAL droneChargeDal = new DroneChargeDAL();
+            droneChargeDal.DroneId = droneBl.Id;
+            droneChargeDal.StationId = stationIdS;
+            return droneChargeDal;
             }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    class DistanceBetweenCoordinates
+    public class DistanceBetweenCoordinates
     {
         public static double CalculateDistance(Position c1,Position c2)  
         {
@@ -32,7 +32,7 @@ namespace IBL.BO
             var result2 = 3956.0 * 2.0 *
                           Math.Atan2(Math.Sqrt(result1), Math.Sqrt(1.0 - result1));
 
-            return result2;
+            return result2*1.6;
         }
     }
 }

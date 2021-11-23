@@ -27,7 +27,7 @@ namespace IBL.BO
                 {
                     throw new ObjectExistsInListException("station");
                 };
-                StationBL station = new StationBL(id, name, ReturnPosition(latitude, longitude), chargeSlots, 0);
+                StationBL station = new StationBL(id, name, ReturnPosition(latitude, longitude), chargeSlots);
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
             public static void AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)

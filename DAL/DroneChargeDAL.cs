@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL.BO
+namespace IDAL.DO
 {
-    class DroneInCharge
+    public class DroneChargeDAL
     {
-        int Id { get; set; }
-        double BatteryStatus { get; set; }
+        public int DroneId { get; set; }
+        public int StationId { get; set; }
     }
+
 }
+

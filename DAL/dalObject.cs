@@ -27,33 +27,18 @@ namespace DalObject
         //=====================================================================
         //                     1. class add - add function
         //=====================================================================
-
-        //=====================================================================
-        //the function addstation render information for one station
-        //=====================================================================
         public void AddStationDAL(StationDAL DALS)
         {
             DataSource.MyBaseStations.Add(DALS);
         }
-
-        //=====================================================================
-        //the function adddrone render information for one drone 
-        //=====================================================================
         public void AddDroneDAL(DroneDAL DALD)
         {
             DataSource.MyDrones.Add(DALD);
         }
-
-        //=====================================================================
-        //the function addcustomer render information for one customer
-        //=====================================================================
         public void AddCustomerDAL(CustomerDAL DALC)
         {
             DataSource.MyCustomers.Add(DALC);
         }
-        //=====================================================================
-        //the function addparcel render information for one parcel
-        //=====================================================================
         public void AddParcelDAL(ParcelDAL DALP)
         {
             DataSource.MyParcels.Add(DALP);
@@ -83,15 +68,11 @@ namespace DalObject
             upP.Delivered = DateTime.Now;
             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
         }
-        //=====================================================================
-        //the function is not requrierd in this targil. yai!
-        //=====================================================================
-        public void Charge(int DroneIdS, int StationIdS)
+        public void Charge(DroneChargeDAL DALDC)
+
         {
+            DataSource.MyDroneCharges.Add(DALDC);
         }
-        //=====================================================================
-        //the function is not requrierd in this targil. yai!
-        //=====================================================================
         public void releaseCharge(int DroneIdS)
         {
         }
@@ -153,7 +134,7 @@ namespace DalObject
         //=====================================================================
         public IEnumerable<StationDAL> returnStationWithChargeSlots()
         {
-            foreach (StationDAL element in DataSource.MyBaseStations) { if (element.ChargeSlots > 0) yield return element; }
+            foreach (StationDAL element in DataSource.MyBaseStations) { if (element.EmptyChargeSlots > 0) yield return element; }
         }
 
         public double[] powerRequest()
@@ -166,5 +147,33 @@ namespace DalObject
             //arr[4] = //קצב טעינה - ראו בהמשך
             return arr;
         }
+        //=====================================================================
+        //replace object in index
+        //=====================================================================
+        public void ReplaceStationByIndex(StationDAL DALS, int idx)
+        {
+            DataSource.MyBaseStations[idx] = DALS;
+        }
+        public void ReplaceDroneByIndex(DroneDAL DALD, int idx)
+        {
+            DataSource.MyDrones[idx] = DALD;
+        }
+        public void ReplaceCustomerByIndex(CustomerDAL DALC, int idx)
+        {
+            DataSource.MyCustomers[idx] = DALC;
+        }
+        public void ReplaceParcelByIndex(ParcelDAL DALP, int idx)
+        {
+            DataSource.MyParcels[idx] = DALP;
+        }
+        //=====================================================================
+        //DeleteObjFromDroneCharges
+        //=====================================================================
+        public void DeleteObjFromDroneCharges(int id)
+        {
+            DroneChargeDAL droneInC = DataSource.MyDroneCharges.Find(element => element.DroneId == id);
+            DataSource.MyDroneCharges.Remove(droneInC);
+        }
+
     }
 }

@@ -9,13 +9,12 @@ namespace IBL.BO
 {
     public class StationBL
     {
-        public StationBL(int id, string name, Position p, int chargS, int DronesInChargingS)
+        public StationBL(int id, string name, Position p, int chargS)
         {
             this.SetId(id);
             this.NameBL = name;
             this.Position = p;
             this.ChargeSlotsBL = chargS;
-            this.DronesInCharging = DronesInChargingS;
         }
         private int idBL;
         public void SetId(int idS)
@@ -31,6 +30,8 @@ namespace IBL.BO
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
         public Position Position { get; set; }
-        public int DronesInCharging { get; set; }
+        //to check what is the error here!!!
+        public List<DroneInChargeBL> DronesInCharging = new List<DroneInChargeBL>();
+
     }
 }
