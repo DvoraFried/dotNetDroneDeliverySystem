@@ -127,6 +127,7 @@ namespace DalObject
         //=====================================================================
         public IEnumerable<ParcelDAL> returnNotScheduledParcel()
         {
+            //String.IsNullOrEmpty(element.DroneId.ToString())
             foreach (ParcelDAL element in DataSource.MyParcels) { if (element.DroneId == -1) yield return element; }
         }
         //=====================================================================
