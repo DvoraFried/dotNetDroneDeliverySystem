@@ -8,7 +8,7 @@ namespace IBL.BO
 {
     public class DroneInChargeBL
     {
-        public DroneInChargeBL(int id,int batteryS)
+        public DroneInChargeBL(int id,double batteryS)
         {
             this.Id = id;
             this.BatteryStatus = batteryS;

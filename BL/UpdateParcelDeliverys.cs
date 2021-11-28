@@ -64,21 +64,17 @@ namespace IBL.BO
                 if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
                 int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == idD)));
                 DroneBL drone = DronesListBL[droneBLIndex];
-                if (drone.DroneStatus != DroneStatusesBL.empty)
-                {
-                    throw new DroneIsNotEmptyException();
-                }
+                if (drone.DroneStatus != DroneStatusesBL.empty) {
+                    throw new DroneIsNotEmptyException(); }
                 int parcelIndex = DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.DroneId == idD));
-                if (parcelIndex == -1)
-                {
-                    throw new NoParcelFoundException();
-                }
+                if (parcelIndex == -1) {
+                    throw new NoParcelFoundException(); }
                 int senderId = DataSource.MyParcels[parcelIndex].SenderId;
                 Position senderPosition = new Position(DataSource.MyCustomers.First(c => (c.Id == senderId)).Longitude, DataSource.MyCustomers.First(c => (c.Id == senderId)).Latitude);
                 ParcelBL parcel = new ParcelBL(DataSource.MyParcels[parcelIndex].SenderId, DataSource.MyParcels[parcelIndex].TargetId, DataSource.MyParcels[parcelIndex].Weight, DataSource.MyParcels[parcelIndex].Priority);
                 parcel.PickUpBL = DateTime.Now;
                 DataSource.MyParcels[parcelIndex] = ConvertToDal.ConvertToParcelDal(parcel);
-                drone.BatteryStatus = updateButteryStatus(drone, senderPosition);
+                drone.BatteryStatus = updateButteryStatus(drone, senderPosition, DataSource.MyParcels[parcelIndex].Weight);
                 drone.CurrentPosition = senderPosition;
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
                 DronesListBL[droneBLIndex] = drone;
@@ -87,16 +83,21 @@ namespace IBL.BO
             public void DeliveryOfAParcelByDrone(int idD)
             {
                 int droneIndex = DronesListBL.IndexOf(DronesListBL.First(d => d.getIdBL() == idD));
-                if (droneIndex == -1)
-                {
-                    throw new ObjectDoesntExistsInListException("drone");
-                }
+                if (droneIndex == -1) {
+                    throw new ObjectDoesntExistsInListException("drone"); }
                 DroneBL drone = DronesListBL[droneIndex];
-                if (drone.DroneStatus != EnumBL.DroneStatusesBL.maintenance)
-                {
-                    throw new NoDeliveryInTransferExcepyion();
-                }
-
+                if (drone.DroneStatus != EnumBL.DroneStatusesBL.maintenance) {
+                    throw new NoDeliveryInTransferExcepyion(); }
+                int parcelIndex = DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.DroneId == idD));
+                ParcelBL parcel = new ParcelBL(DataSource.MyParcels[parcelIndex].SenderId, DataSource.MyParcels[parcelIndex].TargetId, DataSource.MyParcels[parcelIndex].Weight, DataSource.MyParcels[parcelIndex].Priority);
+                parcel.DeliveredBL = DateTime.Now;
+                DataSource.MyParcels[parcelIndex] = ConvertToDal.ConvertToParcelDal(parcel);
+                Position targetPosition = new Position(DataSource.MyCustomers.First(c => (c.Id == DataSource.MyParcels[parcelIndex].TargetId)).Longitude, DataSource.MyCustomers.First(c => (c.Id == DataSource.MyParcels[parcelIndex].TargetId)).Latitude);
+                drone.BatteryStatus = updateButteryStatus(drone, targetPosition, DataSource.MyParcels[parcelIndex].Weight);
+                drone.CurrentPosition = targetPosition;
+                drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
+                DataSource.MyDrones[droneIndex] = ConvertToDal.ConvertToDroneDal(drone);
+                DronesListBL[droneIndex] = drone;
             }
         }
     }

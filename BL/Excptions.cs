@@ -58,5 +58,9 @@ namespace IBL.BO
         {
             public NoSuitableParcelException(int droneIdx): base(string.Format($"There is no Suitable parcel to the the drone {droneIdx} in parcels list")) { }
         }
+        public class ThereIsNotEnoughBatteryException : Exception
+        {
+            public ThereIsNotEnoughBatteryException(): base(string.Format("There is not enough battery to reach the destination")) { }
+        }
     }
 }
