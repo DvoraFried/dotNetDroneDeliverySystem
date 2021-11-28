@@ -12,7 +12,7 @@ namespace IBL.BO
 {
     public partial class BL
     {
-        class DronaAndChargeBL
+        public partial class UpDate
         {
             public void SendDroneToCharge(int id)
             {

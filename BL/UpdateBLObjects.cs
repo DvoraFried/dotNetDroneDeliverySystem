@@ -10,7 +10,7 @@ namespace IBL.BO
 {
     public partial class BL
     {
-        public class UpDate
+        public partial class UpDate
         {
             public void UpDateDroneName(int id, string newModelName)
             {
@@ -47,7 +47,7 @@ namespace IBL.BO
                 CustomerBL customer = new CustomerBL(id, currentName, currentPhone, ReturnPosition(DataSource.MyBaseStations[customerIndex].Latitude, DataSource.MyBaseStations[customerIndex].Longitude));
             }
 
-            public void CollectionOfAParcelByDrone(int idD)
+/*            public void CollectionOfAParcelByDrone(int idD)
             {
                 int droneIndex = DronesListBL.IndexOf(DronesListBL.First(d => d.getIdBL() == idD));
                 if (droneIndex == -1) {
@@ -75,7 +75,7 @@ namespace IBL.BO
                 DroneBL drone = DronesListBL[droneIndex];
                 if (drone.DroneStatus != EnumBL.DroneStatusesBL.maintenance) {
                     throw new NoDeliveryInTransferExcepyion(); }
-            }
+            }*/
         }
     }
 }
