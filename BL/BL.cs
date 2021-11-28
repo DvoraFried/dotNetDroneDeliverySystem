@@ -16,9 +16,15 @@ namespace IBL.BO
 
         static IDAL.DO.IDAL DalObj = DALFactory.factory();
 
-        public static int updateButteryStatus(DroneBL drone, Position position)
+        public static double updateButteryStatus(DroneBL drone, Position position, EnumBL.WeightCategoriesBL weight)
         {
-            return 0;
+            double distance = CalculateDistance(drone.CurrentPosition, position);
+            double lessPower = weight == EnumBL.WeightCategoriesBL.light ? distance * 0.05 : weight == EnumBL.WeightCategoriesBL.medium ? distance * 0.1 : distance * 0.15;
+            if (lessPower > drone.BatteryStatus)
+            {
+                throw new ThereIsNotEnoughBatteryException();
+            }
+            return (drone.BatteryStatus - lessPower);
         }
     }
 
