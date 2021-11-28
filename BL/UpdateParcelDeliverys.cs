@@ -74,12 +74,14 @@ namespace IBL.BO
                     throw new NoParcelFoundException();
                 }
                 int senderId = DataSource.MyParcels[parcelIndex].SenderId;
-                Position senderPosition = new Position(DataSource.MyCustomers.First(c => (c.Id == senderId)).Longitude, DataSource.MyCustomers.First(c => (c.Id == senderId)).Latitude)
-                DataSource.MyParcels[parcelIndex].PickUp = DateTime.Now;
+                Position senderPosition = new Position(DataSource.MyCustomers.First(c => (c.Id == senderId)).Longitude, DataSource.MyCustomers.First(c => (c.Id == senderId)).Latitude);
+                ParcelBL parcel = new ParcelBL(DataSource.MyParcels[parcelIndex].SenderId, DataSource.MyParcels[parcelIndex].TargetId, DataSource.MyParcels[parcelIndex].Weight, DataSource.MyParcels[parcelIndex].Priority);
+                parcel.PickUpBL = DateTime.Now;
+                DataSource.MyParcels[parcelIndex] = ConvertToDal.ConvertToParcelDal(parcel);
                 drone.BatteryStatus = updateButteryStatus(drone, senderPosition);
                 drone.CurrentPosition = senderPosition;
-                DataSource.MyDrones[droneIndex] = ConvertToDal.ConvertToDroneDal(drone);
-                DronesListBL[droneIndex] = drone;
+                DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
+                DronesListBL[droneBLIndex] = drone;
             }
 
             public void DeliveryOfAParcelByDrone(int idD)
@@ -94,6 +96,7 @@ namespace IBL.BO
                 {
                     throw new NoDeliveryInTransferExcepyion();
                 }
+
             }
         }
     }
