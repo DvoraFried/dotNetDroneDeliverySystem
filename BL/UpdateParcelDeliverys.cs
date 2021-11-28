@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static IBL.BO.EnumBL;
 using static IBL.BO.Excptions;
+using static IBL.BO.DistanceBetweenCoordinates;
 
 namespace IBL.BO
 {
@@ -24,16 +25,16 @@ namespace IBL.BO
             {
                 foreach (ParcelDAL element in parcelArr) { if ((int)element.Weight <= droneMaxW) yield return element; }
             }
-            public ParcelDAL returnTheClosestParcelId(IEnumerable<ParcelDAL> parcelArr)
+            public ParcelDAL returnTheClosestParcelId(IEnumerable<ParcelDAL> parcelArr,int droneIdx)
             {
                 ParcelDAL currentParcel= parcelArr.ToArray()[0];
-
                 foreach (ParcelDAL element in parcelArr ) {
                     CustomerDAL currentParcelSender = DalObj.returnCustomerArray().First(d => (d.Id== currentParcel.SenderId));
                     Position currentParcelPosition = new Position(currentParcelSender.Longitude, currentParcelSender.Latitude);
                     CustomerDAL compairParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == element.SenderId));
                     Position compairParcelPosition = new Position(compairParcelSender.Longitude, compairParcelSender.Latitude);
-                    if () {
+                    Position dronePosition = DronesListBL[droneIdx].CurrentPosition;
+                    if (CalculateDistance(dronePosition, currentParcelPosition)> CalculateDistance(dronePosition, compairParcelPosition)) {
                         currentParcel = element;
                     } 
                 }
@@ -48,15 +49,20 @@ namespace IBL.BO
                 {
                     throw new DroneIsNotEmptyException();
                 }
-                IEnumerable<ParcelDAL> MyParcels = returnPacelWitSuitWeight(returnParcelWithHeighestPriority(),(int)drone.MaxWeight);
-                
-                //function for the right priority
-            //the closet location
-        }
+                IEnumerable<ParcelDAL> myParcelsArr = returnPacelWitSuitWeight(returnParcelWithHeighestPriority(),(int)drone.MaxWeight);
+                if (myParcelsArr == null) { throw new NoSuitableParcelException(droneBLIndex); }
+                ParcelDAL theclosetParcel = returnTheClosestParcelId(myParcelsArr, droneBLIndex);
+                theclosetParcel.DroneId = drone.getIdBL();
+                theclosetParcel.Scheduled = DateTime.Now;
+                drone.DroneStatus = DroneStatusesBL.Shipping;
+                DalObj.ReplaceParcelByIndex(theclosetParcel, DalObj.returnParcelArray().ToList().IndexOf(DalObj.returnParcelArray().ToList().First(d => (d.Id == idD))));
+                DalObj.ReplaceDroneByIndex(ConvertToDal.ConvertToDroneDal(drone), DalObj.returnDroneArray().ToList().IndexOf(DalObj.returnDroneArray().ToList().First(d => (d.Id == idD))));
+                DronesListBL[droneBLIndex] = drone;
+            }
             public void CollectionOfAParcelByDrone(int idD)
             {
                 if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
-                int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
+                int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == idD)));
                 DroneBL drone = DronesListBL[droneBLIndex];
                 if (drone.DroneStatus != DroneStatusesBL.empty)
                 {

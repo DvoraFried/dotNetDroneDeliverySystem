@@ -54,5 +54,9 @@ namespace IBL.BO
         {
             public NoDeliveryInTransferExcepyion() : base(string.Format("There is no delivery in transfer to this drone")) { }
         }
+        public class NoSuitableParcelException : Exception
+        {
+            public NoSuitableParcelException(int droneIdx): base(string.Format($"There is no Suitable parcel to the the drone {droneIdx} in parcels list")) { }
+        }
     }
 }
