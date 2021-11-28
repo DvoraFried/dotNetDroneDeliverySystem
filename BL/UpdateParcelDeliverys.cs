@@ -28,12 +28,12 @@ namespace IBL.BO
             public ParcelDAL returnTheClosestParcelId(IEnumerable<ParcelDAL> parcelArr,int droneIdx)
             {
                 ParcelDAL currentParcel= parcelArr.ToArray()[0];
+                Position dronePosition = DronesListBL[droneIdx].CurrentPosition;
                 foreach (ParcelDAL element in parcelArr ) {
                     CustomerDAL currentParcelSender = DalObj.returnCustomerArray().First(d => (d.Id== currentParcel.SenderId));
                     Position currentParcelPosition = new Position(currentParcelSender.Longitude, currentParcelSender.Latitude);
                     CustomerDAL compairParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == element.SenderId));
                     Position compairParcelPosition = new Position(compairParcelSender.Longitude, compairParcelSender.Latitude);
-                    Position dronePosition = DronesListBL[droneIdx].CurrentPosition;
                     if (CalculateDistance(dronePosition, currentParcelPosition)> CalculateDistance(dronePosition, compairParcelPosition)) {
                         currentParcel = element;
                     } 
