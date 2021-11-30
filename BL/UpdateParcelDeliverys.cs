@@ -71,10 +71,10 @@ namespace IBL.BO
                     throw new NoParcelFoundException(); }
                 int senderId = DataSource.MyParcels[parcelIndex].SenderId;
                 Position senderPosition = new Position(DataSource.MyCustomers.First(c => (c.Id == senderId)).Longitude, DataSource.MyCustomers.First(c => (c.Id == senderId)).Latitude);
-                ParcelBL parcel = new ParcelBL(DataSource.MyParcels[parcelIndex].SenderId, DataSource.MyParcels[parcelIndex].TargetId, DataSource.MyParcels[parcelIndex].Weight, DataSource.MyParcels[parcelIndex].Priority);
+                ParcelBL parcel = new ParcelBL(DataSource.MyParcels[parcelIndex].SenderId, DataSource.MyParcels[parcelIndex].TargetId, (int)DalObj.returnParcelArray().ToList()[parcelIndex].Weight, (int)DalObj.returnParcelArray().ToList()[parcelIndex].Priority);
                 parcel.PickUpBL = DateTime.Now;
                 DataSource.MyParcels[parcelIndex] = ConvertToDal.ConvertToParcelDal(parcel);
-                drone.BatteryStatus = updateButteryStatus(drone, senderPosition, DataSource.MyParcels[parcelIndex].Weight);
+                drone.BatteryStatus = updateButteryStatus(drone, senderPosition,(int)DalObj.returnParcelArray().ToList()[parcelIndex].Weight);
                 drone.CurrentPosition = senderPosition;
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
                 DronesListBL[droneBLIndex] = drone;
@@ -89,11 +89,11 @@ namespace IBL.BO
                 if (drone.DroneStatus != EnumBL.DroneStatusesBL.maintenance) {
                     throw new NoDeliveryInTransferExcepyion(); }
                 int parcelIndex = DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.DroneId == idD));
-                ParcelBL parcel = new ParcelBL(DataSource.MyParcels[parcelIndex].SenderId, DataSource.MyParcels[parcelIndex].TargetId, DataSource.MyParcels[parcelIndex].Weight, DataSource.MyParcels[parcelIndex].Priority);
+                ParcelBL parcel = new ParcelBL(DataSource.MyParcels[parcelIndex].SenderId, DalObj.returnParcelArray().ToList()[parcelIndex].TargetId, (int)DalObj.returnParcelArray().ToList()[parcelIndex].Weight, (int)DalObj.returnParcelArray().ToList()[parcelIndex].Priority);
                 parcel.DeliveredBL = DateTime.Now;
                 DataSource.MyParcels[parcelIndex] = ConvertToDal.ConvertToParcelDal(parcel);
                 Position targetPosition = new Position(DataSource.MyCustomers.First(c => (c.Id == DataSource.MyParcels[parcelIndex].TargetId)).Longitude, DataSource.MyCustomers.First(c => (c.Id == DataSource.MyParcels[parcelIndex].TargetId)).Latitude);
-                drone.BatteryStatus = updateButteryStatus(drone, targetPosition, DataSource.MyParcels[parcelIndex].Weight);
+                drone.BatteryStatus = updateButteryStatus(drone, targetPosition, (int)DalObj.returnParcelArray().ToList()[parcelIndex].Weight);
                 drone.CurrentPosition = targetPosition;
                 drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
                 DataSource.MyDrones[droneIndex] = ConvertToDal.ConvertToDroneDal(drone);

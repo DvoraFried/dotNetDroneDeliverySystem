@@ -9,14 +9,14 @@ namespace IBL.BO
 {
     public class ParcelBL
     {
-        public ParcelBL(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
+        public ParcelBL(int idSender, int idTarget, int weight, int priority)
         {
             parcelId++;
             IdBL = parcelId;
             SenderIdBL = idSender;
             TargetIdBL = idTarget;
-            Weight = weight;
-            Priority = priority;
+            Weight = (WeightCategoriesBL)weight;
+            Priority = (PrioritiesBL)priority;
             ScheduledBL = new DateTime();
             PickUpBL = new DateTime();
             DeliveredBL = new DateTime();

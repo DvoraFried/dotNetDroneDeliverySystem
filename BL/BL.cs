@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static IBL.BO.Excptions;
-
+using static IBL.BO.DistanceBetweenCoordinates;
 namespace IBL.BO
 {
     public partial class BL
@@ -16,10 +16,10 @@ namespace IBL.BO
 
         static IDAL.DO.IDAL DalObj = DALFactory.factory();
 
-        public static double updateButteryStatus(DroneBL drone, Position position, EnumBL.WeightCategoriesBL weight)
+        public static double updateButteryStatus(DroneBL drone, Position position, int weight)
         {
             double distance = CalculateDistance(drone.CurrentPosition, position);
-            double lessPower = weight == EnumBL.WeightCategoriesBL.light ? distance * 0.05 : weight == EnumBL.WeightCategoriesBL.medium ? distance * 0.1 : distance * 0.15;
+            double lessPower = weight == (int)EnumBL.WeightCategoriesBL.light ? distance * 0.05 : weight == (int)EnumBL.WeightCategoriesBL.medium ? distance * 0.1 : distance * 0.15;
             if (lessPower > drone.BatteryStatus)
             {
                 throw new ThereIsNotEnoughBatteryException();
