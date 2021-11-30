@@ -46,36 +46,6 @@ namespace IBL.BO
                 string currentPhone = newPhone != null ? newPhone : DataSource.MyCustomers[customerIndex].Phone;
                 CustomerBL customer = new CustomerBL(id, currentName, currentPhone, ReturnPosition(DataSource.MyBaseStations[customerIndex].Latitude, DataSource.MyBaseStations[customerIndex].Longitude));
             }
-
-/*            public void CollectionOfAParcelByDrone(int idD)
-            {
-                int droneIndex = DronesListBL.IndexOf(DronesListBL.First(d => d.getIdBL() == idD));
-                if (droneIndex == -1) {
-                    throw new ObjectDoesntExistsInListException("drone"); }
-                DroneBL drone = DronesListBL[droneIndex];
-                if(drone.DroneStatus != 0) {
-                    throw new DroneIsNotEmptyException();}
-                int parcelIndex = DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.DroneId == idD));
-                if (parcelIndex == -1) {
-                    throw new NoParcelFoundException(); }
-                int senderId = DataSource.MyParcels[parcelIndex].SenderId;
-                Position senderPosition = new Position(DataSource.MyCustomers.First(c => (c.Id == senderId)).Longitude, DataSource.MyCustomers.First(c => (c.Id == senderId)).Latitude)
-                DataSource.MyParcels[parcelIndex].PickUp = DateTime.Now;
-                drone.BatteryStatus = updateButteryStatus(drone, senderPosition);
-                drone.CurrentPosition = senderPosition;
-                DataSource.MyDrones[droneIndex] = ConvertToDal.ConvertToDroneDal(drone);
-                DronesListBL[droneIndex] = drone;
-            }
-
-            public void DeliveryOfAParcelByDrone(int idD)
-            {
-                int droneIndex = DronesListBL.IndexOf(DronesListBL.First(d => d.getIdBL() == idD));
-                if (droneIndex == -1) {
-                    throw new ObjectDoesntExistsInListException("drone"); }
-                DroneBL drone = DronesListBL[droneIndex];
-                if (drone.DroneStatus != EnumBL.DroneStatusesBL.maintenance) {
-                    throw new NoDeliveryInTransferExcepyion(); }
-            }*/
         }
     }
 }
