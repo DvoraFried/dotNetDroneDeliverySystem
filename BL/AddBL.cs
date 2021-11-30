@@ -65,7 +65,7 @@ namespace IBL.BO
                 {
                     throw new ObjectDoesntExistsInListException("target");
                 }
-                ParcelBL parcel = new ParcelBL(idSender, idTarget, weight, priority);
+                ParcelBL parcel = new ParcelBL(idSender, idTarget, (int)weight, (int)priority);
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
             }
         }
