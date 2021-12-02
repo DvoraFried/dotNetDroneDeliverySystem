@@ -24,7 +24,6 @@ namespace IBL.BO
                 foreach (StationDAL element in DataSource.MyBaseStations)
                 {
                     Position stationP = new Position(element.Longitude, element.Latitude);
-                    //i changed the config's inaccassible in datasource fronm partial to public- check if it is OK
                     if (element.EmptyChargeSlots > 0 && drone.BatteryStatus * DataSource.Config.available >= DistanceBetweenCoordinates.CalculateDistance(stationP, drone.CurrentPosition))
                     {
                         if (station.Name == null) { station = element;}
@@ -57,7 +56,7 @@ namespace IBL.BO
                 drone.BatteryStatus = (int)(drone.BatteryStatus+ drone.BatteryStatus * DataSource.Config.DroneLoadingRate);
                 drone.DroneStatus = DroneStatusesBL.empty;
                 DronesListBL[droneBLIndex] = drone;
-                DalObj.ReplaceDroneByIndex(ConvertToDal.ConvertToDroneDal(drone), droneBLIndex);
+                DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
                 //up up the stations charginslot in 1
                 DalObj.DeleteObjFromDroneCharges(drone.getIdBL());

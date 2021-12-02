@@ -28,13 +28,13 @@ namespace IBL.BO
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL.Add(drone);
             }
-            public static void AddCustomer(int id, string name, string phone, double longitude, double latitude)
+            public  void AddCustomer(int id, string name, string phone, double longitude, double latitude)
             {
                 if ((DataSource.MyCustomers.Any(c => c.Id == id)))   { throw new ObjectExistsInListException("customer"); }
                 CustomerBL customer = new CustomerBL(id, name, phone, new Position(latitude, longitude));
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }
-            public static void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
+            public  void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
             {
                 if (!(DataSource.MyCustomers.Any(c => c.Id == idSender)))   {throw new ObjectDoesntExistsInListException("sender customer"); }
                 if (!(DataSource.MyCustomers.Any(c => c.Id == idTarget)))   {throw new ObjectDoesntExistsInListException("target customer"); }
