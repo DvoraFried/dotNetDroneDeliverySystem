@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
 using IDAL;
+using static IDAL.DO.ExeptionsDAL;
 
 namespace DalObject
 {
-    public class DalObject : IDAL.DO.IDAL
+    public class DalObject : IDAL.IDAL
     {
         DalObject() { /*DataSource.Initialize();*/ }
         static Random rnd = new Random();
@@ -29,18 +30,22 @@ namespace DalObject
         //=====================================================================
         public void AddStationDAL(StationDAL DALS)
         {
+            if (DataSource.MyBaseStations.Any(s => s.Id == DALS.Id)) { throw new ObjectAlreadyExistInList("station"); }
             DataSource.MyBaseStations.Add(DALS);
         }
         public void AddDroneDAL(DroneDAL DALD)
         {
+            if (DataSource.MyDrones.Any(d => d.Id == DALD.Id)) { throw new ObjectAlreadyExistInList("drone"); }
             DataSource.MyDrones.Add(DALD);
         }
         public void AddCustomerDAL(CustomerDAL DALC)
         {
+            if (DataSource.MyCustomers.Any(c => c.Id == DALC.Id)) { throw new ObjectAlreadyExistInList("customer"); }
             DataSource.MyCustomers.Add(DALC);
         }
         public void AddParcelDAL(ParcelDAL DALP)
         {
+            if (DataSource.MyParcels.Any(p => p.Id == DALP.Id)) { throw new ObjectAlreadyExistInList("parcel"); }
             DataSource.MyParcels.Add(DALP);
         }
         //=====================================================================
@@ -149,23 +154,32 @@ namespace DalObject
             return arr;
         }
         //=====================================================================
-        //replace object in index
+        //replace object in id
         //=====================================================================
-        public void ReplaceStationByIndex(StationDAL DALS, int idx)
+        public void ReplaceStationById(StationDAL DALS)
         {
-            DataSource.MyBaseStations[idx] = DALS;
+            if (!DataSource.MyBaseStations.Any(s => s.Id == DALS.Id)) { throw new CantFaindObjectWithThisId("station", DALS.Id); }
+            DataSource.MyBaseStations[DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => s.Id == DALS.Id))] = DALS;
         }
-        public void ReplaceDroneByIndex(DroneDAL DALD, int idx)
+        public void ReplaceDroneById(DroneDAL DALD)
         {
-            DataSource.MyDrones[idx] = DALD;
+            if (!DataSource.MyDrones.Any(d => d.Id == DALD.Id)) { throw new CantFaindObjectWithThisId("drone", DALD.Id); }
+            DataSource.MyDrones[DataSource.MyDrones.IndexOf(DataSource.MyDrones.First(d => d.Id == DALD.Id))] = DALD;
         }
-        public void ReplaceCustomerByIndex(CustomerDAL DALC, int idx)
+        public void ReplaceCustomerById(CustomerDAL DALC)
         {
-            DataSource.MyCustomers[idx] = DALC;
+            if (!DataSource.MyCustomers.Any(c => c.Id == DALC.Id)) { throw new CantFaindObjectWithThisId("customer", DALC.Id); }
+            DataSource.MyCustomers[DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => c.Id == DALC.Id))] = DALC;
         }
-        public void ReplaceParcelByIndex(ParcelDAL DALP, int idx)
+        public void ReplaceParcelById(ParcelDAL DALP)
         {
-            DataSource.MyParcels[idx] = DALP;
+            if (!DataSource.MyParcels.Any(p => p.Id == DALP.Id)) { throw new CantFaindObjectWithThisId("parcel", DALP.Id); }
+            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
+        }
+
+        public void DeleteObjFromDroneCharges(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

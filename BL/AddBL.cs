@@ -13,61 +13,33 @@ namespace IBL.BO
 {
     public partial class BL
     {
-        public static Position ReturnPosition(double latitude, double longitude)
-        {
-            Position P = new Position(longitude, latitude);
-            return P;
-        }
-
-        public class Add
-        {
-            public static void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
+            public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
             {
-                if ((DataSource.MyBaseStations.Find(s => s.Id == id)).Id != 0)
-                {
-                    throw new ObjectExistsInListException("station");
-                };
-                StationBL station = new StationBL(id, name, ReturnPosition(latitude, longitude), chargeSlots);
+                if ((DalObj.returnStationArray().ToList().Any(s => s.Id == id)))   { throw new ObjectExistsInListException("station");};
+                StationBL station = new StationBL(id, name, new Position(latitude, longitude), chargeSlots);
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
-            public static void AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId)
+            public void AddDrone(int id, string model, EnumBL.WeightCategoriesBL maxWeight, int stationId)
             {
-                if ((DataSource.MyDrones.Find(d => d.Id == id)).Id != 0)
-                {
-                    throw new ObjectExistsInListException("drone");
-                };
-                StationDAL s = ((DataSource.MyBaseStations.Find(d => d.Id == stationId)));
-                if (s.Name == null)
-                {
-                    throw new ObjectExistsInListException("station");
-                }
-                DroneBL drone = new DroneBL(id, model, weight, DroneStatusesBL.maintenance, ReturnPosition(s.Latitude, s.Longitude));
+                if ((DalObj.returnDroneArray().ToList().Any(d => d.Id == id)))   { throw new ObjectExistsInListException("drone"); };
+                if (!(DalObj.returnStationArray().ToList().Any(s => s.Id == stationId))) { throw new ObjectDoesntExistsInListException("station"); };
+                StationDAL s = ((DalObj.returnStationArray().ToList().Find(d => d.Id == stationId)));;
+                DroneBL drone = new DroneBL(id, model, maxWeight, DroneStatusesBL.maintenance, new Position(s.Latitude, s.Longitude),stationId);
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL.Add(drone);
             }
             public static void AddCustomer(int id, string name, string phone, double longitude, double latitude)
             {
-                if ((DataSource.MyCustomers.Find(c => c.Id == id)).Id != 0)
-                {
-                    throw new ObjectExistsInListException("customer");
-                }
-                CustomerBL customer = new CustomerBL(id, name, phone, ReturnPosition(latitude, longitude));
+                if ((DataSource.MyCustomers.Any(c => c.Id == id)))   { throw new ObjectExistsInListException("customer"); }
+                CustomerBL customer = new CustomerBL(id, name, phone, new Position(latitude, longitude));
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }
-
             public static void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
             {
-                if ((DataSource.MyCustomers.Find(c => c.Id == idSender)).Id != 0)
-                {
-                    throw new ObjectDoesntExistsInListException("sender");
-                }
-                if ((DataSource.MyCustomers.Find(c => c.Id == idTarget)).Id != 0)
-                {
-                    throw new ObjectDoesntExistsInListException("target");
-                }
+                if (!(DataSource.MyCustomers.Any(c => c.Id == idSender)))   {throw new ObjectDoesntExistsInListException("sender customer"); }
+                if (!(DataSource.MyCustomers.Any(c => c.Id == idTarget)))   {throw new ObjectDoesntExistsInListException("target customer"); }
                 ParcelBL parcel = new ParcelBL(idSender, idTarget, (int)weight, (int)priority);
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
             }
-        }
-    }
+     }
 }

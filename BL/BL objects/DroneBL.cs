@@ -12,7 +12,7 @@ namespace IBL.BO
 {
     public class DroneBL
     {
-        public DroneBL(int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p)
+        public DroneBL(int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
         {
             Random rnd = new Random();
             this.setIdBL(id);
@@ -21,6 +21,7 @@ namespace IBL.BO
             this.CurrentPosition = p;
             this.BatteryStatus = rnd.Next(20, 41);
             this.DroneStatus = status;
+
         }
         private int idBL;
         public void setIdBL(int idD) 

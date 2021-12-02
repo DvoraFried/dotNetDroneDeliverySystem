@@ -1,13 +1,13 @@
-﻿using System;
+﻿using IDAL.DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace IDAL
 {
-    namespace DO
-    {
         public interface IDAL
         {
             public void AddStationDAL(StationDAL DALS);
@@ -32,13 +32,11 @@ namespace IDAL
 
             public double[] powerRequest();
 
-            public void ReplaceStationByIndex(StationDAL DALS, int idx);
-            public void ReplaceDroneByIndex(DroneDAL DALD, int idx);
-            public void ReplaceCustomerByIndex(CustomerDAL DALC, int idx);
-            public void ReplaceParcelByIndex(ParcelDAL DALP, int idx);
+            public void ReplaceStationById(StationDAL DALS);
+            public void ReplaceDroneById(DroneDAL DALD);
+            public void ReplaceCustomerById(CustomerDAL DALC);
+            public void ReplaceParcelById(ParcelDAL DALP);
 
             public void DeleteObjFromDroneCharges(int id);
         }
-
-    }
 }

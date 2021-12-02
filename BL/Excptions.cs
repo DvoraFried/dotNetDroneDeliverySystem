@@ -27,7 +27,7 @@ namespace IBL.BO
         }
         public class ObjectDoesntExistsInListException : Exception
         {
-            public ObjectDoesntExistsInListException(string type) : base(string.Format($"the {type} is not exsist")) { }
+            public ObjectDoesntExistsInListException(string type) : base(string.Format($"the {type} does not exsist")) { }
         }
         public class DroneIsNotInMaintenanceException : Exception
         {
