@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IDAL.DO
 {
-    public partial class ExeptionsDAL : Exception
+    public partial class ExceptionsDAL : Exception
     {
         public class ObjectAlreadyExistInList : Exception
         {

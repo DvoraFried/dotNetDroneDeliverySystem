@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static IBL.BO.EnumBL;
-using static IBL.BO.Excptions;
+using static IBL.BO.Exceptions;
 
 
 namespace IBL.BO

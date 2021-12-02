@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static IBL.BO.EnumBL;
-using static IBL.BO.Excptions;
+using static IBL.BO.Exceptions;
 using static IBL.BO.DistanceBetweenCoordinates;
 
 namespace IBL.BO
@@ -55,8 +55,8 @@ namespace IBL.BO
                 theclosetParcel.DroneId = drone.getIdBL();
                 theclosetParcel.Scheduled = DateTime.Now;
                 drone.DroneStatus = DroneStatusesBL.Shipping;
-                DalObj.ReplaceParcelByIndex(theclosetParcel, DalObj.returnParcelArray().ToList().IndexOf(DalObj.returnParcelArray().ToList().First(d => (d.Id == idD))));
-                DalObj.ReplaceDroneByIndex(ConvertToDal.ConvertToDroneDal(drone), DalObj.returnDroneArray().ToList().IndexOf(DalObj.returnDroneArray().ToList().First(d => (d.Id == idD))));
+                DalObj.ReplaceParcelById(theclosetParcel);
+                DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone);
                 DronesListBL[droneBLIndex] = drone;
             }
             public void CollectionOfAParcelByDrone(int idD)

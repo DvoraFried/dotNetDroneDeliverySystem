@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace IBL.BO
 {
-    public partial class Excptions : Exception
+    public partial class Exceptions : Exception
     {
         public class UnValidIdException: Exception
        {
