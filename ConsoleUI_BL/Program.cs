@@ -135,9 +135,10 @@ namespace ConsoleUI_BL
                 int senderID = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter target's id: ");
                 int targetId = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter weight of parcel (Light =1, Medium=2, Heavy=3): ");
+                Console.WriteLine("Enter weight of parcel: \nLight : 0\n, Medium : 1\n, Heavy : 2\n): ");
                 int weight = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter priority of parcel (Regular=1, Fast=2, Emergency=3 ): ");
+                //usual, rapid, emergency
+                Console.WriteLine("Enter priority of parcel \n usual : 0\n, rapid : 1\n, emergency :2\n ): ");
                 int priority = Convert.ToInt32(Console.ReadLine());
                 bl.AddParcel(senderID, targetId, (WeightCategoriesBL)weight, (PrioritiesBL)priority);
             }
