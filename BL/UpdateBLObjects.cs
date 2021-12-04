@@ -36,7 +36,7 @@ namespace IBL.BO
             public void UpDateCustomerData(int id, string name = null, string newPhone = null)
             {
                 if(!DataSource.MyCustomers.Any(c => (c.Id == id)))       {  throw new ObjectDoesntExistsInListException("customer"); }
-                CustomerDAL currentCustomer =DalObj.returnCustomerArray().ToList().First(c => (c.Id == id)));
+                CustomerDAL currentCustomer =DalObj.returnCustomerArray().ToList().First(c => (c.Id == id));
                 string currentName = name != null ? name : currentCustomer.Name;
                 string currentPhone = newPhone != null ? newPhone : currentCustomer.Phone;
                 CustomerBL replaceCustomer = new CustomerBL(id, currentName, currentPhone, new Position(currentCustomer.Latitude, currentCustomer.Longitude));

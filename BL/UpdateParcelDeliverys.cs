@@ -56,7 +56,7 @@ namespace IBL.BO
                 theclosetParcel.Scheduled = DateTime.Now;
                 drone.DroneStatus = DroneStatusesBL.Shipping;
                 DalObj.ReplaceParcelById(theclosetParcel);
-                DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone);
+                DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL[droneBLIndex] = drone;
             }
             public void CollectionOfAParcelByDrone(int idD)

@@ -9,7 +9,6 @@ namespace IBL
 {
     public interface IBL
     {
-        public double updateButteryStatus(DroneBL drone, Position position, int weight);
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots);
         public void AddDrone(int id, string model, EnumBL.WeightCategoriesBL weight, int stationId);
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude);

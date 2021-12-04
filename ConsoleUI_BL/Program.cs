@@ -155,14 +155,13 @@ namespace ConsoleUI_BL
                 Console.WriteLine(e);
             }
         }
-        
-        public static IBL.IBL bl;
+        public static IBL.IBL bl = BLFactory.factory();
         static void Main(string[] args)
         {
             int choice =-1;
             while (choice != 5)
             {
-                Console.WriteLine("Choose your option:\n 0.Add an object\n 1.Update object\n 2.Display object by Id\n 3.display list of objects\n 4.Exit");
+                Console.WriteLine("Choose your option:\n 1.Add an object\n 2.Update object\n 3.Display object by Id\n 4.display list of objects\n 5.Exit");
 
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)

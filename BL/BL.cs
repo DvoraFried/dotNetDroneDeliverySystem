@@ -16,7 +16,17 @@ namespace IBL.BO
 
         static IDAL.IDAL DalObj = DALFactory.factory();
 
-        public double updateButteryStatus(DroneBL drone, Position position, int weight)
+        static BL BLOBJ;
+        public static BL GetBLOBJ
+        {
+            get
+            {
+                if (BLOBJ == null)
+                    BLOBJ = new BL();
+                return BLOBJ;
+            }
+        }
+        public static double updateButteryStatus(DroneBL drone, Position position, int weight)
         {
             double distance = CalculateDistance(drone.CurrentPosition, position);
             double lessPower = weight == (int)EnumBL.WeightCategoriesBL.light ? distance * 0.05 : weight == (int)EnumBL.WeightCategoriesBL.medium ? distance * 0.1 : distance * 0.15;
