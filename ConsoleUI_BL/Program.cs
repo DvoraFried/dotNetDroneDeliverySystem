@@ -66,7 +66,7 @@ namespace ConsoleUI_BL
             }
             catch(Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -94,7 +94,7 @@ namespace ConsoleUI_BL
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
         private static void addCustomer()
@@ -123,7 +123,7 @@ namespace ConsoleUI_BL
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -152,7 +152,7 @@ namespace ConsoleUI_BL
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
         public static IBL.IBL bl = BLFactory.factory();
