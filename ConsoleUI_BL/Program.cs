@@ -10,7 +10,7 @@ namespace ConsoleUI_BL
     {
         static void addObject()
         {
-            Console.WriteLine("Enter your choice to add:\n 0.Station \n 1.Drone\n 2.CLient\n 3.Parcel ");
+            Console.WriteLine("Enter your choice to add:\n 0.Station \n 1.Drone\n 2.customer\n 3.Parcel ");
             int choice = -1;
             try
             {
