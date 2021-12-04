@@ -15,6 +15,9 @@ namespace IBL.BO
         public BL()
         {
             IDAL.IDAL DalObj = DALFactory.factory();
+            double [] electricityUse = DalObj.powerRequest();
+
+
         }
         public static List<DroneBL> DronesListBL = new List<DroneBL>();
 
