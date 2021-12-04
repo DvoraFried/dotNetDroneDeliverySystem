@@ -12,9 +12,13 @@ namespace IBL.BO
 {
     public partial class BL : IBL
     {
+        public BL()
+        {
+            IDAL.IDAL DalObj = DALFactory.factory();
+        }
         public static List<DroneBL> DronesListBL = new List<DroneBL>();
 
-        static IDAL.IDAL DalObj = DALFactory.factory();
+        //static IDAL.IDAL DalObj = DALFactory.factory();
 
         static BL BLOBJ;
         public static BL GetBLOBJ
