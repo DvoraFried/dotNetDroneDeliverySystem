@@ -22,7 +22,7 @@ namespace DalObject
             public static double carryLightWeight=0.05;
             public static double carrymediumWeight=0.1;
             public static double carryHeavyWeight=0.15;
-            public static double DroneLoadingRate=50;
+            public static double DroneLoadingRate=43.3;
         }
 /*        public static void Initialize()
         {

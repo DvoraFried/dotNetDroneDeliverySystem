@@ -16,8 +16,11 @@ namespace IBL.BO
         {
             IDAL.IDAL DalObj = DALFactory.factory();
             double [] electricityUse = DalObj.powerRequest();
-
-
+            double nonWeightPowerConsumption = electricityUse[0];
+            double lightWeightPowerConsumption = electricityUse[1];
+            double mediumWeightPowerConsumption = electricityUse[2];
+            double heavyWeightPowerConsumption = electricityUse[3];
+            double DroneLoadingRate = electricityUse[4];
 
         }
         public static List<DroneBL> DronesListBL = new List<DroneBL>();
