@@ -146,11 +146,11 @@ namespace DalObject
         public double[] powerRequest()
         {
             double[] arr = new double[5];
-            arr[0] = ((double)IDAL.DO.DroneStatuses.empty);
-            arr[1] = ((double)IDAL.DO.WeightCategories.light);
-            arr[2] = ((double)IDAL.DO.WeightCategories.medium);
-            arr[3] = ((double)IDAL.DO.WeightCategories.heavy);
-            //arr[4] = //קצב טעינה - ראו בהמשך
+            arr[0] = DataSource.Config.available;
+            arr[1] = DataSource.Config.carryLightWeight;
+            arr[2] = DataSource.Config.carrymediumWeight;
+            arr[3] = DataSource.Config.carryHeavyWeight;
+            arr[4] = DataSource.Config.DroneLoadingRate;
             return arr;
         }
         //=====================================================================

@@ -18,6 +18,7 @@ namespace IBL.BO
             double [] electricityUse = DalObj.powerRequest();
 
 
+
         }
         public static List<DroneBL> DronesListBL = new List<DroneBL>();
 

@@ -18,10 +18,10 @@ namespace DalObject
 
         //satandart drone speed per hour is 120 kilometers
         public class Config {
-            public static double available=0.25;
-            public static double carryLightWeight=0.5;
-            public static double carrymediumWeight=0.75;
-            public static double carryHeavyWeight=1;
+            public static double available=0.03;
+            public static double carryLightWeight=0.05;
+            public static double carrymediumWeight=0.1;
+            public static double carryHeavyWeight=0.15;
             public static double DroneLoadingRate=50;
         }
 /*        public static void Initialize()
