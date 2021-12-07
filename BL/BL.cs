@@ -12,22 +12,27 @@ namespace IBL.BO
 {
     public partial class BL : IBL
     {
+        public static List<DroneBL> DronesListBL = new List<DroneBL>();
+        static IDAL.IDAL DalObj;
+        static BL BLOBJ;
+        double nonWeightPowerConsumption;
+        double lightWeightPowerConsumption;
+        double mediumWeightPowerConsumption;
+        double heavyWeightPowerConsumption;
+        double DroneLoadingRate;
+
         public BL()
         {
-            IDAL.IDAL DalObj = DALFactory.factory();
-            double [] electricityUse = DalObj.powerRequest();
-            double nonWeightPowerConsumption = electricityUse[0];
-            double lightWeightPowerConsumption = electricityUse[1];
-            double mediumWeightPowerConsumption = electricityUse[2];
-            double heavyWeightPowerConsumption = electricityUse[3];
-            double DroneLoadingRate = electricityUse[4];
+            DalObj = DALFactory.factory();
+            double[] electricityUse = DalObj.powerRequest();
+            nonWeightPowerConsumption = electricityUse[0];
+            lightWeightPowerConsumption = electricityUse[1];
+            mediumWeightPowerConsumption = electricityUse[2];
+            heavyWeightPowerConsumption = electricityUse[3];
+            DroneLoadingRate = electricityUse[4];
 
         }
-        public static List<DroneBL> DronesListBL = new List<DroneBL>();
 
-        //static IDAL.IDAL DalObj = DALFactory.factory();
-
-        static BL BLOBJ;
         public static BL GetBLOBJ
         {
             get
@@ -48,5 +53,4 @@ namespace IBL.BO
             return (drone.BatteryStatus - lessPower);
         }
     }
-
 }
