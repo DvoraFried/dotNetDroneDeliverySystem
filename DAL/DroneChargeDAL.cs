@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace IDAL.DO
 {
-
+    public class DroneChargeDAL
+    {
+        public int DroneId { get; set; }
+        public int StationId { get; set; }
+    }
 
 }
 

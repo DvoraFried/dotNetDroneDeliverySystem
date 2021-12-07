@@ -8,114 +8,237 @@ using IDAL.DO;
 namespace DalObject
 {
     public class DataSource
+  
     {
-        static internal baseStation[] myBaseStations = new baseStation[5];
-        static internal quadocopter[] myQuadocopters = new quadocopter[10];
-        static internal customer[] myCustomers = new customer[100];
-        static internal package[] myPackages = new package[1000];
-        internal class Config
-        {
-            static internal int baseStationsIndex = 0;
-            static internal int quadocoptersIndex=0;
-            static internal int customersIndex = 0;
-            static internal int packagesIndex = 0;
-            static internal int idNumber;
-        }
-//=====================================================================
+        public static List<StationDAL> MyBaseStations = new List<StationDAL>();
+        public static List<DroneDAL> MyDrones = new List<DroneDAL>();
+        public static List<CustomerDAL> MyCustomers = new List<CustomerDAL>();
+        public static List<ParcelDAL> MyParcels = new List<ParcelDAL>();
+        public static List<DroneChargeDAL> MyDroneCharges=new List<DroneChargeDAL> ();
 
-        static void Initialize()
+        //satandart drone speed per hour is 120 kilometers
+        public class Config {
+            public static double available=0.03;
+            public static double carryLightWeight=0.05;
+            public static double carrymediumWeight=0.1;
+            public static double carryHeavyWeight=0.15;
+            public static double DroneLoadingRate=43.3;
+        }
+/*        public static void Initialize()
         {
             Random rnd = new Random();
-//=====================================================================
-//rendering information for 2 baseStations
-//=====================================================================
-            for (int i = 0; i < 2;i++)
-            {
-                Config.baseStationsIndex++;
-                myBaseStations[i].id = Config.baseStationsIndex + 1;
-                myBaseStations[i].name = "station"+(Config.baseStationsIndex + 1).ToString();
-                myBaseStations[i].loadStation = rnd.Next(2, 4);
-                myBaseStations[i].longitude = rnd.Next(0, 24);
-                myBaseStations[i].latitude = rnd.Next(0,180);
+            for (int i = 0; i < 2;i++) {
+                DalObject.AddStationDAL(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
             }
-//=====================================================================           
-//rendering information for five quadocopter
-//=====================================================================
-            for (int i = 0; i < 5; i++)
-            {
-                Config.quadocoptersIndex++;
-                myQuadocopters[i].id = Config.quadocoptersIndex ;
-                myQuadocopters[i].model ="model "+(Config.quadocoptersIndex ).ToString();
-                //~~~~~~~~~~~~~~~~~~~~~~weight category is missing here in this line!!~~~~~~~~~~~~~~~~
-                myQuadocopters[i].battery = rnd.Next(10,101);
 
-                int num = rnd.Next(0,3);
-                switch (num)
-                {
-                    case 0:
-                        myQuadocopters[i].quadoState = quadocopterState.empty;
-                        break;
-                    case 1:
-                        myQuadocopters[i].quadoState = quadocopterState.maintenance;
-                        break;
-                    case 2:
-                        myQuadocopters[i].quadoState = quadocopterState.Shipping;
-                        break;
-                }
-            }
-//=====================================================================            
-//rendering information for ten customers 
-//=====================================================================
-            for (int i = 0; i < 10; i++)
-            {
-                Config.customersIndex++;
-                myCustomers[i].id = Config.customersIndex ;
-                myCustomers[i].name = "customer"+(Config.customersIndex).ToString();
-                myCustomers[i].telNumber = rnd.Next(5000000, 60000000);
-                myCustomers[i].longitude = rnd.Next(0, 24);
-                myCustomers[i].latitude = rnd.Next(0, 180);
-            }
-//=====================================================================            
-//rendering information for 10 packages
-//=====================================================================
-            for (int i = 0; i < 10; i++)
-            {
-                Config.packagesIndex++;
-                myPackages[i].id = Config.packagesIndex;
-                myPackages[i].senderId= rnd.Next(1, (Config.customersIndex)+1);
-                myPackages[i].getterId = rnd.Next(1, (Config.customersIndex) + 1);
+            for (int i = 0; i < 5; i++) {
                 int num = rnd.Next(0, 3);
-                switch (num)
-                {
+                switch (num) {
                     case 0:
-                        myPackages[i].packageWeight = weightCategories.light;
+                        DalObject.AddDrone(WeightCategories.light);
                         break;
                     case 1:
-                        myPackages[i].packageWeight = weightCategories.medium;
+                        DalObject.AddDrone(WeightCategories.medium);
                         break;
                     case 2:
-                        myPackages[i].packageWeight = weightCategories.heavy;
+                        DalObject.AddDrone(WeightCategories.heavy);
+                        break;
+                }                
+            }
+
+            for (int i = 0; i < 10; i++) {
+                DalObject.Add.AddCustomer(MyCustomers.Count, "customer" + (MyCustomers.Count).ToString(),
+                rnd.Next(5000000, 60000000).ToString(), rnd.Next(0, 24), rnd.Next(0, 180));
+            }
+
+            for (int i = 0; i < 10; i++) {
+                WeightCategories weightS;
+                int num = rnd.Next(0, 3);
+                switch (num) {
+                    case 0:
+                        weightS = WeightCategories.light;
+                        break;
+                    case 1:
+                        weightS = WeightCategories.medium;
+                        break;
+                    case 2:
+                        weightS = WeightCategories.heavy;
                         break;
                 }
-                
+
+                Priorities priorityS;
                 num = rnd.Next(0, 3);
-                switch (num)
-                {
+                switch (num) {
                     case 0:
-                        myPackages[i].packagePriority = priority.emergency;
+                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.emergency);         
                         break;
                     case 1:
-                        myPackages[i].packagePriority = priority.rapid;
+                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.rapid);
                         break;
                     case 2:
-                        myPackages[i].packagePriority = priority.usual;
+                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
+                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.usual);
                         break;
                 }
-                myPackages[i].quadocopterId = 0;
-                //~~~~~~~~~~~~~~~~~~~~~~~`there is times to write here at this line but i'm not sure what to do:(~~~~~~~~~~~~~~~
             }
             
-        }
+        }*/
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+static void Initialize()
+{
+    Random rnd = new Random();
+    //=====================================================================
+    //rendering information for 2 Stations
+    //=====================================================================
+    for (int i = 0; i < 2; i++)
+    {
+        Config.StationsIndex++;
+        MyBaseStations[i].Id = Config.StationsIndex + 1;
+        MyBaseStations[i].Name = "station" + (Config.StationsIndex + 1).ToString();
+        MyBaseStations[i].ChargeSlots = rnd.Next(2, 4);
+        MyBaseStations[i].Longitude = rnd.Next(0, 24);
+        MyBaseStations[i].Latitude = rnd.Next(0, 180);
+    }
+    //=====================================================================           
+    //rendering information for five drones
+    //=====================================================================
+    for (int i = 0; i < 5; i++)
+    {
+        Config.DronesIndex++;
+        MyDrones[i].Id = Config.DronesIndex;
+        MyDrones[i].Model = "model " + (Config.DronesIndex).ToString();
+        int num = rnd.Next(0, 3);
+        switch (num)
+        {
+            case 0:
+                MyDrones[i].Weight = WeightCategories.light;
+                break;
+            case 1:
+                MyDrones[i].Weight = WeightCategories.medium;
+                break;
+            case 2:
+                MyDrones[i].Weight = WeightCategories.heavy;
+                break;
+        }
+
+        MyDrones[i].Battery = rnd.Next(10, 101);
+
+        num = rnd.Next(0, 3);
+        switch (num)
+        {
+            case 0:
+                MyDrones[i].Status = DroneStatuses.empty;
+                break;
+            case 1:
+                MyDrones[i].Status = DroneStatuses.maintenance;
+                break;
+            case 2:
+                MyDrones[i].Status = DroneStatuses.Shipping;
+                break;
+        }
+    }
+    //=====================================================================            
+    //rendering information for ten customers 
+    //=====================================================================
+    for (int i = 0; i < 10; i++)
+    {
+        Config.CustomersIndex++;
+        MyCustomers[i].Id = Config.CustomersIndex;
+        MyCustomers[i].Name = "customer" + (Config.CustomersIndex).ToString();
+        MyCustomers[i].Phone = rnd.Next(5000000, 60000000).ToString();
+        MyCustomers[i].Longitude = rnd.Next(0, 24);
+        MyCustomers[i].Latitude = rnd.Next(0, 180);
+    }
+    //=====================================================================            
+    //rendering information for 10 packages
+    //=====================================================================
+    for (int i = 0; i < 10; i++)
+    {
+        Config.ParcelIndex++;
+        MyParcel[i].id = Config.ParcelIndex;
+        MyParcel[i].SenderId = rnd.Next(1, (Config.CustomersIndex) + 1);
+        MyParcel[i].TargetId = rnd.Next(1, (Config.CustomersIndex) + 1);
+        int num = rnd.Next(0, 3);
+        switch (num)
+        {
+            case 0:
+                MyParcel[i].Weight = WeightCategories.light;
+                break;
+            case 1:
+                MyParcel[i].Weight = WeightCategories.medium;
+                break;
+            case 2:
+                MyParcel[i].Weight = WeightCategories.heavy;
+                break;
+        }
+
+        num = rnd.Next(0, 3);
+        switch (num)
+        {
+            case 0:
+                MyParcel[i].Priority = Priorities.emergency;
+                break;
+            case 1:
+                MyParcel[i].Priority = Priorities.rapid;
+                break;
+            case 2:
+                MyParcel[i].Priority = Priorities.usual;
+                break;
+        }
+        MyParcel[i].DroneId = 0;
+        //~~~~~~~~~~~~~~~~~~~~~~~`there is times to write here at this line but i'm not sure what to do:(~~~~~~~~~~~~~~~
+    }*/
