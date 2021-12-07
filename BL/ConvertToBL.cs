@@ -9,11 +9,14 @@ namespace IBL.BO
 {
     public class ConvertToBL
     {
-
-        public static DroneBL ConvertToDroneBL(DroneDAL droneDal,int statusD,Position p,int closectStationId)
+        public static List<DroneBL> ConvertToDroneArrayBL(List<DroneDAL> droneDalArray)
         {
-            DroneBL droneBl = new DroneBL(droneDal.Id,droneDal.Model,(EnumBL.WeightCategoriesBL)(int)droneDal.MaxWeight,(EnumBL.DroneStatusesBL)statusD,p, closectStationId);
-            return droneBl;
+            List<DroneBL> droneArrayBl = new List<DroneBL>();
+            foreach(DroneDAL drone in droneDalArray)
+            {
+                droneArrayBl.Add(new DroneBL(drone.Id, drone.Model, (EnumBL.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0));
+            };
+            return droneArrayBl;
         }
     }
 }

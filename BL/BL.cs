@@ -12,17 +12,18 @@ namespace IBL.BO
 {
     public partial class BL : IBL
     {
-        public static List<DroneBL> DronesListBL = new List<DroneBL>();
+        public static List<DroneBL> DronesListBL;
         static IDAL.IDAL DalObj;
         static BL BLOBJ;
-        double nonWeightPowerConsumption;
-        double lightWeightPowerConsumption;
-        double mediumWeightPowerConsumption;
-        double heavyWeightPowerConsumption;
-        double DroneLoadingRate;
+        static double nonWeightPowerConsumption;
+        static double lightWeightPowerConsumption;
+        static double mediumWeightPowerConsumption;
+        static double heavyWeightPowerConsumption;
+        static double DroneLoadingRate;
 
         public BL()
         {
+            DronesListBL = ConvertToBL.ConvertToDroneBL(DalObj.returnDroneArray());
             DalObj = DALFactory.factory();
             double[] electricityUse = DalObj.powerRequest();
             nonWeightPowerConsumption = electricityUse[0];
@@ -30,9 +31,8 @@ namespace IBL.BO
             mediumWeightPowerConsumption = electricityUse[2];
             heavyWeightPowerConsumption = electricityUse[3];
             DroneLoadingRate = electricityUse[4];
-
+            
         }
-
         public static BL GetBLOBJ
         {
             get
@@ -45,7 +45,10 @@ namespace IBL.BO
         public static double updateButteryStatus(DroneBL drone, Position position, int weight)
         {
             double distance = CalculateDistance(drone.CurrentPosition, position);
-            double lessPower = weight == (int)EnumBL.WeightCategoriesBL.light ? distance * 0.05 : weight == (int)EnumBL.WeightCategoriesBL.medium ? distance * 0.1 : distance * 0.15;
+            double lessPower = drone.DroneStatus == EnumBL.DroneStatusesBL.empty ? distance* nonWeightPowerConsumption :
+                               weight == (int)EnumBL.WeightCategoriesBL.light ? distance * lightWeightPowerConsumption :
+                               weight == (int)EnumBL.WeightCategoriesBL.medium ? distance*mediumWeightPowerConsumption :
+                               distance * heavyWeightPowerConsumption;
             if (lessPower > drone.BatteryStatus)
             {
                 throw new ThereIsNotEnoughBatteryException();
