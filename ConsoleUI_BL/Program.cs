@@ -155,6 +155,189 @@ namespace ConsoleUI_BL
                 Console.WriteLine(e.Message);
             }
         }
+
+        public static void updateObject()
+        {
+            Console.WriteLine("Enter your choice to add:\n 0.Station \n 1.Drone\n 2.customer\n 3.send drone to charge\n 4. release drone from charging\n 5.assigning parcel to drone\n 7.collection of a parcel by drone\n 7.delivery of a parcel by drone ");
+            int choice = -1;
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Catch ArgumentNullException");
+            }
+            switch (choice)
+            {
+                case 0:
+                    updateStation(); break;
+                case 1:
+                    updateDrone(); break;
+                case 2:
+                    updateCustomer(); break;
+                case 3:
+                    sendDroneToCharge(); break;
+                case 4:
+                    ReleaseDroneFromCharging(); break;
+                case 5:
+                case 6:
+                case 7:
+                    parcelAndDrone(choice); break;
+                default:
+                    Console.WriteLine("== ERROR =="); break;
+            }
+        }
+
+        public static void updateStation()
+        {
+            try
+            {
+                Console.WriteLine("Enter drone's id: ");
+                int droneID = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter new model: ");
+                string model =Console.ReadLine();
+                bl.UpDateDroneName(droneID, model);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void updateDrone()
+        {
+            try
+            {
+                Console.WriteLine("Enter station's id: ");
+                int stationID = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter station's name: ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter amount of charging slots: ");
+                int chargingLots = Convert.ToInt32(Console.ReadLine());
+                bl.UpDateStationData(stationID, name, chargingLots);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void updateCustomer()
+        {
+            try
+            {
+                Console.WriteLine("Enter costumer's id: ");
+                int id = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter costumer's Name: ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter costumer's Phone: ");
+                string phone = Console.ReadLine();
+                bl.UpDateCustomerData(id, name, phone);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void sendDroneToCharge()
+        {
+            try
+            {
+                Console.WriteLine("Enter drone's id: ");
+                bl.SendDroneToCharge(Convert.ToInt32(Console.ReadLine()));
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void ReleaseDroneFromCharging()
+        {
+            try
+            {
+                Console.WriteLine("Enter drone's id: ");
+                int id = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter drone's id: ");
+                double timeInCharge = Convert.ToDouble(Console.ReadLine());
+                bl.ReleaseDroneFromCharging(id, timeInCharge);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void parcelAndDrone(int choice)
+        {
+            try
+            {
+                Console.WriteLine("Enter drone's id: ");
+                switch (choice)
+                {
+                    case 5:
+                        bl.AssigningPackageToDrone(Convert.ToInt32(Console.ReadLine())); break;
+                    case 6:
+                        bl.AssigningPackageToDrone(Convert.ToInt32(Console.ReadLine())); break;
+                    default:
+                        bl.AssigningPackageToDrone(Convert.ToInt32(Console.ReadLine())); break;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         public static IBL.IBL bl = BLFactory.factory();
         static void Main(string[] args)
         {
@@ -168,9 +351,9 @@ namespace ConsoleUI_BL
                 {
                     case 1:
                         addObject(); break;
-/*                    case 2:
-                        update(); break;
-                    case 3:
+                    case 2:
+                        updateObject(); break;
+/*                    case 3:
                         display(); break;
                     case 4:
                         displayLists(); break;
