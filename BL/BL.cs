@@ -12,22 +12,29 @@ namespace IBL.BO
 {
     public partial class BL : IBL
     {
+        public static List<DroneBL> DronesListBL;
         public BL()
         {
             IDAL.IDAL DalObj = DALFactory.factory();
-            double [] electricityUse = DalObj.powerRequest();
+            double[] electricityUse = DalObj.powerRequest();
             double nonWeightPowerConsumption = electricityUse[0];
             double lightWeightPowerConsumption = electricityUse[1];
             double mediumWeightPowerConsumption = electricityUse[2];
             double heavyWeightPowerConsumption = electricityUse[3];
             double DroneLoadingRate = electricityUse[4];
-
+            DronesListBL = new List<DroneBL>();
+            foreach(DroneDAL drone in DalObj.returnDroneArray())
+            {
+                DroneDAL droneToAdd = drone;
+                ParcelDAL parcel = DalObj.returnParcelArray().ToList().First(p => p.DroneId == drone.Id);
+                
+            }
         }
-        public static List<DroneBL> DronesListBL = new List<DroneBL>();
+    //public static List<DroneBL> DronesListBL = new List<DroneBL>();
 
-        //static IDAL.IDAL DalObj = DALFactory.factory();
+    //static IDAL.IDAL DalObj = DALFactory.factory();
 
-        static BL BLOBJ;
+    public static BL BLOBJ;
         public static BL GetBLOBJ
         {
             get
