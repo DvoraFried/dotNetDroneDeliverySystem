@@ -12,6 +12,8 @@ namespace IBL.BO
 {
     public partial class BL : IBL
     {
+        Random rnd = new Random();
+
         public static List<DroneBL> DronesListBL;
         static IDAL.IDAL DalObj;
         static BL BLOBJ;
@@ -23,8 +25,8 @@ namespace IBL.BO
 
         public BL()
         {
-            DronesListBL = ConvertToBL.ConvertToDroneBL(DalObj.returnDroneArray());
             DalObj = DALFactory.factory();
+            
             double[] electricityUse = DalObj.powerRequest();
             nonWeightPowerConsumption = electricityUse[0];
             lightWeightPowerConsumption = electricityUse[1];
@@ -32,6 +34,32 @@ namespace IBL.BO
             heavyWeightPowerConsumption = electricityUse[3];
             DroneLoadingRate = electricityUse[4];
             
+            DronesListBL = ConvertToBL.ConvertToDroneArrayBL((List<DroneDAL>)DalObj.returnDroneArray());
+            
+            foreach(DroneBL drone in DronesListBL)
+            {
+                int parcelIndex = DataSource.MyParcels.FindIndex(parcel => parcel.DroneId == drone.getIdBL());
+                if(parcelIndex == -1)
+                {
+                    int status = rnd.Next(0, 2);
+                    if (status == 0)
+                    {
+                        drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
+                        //=== i dont want to write it now!!!
+                    }
+                    else
+                    {
+                        drone.DroneStatus = EnumBL.DroneStatusesBL.maintenance;
+                        drone.BatteryStatus = rnd.Next(0, 21);
+                        // drone.CurrentPosition = ;
+                    }
+                }
+                else
+                {
+                    drone.DroneStatus = EnumBL.DroneStatusesBL.Shipping;
+                    //=== i dont want to write it now!!!
+                }
+            }
         }
         public static BL GetBLOBJ
         {
