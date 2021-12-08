@@ -1,5 +1,4 @@
-﻿
-using DalObject;
+﻿using DalObject;
 using IDAL.DO;
 using System;
 using System.Collections.Generic;
@@ -45,6 +44,7 @@ namespace IBL.BO
                     if (status == 0)
                     {
                         drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
+                        // position
                         // position
                         drone.BatteryStatus = rnd.Next((int)(DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, findClosestStation(drone.CurrentPosition)) * nonWeightPowerConsumption), 100);
                     }

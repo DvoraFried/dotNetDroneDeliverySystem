@@ -15,6 +15,5 @@ namespace IBL.BO
         //Drone status
         Position CurrentPosition { get; set; }
         public int ParcelNun { get; set; }
-
     }
 }

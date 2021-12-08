@@ -158,7 +158,7 @@ namespace ConsoleUI_BL
 
         public static void updateObject()
         {
-            Console.WriteLine("Enter your choice to add:\n 0.Station \n 1.Drone\n 2.customer\n 3.send drone to charge\n 4. release drone from charging\n 5.assigning parcel to drone\n 7.collection of a parcel by drone\n 7.delivery of a parcel by drone ");
+            Console.WriteLine("Enter your choice to update:\n 0.Station \n 1.Drone\n 2.customer\n 3.send drone to charge\n 4. release drone from charging\n 5.assigning parcel to drone\n 7.collection of a parcel by drone\n 7.delivery of a parcel by drone ");
             int choice = -1;
             try
             {
@@ -323,6 +323,113 @@ namespace ConsoleUI_BL
                     default:
                         bl.AssigningPackageToDrone(Convert.ToInt32(Console.ReadLine())); break;
                 }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        static void display()
+        {
+            Console.WriteLine("Enter your choice to display:\n 0.Station \n 1.Drone\n 2.customer\n 3.parcel");
+            int choice = -1;
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Catch ArgumentNullException");
+            }
+            switch (choice)
+            {
+                case 0:
+                    displayStation(); break;
+                case 1:
+                    displayDrone(); break;
+                case 2:
+                    displayCustomer(); break;
+                case 3:
+                    displayParcel(); break;
+                default:
+                    Console.WriteLine("== ERROR =="); break;
+            }
+        }
+
+        public static void displayStation()
+        {
+            try
+            {
+             ///////////////////////////////////////////////
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        
+        public static void displayDrone()
+        {
+            try
+            {
+             ///////////////////////////////////////////////
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void displayCustomer()
+        {
+            try
+            {
+             ///////////////////////////////////////////////
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public static void displayParcel()
+        {
+            try
+            {
+             ///////////////////////////////////////////////
             }
             catch (FormatException)
             {

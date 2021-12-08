@@ -11,6 +11,5 @@ namespace IBL.BO
         int Id { get; set; }
         double BatteryStatus { get; set; }
         Position CurrentPosition { get; set; }
-
     }
 }
