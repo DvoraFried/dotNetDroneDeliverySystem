@@ -189,7 +189,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        public static void updateStation()
+        public static void updateDrone()
         {
             try
             {
@@ -213,7 +213,7 @@ namespace ConsoleUI_BL
             }
         }
 
-        public static void updateDrone()
+        public static void updateStation()
         {
             try
             {
