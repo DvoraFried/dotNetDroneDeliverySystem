@@ -78,7 +78,7 @@ namespace ConsoleUI_BL
                 int id = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter the model name");
                 string Model = Console.ReadLine();
-                Console.WriteLine("Enter max weight of drone \ncategory: \nLight : 0\n, Medium : 1\n, Heavy : 2\n: ");
+                Console.WriteLine("Enter max weight of drone category: \nLight : 0\n Medium : 1\n Heavy : 2\n ");
                 int MaxWeight = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter station id for charging the drone:");
                 int stationId = Convert.ToInt32(Console.ReadLine());
@@ -369,7 +369,7 @@ namespace ConsoleUI_BL
         {
             try
             {
-             ///////////////////////////////////////////////
+                ////////////////////////////////////////////////
             }
             catch (FormatException)
             {

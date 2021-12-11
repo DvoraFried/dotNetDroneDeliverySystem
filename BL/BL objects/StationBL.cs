@@ -32,6 +32,5 @@ namespace IBL.BO
         public Position Position { get; set; }
         //to check what is the error here!!!
         public List<DroneInChargeBL> DronesInCharging = new List<DroneInChargeBL>();
-
     }
 }
