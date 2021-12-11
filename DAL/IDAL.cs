@@ -24,6 +24,8 @@ namespace IDAL
             public DroneDAL returnDrone(int DroneIdS);
             public CustomerDAL returnCustomer(int CustomerIdS);
             public ParcelDAL returnParcel(int ParcelIdS);
+            public ParcelDAL returnParcelByDroneId(int DroneIdS);
+
 
             public IEnumerable<StationDAL> returnStationArray();
             public IEnumerable<DroneDAL> returnDroneArray();

@@ -463,8 +463,8 @@ namespace ConsoleUI_BL
 /*                    case 3:
                         display(); break;
                     case 4:
-                        displayLists(); break;
-                    case 5:*/
+                        displayLists(); break; */
+                    case 5:
                         Console.WriteLine("bye!");
                         return;
                     default:

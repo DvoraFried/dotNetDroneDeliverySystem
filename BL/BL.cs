@@ -35,44 +35,41 @@ namespace BL
             heavyWeightPowerConsumption = electricityUse[3];
             DroneLoadingRate = electricityUse[4];
             
-            DronesListBL = ConvertToBL.ConvertToDroneArrayBL((List<DroneDAL>)DalObj.returnDroneArray());
+            DronesListBL = ConvertToBL.ConvertToDroneArrayBL(DalObj.returnDroneArray().ToList());
             
             foreach(DroneBL drone in DronesListBL)
             {
-                int parcelIndex = DataSource.MyParcels.FindIndex(parcel => parcel.DroneId == drone.getIdBL());
-                if(parcelIndex == -1)
+                if(DalObj.returnParcelArray().Any(parcel => parcel.DroneId == drone.getIdBL()))
                 {
-                    int status = rnd.Next(0, 2);
-                    if (status == 0)
+                    if (rnd.Next(0, 2) == 0)
                     {
                         drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
-                        // position
-                        // position
+                        List<ParcelDAL> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != new DateTime());
+                        CustomerDAL randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
+                        drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
                         drone.BatteryStatus = rnd.Next((int)(DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, findClosestStation(drone.CurrentPosition)) * nonWeightPowerConsumption), 100);
                     }
                     else
                     {
                         drone.DroneStatus = EnumBL.DroneStatusesBL.maintenance;
                         drone.BatteryStatus = rnd.Next(0, 21);
-                        int randomStationIndex = rnd.Next(0, DalObj.returnParcelArray().Count<ParcelDAL>());
-                        drone.CurrentPosition = new Position((DataSource.MyBaseStations[randomStationIndex]).Longitude, (DataSource.MyBaseStations[randomStationIndex]).Latitude);
+                        List<StationDAL> stations = (List<StationDAL>)DalObj.returnStationArray();
+                        int randomIndex = rnd.Next(0, stations.Count);
+                        drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
                     }
                 }
                 else
                 {
                     drone.DroneStatus = EnumBL.DroneStatusesBL.Shipping;
-                    int senderIndex = DataSource.MyCustomers.FindIndex(customer => customer.Id == DataSource.MyParcels[parcelIndex].SenderId);
-                    Position senderPos = new Position(DataSource.MyCustomers[senderIndex].Longitude, DataSource.MyCustomers[senderIndex].Latitude);
-                    int targetIndex = DataSource.MyCustomers.FindIndex(customer => customer.Id == DataSource.MyParcels[parcelIndex].TargetId);
-                    Position targetPos = new Position(DataSource.MyCustomers[targetIndex].Longitude, DataSource.MyCustomers[targetIndex].Latitude);
-                    // how to cheke date time of pickup
-                    drone.CurrentPosition = true ? findClosestStation(drone.CurrentPosition) : senderPos;
+                    ParcelDAL parcel = DalObj.returnParcelByDroneId(drone.getIdBL());
+                    Position senderPos = new Position(DalObj.returnCustomer(parcel.SenderId).Longitude, DalObj.returnCustomer(parcel.SenderId).Latitude);
+                    Position targetPos = new Position(DalObj.returnCustomer(parcel.TargetId).Longitude, DalObj.returnCustomer(parcel.TargetId).Latitude);
+                    drone.CurrentPosition = parcel.PickUp == new DateTime() ? findClosestStation(senderPos) : senderPos;
                     double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition,targetPos);
-                    double distanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos));
-                    drone.BatteryStatus = (int)DataSource.MyParcels[parcelIndex].Weight == 1 ? rnd.Next((int)(distanceToTarget*lightWeightPowerConsumption + distanceFromTargetToStation*nonWeightPowerConsumption), 100) :
-                                          (int)DataSource.MyParcels[parcelIndex].Weight == 2 ? rnd.Next((int)(distanceToTarget * mediumWeightPowerConsumption + distanceFromTargetToStation * nonWeightPowerConsumption), 100) :
-                                          rnd.Next((int)(distanceToTarget * heavyWeightPowerConsumption + distanceFromTargetToStation * nonWeightPowerConsumption), 100);
-
+                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos))*nonWeightPowerConsumption;
+                    drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget*lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
+                                          (int)parcel.Weight == 2 ? rnd.Next((int)(distanceToTarget * mediumWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
+                                          rnd.Next((int)(distanceToTarget * heavyWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100);
                 }
             }
         }
