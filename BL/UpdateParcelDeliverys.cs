@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 using static IBL.BO.EnumBL;
 using static IBL.BO.Exceptions;
 using static IBL.BO.DistanceBetweenCoordinates;
+using IBL.BO;
 
-namespace IBL.BO
+namespace BL
 {
-    public partial class BL
+    public partial class BL : IBL.IBL
     {
-        public partial class UpDate
-        {
             public IEnumerable<ParcelDAL> returnParcelWithHeighestPriority()
             {
                 int maxP = 0;
@@ -100,5 +99,4 @@ namespace IBL.BO
                 DronesListBL[droneIndex] = drone;
             }
         }
-    }
 }

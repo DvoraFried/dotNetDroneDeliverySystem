@@ -7,9 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using static IBL.BO.Exceptions;
 using static IBL.BO.DistanceBetweenCoordinates;
-namespace IBL.BO
+using IBL.BO;
+
+namespace BL
 {
-    public partial class BL : IBL
+    public partial class BL : IBL.IBL
     {
         Random rnd = new Random();
 

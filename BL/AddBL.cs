@@ -1,4 +1,5 @@
 ﻿using DalObject;
+using IBL.BO;
 using IDAL.DO;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using static IBL.BO.EnumBL;
 using static IBL.BO.Exceptions;
 
 
-namespace IBL.BO
+namespace BL
 {
-    public partial class BL
+    public partial class BL:IBL.IBL
     {
-            public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
+        public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
             {
                 if ((DalObj.returnStationArray().ToList().Any(s => s.Id == id)))   { throw new ObjectExistsInListException("station");};
                 StationBL station = new StationBL(id, name, new Position(latitude, longitude), chargeSlots);

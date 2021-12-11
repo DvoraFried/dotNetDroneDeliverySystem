@@ -1,4 +1,5 @@
 ﻿using DalObject;
+using IBL.BO;
 using IDAL.DO;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using static IBL.BO.Exceptions;
 
-namespace IBL.BO
+namespace BL
 {
-    public partial class BL
+    public partial class BL : IBL.IBL
     {
-        public partial class UpDate
-        {
             public void UpDateDroneName(int id, string newModelName)
             {
                 if (!DronesListBL.Any(d => (d.getIdBL() == id)))      { throw new ObjectDoesntExistsInListException("drone"); }
@@ -42,6 +41,5 @@ namespace IBL.BO
                 CustomerBL replaceCustomer = new CustomerBL(id, currentName, currentPhone, new Position(currentCustomer.Latitude, currentCustomer.Longitude));
                 DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(replaceCustomer));
             }
-        }
     }
 }

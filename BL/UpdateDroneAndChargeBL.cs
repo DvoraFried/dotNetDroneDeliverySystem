@@ -1,4 +1,5 @@
 ﻿using DalObject;
+using IBL.BO;
 using IDAL.DO;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,10 @@ using System.Threading.Tasks;
 using static IBL.BO.EnumBL;
 using static IBL.BO.Exceptions;
 
-namespace IBL.BO
+namespace BL
 {
-    public partial class BL
+    public partial class BL : IBL.IBL
     {
-        public partial class UpDate
-        {
             public void SendDroneToCharge(int id)
             {
                 if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
@@ -61,7 +60,5 @@ namespace IBL.BO
                 //up up the stations charginslot in 1
                 DalObj.DeleteObjFromDroneCharges(drone.getIdBL());
             }
-
-        }
     }
 }
