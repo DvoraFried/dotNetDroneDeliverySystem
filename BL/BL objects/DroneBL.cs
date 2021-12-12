@@ -21,7 +21,12 @@ namespace IBL.BO
             this.CurrentPosition = p;
             this.BatteryStatus = rnd.Next(20, 41);
             this.DroneStatus = status;
+            //this.delivery = 
 
+        }
+        public override string ToString()
+        {
+            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition -  Longitude: {CurrentPosition.Longitude}, Latitude: {CurrentPosition.Latitude}";
         }
         private int idBL;
         public void setIdBL(int idD) 
@@ -33,17 +38,9 @@ namespace IBL.BO
         public string ModelBL { get; set; }
         public WeightCategoriesBL MaxWeight { get; set; }
         public double BatteryStatus { get; set; }
-        public DroneStatusesBL DroneStatus;
-        //DeliveryByTransfer
-        public Position CurrentPosition;
+        public DroneStatusesBL DroneStatus { get; set; }
+        ParcelByTransfer delivery { get; set; }
+        public Position CurrentPosition { get; set; }
 
-/*        public void setCurrentPosition(int stationId)
-        {
-            IEnumerable<StationBL> staions = new List<StationBL>(); //  במקום זה -> צריך למשוך מהדאטא את רשימת התחנות
-            foreach (StationBL elemnt in staions)
-            {
-
-            }
-        }*/
     }
 }

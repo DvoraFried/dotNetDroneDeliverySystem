@@ -12,23 +12,28 @@ namespace IBL.BO
         public ParcelByTransfer(ParcelBL parcel)
         {
             Id = parcel.IdBL;
-            Priorty = parcel.Priority;
-            Status = parcel.PickUpBL == new DateTime() ? false : true;
-            weight = parcel.Weight;
+            DeliveryStatus = parcel.PickUpBL != new DateTime();
+            Priority = parcel.Priority;
+            Weight = parcel.Weight;
+            //Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL());
+            //Target = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL());
+            //CollectionLocation = ConvertToBL.ConvertToCustomrtBL().Position;
+            //DeliveryDestinationLocation = ConvertToBL.ConvertToCustomrtBL().Position;
+            Distance = DistanceBetweenCoordinates.CalculateDistance(CollectionLocation, DeliveryDestinationLocation);
         }
         public override string ToString()
         {
-            string status = Status ? "On the way to the destination" : "Awaiting collection";
-            //Position senderPosition = new Position();
-            //Position targetPosition = new Position();
-            return $"ID: {Id}\nStatus: {status}\nPriority: {Priorty}\nWeight: {weight}\nSender: {SenderCustomer.ToString()}\nTarget: {GetterCustomer.ToString()}";
-            //Console.WriteLine($"Collection Position: {senderPosition}\nTarget Position: {targetPosition}\nDistance: {DistanceBetweenCoordinates(senderPosition, targetPosition)}");
+            string status = DeliveryStatus ? "On the way to the destination" : "Awaiting collection";
+            return $"ID: {Id} |^| Status: {status}\nPriority: {Priority}\nWeight: {Weight}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}";
         }
         int Id { get; set; }
-        bool Status { get; set; }
-        WeightCategoriesBL weight { get; set; }
-        PrioritiesBL Priorty { get; set; }
-        CustomerOnDelivery SenderCustomer { get; set; }
-        CustomerOnDelivery GetterCustomer { get; set; }
+        WeightCategoriesBL Weight { get; set; }
+        PrioritiesBL Priority { get; set; }
+        bool DeliveryStatus { get; set; }
+        Position CollectionLocation { get; set; }
+        Position DeliveryDestinationLocation { get; set; }
+        CustomerOnDelivery Sender { get; set; }
+        CustomerOnDelivery Target { get; set; }
+        double Distance { get; set; }
     }
 }

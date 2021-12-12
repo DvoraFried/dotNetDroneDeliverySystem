@@ -14,18 +14,21 @@ namespace BL
     {
         public void DisplayStatoin(int idS)
         {
-            /// Drones in Carges: {???}
             StationDAL station = DalObj.returnStation(idS);
             Console.WriteLine($"~ station data ~ \nID: {idS} \nName: {station.Name}\n Position - \nLongitude: {station.Longitude}, Latitude: {station.Latitude}");
         }
         public void DisplayDrone(int idD)
         {
-            /// Parcel in Drone: {???}
-            DroneBL droneBL = DronesListBL.First(drone => drone.getIdBL() == idD);
-            Console.WriteLine($"~ drone data ~ \nID: {idD} \nModel: {droneBL.ModelBL}\n Max Weight: {droneBL.MaxWeight}\nButtery Status: {droneBL.BatteryStatus}\nDrone Status: {droneBL.DroneStatus}\nPosition - \nLongitude: {droneBL.CurrentPosition.Longitude}, Latitude: {droneBL.CurrentPosition.Latitude}");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
+            ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcelArray().First(parcel => parcel.DroneId == idD));
+            Console.WriteLine(new ParcelByTransfer(parcel).ToString());
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         public void DisplayCustomer(int idC)
         {
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
+
             Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
             Console.WriteLine("Parcels sent by this customer: ");
             foreach(ParcelDAL parcel in DalObj.returnParcelArray()) {
@@ -39,6 +42,7 @@ namespace BL
                     Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
                 }
             }
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         public void DisplayParcel(int idP)
         {
