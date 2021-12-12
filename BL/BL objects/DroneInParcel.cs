@@ -18,8 +18,8 @@ namespace IBL.BO
         {
             return $"ID: {Id} |^| Battery Status: {BatteryStatus} |^| Position - Longitude: {CurrentPosition.Longitude}, Latitude: {CurrentPosition.Latitude}";
         }
-        int Id { get; set; }
-        double BatteryStatus { get; set; }
-        Position CurrentPosition { get; set; }
+        public int Id { get; set; }
+        public double BatteryStatus { get; set; }
+        public Position CurrentPosition { get; set; }
     }
 }

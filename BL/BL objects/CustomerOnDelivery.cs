@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    class CustomerOnDelivery
+    public class CustomerOnDelivery
     {
         public CustomerOnDelivery(CustomerBL customer)
         {
@@ -17,7 +17,7 @@ namespace IBL.BO
         {
             return $"ID: {Id} |^| Name: {CustomerName}";
         }
-        int Id { get; set; }
-        string CustomerName { get; set; }
+        public int Id { get; set; }
+        public string CustomerName { get; set; }
     }
 }

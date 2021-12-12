@@ -42,11 +42,11 @@ namespace IBL.BO
             {
             ParcelDAL parcelDal = new ParcelDAL();
             parcelDal.Id = parcelBl.IdBL;
-            parcelDal.SenderId = parcelBl.SenderIdBL;
-            parcelDal.TargetId = parcelBl.TargetIdBL;
+            parcelDal.SenderId = parcelBl.Sender.Id;
+            parcelDal.TargetId = parcelBl.Target.Id;
             parcelDal.Weight= (WeightCategories)(int)parcelBl.Weight;
             parcelDal.Priority = (Priorities)(int)parcelBl.Priority;
-            parcelDal.DroneId = parcelBl.DroneIdBL.getIdBL();
+            parcelDal.DroneId = parcelBl.DroneIdBL.Id;
             parcelDal.Requested = parcelBl.RequestedBL;
             parcelDal.Scheduled = parcelBl.ScheduledBL;
             parcelDal.PickUp = parcelBl.PickUpBL;

@@ -16,6 +16,10 @@ namespace IBL.BO
             if (ltd > 180 || ltd < 0) { throw new UnValidLongitudeException(lnd); }
             Latitude = ltd;
         }
+        public override string ToString()
+        {
+            return $"Longitude : {Longitude}, Latitude: {Latitude}";
+        }
         public double Longitude { get; set; }
         
         public double Latitude { get; set; }

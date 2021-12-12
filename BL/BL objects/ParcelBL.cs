@@ -46,8 +46,8 @@ namespace IBL.BO
         public DateTime ScheduledBL { get; set; }//שיוך חבילה לרחפן
         public DateTime PickUpBL { get; set; }//איסוף חבילה מלקוח
         public DateTime DeliveredBL { get; set; }//זמן הגעת חבילה למקבל
-        CustomerOnDelivery Sender { get; set; }
-        CustomerOnDelivery Target { get; set; }
+        public CustomerOnDelivery Sender { get; set; }
+        public CustomerOnDelivery Target { get; set; }
 
     }
 }

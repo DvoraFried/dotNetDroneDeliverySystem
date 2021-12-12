@@ -53,33 +53,24 @@ namespace BL
         }
         public void DisplayStatoinList()
         {
-            foreach(StationDAL station in DalObj.returnStationArray())
-            {
-                DisplayStatoin(station.Id);
-            }
+            
         }
         public void DisplayDroneList()
         {
             foreach(DroneBL drone in DronesListBL)
             {
-                DisplayDrone(drone.getIdBL());
+                Console.WriteLine(new DroneToList(drone).ToString());
             }
         }
 
         public void DisplayCustomerList()
         {
-            foreach (CustomerDAL customer in DalObj.returnCustomerArray())
-            {
-                DisplayCustomer(customer.Id);
-            }
+            
         }
 
         public void DisplayParcelList()
         {
-            foreach(ParcelDAL parcel in DalObj.returnParcelArray())
-            {
-                DisplayParcel(parcel.Id);
-            }
+            
         }
 
     }
