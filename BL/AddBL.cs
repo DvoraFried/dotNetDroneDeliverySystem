@@ -31,7 +31,7 @@ namespace BL
             }
             public  void AddCustomer(int id, string name, string phone, double longitude, double latitude)
             {
-                if ((DataSource.MyCustomers.Any(c => c.Id == id)))   { throw new ObjectExistsInListException("customer"); }
+                if ((DalObj.returnCustomerArray().Any(c => c.Id == id)))   { throw new ObjectExistsInListException("customer"); }
                 CustomerBL customer = new CustomerBL(id, name, phone, new Position(latitude, longitude));
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }

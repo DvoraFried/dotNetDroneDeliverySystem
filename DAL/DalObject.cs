@@ -30,22 +30,18 @@ namespace DalObject
         //=====================================================================
         public void AddStationDAL(StationDAL DALS)
         {
-            if (DataSource.MyBaseStations.Any(s => s.Id == DALS.Id)) { throw new ObjectAlreadyExistInList("station"); }
             DataSource.MyBaseStations.Add(DALS);
         }
         public void AddDroneDAL(DroneDAL DALD)
         {
-            if (DataSource.MyDrones.Any(d => d.Id == DALD.Id)) { throw new ObjectAlreadyExistInList("drone"); }
             DataSource.MyDrones.Add(DALD);
         }
         public void AddCustomerDAL(CustomerDAL DALC)
         {
-            if (DataSource.MyCustomers.Any(c => c.Id == DALC.Id)) { throw new ObjectAlreadyExistInList("customer"); }
             DataSource.MyCustomers.Add(DALC);
         }
         public void AddParcelDAL(ParcelDAL DALP)
         {
-            if (DataSource.MyParcels.Any(p => p.Id == DALP.Id)) { throw new ObjectAlreadyExistInList("parcel"); }
             DataSource.MyParcels.Add(DALP);
         }
         //=====================================================================
