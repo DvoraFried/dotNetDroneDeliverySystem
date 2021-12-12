@@ -369,7 +369,7 @@ namespace ConsoleUI_BL
         }
         static void displayLists()
         {
-            Console.WriteLine("Enter your choice to display:\n 0.Station \n 1.Drone\n 2.customer\n 3.parcel");
+            Console.WriteLine("Enter your choice to display:\n 0.Stations \n 1.Drones\n 2.Customers\n 3.Parcels\n4.Parcels that have not yet been associated with a drone");
             int choice = -1;
             try
             {
@@ -389,6 +389,8 @@ namespace ConsoleUI_BL
                     bl.DisplayCustomerList(); break;
                 case 3:
                     bl.DisplayParcelList(); break;
+                case 4:
+                    bl.DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone(); break;
                 default:
                     Console.WriteLine("== ERROR =="); break;
             }

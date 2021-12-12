@@ -79,5 +79,13 @@ namespace BL
             }
         }
 
+        public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone()
+        {
+            foreach (ParcelBL parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
+            {
+                if (parcel.DroneIdBL == null) { Console.WriteLine(new ParcelToList(parcel).ToString()); }
+            }
+        }
+
     }
 }

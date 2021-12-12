@@ -29,5 +29,6 @@ namespace IBL
         public void DisplayDroneList();
         public void DisplayCustomerList();
         public void DisplayParcelList();
+        public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone();
     }
 }

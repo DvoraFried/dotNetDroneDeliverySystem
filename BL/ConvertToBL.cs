@@ -28,5 +28,14 @@ namespace IBL.BO
             ParcelBL parcelBL = new ParcelBL(parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority);
             return parcelBL;
         }
+        public static List<ParcelBL> ConvertToParcelArrayBL(List<ParcelDAL> parcelsDal)
+        {
+            List<ParcelBL> parcelsBl = new List<ParcelBL>();
+            foreach(ParcelDAL parcelDal in parcelsDal)
+            {
+                parcelsBl.Add(ConvertToBL.ConvertToParcelBL(parcelDal));
+            }
+            return parcelsBl;
+        }
     }
 }
