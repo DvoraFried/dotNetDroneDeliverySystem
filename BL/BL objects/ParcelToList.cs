@@ -11,16 +11,24 @@ namespace IBL.BO
         public ParcelToList(ParcelBL parcel)
         {
             Id = parcel.IdBL;
+            SenderName = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id).Name;
+            UstomerReceivesName = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id).Name;
+            weight = parcel.Weight;
+            priority = parcel.Priority;
+            PackageStatus = parcel.DeliveredBL != new DateTime() ? EnumBL.DeliveryStatus.provided :
+                            parcel.PickUpBL != new DateTime() ? EnumBL.DeliveryStatus.collected :
+                            parcel.ScheduledBL != new DateTime() ? EnumBL.DeliveryStatus.associated :
+                            EnumBL.DeliveryStatus.created;
         }
         public override string ToString()
         {
-            return $"ID: {Id}\nSender Name: {SenderName}\nCustomer Receives Name: {UstomerReceivesName}\nWeight: {weight}\nPriority: {priority}\nParcel Status: {PackageStatus}";
+            return $"ID: {Id} |^| Sender Name: {SenderName} |^| Customer Receives Name: {UstomerReceivesName} |^| Weight: {weight} |^| Priority: {priority} |^| Parcel Status: {PackageStatus}";
         }
         public int Id { get; set; }
         public string SenderName { get; set; }
         public string UstomerReceivesName { get; set; }
         EnumBL.WeightCategoriesBL weight { get; set; }
         EnumBL.PrioritiesBL priority { get; set; }
-        EnumBL.DroneStatusesBL PackageStatus { get; set; }
+        EnumBL.DeliveryStatus PackageStatus { get; set; }
     }
 }

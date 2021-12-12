@@ -65,7 +65,10 @@ namespace BL
 
         public void DisplayCustomerList()
         {
-            
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray())
+            {
+                Console.WriteLine(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+            }
         }
 
         public void DisplayParcelList()
