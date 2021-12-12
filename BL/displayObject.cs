@@ -65,15 +65,18 @@ namespace BL
 
         public void DisplayCustomerList()
         {
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray())
+            foreach (CustomerDAL customer in DalObj.returnCustomerArray())
             {
-                Console.WriteLine(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                Console.WriteLine(new CustomerToList(ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
             }
         }
 
         public void DisplayParcelList()
         {
-            
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray())
+            {
+                Console.WriteLine(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+            }
         }
 
     }
