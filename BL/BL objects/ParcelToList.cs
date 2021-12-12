@@ -8,6 +8,14 @@ namespace IBL.BO
 {
     class ParcelToList
     {
+        public ParcelToList(ParcelBL parcel)
+        {
+            Id = parcel.IdBL;
+        }
+        public override string ToString()
+        {
+            return $"ID: {Id}\nSender Name: {SenderName}\nCustomer Receives Name: {UstomerReceivesName}\nWeight: {weight}\nPriority: {priority}\nParcel Status: {PackageStatus}";
+        }
         public int Id { get; set; }
         public string SenderName { get; set; }
         public string UstomerReceivesName { get; set; }

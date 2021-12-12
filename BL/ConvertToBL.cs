@@ -18,5 +18,15 @@ namespace IBL.BO
             };
             return droneArrayBl;
         }
+        public static CustomerBL ConvertToCustomrtBL(CustomerDAL customerDal)
+        {
+            CustomerBL customerBL = new CustomerBL(customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude));
+            return customerBL;
+        }
+        public static ParcelBL ConvertToParcelBL(ParcelDAL parcelDal)
+        {
+            ParcelBL parcelBL = new ParcelBL(parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority);
+            return parcelBL;
+        }
     }
 }

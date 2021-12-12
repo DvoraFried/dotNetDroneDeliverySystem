@@ -115,11 +115,11 @@ namespace ConsoleUI_BL
             }
             catch (FormatException)
             {
-                Console.WriteLine("~ data reciving error~");
+                Console.WriteLine("~ data reciving error ~");
             }
             catch (OverflowException)
             {
-                Console.WriteLine("~data reciving error~");
+                Console.WriteLine("~ data reciving error ~");
             }
             catch (Exception e)
             {

@@ -26,11 +26,25 @@ namespace BL
         }
         public void DisplayCustomer(int idC)
         {
-
+            Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
+            Console.WriteLine("Parcels sent by this customer: ");
+            foreach(ParcelDAL parcel in DalObj.returnParcelArray()) {
+                if(parcel.SenderId == idC) {
+                    Console.WriteLine(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                }
+            }
+            Console.WriteLine("Parcels that this customer receives: ");
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray()) {
+                if (parcel.TargetId == idC) {
+                    Console.WriteLine(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                }
+            }
         }
         public void DisplayParcel(int idP)
         {
-
+            /// in Drone: {???}
+            ParcelDAL parcel = DalObj.returnParcel(idP);
+            Console.WriteLine($"~ parcel data ~ \nID: {parcel.Id}\nSender ID: {parcel.SenderId}\nTarget ID: {parcel.TargetId}\nWeight: {parcel.Weight}\nPriority: {parcel.Priority}\nRequested Time: {parcel.Requested}");
         }
         public void DisplayStatoinList()
         {
