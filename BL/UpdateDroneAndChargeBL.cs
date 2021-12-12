@@ -20,10 +20,10 @@ namespace BL
                 DroneBL drone = DronesListBL[droneBLIndex];
                 if (drone.DroneStatus!= DroneStatusesBL.empty) { throw new DroneIsNotInMaintenanceException(id); }             
                 StationDAL station = new StationDAL();
-                foreach (StationDAL element in DataSource.MyBaseStations)
+                foreach (StationDAL element in DalObj.returnStationArray())
                 {
                     Position stationP = new Position(element.Longitude, element.Latitude);
-                    if (element.EmptyChargeSlots > 0 && drone.BatteryStatus * DataSource.Config.available >= DistanceBetweenCoordinates.CalculateDistance(stationP, drone.CurrentPosition))
+                    if (element.EmptyChargeSlots > 0 && updateButteryStatus(drone, stationP, 0) > 0)
                     {
                         if (station.Name == null) { station = element;}
                         else
@@ -37,7 +37,7 @@ namespace BL
                     }
                 }
                 if(station.Name == null) { throw new NoPlaceToChargeException(); }
-                drone.BatteryStatus = (int)(drone.BatteryStatus - (drone.BatteryStatus * DataSource.Config.available));
+                drone.BatteryStatus = updateButteryStatus(drone, new Position(station.Longitude, station.Latitude), 0);
                 drone.CurrentPosition = new Position(station.Longitude, station.Latitude);
                 drone.DroneStatus = DroneStatusesBL.maintenance;
                 DronesListBL[droneBLIndex] = drone;

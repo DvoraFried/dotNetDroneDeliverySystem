@@ -21,5 +21,13 @@ namespace IBL
         public void AssigningPackageToDrone(int idD);
         public void CollectionOfAParcelByDrone(int idD);
         public void DeliveryOfAParcelByDrone(int idD);
+        public void DisplayStatoin(int idS);
+        public void DisplayDrone(int idD);
+        public void DisplayCustomer(int idC);
+        public void DisplayParcel(int idP);
+        public void DisplayStatoinList();
+        public void DisplayDroneList();
+        public void DisplayCustomerList();
+        public void DisplayParcelList();
     }
 }

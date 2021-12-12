@@ -342,6 +342,35 @@ namespace ConsoleUI_BL
         {
             Console.WriteLine("Enter your choice to display:\n 0.Station \n 1.Drone\n 2.customer\n 3.parcel");
             int choice = -1;
+            int id = 0;
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter item's id:");
+                id = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Catch ArgumentNullException");
+            }
+            switch (choice)
+            {
+                case 0:
+                    bl.DisplayStatoin(id); break;
+                case 1:
+                    bl.DisplayDrone(id); break;
+                case 2:
+                    bl.DisplayCustomer(id); break;
+                case 3:
+                    bl.DisplayParcel(id); break;
+                default:
+                    Console.WriteLine("== ERROR =="); break;
+            }
+        }
+        static void displayLists()
+        {
+            Console.WriteLine("Enter your choice to display:\n 0.Station \n 1.Drone\n 2.customer\n 3.parcel");
+            int choice = -1;
             try
             {
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -353,98 +382,17 @@ namespace ConsoleUI_BL
             switch (choice)
             {
                 case 0:
-                    displayStation(); break;
+                    bl.DisplayStatoinList(); break;
                 case 1:
-                    displayDrone(); break;
+                    bl.DisplayDroneList(); break;
                 case 2:
-                    displayCustomer(); break;
+                    bl.DisplayCustomerList(); break;
                 case 3:
-                    displayParcel(); break;
+                    bl.DisplayParcelList(); break;
                 default:
                     Console.WriteLine("== ERROR =="); break;
             }
         }
-
-        public static void displayStation()
-        {
-            try
-            {
-                ////////////////////////////////////////////////
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("~ data reciving error~");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("~data reciving error~");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-        
-        public static void displayDrone()
-        {
-            try
-            {
-             ///////////////////////////////////////////////
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("~ data reciving error~");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("~data reciving error~");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
-        public static void displayCustomer()
-        {
-            try
-            {
-             ///////////////////////////////////////////////
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("~ data reciving error~");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("~data reciving error~");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
-        public static void displayParcel()
-        {
-            try
-            {
-             ///////////////////////////////////////////////
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("~ data reciving error~");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("~data reciving error~");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
         public static IBL.IBL bl = BLFactory.factory();
         static void Main(string[] args)
         {
@@ -460,10 +408,10 @@ namespace ConsoleUI_BL
                         addObject(); break;
                     case 2:
                         updateObject(); break;
-/*                    case 3:
+                    case 3:
                         display(); break;
                     case 4:
-                        displayLists(); break; */
+                        displayLists(); break; 
                     case 5:
                         Console.WriteLine("bye!");
                         return;
