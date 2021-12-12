@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    class DroneInParcel
+    public class DroneInParcel
     {
+        public DroneInParcel(DroneBL drone)
+        {
+            Id = drone.getIdBL();
+            BatteryStatus = drone.BatteryStatus;
+            CurrentPosition = drone.CurrentPosition;
+        }
+        public override string ToString()
+        {
+            return $"ID: {Id} |^| Battery Status: {BatteryStatus} |^| Position - Longitude: {CurrentPosition.Longitude}, Latitude: {CurrentPosition.Latitude}";
+        }
         int Id { get; set; }
         double BatteryStatus { get; set; }
         Position CurrentPosition { get; set; }

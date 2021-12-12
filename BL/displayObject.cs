@@ -14,8 +14,7 @@ namespace BL
     {
         public void DisplayStatoin(int idS)
         {
-            StationDAL station = DalObj.returnStation(idS);
-            Console.WriteLine($"~ station data ~ \nID: {idS} \nName: {station.Name}\n Position - \nLongitude: {station.Longitude}, Latitude: {station.Latitude}");
+            
         }
         public void DisplayDrone(int idD)
         {
@@ -46,9 +45,11 @@ namespace BL
         }
         public void DisplayParcel(int idP)
         {
-            /// in Drone: {???}
-            ParcelDAL parcel = DalObj.returnParcel(idP);
-            Console.WriteLine($"~ parcel data ~ \nID: {parcel.Id}\nSender ID: {parcel.SenderId}\nTarget ID: {parcel.TargetId}\nWeight: {parcel.Weight}\nPriority: {parcel.Priority}\nRequested Time: {parcel.Requested}");
+            ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine(parcel.ToString());
+            if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: "+parcel.DroneIdBL.ToString()); }
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         public void DisplayStatoinList()
         {
