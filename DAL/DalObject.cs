@@ -11,7 +11,10 @@ namespace DalObject
 {
     public class DalObject : IDAL.IDAL
     {
-        DalObject() { /*DataSource.Initialize();*/ }
+        DalObject() 
+        {
+            DataSource.Initialize();
+        }
         static Random rnd = new Random();
 
         static DalObject DOBJ;

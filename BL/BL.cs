@@ -38,21 +38,26 @@ namespace BL
             
             foreach(DroneBL drone in DronesListBL)
             {
-                if(DalObj.returnParcelArray().Any(parcel => parcel.DroneId == drone.getIdBL()))
+                List<ParcelDAL> arr = DalObj.returnParcelArray().ToList();
+                if (!arr.Any(parcel => parcel.DroneId == drone.getIdBL()))
                 {
                     if (rnd.Next(0, 2) == 0)
                     {
                         drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
-                        List<ParcelDAL> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != new DateTime());
-                        CustomerDAL randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
-                        drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
+                        if(DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != new DateTime()))
+                        {
+                            List<ParcelDAL> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != new DateTime());
+                            CustomerDAL randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
+                            drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
+                        }
+                        else { drone.CurrentPosition = new Position(rnd.Next(0, 24), rnd.Next(0, 180)); }
                         drone.BatteryStatus = rnd.Next((int)(DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, findClosestStation(drone.CurrentPosition)) * nonWeightPowerConsumption), 100);
                     }
                     else
                     {
                         drone.DroneStatus = EnumBL.DroneStatusesBL.maintenance;
                         drone.BatteryStatus = rnd.Next(0, 21);
-                        List<StationDAL> stations = (List<StationDAL>)DalObj.returnStationArray();
+                        List<StationDAL> stations = DalObj.returnStationArray().ToList();
                         int randomIndex = rnd.Next(0, stations.Count);
                         drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
                     }

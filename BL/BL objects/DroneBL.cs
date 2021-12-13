@@ -25,6 +25,7 @@ namespace IBL.BO
             delivery = DalObject.DataSource.MyParcels.ToList().Any(parcel => parcel.DroneId == idBL)?
                        new ParcelByTransfer(ConvertToBL.ConvertToParcelBL(DalObject.DataSource.MyParcels.ToList().First(parcel => parcel.DroneId == idBL)))
                        : null;
+            if (delivery != null) { DroneStatus = DroneStatusesBL.Shipping; }
         }
         public override string ToString()
         {

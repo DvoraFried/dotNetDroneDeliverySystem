@@ -18,73 +18,61 @@ namespace DalObject
 
         //satandart drone speed per hour is 120 kilometers
         public class Config {
-            public static double available=0.03;
-            public static double carryLightWeight=0.05;
-            public static double carrymediumWeight=0.1;
-            public static double carryHeavyWeight=0.15;
+            public static double available=0.0003;
+            public static double carryLightWeight=0.0005;
+            public static double carrymediumWeight=0.001;
+            public static double carryHeavyWeight=0.0015;
             public static double DroneLoadingRate=43.3;
         }
-/*        public static void Initialize()
+        public static void Initialize()
         {
             Random rnd = new Random();
-            for (int i = 0; i < 2;i++) {
-                DalObject.AddStationDAL(rnd.Next(0,24), rnd.Next(0, 180), rnd.Next(2, 5));
+            for (int i = 0; i < 10; i++)
+            {
+                StationDAL stationDAL = new StationDAL() { Id = i, Name = "station" + i.ToString(), EmptyChargeSlots = rnd.Next(5, 15), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), DronesInCharging = 0 };
+                MyBaseStations.Add(stationDAL);
             }
-
-            for (int i = 0; i < 5; i++) {
+            for (int i = 1; i < 8; i++)
+            {
+                DroneDAL droneDAL = new DroneDAL() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(50, 100) };
                 int num = rnd.Next(0, 3);
-                switch (num) {
-                    case 0:
-                        DalObject.AddDrone(WeightCategories.light);
-                        break;
+                switch (num)
+                {
                     case 1:
-                        DalObject.AddDrone(WeightCategories.medium);
+                        droneDAL.MaxWeight = WeightCategories.medium;
                         break;
                     case 2:
-                        DalObject.AddDrone(WeightCategories.heavy);
-                        break;
-                }                
-            }
-
-            for (int i = 0; i < 10; i++) {
-                DalObject.Add.AddCustomer(MyCustomers.Count, "customer" + (MyCustomers.Count).ToString(),
-                rnd.Next(5000000, 60000000).ToString(), rnd.Next(0, 24), rnd.Next(0, 180));
-            }
-
-            for (int i = 0; i < 10; i++) {
-                WeightCategories weightS;
-                int num = rnd.Next(0, 3);
-                switch (num) {
-                    case 0:
-                        weightS = WeightCategories.light;
-                        break;
-                    case 1:
-                        weightS = WeightCategories.medium;
-                        break;
-                    case 2:
-                        weightS = WeightCategories.heavy;
+                        droneDAL.MaxWeight = WeightCategories.heavy;
                         break;
                 }
+                MyDrones.Add(droneDAL);
+            }
 
-                Priorities priorityS;
-                num = rnd.Next(0, 3);
-                switch (num) {
-                    case 0:
-                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
-                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.emergency);         
-                        break;
+            for (int i = 0; i < 13; i++)
+            {
+                CustomerDAL customerDAL = new CustomerDAL() { Id = rnd.Next(100000000, 1000000000), Name = "customer " + i.ToString(), Phone = rnd.Next(5830000, 60000000).ToString(), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180) };
+                MyCustomers.Add(customerDAL);
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                int senderId = MyCustomers[rnd.Next(0, 13)].Id;
+                int targetId = MyCustomers[rnd.Next(0, 13)].Id;
+                ParcelDAL parcel = new ParcelDAL() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, Requested = DateTime.Now, Delivered = new DateTime(), PickUp = new DateTime(), Scheduled = new DateTime() };
+                int num = rnd.Next(0, 3);
+                switch (num)
+                {
                     case 1:
-                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
-                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.rapid);
+                        parcel.Weight = WeightCategories.medium;
                         break;
                     case 2:
-                        DalObject.AddParcel(MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id,
-                        MyCustomers[rnd.Next(1, (MyCustomers.Count) + 1)].Id, WeightCategories.medium, Priorities.usual);
+                        parcel.Weight = WeightCategories.heavy;
                         break;
                 }
+                MyParcels.Add(parcel);
             }
-            
-        }*/
+
+        }
     }
 
 }
