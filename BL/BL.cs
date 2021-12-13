@@ -14,7 +14,6 @@ namespace BL
     public partial class BL : IBL.IBL
     {
         Random rnd = new Random();
-
         public static List<DroneBL> DronesListBL;
         static IDAL.IDAL DalObj;
         static BL BLOBJ;

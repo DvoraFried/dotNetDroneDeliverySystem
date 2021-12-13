@@ -157,7 +157,7 @@ namespace ConsoleUI_BL
 
         public static void updateObject()
         {
-            Console.WriteLine("Enter your choice to update:\n 0.Station \n 1.Drone\n 2.customer\n 3.send drone to charge\n 4. release drone from charging\n 5.assigning parcel to drone\n 7.collection of a parcel by drone\n 7.delivery of a parcel by drone ");
+            Console.WriteLine("Enter your choice to update:\n 0.Station \n 1.Drone\n 2.customer\n 3.send drone to charge\n 4. release drone from charging\n 5.assigning parcel to drone\n 6.collection of a parcel by drone\n 7.delivery of a parcel by drone ");
             int choice = -1;
             try
             {
@@ -339,7 +339,7 @@ namespace ConsoleUI_BL
 
         static void display()
         {
-            Console.WriteLine("Enter your choice to display:\n 0.Station \n 1.Drone\n 2.customer\n 3.parcel");
+            Console.WriteLine("Enter your choice to display:\n0.Station \n1.Drone\n2.customer\n3.parcel");
             int choice = -1;
             int id = 0;
             try
@@ -414,7 +414,7 @@ namespace ConsoleUI_BL
                 int choice = -1;
                 while (choice != 5)
                 {
-                    Console.WriteLine("Choose your option:\n 1.Add an object\n 2.Update object\n 3.Display object by Id\n 4.display list of objects\n 5.Exit");
+                    Console.WriteLine("Choose your option:\n1.Add an object\n2.Update object\n3.Display object by Id\n4.display list of objects\n5.Exit");
 
                     choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)

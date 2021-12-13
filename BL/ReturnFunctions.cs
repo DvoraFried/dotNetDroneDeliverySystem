@@ -57,7 +57,6 @@ namespace BL
             {
                 return DronesListBL;
             }
-
         }
     }
 }
