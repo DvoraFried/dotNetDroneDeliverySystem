@@ -42,9 +42,11 @@ namespace BL
                 drone.DroneStatus = DroneStatusesBL.maintenance;
                 DronesListBL[droneBLIndex] = drone;
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
-                //missing the update of the station
                 DroneInChargeBL droneC = new DroneInChargeBL(drone);
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(droneC, station.Id));
+                station.DronesInCharging += 1;
+                station.EmptyChargeSlots -= 1;
+                DalObj.ReplaceStationById(station);
             }
             public void ReleaseDroneFromCharging(int id,double timeInCharge)
             {
@@ -56,9 +58,10 @@ namespace BL
                 drone.DroneStatus = DroneStatusesBL.empty;
                 DronesListBL[droneBLIndex] = drone;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-                DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
-                //up up the stations charginslot in 1
-                DalObj.DeleteObjFromDroneCharges(drone.getIdBL());
+                StationDAL station = DalObj.returnStationArray().ToList().First(station => station.Latitude == drone.CurrentPosition.Latitude && station.Longitude == drone.CurrentPosition.Longitude);
+                station.DronesInCharging -= 1;
+                station.EmptyChargeSlots += 1;
+                DalObj.ReplaceStationById(station);
             }
     }
 }

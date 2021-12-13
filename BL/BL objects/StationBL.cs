@@ -15,11 +15,11 @@ namespace IBL.BO
             NameBL = name;
             Position = p;
             ChargeSlotsBL = chargS;
+            DronesInCharging = new List<DroneInChargeBL>();
             foreach (DroneBL drone in drones)
             {
                 if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == EnumBL.DroneStatusesBL.maintenance) {
-                    DroneInChargeBL d = new DroneInChargeBL(drone);
-                    DronesInCharging.Add(d);
+                    DronesInCharging.Add(new DroneInChargeBL(drone));
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace IBL.BO
                 {
                     Console.WriteLine(drone.ToString());
                 }
-                return $"ID: {GetIdBL()}\nName: {NameBL}\nPosition - {Position.ToString()}\nDrones in Charging: {DronesInCharging.ToString()}";
+                return $"ID: {GetIdBL()}\nName: {NameBL}\nPosition - {Position.ToString()}";
             }
             return $"ID: {GetIdBL()}\nName: {NameBL}\nPosition - {Position.ToString()}\nDrones in Charging: No Drones";
         }
