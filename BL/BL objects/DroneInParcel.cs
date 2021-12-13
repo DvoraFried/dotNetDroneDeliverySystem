@@ -16,7 +16,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {Id} |^| Battery Status: {BatteryStatus} |^| Position - Longitude: {CurrentPosition.Longitude}, Latitude: {CurrentPosition.Latitude}";
+            return $"ID: {Id} |^| Battery Status: {BatteryStatus} |^| Position -{CurrentPosition.ToString()}";
         }
         public int Id { get; set; }
         public double BatteryStatus { get; set; }

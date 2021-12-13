@@ -13,8 +13,6 @@ namespace IBL.BO
         {
             parcelId++;
             IdBL = parcelId;
-            //SenderIdBL = idSender;
-            //TargetIdBL = idTarget;
             Weight = (WeightCategoriesBL)weight;
             Priority = (PrioritiesBL)priority;
             ScheduledBL = new DateTime();
@@ -22,8 +20,8 @@ namespace IBL.BO
             DeliveredBL = new DateTime();
             RequestedBL = DateTime.Now;
             DroneIdBL = null;
-            //Sender = new CustomerOnDelivery();
-            //Target = new CustomerOnDelivery();
+            Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSender)));
+            Target = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idTarget)));
         }
         public override string ToString()
         {
@@ -37,8 +35,6 @@ namespace IBL.BO
         public int GetParcelId() { return parcelId; }
         public void SetParcelId(int pId) {  parcelId=pId; }
         public int IdBL { get; set; }
-        //public int SenderIdBL { get; set; }
-        //public int TargetIdBL { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }
         public DroneInParcel DroneIdBL { get; set; }

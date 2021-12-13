@@ -15,18 +15,23 @@ namespace IBL.BO
         public DroneBL(int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
         {
             Random rnd = new Random();
-            this.setIdBL(id);
-            this.ModelBL = model;
-            this.MaxWeight = maxW;
-            this.CurrentPosition = p;
-            this.BatteryStatus = rnd.Next(20, 41);
-            this.DroneStatus = status;
-            //this.delivery = 
-
+            setIdBL(id);
+            ModelBL = model;
+            MaxWeight = maxW;
+            CurrentPosition = p;
+            BatteryStatus = rnd.Next(20, 41);
+            DroneStatus = status;
+            delivery = DalObject.DataSource.MyParcels.ToList().Any(parcel => parcel.DroneId == idBL)?
+                       new ParcelByTransfer(ConvertToBL.ConvertToParcelBL(DalObject.DataSource.MyParcels.ToList().First(parcel => parcel.DroneId == idBL)))
+                       : null;
         }
         public override string ToString()
         {
-            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition -  Longitude: {CurrentPosition.Longitude}, Latitude: {CurrentPosition.Latitude}";
+            if (delivery != null)
+            {
+                return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition -{CurrentPosition.ToString()}";
+            }
+            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition -{CurrentPosition.ToString()}";
         }
         private int idBL;
         public void setIdBL(int idD) 

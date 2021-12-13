@@ -9,7 +9,7 @@ namespace IBL.BO
 {
     class DeliveryAtCustomer
     { 
-        public DeliveryAtCustomer(ParcelBL parcel)
+        public DeliveryAtCustomer(ParcelBL parcel, int myId)
         {
             Id = parcel.IdBL;
             Weight = parcel.Weight;
@@ -18,7 +18,8 @@ namespace IBL.BO
                      parcel.PickUpBL != new DateTime() ? EnumBL.DeliveryStatus.collected :
                      parcel.ScheduledBL != new DateTime() ? EnumBL.DeliveryStatus.associated :
                      EnumBL.DeliveryStatus.created;
-            //Customer = new CustomerOnDelivery();
+            int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
+            Customer = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSecondCustomer)));
         }
         public override string ToString()
         {

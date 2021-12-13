@@ -20,7 +20,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {Id} |^| Name: {Name} |^| Phone: {Phone} |^| Number Of Parcels He Sent And Delivered: {NumOfPackagesSentAndDelivered} |^| Number Of Parcels He Sent But Not Yet Delivered {NumOfPackagesSentButNotYetDelivered} |^| Number Of Parcels He Received: {NumOfPackagesHeReceived} |^| Number Of Parcels On The Way: {NumOfPackagesOnTheWay}";
+            return $"============================\nID: {Id}\nName: {Name}\nPhone: {Phone}\nNumber Of Parcels He Sent And Delivered: {NumOfPackagesSentAndDelivered}\nNumber Of Parcels He Sent But Not Yet Delivered {NumOfPackagesSentButNotYetDelivered}\nNumber Of Parcels He Received: {NumOfPackagesHeReceived}\nNumber Of Parcels On The Way: {NumOfPackagesOnTheWay}\n============================";
         }
         public int Id { get; set; }
         public string Name { get; set; }

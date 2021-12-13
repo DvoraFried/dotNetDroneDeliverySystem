@@ -27,7 +27,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition -\nLongitude: {Position.Longitude}, Latitude: {Position.Latitude}";
+            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition -{Position.ToString()}";
         }
         public int getIdBL() { return IdBL; }
         public string NameBL { get; set; }
