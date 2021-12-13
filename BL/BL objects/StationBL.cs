@@ -50,6 +50,6 @@ namespace IBL.BO
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
         public Position Position { get; set; }
-        private List<DroneInChargeBL> DronesInCharging;
+        public List<DroneInChargeBL> DronesInCharging;
     }
 }

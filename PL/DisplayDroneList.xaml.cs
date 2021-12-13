@@ -21,10 +21,11 @@ namespace PL
     /// </summary>
     public partial class DroneList : Window
     {
-        public DroneList()
+        IBL.IBL MyBl;
+        public DroneList(IBL.IBL bl)
         {
             InitializeComponent();
-            IBL.IBL MyBl = BLFactory.factory();
+            MyBl = bl;
             dronesDisplay.ItemsSource = MyBl.ReturnBlDroneList();
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             
