@@ -22,7 +22,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {Id} |^| Sender Name: {SenderName} |^| Customer Receives Name: {UstomerReceivesName} |^| Weight: {weight} |^| Priority: {priority} |^| Parcel Status: {PackageStatus}";
+            return $"============================\nID: {Id}\nSender Name: {SenderName}\nCustomer Receives Name: {UstomerReceivesName}\nWeight: {weight}\nPriority: {priority}\nParcel Status: {PackageStatus}\n============================";
         }
         public int Id { get; set; }
         public string SenderName { get; set; }

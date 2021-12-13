@@ -411,29 +411,36 @@ namespace ConsoleUI_BL
         public static IBL.IBL bl = BLFactory.factory();
         static void Main(string[] args)
         {
-            int choice =-1;
-            while (choice != 5)
+            try
             {
-                Console.WriteLine("Choose your option:\n 1.Add an object\n 2.Update object\n 3.Display object by Id\n 4.display list of objects\n 5.Exit");
-
-                choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
+                int choice = -1;
+                while (choice != 5)
                 {
-                    case 1:
-                        addObject(); break;
-                    case 2:
-                        updateObject(); break;
-                    case 3:
-                        display(); break;
-                    case 4:
-                        displayLists(); break; 
-                    case 5:
-                        Console.WriteLine("bye!");
-                        return;
-                    default:
-                        Console.WriteLine("error");
-                        break;
+                    Console.WriteLine("Choose your option:\n 1.Add an object\n 2.Update object\n 3.Display object by Id\n 4.display list of objects\n 5.Exit");
+
+                    choice = Convert.ToInt32(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            addObject(); break;
+                        case 2:
+                            updateObject(); break;
+                        case 3:
+                            display(); break;
+                        case 4:
+                            displayLists(); break;
+                        case 5:
+                            Console.WriteLine("bye!");
+                            return;
+                        default:
+                            Console.WriteLine("error");
+                            break;
+                    }
                 }
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Catch ArgumentNullException");
             }
         }
     }

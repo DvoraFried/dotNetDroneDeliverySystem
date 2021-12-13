@@ -16,12 +16,13 @@ namespace IBL.BO
             BatteryStatus = drone.BatteryStatus;
             DroneStatus = drone.DroneStatus;
             CurrentPosition = drone.CurrentPosition;
-            //ParcelNun = 0; 
+            ParcelNun = DalObject.DataSource.MyParcels.ToList().Any(parcel => parcel.DroneId == Id) ?
+                        DalObject.DataSource.MyParcels.First(parcel => parcel.DroneId == Id).Id : 0;
         }
         public override string ToString()
         {
             string parcelNum = ParcelNun != 0 ? ParcelNun.ToString() : "not exist";
-            return $"ID: {Id} |^| Model: {Model} |^| Max Weight: {Weight} |^| Battery Status: {BatteryStatus} |^| Drone Status: {DroneStatus} |^| Position: {CurrentPosition.ToString()} |^| Parcel Number: {parcelNum}";
+            return $"============================\nID: {Id}\nModel: {Model}\nMax Weight: {Weight}\nBattery Status: {BatteryStatus}\nDrone Status: {DroneStatus}\nPosition: {CurrentPosition.ToString()}\nParcel Number: {parcelNum}\n============================";
         }
         public int Id { get; set; }
         public string Model { get; set; }

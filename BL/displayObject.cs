@@ -33,13 +33,13 @@ namespace BL
             Console.WriteLine("Parcels sent by this customer: ");
             foreach(ParcelDAL parcel in DalObj.returnParcelArray()) {
                 if(parcel.SenderId == idC) {
-                    Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                    Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC).ToString());
                 }
             }
             Console.WriteLine("Parcels that this customer receives: ");
             foreach (ParcelDAL parcel in DalObj.returnParcelArray()) {
                 if (parcel.TargetId == idC) {
-                    Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                    Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC).ToString());
                 }
             }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
