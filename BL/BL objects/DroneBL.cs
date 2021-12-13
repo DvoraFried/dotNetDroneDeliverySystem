@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BL.BL;
 using static IBL.BO.EnumBL;
 using static IBL.BO.Exceptions;
 

@@ -14,15 +14,21 @@ namespace BL
     {
         public void DisplayStatoin(int idS)
         {
-            
+            if (!DalObj.returnStationArray().ToList().Any(station => station.Id == idS)) { throw new ObjectDoesntExistsInListException("station"); }
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ station data ~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine(ConvertToBL.ConvertToStationBL(DalObj.returnStation(idS)).ToString());
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
         }
         public void DisplayDrone(int idD)
         {
             if (!DronesListBL.Any(drone => drone.getIdBL() == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
-            ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcelArray().First(parcel => parcel.DroneId == idD));
-            Console.WriteLine(new ParcelByTransfer(parcel).ToString());
+            if (DalObj.returnParcelArray().Any(parcel => parcel.DroneId == idD))
+            {
+                Console.WriteLine(new ParcelByTransfer(ConvertToBL.ConvertToParcelBL(DalObj.returnParcelArray().First(parcel => parcel.DroneId == idD))).ToString());
+            }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         public void DisplayCustomer(int idC)
@@ -55,7 +61,10 @@ namespace BL
         }
         public void DisplayStatoinList()
         {
-            
+            foreach (StationDAL station in DalObj.returnStationArray())
+            {
+                Console.WriteLine(new StationToList(ConvertToBL.ConvertToStationBL(station)).ToString());
+            }
         }
         public void DisplayDroneList()
         {

@@ -78,7 +78,7 @@ namespace ConsoleUI_BL
                 int id = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter the model name");
                 string Model = Console.ReadLine();
-                Console.WriteLine("Enter max weight of drone category: \nLight : 0\n Medium : 1\n Heavy : 2\n ");
+                Console.WriteLine("Enter max weight of drone category: \nLight : 0\nMedium : 1\nHeavy : 2");
                 int MaxWeight = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter station id for charging the drone:");
                 int stationId = Convert.ToInt32(Console.ReadLine());
@@ -135,10 +135,9 @@ namespace ConsoleUI_BL
                 int senderID = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter target's id: ");
                 int targetId = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter weight of parcel: \nLight : 0\n, Medium : 1\n, Heavy : 2\n): ");
+                Console.WriteLine("Enter weight of parcel: \nLight : 0\nMedium : 1\nHeavy : 2");
                 int weight = Convert.ToInt32(Console.ReadLine());
-                //usual, rapid, emergency
-                Console.WriteLine("Enter priority of parcel \n usual : 0\n, rapid : 1\n, emergency :2\n ): ");
+                Console.WriteLine("Enter priority of parcel \nusual : 0\nrapid : 1\nemergency :2");
                 int priority = Convert.ToInt32(Console.ReadLine());
                 bl.AddParcel(senderID, targetId, (WeightCategoriesBL)weight, (PrioritiesBL)priority);
             }
@@ -292,7 +291,7 @@ namespace ConsoleUI_BL
             {
                 Console.WriteLine("Enter drone's id: ");
                 int id = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter drone's id: ");
+                Console.WriteLine("Enter Time In Charging: ");
                 double timeInCharge = Convert.ToDouble(Console.ReadLine());
                 bl.ReleaseDroneFromCharging(id, timeInCharge);
             }
@@ -377,7 +376,6 @@ namespace ConsoleUI_BL
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
         }
         static void displayLists()

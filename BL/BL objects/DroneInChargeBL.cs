@@ -8,10 +8,14 @@ namespace IBL.BO
 {
     public class DroneInChargeBL
     {
-        public DroneInChargeBL(int id,double batteryS)
+        public DroneInChargeBL(DroneBL drone)
         {
-            this.Id = id;
-            this.BatteryStatus = batteryS;
+            Id = drone.getIdBL();
+            BatteryStatus = drone.BatteryStatus;
+        }
+        public override string ToString()
+        {
+            return $"-----------\nID: {Id}\nBattery Status: {BatteryStatus}\n-----------";
         }
         public int Id { get; set; }
         public double BatteryStatus { get; set; }

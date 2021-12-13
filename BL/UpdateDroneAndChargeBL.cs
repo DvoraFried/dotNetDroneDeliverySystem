@@ -43,7 +43,7 @@ namespace BL
                 DronesListBL[droneBLIndex] = drone;
                 DataSource.MyDrones[droneBLIndex] = ConvertToDal.ConvertToDroneDal(drone);
                 //missing the update of the station
-                DroneInChargeBL droneC = new DroneInChargeBL(drone.getIdBL(), drone.BatteryStatus);
+                DroneInChargeBL droneC = new DroneInChargeBL(drone);
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(droneC, station.Id));
             }
             public void ReleaseDroneFromCharging(int id,double timeInCharge)

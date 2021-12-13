@@ -28,7 +28,7 @@ namespace BL
                 StationDAL station= (DalObj.returnStationArray().ToList().First(s => (s.Id == id)));
                 string currentName = name != null ? name : station.Name;
                 int currentChargeLots = chargeslots != -1 ? chargeslots : station.EmptyChargeSlots;
-                StationBL replaceStation = new StationBL(id, currentName, new Position(station.Longitude, station.Latitude), currentChargeLots);
+                StationBL replaceStation = new StationBL(id, currentName, new Position(station.Longitude, station.Latitude), currentChargeLots, DronesListBL);
                 DalObj.ReplaceStationById( ConvertToDal.ConvertToStationDal(replaceStation));
             }
 

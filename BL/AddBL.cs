@@ -17,7 +17,7 @@ namespace BL
             public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
             {
                 if ((DalObj.returnStationArray().ToList().Any(s => s.Id == id)))   { throw new ObjectExistsInListException("station");};
-                StationBL station = new StationBL(id, name, new Position(latitude, longitude), chargeSlots);
+                StationBL station = new StationBL(id, name, new Position(latitude, longitude), chargeSlots, DronesListBL);
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
             public void AddDrone(int id, string model, EnumBL.WeightCategoriesBL maxWeight, int stationId)
@@ -25,6 +25,8 @@ namespace BL
                 if ((DalObj.returnDroneArray().ToList().Any(d => d.Id == id)))   { throw new ObjectExistsInListException("drone"); };
                 if (!(DalObj.returnStationArray().ToList().Any(s => s.Id == stationId))) { throw new ObjectDoesntExistsInListException("station"); };
                 StationDAL s = ((DalObj.returnStationArray().ToList().Find(d => d.Id == stationId)));;
+                s.DronesInCharging += 1;
+                DalObj.ReplaceStationById(s);
                 DroneBL drone = new DroneBL(id, model, maxWeight, DroneStatusesBL.maintenance, new Position(s.Latitude, s.Longitude),stationId);
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL.Add(drone);
