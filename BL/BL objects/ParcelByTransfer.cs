@@ -25,7 +25,7 @@ namespace IBL.BO
         public override string ToString()
         {
             string status = DeliveryStatus ? "On the way to the destination" : "Awaiting collection";
-            return $"ID: {Id} |^| Status: {status}\nPriority: {Priority}\nWeight: {Weight}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}";
+            return $"--------------\nID: {Id}\nStatus: {status}\nPriority: {Priority}\nWeight: {Weight}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}\n--------------";
         }
         int Id { get; set; }
         WeightCategoriesBL Weight { get; set; }

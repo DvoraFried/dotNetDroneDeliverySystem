@@ -27,7 +27,7 @@ namespace DalObject
         public static void Initialize()
         {
             Random rnd = new Random();
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i < 11; i++)
             {
                 StationDAL stationDAL = new StationDAL() { Id = i, Name = "station" + i.ToString(), EmptyChargeSlots = rnd.Next(5, 15), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), DronesInCharging = 0 };
                 MyBaseStations.Add(stationDAL);

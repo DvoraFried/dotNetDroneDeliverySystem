@@ -24,7 +24,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {Id} |^| Weight: {Weight} |^| Priotity: {Priority} |^| Status: {Status} |^| Another Customer in Parcel: {Customer.ToString()} ";
+            return $"----------------\nID: {Id}\nWeight: {Weight}\nPriotity: {Priority}\nStatus: {Status}\nAnother Customer in Parcel: {Customer.ToString()}\n----------------";
         }
         int Id { get; set; }
         WeightCategoriesBL Weight { get; set; }

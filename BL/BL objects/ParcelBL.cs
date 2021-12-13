@@ -26,10 +26,11 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {IdBL}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nWeight: {Weight}\nPriority: {Priority}\nRequested Time: {RequestedBL}";
+            Console.WriteLine($"ID: {IdBL}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nWeight: {Weight}\nPriority: {Priority}\nRequested Time: {RequestedBL}");
             if (ScheduledBL != new DateTime()) { Console.WriteLine($"Scheduled Time: {ScheduledBL}"); }
             if (PickUpBL != new DateTime()) { Console.WriteLine($"PickUp Time: {PickUpBL}"); }
             if (DeliveredBL != new DateTime()) { Console.WriteLine($"Delivered Time: {DeliveredBL}"); }
+            return "";
         }
 
         private static int parcelId = 0;

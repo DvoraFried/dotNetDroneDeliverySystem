@@ -15,7 +15,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {Id} |^| Name: {CustomerName}";
+            return $"\n----------------\nID: {Id}\nName: {CustomerName}\n----------------";
         }
         public int Id { get; set; }
         public string CustomerName { get; set; }
