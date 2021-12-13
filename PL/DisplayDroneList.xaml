@@ -24,7 +24,7 @@
             <ComboBox  SelectionChanged="comboBoxOBME_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140" Grid.Column="1"/>
 
         </Grid>
-        <ListView X:Name="droneL"  Grid.Row="1">
+        <ListView Name="dronesDisplay" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

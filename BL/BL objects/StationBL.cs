@@ -15,6 +15,7 @@ namespace IBL.BO
             NameBL = name;
             Position = p;
             ChargeSlotsBL = chargS;
+            DronesInCharging = new List<DroneInChargeBL>();
             foreach (DroneBL drone in drones)
             {
                 if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == EnumBL.DroneStatusesBL.maintenance) {
@@ -50,6 +51,6 @@ namespace IBL.BO
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
         public Position Position { get; set; }
-        public List<DroneInChargeBL> DronesInCharging { get; set; }
+        private List<DroneInChargeBL> DronesInCharging;
     }
 }

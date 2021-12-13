@@ -1,4 +1,5 @@
-﻿using IDAL.DO;
+﻿using IBL.BO;
+using IDAL.DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,10 @@ namespace BL
             public IEnumerable<StationDAL> ReturnStationWithChargeSlots()
             {
                 foreach (StationDAL element in DalObj.returnStationArray()) { if (element.EmptyChargeSlots>0) { yield return element; } }
+            }
+            public List<DroneBL> ReturnBlDroneList()
+            {
+                return DronesListBL;
             }
 
         }

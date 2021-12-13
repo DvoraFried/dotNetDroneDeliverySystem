@@ -24,7 +24,8 @@ namespace PL
         public DroneList()
         {
             InitializeComponent();
-
+            IBL.IBL MyBl = BLFactory.factory();
+            dronesDisplay.ItemsSource = MyBl.ReturnBlDroneList();
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             
                 for (int i = 0; i < 3; i++)
@@ -42,8 +43,10 @@ namespace PL
                 itemList.Add(newItem);
             }
             OrderByMaxWeight.ItemsSource = itemList;
+
+
         }
-        public IBL.IBL MyBl { get; set; }
+        
         private void comboBoxOBS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
