@@ -29,8 +29,7 @@ namespace PL
             dronesDisplay.ItemsSource = MyBl.ReturnBlDroneList();
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             
-                for (int i = 0; i < 3; i++)
-            {
+            for (int i = 0; i < 3; i++) {
                 ComboBoxItem newItem = new ComboBoxItem();
                 newItem.Content = (EnumBL.DroneStatusesBL)(i);
                 itemList.Add(newItem);
@@ -44,8 +43,6 @@ namespace PL
                 itemList.Add(newItem);
             }
             OrderByMaxWeight.ItemsSource = itemList;
-
-
         }
         
         private void comboBoxOBS_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -10,8 +10,6 @@ namespace BL
 {
     public partial class BL : IBL.IBL
     {
-        public class ReturnFunctions
-        {
             public StationDAL ReturnStationById(int idS)
             {
                 return DalObj.returnStationArray().ToList().First(station => station.Id == idS);
@@ -58,5 +56,4 @@ namespace BL
                 return DronesListBL;
             }
         }
-    }
 }
