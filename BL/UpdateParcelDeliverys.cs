@@ -44,7 +44,7 @@ namespace BL
                 if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
                 int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == idD)));
                 DroneBL drone = DronesListBL[droneBLIndex];
-                if (drone.DroneStatus != DroneStatusesBL.empty)
+                if (DalObj.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idD))
                 {
                     throw new DroneIsNotEmptyException();
                 }

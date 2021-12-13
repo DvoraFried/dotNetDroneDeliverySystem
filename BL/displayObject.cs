@@ -25,10 +25,6 @@ namespace BL
             if (!DronesListBL.Any(drone => drone.getIdBL() == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
-            if (DalObj.returnParcelArray().Any(parcel => parcel.DroneId == idD))
-            {
-                Console.WriteLine(new ParcelByTransfer(ConvertToBL.ConvertToParcelBL(DalObj.returnParcelArray().First(parcel => parcel.DroneId == idD))).ToString());
-            }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         public void DisplayCustomer(int idC)
