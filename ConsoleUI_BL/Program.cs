@@ -348,23 +348,36 @@ namespace ConsoleUI_BL
                 choice = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter item's id:");
                 id = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 0:
+                        bl.DisplayStatoin(id); break;
+                    case 1:
+                        bl.DisplayDrone(id); break;
+                    case 2:
+                        bl.DisplayCustomer(id); break;
+                    case 3:
+                        bl.DisplayParcel(id); break;
+                    default:
+                        Console.WriteLine("== ERROR =="); break;
+                }
             }
             catch (ArgumentNullException)
             {
                 Console.WriteLine("Catch ArgumentNullException");
             }
-            switch (choice)
+            catch (FormatException)
             {
-                case 0:
-                    bl.DisplayStatoin(id); break;
-                case 1:
-                    bl.DisplayDrone(id); break;
-                case 2:
-                    bl.DisplayCustomer(id); break;
-                case 3:
-                    bl.DisplayParcel(id); break;
-                default:
-                    Console.WriteLine("== ERROR =="); break;
+                Console.WriteLine("~ data reciving error~");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("~data reciving error~");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
         }
         static void displayLists()

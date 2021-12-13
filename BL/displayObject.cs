@@ -18,6 +18,7 @@ namespace BL
         }
         public void DisplayDrone(int idD)
         {
+            if (!DronesListBL.Any(drone => drone.getIdBL() == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
             ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcelArray().First(parcel => parcel.DroneId == idD));
@@ -26,8 +27,8 @@ namespace BL
         }
         public void DisplayCustomer(int idC)
         {
+            if (!DalObj.returnCustomerArray().ToList().Any(customer => customer.Id == idC)) { throw new ObjectDoesntExistsInListException("customer"); }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
-
             Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
             Console.WriteLine("Parcels sent by this customer: ");
             foreach(ParcelDAL parcel in DalObj.returnParcelArray()) {
@@ -45,6 +46,7 @@ namespace BL
         }
         public void DisplayParcel(int idP)
         {
+            if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.Id == idP)) { throw new ObjectDoesntExistsInListException("parcel"); }
             ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine(parcel.ToString());

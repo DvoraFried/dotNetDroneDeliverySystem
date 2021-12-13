@@ -158,25 +158,20 @@ namespace DalObject
         //=====================================================================
         public void ReplaceStationById(StationDAL DALS)
         {
-            if (!DataSource.MyBaseStations.Any(s => s.Id == DALS.Id)) { throw new CantFaindObjectWithThisId("station", DALS.Id); }
             DataSource.MyBaseStations[DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => s.Id == DALS.Id))] = DALS;
         }
         public void ReplaceDroneById(DroneDAL DALD)
         {
-            if (!DataSource.MyDrones.Any(d => d.Id == DALD.Id)) { throw new CantFaindObjectWithThisId("drone", DALD.Id); }
             DataSource.MyDrones[DataSource.MyDrones.IndexOf(DataSource.MyDrones.First(d => d.Id == DALD.Id))] = DALD;
         }
         public void ReplaceCustomerById(CustomerDAL DALC)
         {
-            if (!DataSource.MyCustomers.Any(c => c.Id == DALC.Id)) { throw new CantFaindObjectWithThisId("customer", DALC.Id); }
             DataSource.MyCustomers[DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => c.Id == DALC.Id))] = DALC;
         }
         public void ReplaceParcelById(ParcelDAL DALP)
         {
-            if (!DataSource.MyParcels.Any(p => p.Id == DALP.Id)) { throw new CantFaindObjectWithThisId("parcel", DALP.Id); }
             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
         }
-
         public void DeleteObjFromDroneCharges(int id)
         {
             throw new NotImplementedException();
