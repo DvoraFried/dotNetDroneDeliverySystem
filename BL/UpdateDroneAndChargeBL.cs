@@ -18,7 +18,7 @@ namespace BL
                 if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
                 int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
                 DroneBL drone = DronesListBL[droneBLIndex];
-                if (drone.DroneStatus!= DroneStatusesBL.empty) { throw new DroneIsNotInMaintenanceException(id); }             
+                if (drone.DroneStatus!= DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }             
                 StationDAL station = new StationDAL();
                 foreach (StationDAL element in DalObj.returnStationArray())
                 {
