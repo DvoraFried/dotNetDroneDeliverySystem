@@ -16,7 +16,7 @@ namespace BL
     {
             public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
             {
-                if ((DalObj.returnStationArray().ToList().Any(s => s.Id == id)))   { throw new ObjectExistsInListException("station");};
+                if ((DalObj.returnStationArray().ToList().Any(s => s.Id == id)))   { throw new ObjectExistsInListException("Station");};
                 StationBL station = new StationBL(id, name, new Position(latitude, longitude), chargeSlots, DronesListBL);
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
