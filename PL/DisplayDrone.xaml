@@ -45,18 +45,18 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0">ENTER ID:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
-                <Label Grid.Row="1">ENTER MODEL:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <Label Grid.Row="0">DRONE ID:</Label>
+                <TextBox Name="NumberTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" TextChanged="NumberTextBox_TextChanged"/>
+                <Label Grid.Row="1">DRONE MODEL:</Label>
+                <TextBox Name="ModelTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
                 <Label Grid.Row="2">MAXWEIGHT :</Label>
-                <StackPanel Grid.Row="2" Grid.Column="1" >
-                    <RadioButton Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                    <RadioButton Content="medium" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                    <RadioButton Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                <StackPanel Name="MaxWeightCheckBox" Grid.Row="2" Grid.Column="1" >
+                    <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
+                    <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
+                    <RadioButton x:Name="heavy" Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="heavy_Checked"/>
                 </StackPanel>
-                <Label Grid.Row="3">ENTER MODEL:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2"/>
+                <Label Grid.Row="3">STATION ID:</Label>
+                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2"/>
             </Grid>
 
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
@@ -67,6 +67,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
+            <Button Content="ADD DRONE" HorizontalAlignment="Left" Height="30" Margin="276,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="89" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>

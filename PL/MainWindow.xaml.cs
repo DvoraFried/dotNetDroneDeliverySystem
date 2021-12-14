@@ -21,16 +21,16 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        IBL.IBL bl;
+        IBL.IBL Bl;
         public MainWindow()
         {
-            bl = BLFactory.factory();
+            Bl = BLFactory.factory();
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DroneList droneList = new DroneList(bl);
+            DroneList droneList = new DroneList(Bl);
             droneList.Show();
         }
     }

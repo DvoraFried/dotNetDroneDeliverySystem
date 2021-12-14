@@ -19,14 +19,14 @@ namespace PL
     /// </summary>
     public partial class DroneList : Window
     {
-        IBL.IBL MyBl;
+        IBL.IBL Bl;
         int droneStatus = -1;
         int droneMaxWeight = -1;
         public DroneList(IBL.IBL bl)
         {
             InitializeComponent();
-            MyBl = bl;
-            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            Bl = bl;
+            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             
             for (int i = 0; i < 3; i++) {
@@ -50,14 +50,14 @@ namespace PL
 
             ComboBox senderCB = sender as ComboBox;
             droneStatus = senderCB.SelectedIndex;
-            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
 
         }
         private void comboBoxOByMaxW_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox senderCB = sender as ComboBox;
             droneMaxWeight = senderCB.SelectedIndex;
-            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
 
         private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
@@ -65,7 +65,7 @@ namespace PL
             OrderByStatus.Text = string.Empty;
             OrderByMaxWeight.Text = string.Empty;
             droneStatus = -1; droneMaxWeight = -1;
-            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -75,7 +75,7 @@ namespace PL
 
         private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
         {
-            DisplayDrone addDrone = new DisplayDrone();
+            DisplayDrone addDrone = new DisplayDrone(Bl);
             addDrone.Show();
         }
 

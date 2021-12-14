@@ -17,7 +17,7 @@ namespace BL
             public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
             {
                 if ((DalObj.returnStationArray().ToList().Any(s => s.Id == id)))   { throw new ObjectExistsInListException("Station");};
-                StationBL station = new StationBL(id, name, new Position(latitude, longitude), chargeSlots, DronesListBL);
+                StationBL station = new StationBL(id, name, new Position( longitude, latitude), chargeSlots, DronesListBL);
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
             public void AddDrone(int id, string model, EnumBL.WeightCategoriesBL maxWeight, int stationId)
@@ -28,14 +28,14 @@ namespace BL
                 s.DronesInCharging += 1;
                 s.EmptyChargeSlots -= 1;
                 DalObj.ReplaceStationById(s);
-                DroneBL drone = new DroneBL(id, model, maxWeight, DroneStatusesBL.maintenance, new Position(s.Latitude, s.Longitude),stationId);
+                DroneBL drone = new DroneBL(id, model, maxWeight, DroneStatusesBL.maintenance, new Position( s.Longitude, s.Latitude),stationId);
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL.Add(drone);
             }
             public void AddCustomer(int id, string name, string phone, double longitude, double latitude)
             {
                 if ((DalObj.returnCustomerArray().Any(c => c.Id == id)))   { throw new ObjectExistsInListException("customer"); }
-                CustomerBL customer = new CustomerBL(id, name, phone, new Position(latitude, longitude));
+                CustomerBL customer = new CustomerBL(id, name, phone, new Position(longitude, latitude));
                 DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
             }
             public void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
