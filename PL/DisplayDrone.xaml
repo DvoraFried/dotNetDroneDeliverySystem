@@ -38,7 +38,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -46,15 +46,17 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0">ENTER ID:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
                 <Label Grid.Row="1">ENTER MODEL:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
                 <Label Grid.Row="2">MAXWEIGHT :</Label>
-                <RadioButton Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                <RadioButton Content="medium" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                <RadioButton Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" >
+                    <RadioButton Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                    <RadioButton Content="medium" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                    <RadioButton Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                </StackPanel>
                 <Label Grid.Row="3">ENTER MODEL:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,49,0,0" Grid.RowSpan="2"/>
+                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2"/>
             </Grid>
 
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
