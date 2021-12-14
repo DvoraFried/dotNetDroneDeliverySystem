@@ -8,12 +8,12 @@ using static IBL.BO.EnumBL;
 
 namespace IBL.BO
 {
-    class ParcelByTransfer
+    public class ParcelByTransfer
     {
         public ParcelByTransfer(ParcelBL parcel)
         {
             Id = parcel.IdBL;
-            DeliveryStatus = parcel.PickUpBL != new DateTime();
+            IsDelivery = parcel.PickUpBL != new DateTime();
             Priority = parcel.Priority;
             Weight = parcel.Weight;
             Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id)));
@@ -24,13 +24,13 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            string status = DeliveryStatus ? "On the way to the destination" : "Awaiting collection";
+            string status = IsDelivery ? "On the way to the destination" : "Awaiting collection";
             return $"--------------\nID: {Id}\nStatus: {status}\nPriority: {Priority}\nWeight: {Weight}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}\n--------------";
         }
-        int Id { get; set; }
+        public int Id { get; set; }
         WeightCategoriesBL Weight { get; set; }
         PrioritiesBL Priority { get; set; }
-        bool DeliveryStatus { get; set; }
+        public bool IsDelivery { get; set; }
         Position CollectionLocation { get; set; }
         Position DeliveryDestinationLocation { get; set; }
         CustomerOnDelivery Sender { get; set; }

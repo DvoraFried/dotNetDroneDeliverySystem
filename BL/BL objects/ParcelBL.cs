@@ -10,16 +10,16 @@ namespace IBL.BO
 {
     public class ParcelBL
     {
-        public ParcelBL(int idSender, int idTarget, int weight, int priority)
+        public ParcelBL(int idSender, int idTarget, int weight, int priority, int id = -1, DateTime requested = new DateTime(), DateTime scheduled = new DateTime(), DateTime pickUp = new DateTime(), DateTime delivered = new DateTime() )
         {
             parcelId++;
-            IdBL = parcelId;
+            IdBL = id >= 0 ? id : parcelId;
             Weight = (WeightCategoriesBL)weight;
             Priority = (PrioritiesBL)priority;
-            ScheduledBL = new DateTime();
-            PickUpBL = new DateTime();
-            DeliveredBL = new DateTime();
-            RequestedBL = DateTime.Now;
+            ScheduledBL = scheduled;
+            PickUpBL = pickUp;
+            DeliveredBL = delivered;
+            RequestedBL = requested == new DateTime()? DateTime.Now : requested;
             DroneIdBL = null;
             Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSender)));
             Target = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idTarget)));

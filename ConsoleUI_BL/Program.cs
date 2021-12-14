@@ -318,9 +318,9 @@ namespace ConsoleUI_BL
                     case 5:
                         bl.AssigningPackageToDrone(Convert.ToInt32(Console.ReadLine())); break;
                     case 6:
-                        bl.AssigningPackageToDrone(Convert.ToInt32(Console.ReadLine())); break;
+                        bl.CollectionOfAParcelByDrone(Convert.ToInt32(Console.ReadLine())); break;
                     default:
-                        bl.AssigningPackageToDrone(Convert.ToInt32(Console.ReadLine())); break;
+                        bl.DeliveryOfAParcelByDrone(Convert.ToInt32(Console.ReadLine())); break;
                 }
             }
             catch (FormatException)

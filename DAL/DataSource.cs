@@ -34,7 +34,7 @@ namespace DalObject
             }
             for (int i = 1; i < 8; i++)
             {
-                DroneDAL droneDAL = new DroneDAL() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(50, 100) };
+                DroneDAL droneDAL = new DroneDAL() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100) };
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {
