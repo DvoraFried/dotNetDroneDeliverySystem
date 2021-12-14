@@ -51,12 +51,11 @@ namespace BL
             public void ReleaseDroneFromCharging(int id,double timeInCharge)
             {
                 if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
-                int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
-                DroneBL drone = DronesListBL[droneBLIndex];
+                DroneBL drone = DronesListBL.First(d => (d.getIdBL() == id));
                 if (drone.DroneStatus != DroneStatusesBL.maintenance) { throw new DroneIsNotInMaintenanceException(id); }
-                drone.BatteryStatus = (int)(drone.BatteryStatus+ drone.BatteryStatus * DataSource.Config.DroneLoadingRate);
+                drone.BatteryStatus = Math.Min(drone.BatteryStatus + timeInCharge * DataSource.Config.DroneLoadingRate, 100);
                 drone.DroneStatus = DroneStatusesBL.empty;
-                DronesListBL[droneBLIndex] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => (d.getIdBL() == id))] = drone;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 StationDAL station = DalObj.returnStationArray().ToList().First(station => station.Latitude == drone.CurrentPosition.Latitude && station.Longitude == drone.CurrentPosition.Longitude);
                 station.DronesInCharging -= 1;

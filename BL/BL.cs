@@ -50,7 +50,12 @@ namespace BL
                             CustomerDAL randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
                             drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
                         }
-                        else { drone.CurrentPosition = new Position(rnd.Next(0, 24), rnd.Next(0, 180)); }
+                        else 
+                        {
+                            List<StationDAL> stations = DalObj.returnStationArray().ToList();
+                            int randomIndex = rnd.Next(0, stations.Count);
+                            drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
+                        }
                         drone.BatteryStatus = rnd.Next((int)(DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, findClosestStation(drone.CurrentPosition)) * nonWeightPowerConsumption), 100);
                     }
                     else

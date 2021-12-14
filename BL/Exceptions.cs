@@ -31,19 +31,15 @@ namespace IBL.BO
         }
         public class DroneIsNotInMaintenanceException : Exception
         {
-            public DroneIsNotInMaintenanceException(int id):base(string.Format($"the drone with the {id} is not empty")) { }
+            public DroneIsNotInMaintenanceException(int id):base(string.Format($"the drone {id} is not in maintenance")) { }
         }
         public class NoPlaceToChargeException : Exception
         {
             public NoPlaceToChargeException() : base(string.Format($"no place to charge the drone")) { }
         }
-        //public class DroneIsNotInMaintenanceException : Exception
-        //{
-        //    public DroneIsNotInMaintenanceException(): base(string.Format($"the drone is not in charge")) { }
-        //}
         public class DroneIsNotEmptyException : Exception
         {
-            public DroneIsNotEmptyException() : base(string.Format("the drone is not empty")) { }
+            public DroneIsNotEmptyException() : base(string.Format("the drone is not vacant")) { }
         }
         public class NoParcelFoundException : Exception
         {
@@ -62,5 +58,15 @@ namespace IBL.BO
         {
             public ThereIsNotEnoughBatteryException(): base(string.Format("There is not enough battery to reach the destination")) { }
         }
+        public class ThePackageHasNotYetBeenCollectedException : Exception
+        {
+            public ThePackageHasNotYetBeenCollectedException() : base(string.Format("The package has not yet been collected")) { }
+
+        }
+        public class TheDroneHasAlreadyPickedUpTheParcel : Exception
+        {
+            public TheDroneHasAlreadyPickedUpTheParcel() : base(string.Format("The drone has already picked up the parcel")) { }
+        }
+
     }
 }

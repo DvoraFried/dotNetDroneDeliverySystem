@@ -27,7 +27,7 @@ namespace BL
             }
             public static ParcelBL ConvertToParcelBL(ParcelDAL parcelDal)
             {
-                ParcelBL parcelBL = new ParcelBL(parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority);
+                ParcelBL parcelBL = new ParcelBL(parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered);
                 return parcelBL;
             }
             public static List<ParcelBL> ConvertToParcelArrayBL(List<ParcelDAL> parcelsDal)
