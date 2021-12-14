@@ -12,8 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-/*<ComboBox SelectionChanged="comboBoxOBS_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Left" Height="30" Margin="20,30,0,0" VerticalAlignment="Top" Width="120"/>
-<ComboBox SelectionChanged="comboBoxOBME_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Left" Height="30" Margin="160,30,0,0" VerticalAlignment="Top" Width="120"/>*/
 namespace PL
 {
     /// <summary>
@@ -22,11 +20,13 @@ namespace PL
     public partial class DroneList : Window
     {
         IBL.IBL MyBl;
+        int droneStatus = -1;
+        int droneMaxWeight = -1;
         public DroneList(IBL.IBL bl)
         {
             InitializeComponent();
             MyBl = bl;
-            dronesDisplay.ItemsSource = MyBl.ReturnBlDroneList();
+            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             
             for (int i = 0; i < 3; i++) {
@@ -45,17 +45,116 @@ namespace PL
             OrderByMaxWeight.ItemsSource = itemList;
         }
         
-        private void comboBoxOBS_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void comboBoxOByStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             ComboBox senderCB = sender as ComboBox;
-            MessageBox.Show($"{senderCB.SelectedIndex} Selected");
+            droneStatus = senderCB.SelectedIndex;
+       /*     droneStatus = senderCB.SelectedValue;*/
+            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+
         }
-        private void comboBoxOBME_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void comboBoxOByMaxW_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox senderCB = sender as ComboBox;
-            MessageBox.Show($"{senderCB.SelectedIndex} Selected");
-            switch (senderCB.SelectedIndex)
+            droneMaxWeight = senderCB.SelectedIndex;
+            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+        }
+
+        private void buttonClearFilter_Clicked(object sender, RoutedEventArgs e)
+        {
+            OrderByStatus.Text = string.Empty;
+            OrderByMaxWeight.Text = string.Empty;
+            droneStatus = -1; droneMaxWeight = -1;
+            dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*            switch (senderCB.SelectedIndex)
             {
                 case 0:
                     showEmptyDrones();
@@ -79,6 +178,4 @@ namespace PL
         public void showShippingDrones()
         {
             MessageBox.Show("shipping drone list");
-        }
-    }
-}
+        }*/

@@ -30,6 +30,7 @@ namespace IBL
         public void DisplayCustomerList();
         public void DisplayParcelList();
         public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone();
-        public List<DroneBL> ReturnBlDroneList();
+        //public List<DroneBL> ReturnBlDroneList();
+        public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
     }
 }
