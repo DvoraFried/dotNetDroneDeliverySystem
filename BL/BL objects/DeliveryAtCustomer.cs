@@ -15,9 +15,9 @@ namespace IBL.BO
             Id = parcel.IdBL;
             Weight = parcel.Weight;
             Priority = parcel.Priority;
-            Status = parcel.DeliveredBL != new DateTime() ? EnumBL.DeliveryStatus.provided :
-                     parcel.PickUpBL != new DateTime() ? EnumBL.DeliveryStatus.collected :
-                     parcel.ScheduledBL != new DateTime() ? EnumBL.DeliveryStatus.associated :
+            Status = parcel.DeliveredBL != null ? EnumBL.DeliveryStatus.provided :
+                     parcel.PickUpBL != null ? EnumBL.DeliveryStatus.collected :
+                     parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
                      EnumBL.DeliveryStatus.created;
             int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
             Customer = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSecondCustomer)));

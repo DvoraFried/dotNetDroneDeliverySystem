@@ -44,9 +44,9 @@ namespace BL
                     if (rnd.Next(0, 2) == 0)
                     {
                         drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
-                        if(DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != new DateTime()))
+                        if(DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != null))
                         {
-                            List<ParcelDAL> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != new DateTime());
+                            List<ParcelDAL> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != null);
                             CustomerDAL randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
                             drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
                         }
@@ -73,7 +73,7 @@ namespace BL
                     ParcelDAL parcel = DalObj.returnParcelByDroneId(drone.getIdBL());
                     Position senderPos = new Position(DalObj.returnCustomer(parcel.SenderId).Longitude, DalObj.returnCustomer(parcel.SenderId).Latitude);
                     Position targetPos = new Position(DalObj.returnCustomer(parcel.TargetId).Longitude, DalObj.returnCustomer(parcel.TargetId).Latitude);
-                    drone.CurrentPosition = parcel.PickUp == new DateTime() ? findClosestStation(senderPos) : senderPos;
+                    drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos) : senderPos;
                     double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition,targetPos);
                     double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos))*nonWeightPowerConsumption;
                     drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget*lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :

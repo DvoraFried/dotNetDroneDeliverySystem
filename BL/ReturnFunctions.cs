@@ -43,7 +43,6 @@ namespace BL
         {
             foreach (ParcelDAL element in DalObj.returnParcelArray().ToList()) { yield return element; }
         }
-        //String.IsNullOrEmpty(element.DroneId.ToString())-> this is a way to check if an intager is null
         public IEnumerable<ParcelDAL> ReturnNotScheduledParcel()
         {
             foreach(ParcelDAL element in DalObj.returnParcelArray()) { if (!string.IsNullOrEmpty(element.DroneId.ToString())) { yield return element; } }
@@ -52,10 +51,6 @@ namespace BL
         {
             foreach (StationDAL element in DalObj.returnStationArray()) { if (element.EmptyChargeSlots>0) { yield return element; } }
         }
-/*        public List<DroneBL> ReturnBlDroneList()
-        {
-            return DronesListBL;
-        }*/
         public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus,int droneMaxWeight)
         {
             List<DroneBL> droneUpdateList = new List<DroneBL>();

@@ -92,7 +92,7 @@ namespace BL
             DroneBL drone = DronesListBL.First(drone => drone.getIdBL() == idD);
             if(drone.DroneStatus != DroneStatusesBL.Shipping) { throw new NoDeliveryInTransferExcepyion(); }
             ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
-            if(parcel.PickUpBL == new DateTime()) { throw new ThePackageHasNotYetBeenCollectedException(); }
+            if(parcel.PickUpBL == null) { throw new ThePackageHasNotYetBeenCollectedException(); }
             parcel.DeliveredBL = DateTime.Now;
             parcel.DroneIdBL = null;
             Position targetPos = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id)).Position;

@@ -13,10 +13,10 @@ namespace IBL.BO
             Id = customer.getIdBL();
             Name = customer.NameBL;
             Phone = customer.PhoneBL;
-            NumOfPackagesSentAndDelivered = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered != new DateTime()).Count;
-            NumOfPackagesSentButNotYetDelivered = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered == new DateTime()).Count;
-            NumOfPackagesHeReceived = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered != new DateTime()).Count;
-            NumOfPackagesOnTheWay = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered == new DateTime()).Count;
+            NumOfPackagesSentAndDelivered = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered != null).Count;
+            NumOfPackagesSentButNotYetDelivered = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered == null).Count;
+            NumOfPackagesHeReceived = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered != null).Count;
+            NumOfPackagesOnTheWay = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered == null).Count;
         }
         public override string ToString()
         {

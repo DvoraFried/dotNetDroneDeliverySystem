@@ -15,9 +15,9 @@ namespace IBL.BO
             UstomerReceivesName = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id).Name;
             weight = parcel.Weight;
             priority = parcel.Priority;
-            PackageStatus = parcel.DeliveredBL != new DateTime() ? EnumBL.DeliveryStatus.provided :
-                            parcel.PickUpBL != new DateTime() ? EnumBL.DeliveryStatus.collected :
-                            parcel.ScheduledBL != new DateTime() ? EnumBL.DeliveryStatus.associated :
+            PackageStatus = parcel.DeliveredBL != null ? EnumBL.DeliveryStatus.provided :
+                            parcel.PickUpBL != null ? EnumBL.DeliveryStatus.collected :
+                            parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
                             EnumBL.DeliveryStatus.created;
         }
         public override string ToString()

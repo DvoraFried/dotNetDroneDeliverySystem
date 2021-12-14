@@ -13,7 +13,7 @@ namespace IBL.BO
         public ParcelByTransfer(ParcelBL parcel)
         {
             Id = parcel.IdBL;
-            IsDelivery = parcel.PickUpBL != new DateTime();
+            IsDelivery = parcel.PickUpBL != null;
             Priority = parcel.Priority;
             Weight = parcel.Weight;
             Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id)));
