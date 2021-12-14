@@ -28,11 +28,29 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
+            IDTextBox.Text = drone.getIdBL().ToString();
+            IDTextBox.IsEnabled = false;
+            ModelTextBox.Text = "new model:";
+            ADD_BUTTON.Visibility = Visibility.Hidden;
+            light.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.light ? true : false;
+            light.IsEnabled = false;
+            medium.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.medium ? true : false;
+            medium.IsEnabled = false;
+            heavy.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.heavy ? true : false;
+            heavy.IsEnabled = false;
+            StationIdTextBox.Visibility = Visibility.Hidden;
+            statioIdLabel.Visibility = Visibility.Hidden;
+            batteryStatus.Value = drone.BatteryStatus;
+            DroneStatusTextBox.Text = drone.DroneStatus.ToString();
         }
         public DisplayDrone(IBL.IBL bl)
         {
             Bl = bl;
             InitializeComponent();
+            UPDATE_BUTTON.Visibility = Visibility.Hidden;
+            batteryStatusLabel.Visibility = Visibility.Hidden;
+            batteryStatus.Visibility = Visibility.Hidden;
+            DroneStatusLabel.Visibility = Visibility.Hidden;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -45,18 +63,18 @@ namespace PL
         {
             if (0==0)
             {
-                NumberTextBox.Foreground = Brushes.Red;
+                IDTextBox.Foreground = Brushes.Red;
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NumberTextBox.Text) || string.IsNullOrWhiteSpace(ModelTextBox.Text) || string.IsNullOrWhiteSpace(StationIdTextBox.Text)){
+            if (string.IsNullOrWhiteSpace(IDTextBox.Text) || string.IsNullOrWhiteSpace(ModelTextBox.Text) || string.IsNullOrWhiteSpace(StationIdTextBox.Text)){
                 MessageBox.Show("one of the fields is empty");
             }
             else
             {
-                Bl.AddDrone(Int32.Parse(NumberTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
+                Bl.AddDrone(Int32.Parse(IDTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
             }
         }
  
@@ -73,6 +91,16 @@ namespace PL
         private void heavy_Checked(object sender, RoutedEventArgs e)
         {
             maxWeight = 2;
+        }
+
+        private void StationIdTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ModelTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

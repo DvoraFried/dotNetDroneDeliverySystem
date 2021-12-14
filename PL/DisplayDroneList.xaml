@@ -13,7 +13,7 @@
             <RowDefinition Height="400*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+        <Grid Name="UpGrid" Background="#FF688B87" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
         VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions >
             <ComboBox SelectionChanged="comboBoxOByStatus_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140"/>
             <ComboBox  SelectionChanged="comboBoxOByMaxW_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140" Grid.Column="1"/>
-            <Button Click="buttonClearFilter_Click" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="27,0,0,0" VerticalAlignment="Center" Width="40">
+            <Button Click="buttonClearFilter_Click" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" Width="40" RenderTransformOrigin="0.432,-0.059" Margin="30,0,0,0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -39,7 +39,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
+        <Grid Name="BottomGrid" Background="Azure" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -47,7 +47,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Button Content="ADD DRONE" Grid.Column="3" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddDrone_Click">
+            <Button Content="ADD DRONE" Grid.Column="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddDrone_Click" Margin="10,0,0,0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

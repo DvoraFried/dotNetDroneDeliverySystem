@@ -12,7 +12,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
-        <Grid Grid.Column="1" Name="FormGrid" Background="#FF688B87">
+        <Grid Grid.Column="1" Name="FormGrid" Background="#FF688B87" Grid.ColumnSpan="2" Margin="0,0,147,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="200*"/>
@@ -36,27 +36,31 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="87*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43.262"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0">DRONE ID:</Label>
-                <TextBox Name="NumberTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" TextChanged="NumberTextBox_TextChanged"/>
+                <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" TextChanged="NumberTextBox_TextChanged"/>
                 <Label Grid.Row="1">DRONE MODEL:</Label>
-                <TextBox Name="ModelTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <TextBox Name="ModelTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" TextChanged="ModelTextBox_TextChanged"/>
                 <Label Grid.Row="2">MAXWEIGHT :</Label>
                 <StackPanel Name="MaxWeightCheckBox" Grid.Row="2" Grid.Column="1" >
                     <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
                     <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
                     <RadioButton x:Name="heavy" Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="heavy_Checked"/>
                 </StackPanel>
-                <Label Grid.Row="3">STATION ID:</Label>
-                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2"/>
+                <Label Name="statioIdLabel" Grid.Row="3">STATION ID:</Label>
+                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2" TextChanged="StationIdTextBox_TextChanged"/>
+                <Label Name="DroneStatusLabel" Grid.Row="3">DRONE STATUS:</Label>
+                <TextBox Name="DroneStatusTextBox" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2" />
+                <Label Name="batteryStatusLabel" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,43,104,43" Grid.RowSpan="3">BATTERY STATUS:</Label>
+                <ProgressBar Name="batteryStatus" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="10" Margin="13,8,0,0" VerticalAlignment="Top" Width="185" Grid.Column="1"/>
             </Grid>
 
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
@@ -67,7 +71,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
-            <Button Content="ADD DRONE" HorizontalAlignment="Left" Height="30" Margin="276,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="89" Click="Button_Click"/>
+            <Button Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="30" Margin="0,388,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" Click="Button_Click" Grid.RowSpan="2"/>
+            <Button Name="UPDATE_BUTTON" Content="APDATE DRONE" HorizontalAlignment="Center" Height="30" Grid.Row="2" VerticalAlignment="Center" Width="89" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>

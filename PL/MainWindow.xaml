@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-		<Button Content =" drones list"
-				Width="100"
-				Height="40"
-				Click="Button_Click"/>  
+        <Button Content =" drones list" Background="AliceBlue"
+				Click="Button_Click" Margin="322,178,322,178"/>
     </Grid>
 </Window>
