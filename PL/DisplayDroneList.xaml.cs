@@ -50,7 +50,6 @@ namespace PL
 
             ComboBox senderCB = sender as ComboBox;
             droneStatus = senderCB.SelectedIndex;
-       /*     droneStatus = senderCB.SelectedValue;*/
             dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
 
         }
@@ -61,13 +60,25 @@ namespace PL
             dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
 
-        private void buttonClearFilter_Clicked(object sender, RoutedEventArgs e)
+        private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
         {
             OrderByStatus.Text = string.Empty;
             OrderByMaxWeight.Text = string.Empty;
             droneStatus = -1; droneMaxWeight = -1;
             dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
+        private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var senderList = (ListView)sender;
+            MessageBox.Show(senderList.SelectedItem.ToString());
+        }
+
+        private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayDrone addDrone = new DisplayDrone();
+            addDrone.Show();
+        }
+
     }
 }
 

@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
         VerticalAlignment="Stretch" Width="auto">
@@ -22,16 +23,38 @@
             </Grid.ColumnDefinitions >
             <ComboBox SelectionChanged="comboBoxOByStatus_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140"/>
             <ComboBox  SelectionChanged="comboBoxOByMaxW_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140" Grid.Column="1"/>
-            <Button Click="buttonClearFilter_Clicked" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="27,0,0,0" VerticalAlignment="Center" Width="50"/>
+            <Button Click="buttonClearFilter_Click" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="27,0,0,0" VerticalAlignment="Center" Width="40">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </Grid>
-        <ListView Name="dronesDisplay" Grid.Row="1">
+        <ListView MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
+        VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <Button Content="ADD DRONE" Grid.Column="3" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddDrone_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
     </Grid>
 </Window>
 

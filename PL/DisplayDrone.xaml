@@ -5,8 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DisplayDrone" Height="450" Width="800">
-    <Grid>
-        
+        Title="DisplayDrone" Height="600" Width="750">
+    <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" Background="#FF91B4AB">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions >
+        <Grid Grid.Column="1" Name="FormGrid" Background="#FF688B87">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="200*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+        VerticalAlignment="Stretch" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions >
+            </Grid>
+            <Grid Name="MiddleGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="1"
+        VerticalAlignment="Stretch" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0">ENTER ID:</Label>
+                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <Label Grid.Row="1">ENTER MODEL:</Label>
+                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+                <Label Grid.Row="2">MAXWEIGHT :</Label>
+                <RadioButton Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                <RadioButton Content="medium" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                <RadioButton Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                <Label Grid.Row="3">ENTER MODEL:</Label>
+                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,49,0,0" Grid.RowSpan="2"/>
+            </Grid>
+
+            <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
+        VerticalAlignment="Stretch" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions >
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
