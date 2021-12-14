@@ -63,12 +63,8 @@ namespace PL
 
         private void buttonClearFilter_Clicked(object sender, RoutedEventArgs e)
         {
-            /*  OrderByStatus.Items.Clear();
-              OrderByMaxWeight.Items.Clear();*/
-
             OrderByStatus.Text = string.Empty;
             OrderByMaxWeight.Text = string.Empty;
-
             droneStatus = -1; droneMaxWeight = -1;
             dronesDisplay.ItemsSource = MyBl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
