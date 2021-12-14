@@ -33,7 +33,7 @@ namespace IBL.BO
             return "";
         }
 
-        private static int parcelId = 0;
+        private static int parcelId = 9;
         public int GetParcelId() { return parcelId; }
         public void SetParcelId(int pId) {  parcelId=pId; }
         public int IdBL { get; set; }
