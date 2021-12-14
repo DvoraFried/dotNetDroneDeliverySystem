@@ -20,8 +20,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox SelectionChanged="comboBoxOBS_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140"/>
-            <ComboBox  SelectionChanged="comboBoxOBME_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140" Grid.Column="1"/>
+            <ComboBox SelectionChanged="comboBoxOByStatus_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140"/>
+            <ComboBox  SelectionChanged="comboBoxOByMaxW_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140" Grid.Column="1"/>
+            <Button Click="buttonClearFilter_Clicked" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="27,0,0,0" VerticalAlignment="Center" Width="50"/>
 
         </Grid>
         <ListView Name="dronesDisplay" Grid.Row="1">
