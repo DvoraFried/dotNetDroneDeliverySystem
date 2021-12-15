@@ -34,12 +34,6 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            IBL.BO.ParcelBL parcel = (sender as ListView).SelectedValue as IBL.BO.ParcelBL;
-            new DisplayParcel(BLobj, parcel).Show();
-        }
-
-        private void parcelDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
             IBL.BO.ParcelToList parcel = (sender as ListView).SelectedValue as IBL.BO.ParcelToList;
             new DisplayParcel(BLobj, BLobj.convertParcelToListToParcelBl(parcel)).Show();
         }
