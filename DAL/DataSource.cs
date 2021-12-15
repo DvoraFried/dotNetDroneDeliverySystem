@@ -32,7 +32,7 @@ namespace DalObject
                 StationDAL stationDAL = new StationDAL() { Id = i, Name = "station" + i.ToString(), EmptyChargeSlots = rnd.Next(5, 15), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), DronesInCharging = 0 };
                 MyBaseStations.Add(stationDAL);
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; i < 9; i++)
             {
                 DroneDAL droneDAL = new DroneDAL() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100) };
                 int num = rnd.Next(0, 3);
