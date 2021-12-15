@@ -28,29 +28,26 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
+            ADD_BUTTON.Visibility = Visibility.Hidden;
+            UPDATE_MENU.Visibility = Visibility.Visible;
             IDTextBox.Text = drone.getIdBL().ToString();
             IDTextBox.IsEnabled = false;
-            ModelTextBox.Text = "new model:";
-            ADD_BUTTON.Visibility = Visibility.Hidden;
+            ModelTextBox.Text = drone.ModelBL;
             light.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.light ? true : false;
             light.IsEnabled = false;
             medium.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.medium ? true : false;
             medium.IsEnabled = false;
             heavy.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.heavy ? true : false;
             heavy.IsEnabled = false;
-            StationIdTextBox.Visibility = Visibility.Hidden;
-            statioIdLabel.Visibility = Visibility.Hidden;
             batteryStatus.Value = drone.BatteryStatus;
             DroneStatusTextBox.Text = drone.DroneStatus.ToString();
+            statioIdLabel.Visibility = Visibility.Hidden;
+            StationIdTextBox.Visibility = Visibility.Hidden;
         }
         public DisplayDrone(IBL.IBL bl)
         {
             Bl = bl;
             InitializeComponent();
-            UPDATE_BUTTON.Visibility = Visibility.Hidden;
-            batteryStatusLabel.Visibility = Visibility.Hidden;
-            batteryStatus.Visibility = Visibility.Hidden;
-            DroneStatusLabel.Visibility = Visibility.Hidden;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -77,13 +74,32 @@ namespace PL
                 Bl.AddDrone(Int32.Parse(IDTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
             }
         }
-        private void UPDATE_MODEL_Click(object sender, RoutedEventArgs e)
+        private void UpdateModelClick()
         {
-            if (ModelTextBox.Text == "new model:") { MessageBox.Show("No value updated"); }
-            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
+            if (ModelTextBox.Text == IDTextBox.Text) { MessageBox.Show("No value updated"); }
+            else { Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text); }
         }
+        private void SendDroneToCharge()
+        {
+            Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
+        }
+        private void ReleaseDroneFromChargingClick()
+        {
+            MessageBox.Show("Enter Time In Charging:");
+        }
+        public void AssigningPackageToDroneClick()
+        {
+            Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
+        }
+        public void CollectionOfAParcelByDroneClick()
+        {
+            Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+        }
+        public void DeliveryAParcelByDroneClick()
+        {
+            Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
 
-
+        }
         private void light_Checked(object sender, RoutedEventArgs e)
         {
             maxWeight = 0;
@@ -105,6 +121,11 @@ namespace PL
         }
 
         private void ModelTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void AssigningPackageToDrone(object sender, RoutedEventArgs e)
         {
 
         }

@@ -57,12 +57,19 @@
                 </StackPanel>
                 <Label Name="statioIdLabel" Grid.Row="3">STATION ID:</Label>
                 <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2" TextChanged="StationIdTextBox_TextChanged"/>
-                <Label Name="DroneStatusLabel" Grid.Row="3">DRONE STATUS:</Label>
-                <TextBox Name="DroneStatusTextBox" IsEnabled="False" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2" />
-                <Label Name="batteryStatusLabel" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,43,104,43" Grid.RowSpan="3">BATTERY STATUS:</Label>
-                <ProgressBar Name="batteryStatus" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="10" Margin="13,8,0,0" VerticalAlignment="Top" Width="185" Grid.Column="1"/>
             </Grid>
-
+            <Grid Name="UPDATE_MENU" Visibility="Hidden" Margin="-172,10,-138,10" Grid.RowSpan="3">
+                <Label Name="DroneStatusLabel" Margin="176,262,362,271">DRONE STATUS:</Label>
+                <TextBox Name="DroneStatusTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="286,258,0,0" />
+                <Label Name="batteryStatusLabel" Margin="176,293,420,230">BATTERY STATUS:</Label>
+                <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="10" Margin="286,301,0,0" VerticalAlignment="Top" Width="186"/>
+                <Button Name="UpdateDrone" Content="APDATE DRONE" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="UpdateModelClick" Margin="407,390,0,0"/>
+                <Button Name="SendDroneToCharge" Content="SEND TO CHARGE" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="SendDroneToCharge" Margin="407,440,0,0"/>
+                <Button Name="ReleaseDroneFromCharging" Content="RELEASE FROM CHARGE" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="ReleaseDroneFromChargingClick" Margin="186,390,0,0"/>
+                <Button Name="AssigningPackageToDrone" Content="ASSIGNING DRONE TO PARCEL" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="AssigningPackageToDroneClick" Margin="186,440,0,0"/>
+                <Button Name="CollectionOfAParcelByDrone" Content="COLLECTION OF A PARCEL" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="CollectionOfAParcelByDroneClick" Margin="186,491,0,0"/>
+                <Button Name="DeliveryAParcelByDrone" Content="DELIVERY A PARCEL" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="DeliveryAParcelByDrone" Margin="407,491,0,0"/>
+            </Grid>
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
                 <Grid.ColumnDefinitions>
@@ -72,7 +79,6 @@
                 </Grid.ColumnDefinitions >
             </Grid>
             <Button Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="30" Margin="0,388,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" Click="Button_Click" Grid.RowSpan="2"/>
-            <Button Name="UPDATE_BUTTON" Content="APDATE DRONE" HorizontalAlignment="Center" Height="30" Grid.Row="2" VerticalAlignment="Center" Width="89" Click="UPDATE_MODEL_Click"/>
         </Grid>
     </Grid>
 </Window>
