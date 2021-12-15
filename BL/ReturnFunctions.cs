@@ -80,10 +80,26 @@ namespace BL
             }
             return parcelsUpdateList;
         }
+        public List<CustomerToList> ReturnCustomerToList()
+        {
+            List<CustomerToList> CustomerUpdateList = new List<CustomerToList>();
+            foreach (CustomerDAL customer in DalObj.returnCustomerArray().ToList())
+            {
+                CustomerUpdateList.Add(new CustomerToList(ConvertToBL.ConvertToCustomrtBL(customer)));
+            }
+            return CustomerUpdateList;
+        }
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList)
         {
             ParcelDAL parcelDAL = DalObj.returnParcel(parcelToList.Id);
             return new ParcelBL(parcelDAL.SenderId, parcelDAL.TargetId, (int)parcelDAL.Weight, (int)parcelDAL.Priority, parcelDAL.Id, parcelDAL.Requested, parcelDAL.Scheduled, parcelDAL.PickUp, parcelDAL.Delivered);
+        }
+        public CustomerBL convertCustomerToListToCusromerBl(CustomerToList customerToList)
+        {
+            CustomerDAL customerDAL = DalObj.returnCustomer(customerToList.Id);
+            List<ParcelBL> ImSender = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDAL.Id));
+            List<ParcelBL> ImTarget = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDAL.Id));
+            return new CustomerBL(customerDAL.Id, customerDAL.Name, customerDAL.Phone, new Position(customerDAL.Longitude, customerDAL.Latitude), ImSender, ImTarget);
         }
     }
 }

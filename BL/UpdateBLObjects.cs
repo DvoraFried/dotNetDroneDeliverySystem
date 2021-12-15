@@ -32,14 +32,16 @@ namespace BL
                 DalObj.ReplaceStationById( ConvertToDal.ConvertToStationDal(replaceStation));
             }
 
-            public void UpDateCustomerData(int id, string name = null, string newPhone = null)
-            {
-                if(!DataSource.MyCustomers.Any(c => (c.Id == id)))       {  throw new ObjectDoesntExistsInListException("customer"); }
-                CustomerDAL currentCustomer =DalObj.returnCustomerArray().ToList().First(c => (c.Id == id));
-                string currentName = name != null ? name : currentCustomer.Name;
-                string currentPhone = newPhone != null ? newPhone : currentCustomer.Phone;
-                CustomerBL replaceCustomer = new CustomerBL(id, currentName, currentPhone, new Position(currentCustomer.Latitude, currentCustomer.Longitude));
-                DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(replaceCustomer));
-            }
+        public void UpDateCustomerData(int id, string name = null, string newPhone = null)
+        {
+            if(!DataSource.MyCustomers.Any(c => (c.Id == id)))       {  throw new ObjectDoesntExistsInListException("customer"); }
+            CustomerDAL currentCustomer =DalObj.returnCustomerArray().ToList().First(c => (c.Id == id));
+            string currentName = name != null ? name : currentCustomer.Name;
+            string currentPhone = newPhone != null ? newPhone : currentCustomer.Phone;
+            List<ParcelBL> ImSender = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == id));
+            List<ParcelBL> ImTarget = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == id));
+            CustomerBL replaceCustomer = new CustomerBL(id, currentName, currentPhone, new Position(currentCustomer.Latitude, currentCustomer.Longitude),ImSender, ImTarget);
+            DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(replaceCustomer));
+        }
     }
 }

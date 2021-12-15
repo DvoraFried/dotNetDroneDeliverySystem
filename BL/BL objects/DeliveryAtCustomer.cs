@@ -8,19 +8,19 @@ using static IBL.BO.EnumBL;
 
 namespace IBL.BO
 {
-    class DeliveryAtCustomer
+    public class DeliveryAtCustomer
     { 
-        public DeliveryAtCustomer(ParcelBL parcel, int myId)
+        public DeliveryAtCustomer(int id, int weight, int priority, int myId, int senderID,int targetID, DateTime? Scheduled, DateTime? PickUp, DateTime? Delivered)
         {
-            Id = parcel.IdBL;
-            Weight = parcel.Weight;
-            Priority = parcel.Priority;
-            Status = parcel.DeliveredBL != null ? EnumBL.DeliveryStatus.provided :
-                     parcel.PickUpBL != null ? EnumBL.DeliveryStatus.collected :
-                     parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
+            Id = id;
+            Weight = (WeightCategoriesBL)weight;
+            Priority = (PrioritiesBL)priority;
+            Status = Delivered != null ? EnumBL.DeliveryStatus.provided :
+                     PickUp != null ? EnumBL.DeliveryStatus.collected :
+                     Scheduled != null ? EnumBL.DeliveryStatus.associated :
                      EnumBL.DeliveryStatus.created;
-            int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
-            Customer = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSecondCustomer)));
+            int secID = myId == senderID ? targetID : senderID;
+            Customer = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == secID)));
         }
         public override string ToString()
         {
