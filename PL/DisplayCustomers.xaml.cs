@@ -17,11 +17,29 @@ namespace PL
     /// <summary>
     /// Interaction logic for DisplayCustomers.xaml
     /// </summary>
-    public partial class DisplayCustomers : Window
+    public partial class DisplayCustomerList : Window
     {
-        public DisplayCustomers()
+        IBL.IBL BLobj;
+        public DisplayCustomerList(IBL.IBL bl)
         {
             InitializeComponent();
+            BLobj = bl;
+            customerDisplay.ItemsSource = BLobj.ReturnParcelList();
+        }
+        private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            new DisplayCustomer(BLobj).Show();
+        }
+        private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            IBL.BO.CustomerBL customer = (sender as ListView).SelectedValue as IBL.BO.CustomerBL;
+            new DisplayCustomer(BLobj, customer).Show();
+        }
+        private void parcelDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
+            new DisplayCustomer(BLobj, BLobj.convertParcelToListToParcelBl(customer)).Show();
         }
     }
 }
+

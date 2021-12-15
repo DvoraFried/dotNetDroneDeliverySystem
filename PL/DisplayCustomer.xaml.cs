@@ -1,7 +1,9 @@
-﻿using System;
+﻿using IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,9 +21,41 @@ namespace PL
     /// </summary>
     public partial class DisplayCustomer : Window
     {
-        public DisplayCustomer()
+        IBL.IBL Bl;
+        int weight = 0;
+        int priority = 0;
+        public DisplayCustomer(IBL.IBL bl, CustomerBL customer)
         {
             InitializeComponent();
+        }
+        public DisplayCustomer(IBL.IBL bl)
+        {
+            Bl = bl;
+            InitializeComponent();
+
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(IDSenderTextBox.Text) || string.IsNullOrWhiteSpace(TargetIDTextBox.Text))
+            {
+                MessageBox.Show("one of the fields is empty");
+            }
+            else
+            {
+                try
+                {
+                    Bl.AddParcel(Int32.Parse(IDSenderTextBox.Text), Int32.Parse(TargetIDTextBox.Text), (EnumBL.WeightCategoriesBL)weight, (EnumBL.PrioritiesBL)priority);
+                    this.Close();
+                }
+                catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+                catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            }
         }
     }
 }

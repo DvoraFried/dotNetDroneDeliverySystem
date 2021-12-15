@@ -6,7 +6,83 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DisplayCustomer" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" Background="#FF91B4AB">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions >
+        <Grid Grid.Column="1" Name="FormGrid" Background="#FF688B87">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="200*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+        VerticalAlignment="Stretch" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions >
+            </Grid>
+            <Grid Name="MiddleGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="1"
+        VerticalAlignment="Stretch" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="87*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43.262"/>
+                </Grid.RowDefinitions>
+                <Label Name="customerIdlbel" Grid.Row="0" Grid.ColumnSpan="2" Margin="23,-13,70,13">ID:</Label>
+                <TextBox Name="IDcustomerTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="" Margin="59,-13,0,0"/>
+                <Label Name="customerNameLabel" Grid.ColumnSpan="2" Margin="23,16,70,19" Grid.RowSpan="2">NAME:</Label>
+                <TextBox Name="customerNameTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Margin="59,20,0,0" Grid.RowSpan="2"/>
+                <Label Name="customerPhoneLabel" Grid.ColumnSpan="2" Margin="23,16,70,19" Grid.RowSpan="2">PHONE:</Label>
+                <TextBox Name="customerPhoneTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Margin="59,20,0,0" Grid.RowSpan="2"/>
+                <Label Name="customerPositionLabel" Grid.ColumnSpan="2" Margin="23,16,70,19" Grid.RowSpan="2">POSITION:</Label>
+            </Grid>
+            <Grid Name="displayParcel" Visibility="Visible">
+                <Label Grid.Row="0" Margin="80,36,260,9">SENDER:</Label>
+                <TextBox Name="senderTextBox" IsReadOnly="True" Margin="45,59,205,-49"/>
+                <TextBox Name="targetTextBox" IsReadOnly="True" Margin="200,59,50,-49"/>
+                <Label Margin="245,36,95,12">TARGET:</Label>
+                <Label Margin="89,133,249,-86">WEIGHT :</Label>
+                <Label Margin="245,133,-152,-84">PRIORITY:</Label>
+                <TextBox Name="WeightTextBox" IsReadOnly="True" Margin="45,158,205,-110"/>
+                <TextBox Name="PriorityTextBox" IsReadOnly="True" Margin="200,158,50,-110"/>
+                <Label Margin="136,192,140,-146">PARCEL IN DRONE:</Label>
+                <TextBox Name="ParcelInDroneTextBox" IsReadOnly="True" Margin="45,216,50,-221"/>
+                <Label Margin="20,299,256,-252">REQUESTED TIME:</Label>
+                <TextBox Name="RequestedTimeTextBox" IsReadOnly="True" Margin="200,300,50,-251"/>
+                <Label Margin="20,332,200,-291">ASSIGN TO A DRONE TIME:</Label>
+                <TextBox Name="AssignToDroneTimeTextBox" IsReadOnly="True" Margin="200,331,50,-283"/>
+                <Label Margin="20,364,272,-324">PICK-UP TIME:</Label>
+                <TextBox Name="PickupTimeTextBox" IsReadOnly="True" Margin="200,363,50,-315"/>
+                <Label Margin="20,395,272,-348">DELIVERED TIME:</Label>
+                <TextBox Name="DeliveredTimeTextBox" IsReadOnly="True" Margin="200,395,50,-344"/>
+            </Grid>
+            <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
+        VerticalAlignment="Stretch" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="14*"/>
+                </Grid.ColumnDefinitions >
+            </Grid>
+            <Button Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,270,0,0" Grid.RowSpan="2"/>
+        </Grid>
     </Grid>
 </Window>
