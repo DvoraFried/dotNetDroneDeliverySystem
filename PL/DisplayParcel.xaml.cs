@@ -37,6 +37,8 @@ namespace PL
             AssignToDroneTimeTextBox.Text = parcel.ScheduledBL != null ? parcel.ScheduledBL.ToString() : "deos not assign yet";
             PickupTimeTextBox.Text = parcel.PickUpBL != null ? parcel.PickUpBL.ToString() : "deos not pickUp yet";
             DeliveredTimeTextBox.Text = parcel.DeliveredBL != null ? parcel.DeliveredBL.ToString() : "deos not delivered yet";
+            PriorityTextBox.Text = parcel.Priority.ToString();
+            WeightTextBox.Text = parcel.Weight.ToString();
         }
         public DisplayParcel(IBL.IBL bl)
         {

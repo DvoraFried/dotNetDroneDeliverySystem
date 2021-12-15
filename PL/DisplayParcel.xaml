@@ -65,7 +65,7 @@
             <Grid Name="displayParcel" Visibility="Hidden">
                 <Label Margin="23,158,70,-109">PRIORITY:</Label>
                 <TextBox Name="WeightTextBox" IsReadOnly="True" Margin="160,126,50,-78"/>
-                <TextBox Name="PriorityDroneTextBox" IsReadOnly="True" Margin="160,160,50,-111"/>
+                <TextBox Name="PriorityTextBox" IsReadOnly="True" Margin="160,160,50,-111"/>
                 <Label Margin="20,191,256,-144">PARCEL IN DRONE:</Label>
                 <TextBox Name="ParcelInDroneTextBox" IsReadOnly="True" Margin="160,195,50,-216"/>
                 <Label Margin="20,299,256,-252">REQUESTED TIME:</Label>
