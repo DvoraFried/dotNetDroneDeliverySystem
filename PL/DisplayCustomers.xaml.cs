@@ -38,8 +38,7 @@ namespace PL
         private void parcelDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
-            new DisplayCustomer(BLobj, BLobj.convertParcelToListToParcelBl(customer)).Show();
+            new DisplayCustomer(BLobj, BLobj.convertCustomerToListToCusromerBl(customer)).Show();
         }
     }
 }
-
