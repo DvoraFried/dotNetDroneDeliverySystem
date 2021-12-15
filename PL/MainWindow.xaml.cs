@@ -30,14 +30,14 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void droneList_Click(object sender, RoutedEventArgs e)
         {
             new DroneList(Bl).Show();
         }
 
-/*        private void Button_parcel_Click(object sender, RoutedEventArgs e)
-        {
-            new ParcelList(Bl).Show();
-        }*/
+        /*        private void Button_parcel_Click(object sender, RoutedEventArgs e)
+                {
+                    new ParcelList(Bl).Show();
+                }*/
     }
 }
