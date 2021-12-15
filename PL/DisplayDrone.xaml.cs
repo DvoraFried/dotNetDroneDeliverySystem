@@ -84,8 +84,8 @@ namespace PL
             {
                 Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         private void ReleaseDroneFromChargingClick(object sender, RoutedEventArgs e)
@@ -98,8 +98,8 @@ namespace PL
             {
                 Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         
@@ -109,8 +109,8 @@ namespace PL
             {
                 Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
 
         }
@@ -120,8 +120,8 @@ namespace PL
             {
                 Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("~ data reciving error~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (FormatException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         private void light_Checked(object sender, RoutedEventArgs e)
