@@ -77,7 +77,13 @@ namespace PL
                 Bl.AddDrone(Int32.Parse(IDTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
             }
         }
- 
+        private void UPDATE_MODEL_Click(object sender, RoutedEventArgs e)
+        {
+            if (ModelTextBox.Text == "new model:") { MessageBox.Show("No value updated"); }
+            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
+        }
+
+
         private void light_Checked(object sender, RoutedEventArgs e)
         {
             maxWeight = 0;

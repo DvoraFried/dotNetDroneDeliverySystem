@@ -72,7 +72,7 @@
                 </Grid.ColumnDefinitions >
             </Grid>
             <Button Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="30" Margin="0,388,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" Click="Button_Click" Grid.RowSpan="2"/>
-            <Button Name="UPDATE_BUTTON" Content="APDATE DRONE" HorizontalAlignment="Center" Height="30" Grid.Row="2" VerticalAlignment="Center" Width="89" Click="Button_Click"/>
+            <Button Name="UPDATE_BUTTON" Content="APDATE DRONE" HorizontalAlignment="Center" Height="30" Grid.Row="2" VerticalAlignment="Center" Width="89" Click="UPDATE_MODEL_Click"/>
         </Grid>
     </Grid>
 </Window>
