@@ -45,28 +45,29 @@ namespace BL
         }
         public IEnumerable<ParcelDAL> ReturnNotScheduledParcel()
         {
-            foreach(ParcelDAL element in DalObj.returnParcelArray()) { if (!string.IsNullOrEmpty(element.DroneId.ToString())) { yield return element; } }
+            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if (!string.IsNullOrEmpty(element.DroneId.ToString())) { yield return element; } }
         }
         public IEnumerable<StationDAL> ReturnStationWithChargeSlots()
         {
-            foreach (StationDAL element in DalObj.returnStationArray()) { if (element.EmptyChargeSlots>0) { yield return element; } }
+            foreach (StationDAL element in DalObj.returnStationArray()) { if (element.EmptyChargeSlots > 0) { yield return element; } }
         }
-        public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus,int droneMaxWeight)
+        public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
             List<DroneBL> droneUpdateList = new List<DroneBL>();
             if (droneStatus != -1 && droneMaxWeight != -1)
             {
-                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus&& (int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
+                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus && (int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
             }
             else if (droneStatus != -1)
             {
-                foreach(DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus) { droneUpdateList.Add(element); }}
+                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus) { droneUpdateList.Add(element); } }
             }
             else if (droneMaxWeight != -1)
             {
                 foreach (DroneBL element in DronesListBL) { if ((int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
             }
-            else {
+            else
+            {
                 return DronesListBL;
             }
             return droneUpdateList;
@@ -74,11 +75,20 @@ namespace BL
         public List<ParcelToList> ReturnParcelList()
         {
             List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
-            foreach( ParcelDAL parcel in DalObj.returnParcelArray().ToList())
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
             {
                 parcelsUpdateList.Add(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)));
             }
             return parcelsUpdateList;
+        }
+        public List<CustomerToList> ReturnCustomerToList()
+        {
+            List<CustomerToList> CustomerUpdateList = new List<CustomerToList>();
+            foreach (CustomerDAL customer in DalObj.returnCustomerArray().ToList())
+            {
+                CustomerUpdateList.Add(new CustomerToList(ConvertToBL.ConvertToCustomrtBL(customer)));
+            }
+            return CustomerUpdateList;
         }
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList)
         {

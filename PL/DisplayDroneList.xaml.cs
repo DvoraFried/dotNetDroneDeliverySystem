@@ -27,9 +27,10 @@ namespace PL
             InitializeComponent();
             Bl = bl;
             dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
-            List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
-            
-            for (int i = 0; i < 3; i++) {
+            List<ComboBoxItem> itemList = new List<ComboBoxItem>();
+
+            for (int i = 0; i < 3; i++)
+            {
                 ComboBoxItem newItem = new ComboBoxItem();
                 newItem.Content = (EnumBL.DroneStatusesBL)(i);
                 itemList.Add(newItem);
@@ -44,7 +45,7 @@ namespace PL
             }
             OrderByMaxWeight.ItemsSource = itemList;
         }
-        
+
         private void comboBoxOByStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -86,112 +87,3 @@ namespace PL
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*            switch (senderCB.SelectedIndex)
-            {
-                case 0:
-                    showEmptyDrones();
-                    break;
-                case 1:
-                    showMaintenaceDrones();
-                    break;
-                case 2:
-                    showShippingDrones();
-                    break;
-            }
-        }
-        public void showEmptyDrones()
-        {
-            MessageBox.Show("empty drone list");
-        }
-        public void showMaintenaceDrones()
-        {
-            MessageBox.Show("mainstain drone list");
-        }
-        public void showShippingDrones()
-        {
-            MessageBox.Show("shipping drone list");
-        }*/

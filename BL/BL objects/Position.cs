@@ -21,7 +21,7 @@ namespace IBL.BO
             return $"Longitude : {Longitude}, Latitude: {Latitude}";
         }
         public double Longitude { get; set; }
-        
+
         public double Latitude { get; set; }
     }
 }

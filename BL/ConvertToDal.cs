@@ -7,29 +7,29 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-        public class ConvertToDal
+    public class ConvertToDal
+    {
+        public static StationDAL ConvertToStationDal(StationBL stationBl)
         {
-            public static StationDAL ConvertToStationDal(StationBL stationBl)
-            {
             StationDAL stationDal = new StationDAL();
             stationDal.Id = stationBl.GetIdBL();
             stationDal.Name = stationBl.NameBL;
             stationDal.EmptyChargeSlots = stationBl.ChargeSlotsBL;
             stationDal.Longitude = stationBl.Position.Longitude;
             stationDal.Latitude = stationBl.Position.Latitude;
-            return stationDal;           
-            }
-            public static DroneDAL ConvertToDroneDal(DroneBL droneBl)
-            {
+            return stationDal;
+        }
+        public static DroneDAL ConvertToDroneDal(DroneBL droneBl)
+        {
             DroneDAL droneDal = new DroneDAL();
             droneDal.Id = droneBl.getIdBL();
             droneDal.Model = droneBl.ModelBL;
             droneDal.MaxWeight = (WeightCategories)(int)droneBl.MaxWeight;
             return droneDal;
-            }
+        }
 
-            public static CustomerDAL ConvertToCustomerDal(CustomerBL customerBl)
-            {
+        public static CustomerDAL ConvertToCustomerDal(CustomerBL customerBl)
+        {
             CustomerDAL customerDal = new CustomerDAL();
             customerDal.Id = customerBl.getIdBL();
             customerDal.Name = customerBl.NameBL;
@@ -37,14 +37,14 @@ namespace IBL.BO
             customerDal.Longitude = customerBl.Position.Longitude;
             customerDal.Latitude = customerBl.Position.Latitude;
             return customerDal;
-           }
-            public static ParcelDAL ConvertToParcelDal(ParcelBL parcelBl)
-            {
+        }
+        public static ParcelDAL ConvertToParcelDal(ParcelBL parcelBl)
+        {
             ParcelDAL parcelDal = new ParcelDAL();
             parcelDal.Id = parcelBl.IdBL;
             parcelDal.SenderId = parcelBl.Sender.Id;
             parcelDal.TargetId = parcelBl.Target.Id;
-            parcelDal.Weight= (WeightCategories)(int)parcelBl.Weight;
+            parcelDal.Weight = (WeightCategories)(int)parcelBl.Weight;
             parcelDal.Priority = (Priorities)(int)parcelBl.Priority;
             parcelDal.DroneId = parcelBl.DroneIdBL == null ? -1 : parcelBl.DroneIdBL.Id;
             parcelDal.Requested = parcelBl.RequestedBL;
@@ -52,14 +52,14 @@ namespace IBL.BO
             parcelDal.PickUp = parcelBl.PickUpBL;
             parcelDal.Delivered = parcelBl.DeliveredBL;
             return parcelDal;
-            }
+        }
 
-            public static DroneChargeDAL ConvertToDroneChargeDal(DroneInChargeBL droneBl,int stationIdS)
-            {
+        public static DroneChargeDAL ConvertToDroneChargeDal(DroneInChargeBL droneBl, int stationIdS)
+        {
             DroneChargeDAL droneChargeDal = new DroneChargeDAL();
             droneChargeDal.DroneId = droneBl.Id;
             droneChargeDal.StationId = stationIdS;
             return droneChargeDal;
-            }
+        }
     }
 }

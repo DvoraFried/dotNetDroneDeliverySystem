@@ -10,7 +10,7 @@ namespace IBL.BO
 {
     public class ParcelBL
     {
-        public ParcelBL(int idSender, int idTarget, int weight, int priority, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
+        public ParcelBL(int idSender, int idTarget, int weight, int priority, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null)
         {
             parcelId++;
             IdBL = id > 0 ? id : parcelId;
@@ -19,7 +19,7 @@ namespace IBL.BO
             ScheduledBL = scheduled;
             PickUpBL = pickUp;
             DeliveredBL = delivered;
-            RequestedBL = requested == null? DateTime.Now : requested;
+            RequestedBL = requested == null ? DateTime.Now : requested;
             int droneId = id != -1 ? DalObject.DataSource.MyParcels.First(parcel => parcel.Id == id).DroneId : id;
             DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
             Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSender)));
@@ -36,7 +36,7 @@ namespace IBL.BO
 
         private static int parcelId = 0;
         public int GetParcelId() { return parcelId; }
-        public void SetParcelId(int pId) {  parcelId=pId; }
+        public void SetParcelId(int pId) { parcelId = pId; }
         public int IdBL { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }

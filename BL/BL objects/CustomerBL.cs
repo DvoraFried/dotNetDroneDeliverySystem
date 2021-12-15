@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IDAL.DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,10 @@ namespace IBL.BO
         }
 
         private int IdBL;
-        public void setIdBL(int idC) 
+        public void setIdBL(int idC)
         {
-            if(idC < 99999999 || idC > 999999999) {
+            if (idC < 99999999 || idC > 999999999)
+            {
                 throw new UnValidIdException(idC, "customer");
             }
             IdBL = idC;

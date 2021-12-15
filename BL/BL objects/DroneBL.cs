@@ -14,7 +14,7 @@ namespace IBL.BO
     public class DroneBL
     {
 
-        public DroneBL(int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
+        public DroneBL(int id, string model, WeightCategoriesBL maxW, DroneStatusesBL status, Position p, int stationId)
         {
             Random rnd = new Random();
             setIdBL(id);
@@ -23,7 +23,7 @@ namespace IBL.BO
             CurrentPosition = p;
             BatteryStatus = rnd.Next(20, 41);
             DroneStatus = status;
-            delivery = DalObject.DataSource.MyParcels.ToList().Any(parcel => parcel.DroneId == idBL)?
+            delivery = DalObject.DataSource.MyParcels.ToList().Any(parcel => parcel.DroneId == idBL) ?
                        new ParcelByTransfer(ConvertToBL.ConvertToParcelBL(DalObject.DataSource.MyParcels.ToList().First(parcel => parcel.DroneId == idBL)))
                        : null;
             if (delivery != null) { DroneStatus = DroneStatusesBL.Shipping; }
@@ -32,14 +32,14 @@ namespace IBL.BO
         {
             if (delivery != null)
             {
-                return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus+"%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
+                return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
             }
-            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude,CurrentPosition.Longitude)}";
+            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
         }
         private int idBL;
-        public void setIdBL(int idD) 
+        public void setIdBL(int idD)
         {
-            if (idD <=0) {throw new UnValidIdException(idD, "drone");}
+            if (idD <= 0) { throw new UnValidIdException(idD, "drone"); }
             idBL = idD;
         }
         public int getIdBL() { return idBL; }
