@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,18 @@ namespace PL
     /// </summary>
     public partial class DisplayParcelList : Window
     {
-        public DisplayParcelList()
+        IBL.IBL BLobj;
+        public DisplayParcelList(IBL.IBL bl)
         {
             InitializeComponent();
+            BLobj = bl;
+            parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
+        }
+
+        private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)
+        {
+            IBL.BO.ParcelBL parcel = (sender as ListView).SelectedValue as IBL.BO.ParcelBL;
+            new DisplayParcel(BLobj, parcel).Show();
         }
     }
 }

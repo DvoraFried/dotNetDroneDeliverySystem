@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    class ParcelToList
+    public class ParcelToList
     {
         public ParcelToList(ParcelBL parcel)
         {

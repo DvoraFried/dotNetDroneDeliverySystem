@@ -35,9 +35,9 @@ namespace PL
             new DroneList(Bl).Show();
         }
 
-        /*        private void Button_parcel_Click(object sender, RoutedEventArgs e)
-                {
-                    new ParcelList(Bl).Show();
-                }*/
+        private void parcelList_Click(object sender, RoutedEventArgs e)
+        {
+            new DisplayParcelList(Bl).Show();
+        }
     }
 }
