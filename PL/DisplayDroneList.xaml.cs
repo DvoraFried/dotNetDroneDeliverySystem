@@ -70,7 +70,7 @@ namespace PL
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             IBL.BO.DroneBL drone = (sender as ListView).SelectedValue as IBL.BO.DroneBL;
-            new DisplayDrone(Bl, drone).Show();
+            new DisplayDrone(Bl, drone).ShowDialog();
         }
 
 
