@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL {
+    public partial class BL 
+    {
         public class ConvertToBL
         {
             public static List<DroneBL> ConvertToDroneArrayBL(List<DroneDAL> droneDalArray)

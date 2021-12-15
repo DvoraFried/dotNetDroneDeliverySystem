@@ -40,7 +40,8 @@ namespace PL
 
         private void parcelDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            new DisplayParcel(BLobj).Show();
+            IBL.BO.ParcelToList parcel = (sender as ListView).SelectedValue as IBL.BO.ParcelToList;
+            new DisplayParcel(BLobj, BLobj.convertParcelToListToParcelBl(parcel)).Show();
         }
     }
 }

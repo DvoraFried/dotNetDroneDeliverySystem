@@ -34,15 +34,12 @@ namespace PL
             IDTextBox.IsEnabled = false;
             ModelTextBox.Text = drone.ModelBL;
             light.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.light ? true : false;
-            light.IsEnabled = false;
             medium.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.medium ? true : false;
-            medium.IsEnabled = false;
             heavy.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.heavy ? true : false;
-            heavy.IsEnabled = false;
+            light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
             batteryStatus.Value = drone.BatteryStatus;
             DroneStatusTextBox.Text = drone.DroneStatus.ToString();
-            statioIdLabel.Visibility = Visibility.Hidden;
-            StationIdTextBox.Visibility = Visibility.Hidden;
+            statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
         }
         public DisplayDrone(IBL.IBL bl)
         {

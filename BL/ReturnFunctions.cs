@@ -80,5 +80,10 @@ namespace BL
             }
             return parcelsUpdateList;
         }
+        public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList)
+        {
+            ParcelDAL parcelDAL = DalObj.returnParcel(parcelToList.Id);
+            return new ParcelBL(parcelDAL.SenderId, parcelDAL.TargetId, (int)parcelDAL.Weight, (int)parcelDAL.Priority, parcelDAL.Id, parcelDAL.Requested, parcelDAL.Scheduled, parcelDAL.PickUp, parcelDAL.Delivered);
+        }
     }
 }

@@ -45,29 +45,42 @@
                     <RowDefinition Height="43*"/>
                     <RowDefinition Height="43.262"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="23,0,70,0">SENDER ID:</Label>
-                <TextBox Name="IDSenderTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" Margin="59,-2,0,0"/>
-                <Label Grid.ColumnSpan="2" Margin="23,12,70,54" Grid.RowSpan="2" Grid.Row="1">TARGET ID:</Label>
-                <TextBox Name="TargetIDTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="59,43,0,0" Grid.RowSpan="2"/>
-                <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="23,43,70,43" Grid.RowSpan="3">WEIGHT :</Label>
-                <StackPanel Name="WeightCheckBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,11,35,23" Grid.RowSpan="2" >
+                <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="23,-28,70,28">SENDER ID:</Label>
+                <TextBox Name="IDSenderTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" Margin="59,-26,0,0"/>
+                <Label Grid.ColumnSpan="2" Margin="23,17,70,18" Grid.RowSpan="2">TARGET ID:</Label>
+                <TextBox Name="TargetIDTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="59,18,0,0" Grid.RowSpan="2"/>
+                <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="23,23,70,29" Grid.RowSpan="2">WEIGHT :</Label>
+                <StackPanel Name="WeightCheckBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,23,35,9" Grid.RowSpan="2" >
                     <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
                     <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
                     <RadioButton x:Name="heavy" Content="heavy" Checked="heavy_Checked"/>
                 </StackPanel>
-                <Label Grid.Row="3" Grid.ColumnSpan="2" Margin="23,23,70,2" Grid.RowSpan="2">PRIORITY:</Label>
-                <StackPanel Name="priorityCheckBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,20,35,7" Grid.RowSpan="3" >
+                <Label Grid.Row="2" Grid.ColumnSpan="2" Margin="23,61,70,26" Grid.RowSpan="3">PRIORITY:</Label>
+                <StackPanel Name="priorityCheckBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,61,35,28" Grid.RowSpan="4" >
                     <RadioButton x:Name="usual" Content="usual" IsChecked="True" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="usual_Checked"/>
                     <RadioButton x:Name="rapid" Content="rapid" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="rapid_Checked"/>
                     <RadioButton x:Name="emergency" Content="emergency" Checked="emergency_Checked"/>
                 </StackPanel>
             </Grid>
+            <Grid Name="displayParcel" Visibility="Hidden">
+                <Label Margin="20,263,256,-216">PARCEL IN DRONE:</Label>
+                <TextBox Name="ParcelInDroneTextBox" IsReadOnly="True" Margin="160,261,50,-212"/>
+                <Label Margin="20,299,256,-252">REQUESTED TIME:</Label>
+                <TextBox Name="RequestedTimeTextBox" IsReadOnly="True" Margin="200,298,50,-249"/>
+                <Label Margin="20,332,200,-291">ASSIGN TO A DRONE TIME:</Label>
+                <TextBox Name="AssignToDroneTimeTextBox" IsReadOnly="True" Margin="200,330,50,-282"/>
+                <Label Margin="20,364,272,-324">PICK-UP TIME:</Label>
+                <TextBox Name="PickupTimeTextBox" IsReadOnly="True" Margin="200,364,50,-316"/>
+                <Label Margin="20,395,272,-348">DELIVERED TIME:</Label>
+                <TextBox Name="DeliveredTimeTextBox" IsReadOnly="True" Margin="200,397,50,-346"/>
+            </Grid>
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="19*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="14*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
             <Button Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,270,0,0" Grid.RowSpan="2"/>
