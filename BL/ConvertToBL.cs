@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL
+    public partial class BL 
     {
         public class ConvertToBL
         {
@@ -23,9 +23,7 @@ namespace BL
             }
             public static CustomerBL ConvertToCustomrtBL(CustomerDAL customerDal)
             {
-                List<ParcelBL> ImSender = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDal.Id));
-                List<ParcelBL> ImTarget = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == customerDal.Id));
-                CustomerBL customerBL = new CustomerBL(customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude),ImSender, ImTarget);
+                CustomerBL customerBL = new CustomerBL(customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude));
                 return customerBL;
             }
             public static ParcelBL ConvertToParcelBL(ParcelDAL parcelDal)

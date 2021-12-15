@@ -7,11 +7,11 @@ namespace IBL.BO
 {
     public partial class Exceptions : Exception
     {
-        public class UnValidIdException : Exception
-        {
-            public UnValidIdException(int id, string type) : base(string.Format($"the{id} is not valid to this {type}")) { }
+        public class UnValidIdException: Exception
+       {
+            public UnValidIdException(int id,string type):base(string.Format($"the{id} is not valid to this {type}")){}
         }
-
+        
         public class UnValidLongitudeException : Exception
         {
             public UnValidLongitudeException(double lnd) : base(string.Format($"the longitude {lnd} is not valide")) { }
@@ -19,7 +19,7 @@ namespace IBL.BO
 
         public class UnValidLatitudeException : Exception
         {
-            public UnValidLatitudeException(double ltd) : base(string.Format($"the Latitude {ltd} is not valide")) { }
+            public UnValidLatitudeException(double ltd) :base(string.Format($"the Latitude {ltd} is not valide")) { }
         }
         public class ObjectExistsInListException : Exception
         {
@@ -31,7 +31,7 @@ namespace IBL.BO
         }
         public class DroneIsNotInMaintenanceException : Exception
         {
-            public DroneIsNotInMaintenanceException(int id) : base(string.Format($"the drone {id} is not in maintenance")) { }
+            public DroneIsNotInMaintenanceException(int id):base(string.Format($"the drone {id} is not in maintenance")) { }
         }
         public class NoPlaceToChargeException : Exception
         {
@@ -52,11 +52,11 @@ namespace IBL.BO
         }
         public class NoSuitableParcelException : Exception
         {
-            public NoSuitableParcelException(int droneIdx) : base(string.Format($"There is no Suitable parcel to the the drone {droneIdx} in parcels list")) { }
+            public NoSuitableParcelException(int droneIdx): base(string.Format($"There is no Suitable parcel to the the drone {droneIdx} in parcels list")) { }
         }
         public class ThereIsNotEnoughBatteryException : Exception
         {
-            public ThereIsNotEnoughBatteryException() : base(string.Format("There is not enough battery to reach the destination")) { }
+            public ThereIsNotEnoughBatteryException(): base(string.Format("There is not enough battery to reach the destination")) { }
         }
         public class ThePackageHasNotYetBeenCollectedException : Exception
         {

@@ -10,7 +10,7 @@ namespace DalObject
 {
     public class DalObject : IDAL.IDAL
     {
-        DalObject()
+        DalObject() 
         {
             DataSource.Initialize();
         }
@@ -180,5 +180,5 @@ namespace DalObject
             throw new NotImplementedException();
         }
     }
-
+    
 }

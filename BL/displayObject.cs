@@ -33,18 +33,14 @@ namespace BL
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
             Console.WriteLine("Parcels sent by this customer: ");
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray())
-            {
-                if (parcel.SenderId == idC)
-                {
+            foreach(ParcelDAL parcel in DalObj.returnParcelArray()) {
+                if(parcel.SenderId == idC) {
                     Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC).ToString());
                 }
             }
             Console.WriteLine("Parcels that this customer receives: ");
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray())
-            {
-                if (parcel.TargetId == idC)
-                {
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray()) {
+                if (parcel.TargetId == idC) {
                     Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC).ToString());
                 }
             }
@@ -56,7 +52,7 @@ namespace BL
             ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine(parcel.ToString());
-            if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: " + parcel.DroneIdBL.ToString()); }
+            if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: "+parcel.DroneIdBL.ToString()); }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         public void DisplayStatoinList()
@@ -68,7 +64,7 @@ namespace BL
         }
         public void DisplayDroneList()
         {
-            foreach (DroneBL drone in DronesListBL)
+            foreach(DroneBL drone in DronesListBL)
             {
                 Console.WriteLine(new DroneToList(drone).ToString());
             }

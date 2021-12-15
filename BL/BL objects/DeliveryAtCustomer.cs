@@ -9,18 +9,18 @@ using static IBL.BO.EnumBL;
 namespace IBL.BO
 {
     class DeliveryAtCustomer
-    {
+    { 
         public DeliveryAtCustomer(ParcelBL parcel, int myId)
         {
-            Id = id;
-            Weight = (WeightCategoriesBL)weight;
-            Priority = (PrioritiesBL)priority;
-            Status = Delivered != null ? EnumBL.DeliveryStatus.provided :
-                     PickUp != null ? EnumBL.DeliveryStatus.collected :
-                     Scheduled != null ? EnumBL.DeliveryStatus.associated :
+            Id = parcel.IdBL;
+            Weight = parcel.Weight;
+            Priority = parcel.Priority;
+            Status = parcel.DeliveredBL != null ? EnumBL.DeliveryStatus.provided :
+                     parcel.PickUpBL != null ? EnumBL.DeliveryStatus.collected :
+                     parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
                      EnumBL.DeliveryStatus.created;
-            int secID = myId == senderID ? targetID : senderID;
-            Customer = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == secID)));
+            int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
+            Customer = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSecondCustomer)));
         }
         public override string ToString()
         {
@@ -29,7 +29,7 @@ namespace IBL.BO
         int Id { get; set; }
         WeightCategoriesBL Weight { get; set; }
         PrioritiesBL Priority { get; set; }
-        DeliveryStatus Status { get; set; }
+        DeliveryStatus Status { get; set; }     
         CustomerOnDelivery Customer { get; set; }
     }
 }

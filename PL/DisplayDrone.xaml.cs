@@ -24,7 +24,7 @@ namespace PL
         IBL.IBL Bl;
 
         int maxWeight = 1;
-        public DisplayDrone(IBL.IBL bl, DroneBL drone)
+        public DisplayDrone(IBL.IBL bl,DroneBL drone)
         {
             Bl = bl;
             InitializeComponent();
@@ -55,8 +55,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(IDTextBox.Text) || string.IsNullOrWhiteSpace(ModelTextBox.Text) || string.IsNullOrWhiteSpace(StationIdTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(IDTextBox.Text) || string.IsNullOrWhiteSpace(ModelTextBox.Text) || string.IsNullOrWhiteSpace(StationIdTextBox.Text)){
                 MessageBox.Show("one of the fields is empty");
             }
             else
@@ -69,8 +68,8 @@ namespace PL
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-                /*                new DroneList(Bl).Show();
-                                Close();*/
+/*                new DroneList(Bl).Show();
+                Close();*/
             }
         }
         private void UpdateModelClick(object sender, RoutedEventArgs e)
@@ -112,7 +111,7 @@ namespace PL
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-
+        
         public void CollectionOfAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
             try

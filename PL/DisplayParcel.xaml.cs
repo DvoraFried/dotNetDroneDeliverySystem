@@ -44,7 +44,7 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
-
+            
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
