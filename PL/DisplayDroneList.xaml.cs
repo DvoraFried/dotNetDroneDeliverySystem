@@ -71,6 +71,8 @@ namespace PL
         {
             var senderList = (ListView)sender;
             MessageBox.Show(senderList.SelectedItem.ToString());
+           /* DisplayDrone addDrone = new DisplayDrone(Bl, sender);
+            addDrone.Show();*/
         }
 
         private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
