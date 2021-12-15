@@ -1,5 +1,4 @@
-﻿using IDAL.DO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +9,7 @@ namespace IBL.BO
 {
     public class CustomerBL
     {
-        public CustomerBL(int id, string name, string phone, Position p)
+        public CustomerBL(int id, string name, string phone, Position p, List<ParcelBL> ImSender, List<ParcelBL>ImTarget)
         {
             setIdBL(id);
             NameBL = name;
@@ -18,6 +17,8 @@ namespace IBL.BO
             Position = p;
             ImTheSender = new List<DeliveryAtCustomer>();
             ImtheTarget = new List<DeliveryAtCustomer>();
+            foreach(ParcelBL parcel in ImSender) { ImTheSender.Add(new DeliveryAtCustomer(parcel, id)); }
+            foreach (ParcelBL parcel in ImTarget) { ImtheTarget.Add(new DeliveryAtCustomer(parcel, id)); }
         }
 
         private int IdBL;
@@ -30,7 +31,7 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition - {Position.ToString()}";
+            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition - {Position.ToString()}\nParcels sent by this customer: {ImTheSender.ToString()}\nParcels that this customer receives: {ImtheTarget.ToString()} ";
         }
         public int getIdBL() { return IdBL; }
         public string NameBL { get; set; }

@@ -33,7 +33,8 @@ namespace PL
             customerPhoneTextBox.Text = customer.PhoneBL;
             customerLndTextBox.Text = customer.Position.Longitude.ToString();
             customerLtdTextBox.Text = customer.Position.Latitude.ToString();
-            heSend.Content = customer.
+            heSend.Content = customer.ImTheSender.ToString();
+            heGet.Content = customer.ImtheTarget.ToString();
         }
         public DisplayCustomer(IBL.IBL bl)
         {
@@ -63,6 +64,15 @@ namespace PL
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
-
+        private void ButtonUpdateCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Bl.UpDateCustomerData(Int32.Parse(customerIDTextBox.Text), customerNameTextBox.Text, customerPhoneTextBox.Text);
+            }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
     }
 }

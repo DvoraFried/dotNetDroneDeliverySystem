@@ -60,10 +60,10 @@
                 <Expander Name="heSend" Header="PARCELS YOU SEND:" HorizontalAlignment="Left" Height="89" Margin="98,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="215">
                     <Grid Background="#FFE5E5E5"/>
                 </Expander>
-                <Expander Header="PARCELS SENT TO YOU:" HorizontalAlignment="Left" Height="89" Margin="98,191,0,0" Grid.Row="1" VerticalAlignment="Top" Width="215">
+                <Expander Name="heGet" Header="PARCELS SENT TO YOU:" HorizontalAlignment="Left" Height="89" Margin="98,191,0,0" Grid.Row="1" VerticalAlignment="Top" Width="215">
                     <Grid Background="#FFE5E5E5"/>
                 </Expander>
-                <Button Content="UPDATE" HorizontalAlignment="Left" Margin="99,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="214" Height="38" Grid.RowSpan="2"/>
+                <Button Name="updateCustomer" Content="UPDATE" Click="ButtonUpdateCustomer_Click" HorizontalAlignment="Left" Margin="99,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="214" Height="38" Grid.RowSpan="2"/>
             </Grid>
         </Grid>
     </Grid>
