@@ -24,9 +24,12 @@ namespace PL
         IBL.IBL Bl;
 
         int maxWeight = 1;
-        public DisplayDrone(IBL.IBL bl,DroneBL drone)
+
+        DroneList parentW;
+        public DisplayDrone(IBL.IBL bl,DroneBL drone,DroneList prevW )
         {
             Bl = bl;
+            parentW = prevW;
             InitializeComponent();
             ADD_BUTTON.Visibility = Visibility.Hidden;
             UPDATE_MENU.Visibility = Visibility.Visible;
@@ -44,9 +47,10 @@ namespace PL
             statioIdLabel.Visibility = Visibility.Hidden;
             StationIdTextBox.Visibility = Visibility.Hidden;
         }
-        public DisplayDrone(IBL.IBL bl)
+        public DisplayDrone(IBL.IBL bl, DroneList prevW)
         {
             Bl = bl;
+            parentW = prevW;
             InitializeComponent();
         }
 
@@ -72,6 +76,7 @@ namespace PL
                 catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
+            parentW.dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(-1,-1);
         }
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {

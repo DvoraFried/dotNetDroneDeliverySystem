@@ -32,7 +32,7 @@
             </Button>
 
         </Grid>
-        <ListView MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Grid.Row="1">
+        <ListView ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
