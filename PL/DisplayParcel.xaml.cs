@@ -27,18 +27,11 @@ namespace PL
         public DisplayParcel(IBL.IBL bl, ParcelBL parcel)
         {
             InitializeComponent();
-            ADD_BUTTON.Visibility = Visibility.Hidden;
+            ADD_BUTTON.Visibility = PRIORITYlabel.Visibility = priorityCheckBox.Visibility = WeightCheckBox.Visibility = Visibility.Hidden;
             displayParcel.Visibility = Visibility.Visible;
-            priorityCheckBox.IsEnabled = WeightCheckBox.IsEnabled = false;
             IDSenderTextBox.Text = parcel.Sender.Id.ToString();
             TargetIDTextBox.Text = parcel.Target.Id.ToString();
             IDSenderTextBox.IsEnabled = TargetIDTextBox.IsEnabled = false;
-            light.IsChecked = parcel.Weight == EnumBL.WeightCategoriesBL.light ? true : false;
-            medium.IsChecked = parcel.Weight == EnumBL.WeightCategoriesBL.medium ? true : false;
-            heavy.IsChecked = parcel.Weight == EnumBL.WeightCategoriesBL.heavy ? true : false;
-            usual.IsChecked = parcel.Priority == EnumBL.PrioritiesBL.usual ? true : false;
-            rapid.IsChecked = parcel.Priority == EnumBL.PrioritiesBL.rapid ? true : false;
-            heavy.IsChecked = parcel.Priority == EnumBL.PrioritiesBL.emergency ? true : false;
             ParcelInDroneTextBox.Text = parcel.DroneIdBL != null ? parcel.DroneIdBL.ToString() : "non drone assign yet";
             RequestedTimeTextBox.Text = parcel.RequestedBL.ToString();
             AssignToDroneTimeTextBox.Text = parcel.ScheduledBL != null ? parcel.ScheduledBL.ToString() : "deos not assign yet";

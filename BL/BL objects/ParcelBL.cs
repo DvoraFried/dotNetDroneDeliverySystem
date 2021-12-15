@@ -20,7 +20,8 @@ namespace IBL.BO
             PickUpBL = pickUp;
             DeliveredBL = delivered;
             RequestedBL = requested == null? DateTime.Now : requested;
-            DroneIdBL = null;
+            int droneId = id != -1 ? DalObject.DataSource.MyParcels.First(parcel => parcel.Id == id).DroneId : id;
+            DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
             Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSender)));
             Target = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idTarget)));
         }
