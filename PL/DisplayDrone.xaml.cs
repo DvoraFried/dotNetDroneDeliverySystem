@@ -76,8 +76,7 @@ namespace PL
         }
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
-            if (ModelTextBox.Text == IDTextBox.Text) { MessageBox.Show("No value updated"); }
-            else { Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text); }
+            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text); 
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
