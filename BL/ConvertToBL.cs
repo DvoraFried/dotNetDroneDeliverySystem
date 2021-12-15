@@ -39,7 +39,6 @@ namespace BL
                 }
                 return parcelsBl;
             }
-
             public static StationBL ConvertToStationBL(StationDAL stationDAL)
             {
                 StationBL stationBL = new StationBL(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);

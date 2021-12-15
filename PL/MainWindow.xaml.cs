@@ -30,8 +30,12 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DroneList droneList = new DroneList(Bl);
-            droneList.Show();
+            new DroneList(Bl).Show();
         }
+
+/*        private void Button_parcel_Click(object sender, RoutedEventArgs e)
+        {
+            new ParcelList(Bl).Show();
+        }*/
     }
 }

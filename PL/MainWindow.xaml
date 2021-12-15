@@ -9,5 +9,7 @@
     <Grid>
         <Button Content =" drones list" Background="AliceBlue"
 				Click="Button_Click" Margin="322,178,322,178"/>
+        <!---<Button Content =" parcel list" Background="AliceBlue"
+				Click="Button_parcel_Click" Margin="188,178,456,178"/> -->
     </Grid>
 </Window>
