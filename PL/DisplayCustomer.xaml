@@ -46,6 +46,25 @@
                     <RowDefinition Height="43.262"/>
                 </Grid.RowDefinitions>
             </Grid>
+            <Label Content="ID:" HorizontalAlignment="Left" Margin="99,8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="39"/>
+            <TextBox Name="customerIDTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="159,12,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged"/>
+            <Label Content="NAME:" HorizontalAlignment="Left" Margin="99,34,0,0" Grid.Row="1" VerticalAlignment="Top" Width="52"/>
+            <TextBox Name="customerNameTextBox" HorizontalAlignment="Left" Margin="159,38,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged"/>
+            <Label Content="PHONE:" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="99,60,0,0" Grid.Row="1" VerticalAlignment="Top" Width="52"/>
+            <TextBox Name="customerPhoneTextBox" HorizontalAlignment="Left" Margin="159,64,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" TextChanged="TextBox_TextChanged"/>
+            <Label Content="POSITION:" HorizontalAlignment="Left" Margin="98,86,0,0" Grid.Row="1" VerticalAlignment="Top" Width="69"/>
+            <TextBox Name="customerLndTextBox" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox" Text="longitude" Margin="159,113,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" TextChanged="TextBox_TextChanged"/>
+            <TextBox Name="customerLtdTextBox" HorizontalAlignment="Left" PreviewTextInput="NumberValidationTextBox" Text="latitude" Margin="240,113,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" TextChanged="TextBox_TextChanged"/>
+            <Button Name="addCustomer" Content="ADD CUSTOMER" Click="ButtonAddCustomer_Click" HorizontalAlignment="Left" Margin="159,218,0,0" Grid.Row="1" VerticalAlignment="Top" Width="154" Height="32"/>
+            <Grid Name="toHide" Visibility="Hidden" Grid.RowSpan="3">
+                <Expander Name="heSend" Header="PARCELS YOU SEND:" HorizontalAlignment="Left" Height="89" Margin="98,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="215">
+                    <Grid Background="#FFE5E5E5"/>
+                </Expander>
+                <Expander Header="PARCELS SENT TO YOU:" HorizontalAlignment="Left" Height="89" Margin="98,191,0,0" Grid.Row="1" VerticalAlignment="Top" Width="215">
+                    <Grid Background="#FFE5E5E5"/>
+                </Expander>
+                <Button Content="UPDATE" HorizontalAlignment="Left" Margin="99,280,0,0" Grid.Row="1" VerticalAlignment="Top" Width="214" Height="38" Grid.RowSpan="2"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

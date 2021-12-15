@@ -8,7 +8,7 @@ using static IBL.BO.EnumBL;
 
 namespace IBL.BO
 {
-    class DeliveryAtCustomer
+    public class DeliveryAtCustomer
     { 
         public DeliveryAtCustomer(ParcelBL parcel, int myId)
         {

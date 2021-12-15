@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IDAL.DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace IBL.BO
             NameBL = name;
             PhoneBL = phone;
             Position = p;
+            ImTheSender = new List<DeliveryAtCustomer>();
+            ImtheTarget = new List<DeliveryAtCustomer>();
         }
 
         private int IdBL;
@@ -33,5 +36,8 @@ namespace IBL.BO
         public string NameBL { get; set; }
         public string PhoneBL { get; set; }
         public Position Position { get; set; }
+        public List<DeliveryAtCustomer> ImTheSender { get; set; }
+        public List<DeliveryAtCustomer> ImtheTarget { get; set; }
+
     }
 }

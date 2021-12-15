@@ -22,26 +22,32 @@ namespace PL
     public partial class DisplayCustomer : Window
     {
         IBL.IBL Bl;
-        int weight = 0;
-        int priority = 0;
         public DisplayCustomer(IBL.IBL bl, CustomerBL customer)
         {
             InitializeComponent();
+            addCustomer.Visibility = Visibility.Hidden;
+            toHide.Visibility = Visibility.Visible;
+            customerIDTextBox.IsEnabled = customerLndTextBox.IsEnabled = customerLtdTextBox.IsEnabled = false;
+            customerIDTextBox.Text = customer.getIdBL().ToString();
+            customerNameTextBox.Text = customer.NameBL;
+            customerPhoneTextBox.Text = customer.PhoneBL;
+            customerLndTextBox.Text = customer.Position.Longitude.ToString();
+            customerLtdTextBox.Text = customer.Position.Latitude.ToString();
+            heSend.Content = customer.
         }
         public DisplayCustomer(IBL.IBL bl)
         {
             Bl = bl;
             InitializeComponent();
-
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(IDSenderTextBox.Text) || string.IsNullOrWhiteSpace(TargetIDTextBox.Text))
+            if (string.IsNullOrWhiteSpace(customerIDTextBox.Text) || string.IsNullOrWhiteSpace(customerNameTextBox.Text) || string.IsNullOrWhiteSpace(customerPhoneTextBox.Text) || string.IsNullOrWhiteSpace(customerLndTextBox.Text) || string.IsNullOrWhiteSpace(customerLtdTextBox.Text))
             {
                 MessageBox.Show("one of the fields is empty");
             }
@@ -49,7 +55,7 @@ namespace PL
             {
                 try
                 {
-                    Bl.AddParcel(Int32.Parse(IDSenderTextBox.Text), Int32.Parse(TargetIDTextBox.Text), (EnumBL.WeightCategoriesBL)weight, (EnumBL.PrioritiesBL)priority);
+                    Bl.AddCustomer(Int32.Parse(customerIDTextBox.Text), customerNameTextBox.Text, customerPhoneTextBox.Text, double.Parse(customerLndTextBox.Text), double.Parse(customerLtdTextBox.Text));
                     this.Close();
                 }
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -57,5 +63,6 @@ namespace PL
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
+
     }
 }
