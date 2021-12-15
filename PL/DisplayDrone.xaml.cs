@@ -74,28 +74,28 @@ namespace PL
                 Bl.AddDrone(Int32.Parse(IDTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
             }
         }
-        private void UpdateModelClick()
+        private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
             if (ModelTextBox.Text == IDTextBox.Text) { MessageBox.Show("No value updated"); }
             else { Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text); }
         }
-        private void SendDroneToCharge()
+        private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
             Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
         }
-        private void ReleaseDroneFromChargingClick()
+        private void ReleaseDroneFromChargingClick(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Enter Time In Charging:");
         }
-        public void AssigningPackageToDroneClick()
+        public void AssigningPackageToDroneClick(object sender, RoutedEventArgs e)
         {
             Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
         }
-        public void CollectionOfAParcelByDroneClick()
+        public void CollectionOfAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
             Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
         }
-        public void DeliveryAParcelByDroneClick()
+        public void DeliveryAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
             Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
 
@@ -113,21 +113,6 @@ namespace PL
         private void heavy_Checked(object sender, RoutedEventArgs e)
         {
             maxWeight = 2;
-        }
-
-        private void StationIdTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ModelTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void AssigningPackageToDrone(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
