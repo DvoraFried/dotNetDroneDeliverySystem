@@ -30,7 +30,7 @@ namespace PL
         {
             new DisplayCustomer(BLobj).Show();
         }
-        private void listView_MouseDoubleClick(object sender, SelectionChangedEventArgs e)
+        private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
             new DisplayCustomer(BLobj, BLobj.convertCustomerToListToCusromerBl(customer)).Show();
@@ -40,7 +40,5 @@ namespace PL
             IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
             new DisplayCustomer(BLobj, BLobj.convertCustomerToListToCusromerBl(customer)).Show();
         }
-
-
     }
 }
