@@ -68,8 +68,6 @@ namespace PL
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-/*                new DroneList(Bl).Show();
-                Close();*/
             }
         }
         private void UpdateModelClick(object sender, RoutedEventArgs e)
