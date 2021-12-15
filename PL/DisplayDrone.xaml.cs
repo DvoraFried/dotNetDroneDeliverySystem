@@ -80,7 +80,13 @@ namespace PL
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
-            Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
+            try
+            {
+                Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
+            }
+            catch (FormatException) { MessageBox.Show("~ data reciving error~"); }
+            catch (OverflowException) { MessageBox.Show("~ data reciving error~"); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         private void ReleaseDroneFromChargingClick(object sender, RoutedEventArgs e)
         {
@@ -88,16 +94,35 @@ namespace PL
         }
         public void AssigningPackageToDroneClick(object sender, RoutedEventArgs e)
         {
-            Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
+            try
+            {
+                Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
+            }
+            catch (FormatException) { MessageBox.Show("~ data reciving error~"); }
+            catch (OverflowException) { MessageBox.Show("~ data reciving error~"); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+        
         public void CollectionOfAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
-            Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+            try
+            {
+                Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+            }
+            catch (FormatException) { MessageBox.Show("~ data reciving error~"); }
+            catch (OverflowException) { MessageBox.Show("~ data reciving error~"); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
         }
         public void DeliveryAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
-            Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
-
+            try
+            {
+                Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+            }
+            catch (FormatException) { MessageBox.Show("~ data reciving error~"); }
+            catch (OverflowException) { MessageBox.Show("~ data reciving error~"); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         private void light_Checked(object sender, RoutedEventArgs e)
         {
