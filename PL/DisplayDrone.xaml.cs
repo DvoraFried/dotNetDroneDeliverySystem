@@ -56,14 +56,6 @@ namespace PL
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void NumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (0==0)
-            {
-                IDTextBox.Foreground = Brushes.Red;
-            }
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(IDTextBox.Text) || string.IsNullOrWhiteSpace(ModelTextBox.Text) || string.IsNullOrWhiteSpace(StationIdTextBox.Text)){
@@ -73,16 +65,19 @@ namespace PL
             {
                 Bl.AddDrone(Int32.Parse(IDTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
             }
+            this.Close();
         }
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
-            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text); 
+            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
+            this.Close();
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
             try
             {
                 Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
+                this.Close();
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -90,13 +85,22 @@ namespace PL
         }
         private void ReleaseDroneFromChargingClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Enter Time In Charging:");
+            try
+            {
+                double hour = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("enter time in charge"));
+                Bl.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text), hour);
+                this.Close();
+            }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         public void AssigningPackageToDroneClick(object sender, RoutedEventArgs e)
         {
             try
             {
                 Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
+                this.Close();
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -108,6 +112,7 @@ namespace PL
             try
             {
                 Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+                this.Close();
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -119,6 +124,7 @@ namespace PL
             try
             {
                 Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+                this.Close();
             }
             catch (FormatException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }

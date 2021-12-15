@@ -76,7 +76,7 @@ namespace PL
 
         private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
         {
-                new DisplayDrone(Bl).Show();
+            new DisplayDrone(Bl).Show();
         }
 
     }
