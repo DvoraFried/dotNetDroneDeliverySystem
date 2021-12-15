@@ -23,8 +23,8 @@ namespace BL
             }
             public static CustomerBL ConvertToCustomrtBL(CustomerDAL customerDal)
             {
-                List<ParcelDAL> ImSender = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDal.Id);
-                List<ParcelDAL> ImTarget = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == customerDal.Id);
+                List<ParcelBL> ImSender = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDal.Id));
+                List<ParcelBL> ImTarget = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == customerDal.Id));
                 CustomerBL customerBL = new CustomerBL(customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude),ImSender, ImTarget);
                 return customerBL;
             }

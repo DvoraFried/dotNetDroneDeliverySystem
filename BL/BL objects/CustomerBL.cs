@@ -10,7 +10,7 @@ namespace IBL.BO
 {
     public class CustomerBL
     {
-        public CustomerBL(int id, string name, string phone, Position p, List<ParcelDAL> ImSender, List<ParcelDAL> ImTarget)
+        public CustomerBL(int id, string name, string phone, Position p, List<ParcelBL> ImSender, List<ParcelBL>ImTarget)
         {
             setIdBL(id);
             NameBL = name;
@@ -18,8 +18,8 @@ namespace IBL.BO
             Position = p;
             ImTheSender = new List<DeliveryAtCustomer>();
             ImtheTarget = new List<DeliveryAtCustomer>();
-            foreach(ParcelDAL parcel in ImSender) { ImTheSender.Add(new DeliveryAtCustomer(parcel.Id, (int)parcel.Weight, (int)parcel.Priority,id, parcel.SenderId, parcel.TargetId, parcel.Scheduled, parcel.PickUp, parcel.Delivered)); }
-            foreach (ParcelDAL parcel in ImTarget) { ImtheTarget.Add(new DeliveryAtCustomer(parcel.Id,(int)parcel.Weight, (int)parcel.Priority, id, parcel.SenderId, parcel.TargetId, parcel.Scheduled, parcel.PickUp, parcel.Delivered)); }
+            foreach(ParcelBL parcel in ImSender) { ImTheSender.Add(new DeliveryAtCustomer(parcel, id)); }
+            foreach (ParcelBL parcel in ImTarget) { ImtheTarget.Add(new DeliveryAtCustomer(parcel, id)); }
         }
 
         private int IdBL;

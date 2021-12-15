@@ -97,8 +97,8 @@ namespace BL
         public CustomerBL convertCustomerToListToCusromerBl(CustomerToList customerToList)
         {
             CustomerDAL customerDAL = DalObj.returnCustomer(customerToList.Id);
-            List<ParcelDAL> ImSender = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDAL.Id);
-            List<ParcelDAL> ImTarget = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDAL.Id);
+            List<ParcelBL> ImSender = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDAL.Id));
+            List<ParcelBL> ImTarget = ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == customerDAL.Id));
             return new CustomerBL(customerDAL.Id, customerDAL.Name, customerDAL.Phone, new Position(customerDAL.Longitude, customerDAL.Latitude), ImSender, ImTarget);
         }
     }

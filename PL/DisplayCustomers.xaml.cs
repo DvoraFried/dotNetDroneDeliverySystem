@@ -24,7 +24,7 @@ namespace PL
         {
             InitializeComponent();
             BLobj = bl;
-            customerDisplay.ItemsSource = BLobj.ReturnCustomerToList();
+            customerDisplay.ItemsSource = BLobj.ReturnParcelList();
         }
         private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
         {
