@@ -71,7 +71,14 @@ namespace BL
             }
             return droneUpdateList;
         }
-        
-
-     }
+        public List<ParcelToList> ReturnParcelList()
+        {
+            List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
+            foreach( ParcelDAL parcel in DalObj.returnParcelArray().ToList())
+            {
+                parcelsUpdateList.Add(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)));
+            }
+            return parcelsUpdateList;
+        }
+    }
 }
