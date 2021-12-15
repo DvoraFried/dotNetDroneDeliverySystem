@@ -12,7 +12,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
-        <Grid Grid.Column="1" Name="FormGrid" Background="#FF688B87" Grid.ColumnSpan="2" Margin="0,0,147,0">
+        <Grid Grid.Column="1" Name="FormGrid" Background="#FF688B87">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="200*"/>
@@ -45,18 +45,18 @@
                     <RowDefinition Height="43*"/>
                     <RowDefinition Height="43.262"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0">DRONE ID:</Label>
-                <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text=""/>
-                <Label Grid.Row="1">DRONE MODEL:</Label>
-                <TextBox Name="ModelTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
-                <Label Grid.Row="2">MAXWEIGHT :</Label>
-                <StackPanel Name="MaxWeightCheckBox" Grid.Row="2" Grid.Column="1" >
+                <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="23,0,70,0">DRONE ID:</Label>
+                <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" Margin="59,-2,0,0"/>
+                <Label Grid.ColumnSpan="2" Margin="23,43,70,0" Grid.RowSpan="2">DRONE MODEL:</Label>
+                <TextBox Name="ModelTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="59,43,0,0" Grid.RowSpan="2"/>
+                <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="23,43,70,43" Grid.RowSpan="3">MAXWEIGHT :</Label>
+                <StackPanel Name="MaxWeightCheckBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,41,35,3" Grid.RowSpan="2" >
                     <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
                     <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
-                    <RadioButton x:Name="heavy" Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="heavy_Checked"/>
+                    <RadioButton x:Name="heavy" Content="heavy" Checked="heavy_Checked"/>
                 </StackPanel>
-                <Label Name="statioIdLabel" Grid.Row="3">STATION ID:</Label>
-                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2"/>
+                <Label Name="statioIdLabel" Grid.Row="2" Grid.ColumnSpan="2" Margin="23,86,70,2" Grid.RowSpan="2">STATION ID:</Label>
+                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="59,85,0,0" Grid.RowSpan="2"/>
             </Grid>
             <Grid Name="UPDATE_MENU" Visibility="Hidden" Margin="-172,10,-138,10" Grid.RowSpan="3">
                 <Label Name="DroneStatusLabel" Margin="176,250,362,283">DRONE STATUS:</Label>
