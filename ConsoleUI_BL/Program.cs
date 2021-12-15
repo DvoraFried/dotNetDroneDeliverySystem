@@ -64,7 +64,7 @@ namespace ConsoleUI_BL
             {
                 Console.WriteLine("~ data reciving error~");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -111,7 +111,7 @@ namespace ConsoleUI_BL
                 int latitude = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter a Longitude: ");
                 int longitude = Convert.ToInt32(Console.ReadLine());
-                bl.AddCustomer(id, name, phone, longitude,latitude);
+                bl.AddCustomer(id, name, phone, longitude, latitude);
             }
             catch (FormatException)
             {
@@ -195,7 +195,7 @@ namespace ConsoleUI_BL
                 Console.WriteLine("Enter drone's id: ");
                 int droneID = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter new model: ");
-                string model =Console.ReadLine();
+                string model = Console.ReadLine();
                 bl.UpDateDroneName(droneID, model);
             }
             catch (FormatException)

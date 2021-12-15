@@ -9,7 +9,7 @@ using static IBL.BO.EnumBL;
 namespace IBL.BO
 {
     class DeliveryAtCustomer
-    { 
+    {
         public DeliveryAtCustomer(ParcelBL parcel, int myId)
         {
             Id = parcel.IdBL;
@@ -29,7 +29,7 @@ namespace IBL.BO
         int Id { get; set; }
         WeightCategoriesBL Weight { get; set; }
         PrioritiesBL Priority { get; set; }
-        DeliveryStatus Status { get; set; }     
+        DeliveryStatus Status { get; set; }
         CustomerOnDelivery Customer { get; set; }
     }
 }

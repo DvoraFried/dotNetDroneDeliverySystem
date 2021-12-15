@@ -18,7 +18,8 @@ namespace IBL.BO
             DronesInCharging = new List<DroneInChargeBL>();
             foreach (DroneBL drone in drones)
             {
-                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == EnumBL.DroneStatusesBL.maintenance) {
+                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == EnumBL.DroneStatusesBL.maintenance)
+                {
                     DronesInCharging.Add(new DroneInChargeBL(drone));
                 }
             }
