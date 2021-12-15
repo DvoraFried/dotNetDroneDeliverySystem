@@ -20,8 +20,30 @@ VerticalAlignment="Stretch" Width="auto">
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
-                <Button x:Name="droneList" Content="DRONES" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Click="droneList_Click"/>
-                <Button x:Name="stationList" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="1"/>
+                <Button x:Name="droneList" Content="DRONES" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Click="droneList_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#FFA2BDB8"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFA0DCD2"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                   </Button>
+                    <Button x:Name="stationList" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="1">
+
+                </Button>
                 <Button x:Name="customerList" Content="CUSTOMERS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="2"/>
                 <Button x:Name="parcelList" Content="PARCELS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="3" Click="parcelList_Click"/>
             </Grid>
