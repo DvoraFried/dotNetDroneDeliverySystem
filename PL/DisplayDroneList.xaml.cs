@@ -69,17 +69,17 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            DroneList parentW=this;
             IBL.BO.DroneBL drone = (sender as ListView).SelectedValue as IBL.BO.DroneBL;
-            new DisplayDrone(Bl, drone, parentW).Show();
+            new DisplayDrone(Bl, drone).Show();
+            this.Close();
         }
 
 
         private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
         {
-            DroneList parentW = this;
-            DisplayDrone addDrone = new DisplayDrone(Bl, parentW);
+            DisplayDrone addDrone = new DisplayDrone(Bl);
             addDrone.Show();
+            this.Close();
         }
     }
 }
