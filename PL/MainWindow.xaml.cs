@@ -19,6 +19,8 @@ namespace PL
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /*<Button Content =" drones list" Background="AliceBlue"
+				Click="Button_Click" Margin="322,178,322,178"/>*/
     public partial class MainWindow : Window
     {
         IBL.IBL Bl;

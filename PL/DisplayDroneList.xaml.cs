@@ -71,7 +71,6 @@ namespace PL
         {
             IBL.BO.DroneBL drone = (sender as ListView).SelectedValue as IBL.BO.DroneBL;
             new DisplayDrone(Bl, drone).Show();
-            this.Close();
         }
 
 
@@ -79,7 +78,6 @@ namespace PL
         {
             DisplayDrone addDrone = new DisplayDrone(Bl);
             addDrone.Show();
-            this.Close();
         }
     }
 }

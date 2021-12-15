@@ -13,6 +13,7 @@ namespace IBL.BO
 {
     public class DroneBL
     {
+
         public DroneBL(int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
         {
             Random rnd = new Random();
@@ -31,9 +32,9 @@ namespace IBL.BO
         {
             if (delivery != null)
             {
-                return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition {CurrentPosition.ToString()}";
+                return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus+"%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
             }
-            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {CurrentPosition.ToString()}";
+            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude,CurrentPosition.Longitude)}";
         }
         private int idBL;
         public void setIdBL(int idD) 

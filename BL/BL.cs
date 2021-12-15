@@ -119,5 +119,33 @@ namespace BL
             }
             return stationPos;
         }
+        public static String getFormattedLocationInDegree(double latitude, double longitude)
+        {
+            try
+            {
+                int latSeconds = (int)Math.Round(latitude * 3600);
+                int latDegrees = latSeconds / 3600;
+                latSeconds = Math.Abs(latSeconds % 3600);
+                int latMinutes = latSeconds / 60;
+                latSeconds %= 60;
+
+                int longSeconds = (int)Math.Round(longitude * 3600);
+                int longDegrees = longSeconds / 3600;
+                longSeconds = Math.Abs(longSeconds % 3600);
+                int longMinutes = longSeconds / 60;
+                longSeconds %= 60;
+                String latDegree = latDegrees >= 0 ? "N" : "S";
+                String lonDegrees = longDegrees >= 0 ? "E" : "W";
+
+                return Math.Abs(latDegrees) + "°" + latMinutes + "'" + latSeconds
+                        + "\"" + latDegree + " " + Math.Abs(longDegrees) + "°" + longMinutes
+                        + "'" + longSeconds + "\"" + lonDegrees;
+            }
+            catch (Exception e)
+            {
+                return "" + String.Format("%8.5f", latitude) + "  "
+                        + String.Format("%8.5f", longitude);
+            }
+        }
     }
 }
