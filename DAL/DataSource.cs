@@ -33,7 +33,7 @@ namespace DalObject
                 StationDAL stationDAL = new StationDAL() { Id = i, Name = "station" + i.ToString(), EmptyChargeSlots = rnd.Next(5, 15), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), DronesInCharging = 0 };
                 MyBaseStations.Add(stationDAL);
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; i < 9; i++)
             {
                 DroneDAL droneDAL = new DroneDAL() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100) };
                 int num = rnd.Next(0, 3);
@@ -49,7 +49,7 @@ namespace DalObject
                 MyDrones.Add(droneDAL);
             }
 
-            for (int i = 0; i < 13; i++)
+            for (int i = 0; i < 12; i++)
             {
                 CustomerDAL customerDAL = new CustomerDAL() { Id = rnd.Next(100000000, 1000000000), Name = "customer " + i.ToString(), Phone = rnd.Next(5830000, 60000000).ToString(), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180) };
                 MyCustomers.Add(customerDAL);

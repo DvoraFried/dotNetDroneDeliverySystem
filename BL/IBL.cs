@@ -32,7 +32,9 @@ namespace IBL
         public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone();
         public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
         public List<ParcelToList> ReturnParcelList();
+        public List<CustomerToList> ReturnCustomerToList();
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList);
+        public CustomerBL convertCustomerToListToCusromerBl(CustomerToList customerToList);
 
     }
 }
