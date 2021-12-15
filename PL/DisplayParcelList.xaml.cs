@@ -30,8 +30,17 @@ namespace PL
 
         private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)
         {
+            new DisplayParcel(BLobj).Show();
+        }
+        private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
             IBL.BO.ParcelBL parcel = (sender as ListView).SelectedValue as IBL.BO.ParcelBL;
             new DisplayParcel(BLobj, parcel).Show();
+        }
+
+        private void parcelDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            new DisplayParcel(BLobj).Show();
         }
     }
 }
