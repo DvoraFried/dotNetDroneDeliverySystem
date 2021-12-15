@@ -30,15 +30,17 @@ namespace PL
         {
             new DisplayCustomer(BLobj).Show();
         }
-        private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listView_MouseDoubleClick(object sender, SelectionChangedEventArgs e)
         {
-            IBL.BO.CustomerBL customer = (sender as ListView).SelectedValue as IBL.BO.CustomerBL;
-            new DisplayCustomer(BLobj, customer).Show();
+            IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
+            new DisplayCustomer(BLobj, BLobj.convertCustomerToListToCusromerBl(customer)).Show();
         }
         private void parcelDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
             new DisplayCustomer(BLobj, BLobj.convertCustomerToListToCusromerBl(customer)).Show();
         }
+
+
     }
 }
