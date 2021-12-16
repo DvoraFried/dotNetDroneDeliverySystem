@@ -6,6 +6,30 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+        <Window.Resources>
+        <Style x:Key="myButtonStyle"
+                TargetType="Button">
+            <Setter Property="Background" Value="#FFA2BDB8"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="180"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFA0DCD2"/>
+                    <Setter Property="Height" Value="70"/>
+                    <Setter Property="Width" Value="190"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        </Window.Resources>
     <Grid>
         <Grid Name="MainGrid">
             <Grid.RowDefinitions>
@@ -20,32 +44,12 @@ VerticalAlignment="Stretch" Width="auto">
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
-                <Button x:Name="droneList" Content="DRONES" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Click="droneList_Click">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="#FFA2BDB8"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#FFA0DCD2"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                   </Button>
-                    <Button x:Name="stationList" Click="stationList_Click" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="1">
-
+                <Button Style="{StaticResource myButtonStyle}"  x:Name="droneList" Content="DRONES" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="droneList_Click">
                 </Button>
-                <Button x:Name="customerList" Content="CUSTOMERS" Click="customerList_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="2"/>
-                <Button x:Name="parcelList" Content="PARCELS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="3" Click="parcelList_Click"/>
+                <Button Style="{StaticResource myButtonStyle}"  x:Name="stationList" Click="stationList_Click" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1">
+                </Button>
+                <Button Style="{StaticResource myButtonStyle}"  x:Name="customerList" Content="CUSTOMERS" Click="customerList_Click" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2"/>
+                <Button Style="{StaticResource myButtonStyle}"  x:Name="parcelList" Content="PARCELS" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Click="parcelList_Click"/>
             </Grid>
         </Grid>
 

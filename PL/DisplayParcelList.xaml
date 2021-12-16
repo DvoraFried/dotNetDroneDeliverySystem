@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DisplayParcelList" Height="450" Width="800">
-       <Grid Name="MainGrid">
+    <Grid Name="MainGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50*"/>
                     <RowDefinition Height="400*"/>
