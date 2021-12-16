@@ -8,7 +8,7 @@
         Title="DroneList" Height="640" Width="800">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="70*"/>
             <RowDefinition Height="400*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
@@ -19,9 +19,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox SelectionChanged="comboBoxOByStatus_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140"/>
-            <ComboBox SelectionChanged="comboBoxOByMaxW_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="140" Grid.Column="1"/>
-            <Button Click="buttonClearFilter_Click" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" Width="40" RenderTransformOrigin="0.432,-0.059" Margin="30,0,0,0">
+            <Label Content="  STATUS:" Grid.Column="0" FontWeight="Bold" ></Label>
+            <ComboBox SelectionChanged="comboBoxOByStatus_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Center" Height="37" VerticalAlignment="Center" Width="180"/>
+            <Label Content="  MAX WEIGHT:" Grid.Column="1" FontWeight="Bold"></Label>
+            <ComboBox SelectionChanged="comboBoxOByMaxW_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Center" Height="37" VerticalAlignment="Center" Width="180" Grid.Column="1"/>
+            <Button Click="buttonClearFilter_Click" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="37" VerticalAlignment="Center" Width="44" RenderTransformOrigin="0.432,-0.059" Margin="24,0,0,0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
