@@ -17,13 +17,13 @@ namespace BL
                 List<DroneBL> droneArrayBl = new List<DroneBL>();
                 foreach (DroneDAL drone in droneDalArray)
                 {
-                    droneArrayBl.Add(new DroneBL(drone.Id, drone.Model, (EnumBL.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0));
+                    droneArrayBl.Add(new DroneBL(DalObj,drone.Id, drone.Model, (EnumBL.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0));
                 };
                 return droneArrayBl;
             }
             public static CustomerBL ConvertToCustomrtBL(CustomerDAL customerDal)
             {
-                CustomerBL customerBL = new CustomerBL(customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
+                CustomerBL customerBL = new CustomerBL(DalObj,customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
                 return customerBL;
             }
             public static ParcelBL ConvertToParcelBL(ParcelDAL parcelDal)

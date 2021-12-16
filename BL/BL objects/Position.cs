@@ -13,7 +13,7 @@ namespace IBL.BO
         {
             if (lnd > 24 || lnd < 0) { throw new UnValidLongitudeException(lnd); }
             Longitude = lnd;
-            if (ltd > 180 || ltd < 0) { throw new UnValidLongitudeException(lnd); }
+            if (ltd > 180 || ltd < 0) { throw new UnValidLongitudeException(ltd); }
             Latitude = ltd;
         }
         public override string ToString()

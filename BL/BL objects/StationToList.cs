@@ -12,7 +12,7 @@ namespace IBL.BO
         {
             Id = station.GetIdBL();
             Name = station.NameBL;
-            ChargingStationsAreOccupied = station.DronesInCharging == null ? 0 : station.DronesInCharging.Count;
+            ChargingStationsAreOccupied = station.DronesInCharging.Count;
             AvailableChargingStations = station.ChargeSlotsBL - ChargingStationsAreOccupied;
         }
         public override string ToString()

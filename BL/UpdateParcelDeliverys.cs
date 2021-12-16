@@ -65,7 +65,7 @@ namespace BL
             drone.DroneStatus = DroneStatusesBL.Shipping;
             theclosetParcel.ScheduledBL = DateTime.Now;
             theclosetParcel.DroneIdBL = new DroneInParcel(drone);
-            drone.delivery = new ParcelByTransfer(theclosetParcel);
+            drone.delivery = new ParcelByTransfer(DalObj, theclosetParcel);
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(theclosetParcel));
             DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
@@ -81,7 +81,7 @@ namespace BL
             parcel.PickUpBL = DateTime.Now;
             drone.BatteryStatus = updateButteryStatus(drone, senderPosition,(int)parcel.Weight);
             drone.CurrentPosition = senderPosition;
-            drone.delivery = new ParcelByTransfer(parcel);
+            drone.delivery = new ParcelByTransfer(DalObj, parcel);
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
             DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;

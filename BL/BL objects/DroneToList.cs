@@ -8,7 +8,7 @@ namespace IBL.BO
 {
     public class DroneToList
     {
-        public DroneToList(DroneBL drone)
+        public DroneToList(IDAL.IDAL dalOB, DroneBL drone)
         {
             Id = drone.getIdBL();
             Model = drone.ModelBL;
@@ -16,8 +16,8 @@ namespace IBL.BO
             BatteryStatus = drone.BatteryStatus;
             DroneStatus = drone.DroneStatus;
             CurrentPosition = drone.CurrentPosition;
-            ParcelNun = DalObject.DataSource.MyParcels.ToList().Any(parcel => parcel.DroneId == Id) ?
-                        DalObject.DataSource.MyParcels.First(parcel => parcel.DroneId == Id).Id : 0;
+            ParcelNun = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == Id) ?
+                        dalOB.returnParcelArray().First(parcel => parcel.DroneId == Id).Id : 0;
         }
         public override string ToString()
         {

@@ -8,15 +8,15 @@ namespace IBL.BO
 {
     public class CustomerToList
     {
-        public CustomerToList(CustomerBL customer)
+        public CustomerToList(IDAL.IDAL dALOB,CustomerBL customer)
         {
             Id = customer.getIdBL();
             Name = customer.NameBL;
             Phone = customer.PhoneBL;
-            NumOfPackagesSentAndDelivered = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered != null).Count;
-            NumOfPackagesSentButNotYetDelivered = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered == null).Count;
-            NumOfPackagesHeReceived = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered != null).Count;
-            NumOfPackagesOnTheWay = DalObject.DataSource.MyParcels.ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered == null).Count;
+            NumOfPackagesSentAndDelivered = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered != null).Count;
+            NumOfPackagesSentButNotYetDelivered = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered == null).Count;
+            NumOfPackagesHeReceived = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered != null).Count;
+            NumOfPackagesOnTheWay = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered == null).Count;
         }
         public override string ToString()
         {

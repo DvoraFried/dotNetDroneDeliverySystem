@@ -76,7 +76,7 @@ namespace BL
             List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
             foreach( ParcelDAL parcel in DalObj.returnParcelArray().ToList())
             {
-                parcelsUpdateList.Add(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)));
+                parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
             }
             return parcelsUpdateList;
         }
@@ -89,7 +89,7 @@ namespace BL
             List<CustomerToList> customersToReturn = new List<CustomerToList>();
             foreach (CustomerDAL customer in DalObj.returnCustomerArray())
             {
-                customersToReturn.Add(new CustomerToList(ConvertToBL.ConvertToCustomrtBL(customer)));
+                customersToReturn.Add(new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(customer)));
             }
             return customersToReturn;
         }

@@ -14,7 +14,7 @@ namespace IBL.BO
     public class DroneBL
     {
 
-        public DroneBL(int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
+        public DroneBL(IDAL.IDAL dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
         {
             Random rnd = new Random();
             setIdBL(id);
@@ -23,8 +23,8 @@ namespace IBL.BO
             CurrentPosition = p;
             BatteryStatus = rnd.Next(20, 41);
             DroneStatus = status;
-            delivery = DalObject.DataSource.MyParcels.ToList().Any(parcel => parcel.DroneId == idBL)?
-                       new ParcelByTransfer(ConvertToBL.ConvertToParcelBL(DalObject.DataSource.MyParcels.ToList().First(parcel => parcel.DroneId == idBL)))
+            delivery = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idBL)?
+                       new ParcelByTransfer(dalOB, ConvertToBL.ConvertToParcelBL(dalOB.returnParcelArray().ToList().First(parcel => parcel.DroneId == idBL)))
                        : null;
             if (delivery != null) { DroneStatus = DroneStatusesBL.Shipping; }
         }

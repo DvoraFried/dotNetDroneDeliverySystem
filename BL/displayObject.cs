@@ -54,7 +54,7 @@ namespace BL
         {
             foreach(DroneBL drone in DronesListBL)
             {
-                Console.WriteLine(new DroneToList(drone).ToString());
+                Console.WriteLine(new DroneToList(DalObj, drone).ToString());
             }
         }
 
@@ -62,7 +62,7 @@ namespace BL
         {
             foreach (CustomerDAL customer in DalObj.returnCustomerArray())
             {
-                Console.WriteLine(new CustomerToList(ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
+                Console.WriteLine(new CustomerToList(DalObj,ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
             }
         }
 
@@ -70,7 +70,7 @@ namespace BL
         {
             foreach (ParcelDAL parcel in DalObj.returnParcelArray())
             {
-                Console.WriteLine(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                Console.WriteLine(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)).ToString());
             }
         }
 
@@ -78,7 +78,7 @@ namespace BL
         {
             foreach (ParcelBL parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
             {
-                if (parcel.DroneIdBL == null) { Console.WriteLine(new ParcelToList(parcel).ToString()); }
+                if (parcel.DroneIdBL == null) { Console.WriteLine(new ParcelToList(DalObj, parcel).ToString()); }
             }
         }
 

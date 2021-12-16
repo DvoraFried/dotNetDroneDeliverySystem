@@ -8,11 +8,11 @@ namespace IBL.BO
 {
     public class ParcelToList
     {
-        public ParcelToList(ParcelBL parcel)
+        public ParcelToList(IDAL.IDAL dalOBG, ParcelBL parcel)
         {
             Id = parcel.IdBL;
-            SenderName = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id).Name;
-            UstomerReceivesName = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id).Name;
+            SenderName = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id).Name;
+            UstomerReceivesName = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Target.Id).Name;
             weight = parcel.Weight;
             priority = parcel.Priority;
             PackageStatus = parcel.DeliveredBL != null ? EnumBL.DeliveryStatus.provided :
