@@ -55,6 +55,20 @@
                     <ColumnDefinition Width="14*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
-         </Grid>
+            <Expander Name="dronesInCharge" Visibility="Hidden" Header="DRONES IN CHARGE:" HorizontalAlignment="Left" Height="264" Margin="89,143,0,0" Grid.Row="1" VerticalAlignment="Top" Width="244" Grid.RowSpan="2">
+                <Grid Background="#FFE5E5E5"/>
+            </Expander>
+            <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="172,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="NameTextBox" HorizontalAlignment="Left" Margin="172,51,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="ChargesLotsTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="200,111,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"/>
+            <TextBox Name="LongitudeTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="172,81,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Text="lnd"/>
+            <TextBox Name="LatitudeText" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="238,81,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Text="ltd"/>
+        </Grid>
+        <Label Content="ID:" Grid.Column="1" HorizontalAlignment="Left" Margin="88,87,0,0" VerticalAlignment="Top"/>
+        <Label Content="NAME:" Grid.Column="1" HorizontalAlignment="Left" Margin="88,118,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label Content="CHARGES LOTS:" Grid.Column="1" HorizontalAlignment="Left" Margin="88,179,0,0" VerticalAlignment="Top" Width="93"/>
+        <Label Content="POSITION:" Grid.Column="1" HorizontalAlignment="Left" Margin="88,149,0,0" VerticalAlignment="Top" Width="69"/>
+        <Button Name="ADD_BUTTON" Click="Button_Click" Content="ADD STATION" Grid.Column="1" HorizontalAlignment="Left" Margin="88,305,0,0" VerticalAlignment="Top" Height="35" Width="208"/>
+        <Button Name="UPDATE_STATION" Content="UPDATE STATION" Click="updateButton_Click" Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="88,348,0,0" VerticalAlignment="Top" Height="35" Width="208"/>
     </Grid>
 </Window>

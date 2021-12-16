@@ -24,14 +24,15 @@ namespace PL
         {
             InitializeComponent();
             Bl = bl;
-            stationDisplay.ItemsSource = Bl.ReturnCustomerList();
+            stationDisplay.ItemsSource = Bl.ReturnStationList();
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             IBL.BO.StationToList station = (sender as ListView).SelectedValue as IBL.BO.StationToList;
             new DisplayStation(Bl, Bl.convertStationToListToStationBl(station)).Show();
         }
-        private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
+
+        private void ButtonAddStation_Click(object sender, RoutedEventArgs e)
         {
             new DisplayStation(Bl).Show();
         }

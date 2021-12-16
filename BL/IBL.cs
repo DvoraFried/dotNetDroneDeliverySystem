@@ -36,6 +36,7 @@ namespace IBL
         public List<CustomerToList> ReturnCustomerList();
         public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList);
         public StationBL convertStationToListToStationBl(StationToList stationToList);
+        public List<StationToList> ReturnStationList();
 
     }
 }

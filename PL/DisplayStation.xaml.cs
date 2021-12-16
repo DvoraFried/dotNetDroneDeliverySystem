@@ -26,10 +26,25 @@ namespace PL
             InitializeComponent();
         }
         IBL.IBL Bl;
-        public DisplayStation(IBL.IBL bl, StationBL customer)
+        public DisplayStation(IBL.IBL bl, StationBL station)
         {
             Bl = bl;
             InitializeComponent();
+            IDTextBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeText.IsEnabled = false;
+            IDTextBox.Text = station.GetIdBL().ToString();
+            NameTextBox.Text = station.NameBL;
+            ChargesLotsTextBox.Text = station.ChargeSlotsBL.ToString();
+            LongitudeTextBox.Text = station.Position.Longitude.ToString();
+            LatitudeText.Text = station.Position.Latitude.ToString();
+            dronesInCharge.Content = returnList(station.DronesInCharging);
+            ADD_BUTTON.Visibility = Visibility.Hidden;
+            UPDATE_STATION.Visibility = Visibility.Visible;
+        }
+        private string returnList(List<DroneInChargeBL> drones)
+        {
+            string myString = "";
+            foreach(DroneInChargeBL drone in drones) { myString += drone.ToString(); }
+            return myString;
         }
         public DisplayStation(IBL.IBL bl)
         {
@@ -43,7 +58,7 @@ namespace PL
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace( .Text))
+            if (string.IsNullOrWhiteSpace(IDTextBox.Text) || string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LongitudeTextBox.Text)||string.IsNullOrWhiteSpace(LatitudeText.Text) || string.IsNullOrWhiteSpace(ChargesLotsTextBox.Text))
             {
                 MessageBox.Show("one of the fields is empty");
             }
@@ -51,7 +66,7 @@ namespace PL
             {
                 try
                 {
-                    Bl.AddStation(Int32.Parse(IDTebtBox.Text), NameTextBox.Text, double.Parse(), double.Parse(), Int32.Parse());
+                    Bl.AddStation(Int32.Parse(IDTextBox.Text), NameTextBox.Text, double.Parse(LongitudeTextBox.Text), double.Parse(LatitudeText.Text), Int32.Parse(ChargesLotsTextBox.Text));
                     this.Close();
                 }
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -63,7 +78,7 @@ namespace PL
         {
             try
             {
-                Bl.UpDateStationData(Int32.Parse(IDTebtBox.Text), NameTextBox.Text, TextBox.Text);
+                Bl.UpDateStationData(Int32.Parse(IDTextBox.Text), NameTextBox.Text,Int32.Parse(ChargesLotsTextBox.Text));
                 this.Close();
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }

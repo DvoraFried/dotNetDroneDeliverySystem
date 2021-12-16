@@ -93,6 +93,15 @@ namespace BL
             }
             return customersToReturn;
         }
+        public List<StationToList> ReturnStationList()
+        {
+            List<StationToList> stationsToReturn = new List<StationToList>();
+            foreach (StationDAL station in DalObj.returnStationArray())
+            {
+                stationsToReturn.Add(new StationToList(ConvertToBL.ConvertToStationBL(station)));
+            }
+            return stationsToReturn;
+        }
         public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList)
         {
             return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerToList.Id));

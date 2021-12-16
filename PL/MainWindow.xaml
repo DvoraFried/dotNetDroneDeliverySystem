@@ -41,7 +41,7 @@ VerticalAlignment="Stretch" Width="auto">
                         </Style>
                     </Button.Style>
                    </Button>
-                    <Button x:Name="stationList" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="1">
+                    <Button x:Name="stationList" Click="stationList_Click" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="1">
 
                 </Button>
                 <Button x:Name="customerList" Content="CUSTOMERS" Click="customerList_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Width="180" Grid.Column="2"/>
