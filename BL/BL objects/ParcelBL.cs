@@ -13,7 +13,7 @@ namespace IBL.BO
         public ParcelBL(int idSender, int idTarget, int weight, int priority, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
         {
             parcelId++;
-            IdBL = id >= 0 ? id : parcelId;
+            IdBL = id > 0 ? id : parcelId;
             Weight = (WeightCategoriesBL)weight;
             Priority = (PrioritiesBL)priority;
             ScheduledBL = scheduled;
@@ -22,8 +22,10 @@ namespace IBL.BO
             RequestedBL = requested == null? DateTime.Now : requested;
             int droneId = id != -1 ? DalObject.DataSource.MyParcels.First(parcel => parcel.Id == id).DroneId : id;
             DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
-            Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSender)));
-            Target = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idTarget)));
+            IDAL.DO.CustomerDAL customer = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSender);
+            Sender = new CustomerOnDelivery(customer.Id, customer.Name);
+            customer = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idTarget);
+            Target = new CustomerOnDelivery(customer.Id, customer.Name);
         }
         public override string ToString()
         {
@@ -34,7 +36,7 @@ namespace IBL.BO
             return "";
         }
 
-        private static int parcelId = 9;
+        private static int parcelId = 0;
         public int GetParcelId() { return parcelId; }
         public void SetParcelId(int pId) {  parcelId=pId; }
         public int IdBL { get; set; }

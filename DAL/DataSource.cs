@@ -54,7 +54,7 @@ namespace DalObject
                 MyCustomers.Add(customerDAL);
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i < 11; i++)
             {
                 int senderId = MyCustomers[rnd.Next(0, 13)].Id;
                 int targetId = MyCustomers[rnd.Next(0, 13)].Id;

@@ -79,11 +79,6 @@ namespace PL
             DisplayDrone addDrone = new DisplayDrone(Bl);
             addDrone.Show();
         }
-
-/*        private void dronesDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            new DisplayDrone(Bl).Show();
-        }*/
     }
 }
 

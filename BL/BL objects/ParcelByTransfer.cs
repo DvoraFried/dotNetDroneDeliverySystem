@@ -16,10 +16,12 @@ namespace IBL.BO
             IsDelivery = parcel.PickUpBL != null;
             Priority = parcel.Priority;
             Weight = parcel.Weight;
-            Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id)));
-            Target = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id)));
-            CollectionLocation = ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id)).Position;
-            DeliveryDestinationLocation = ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id)).Position;
+            Sender = parcel.Sender;
+            Target = parcel.Target;
+            IDAL.DO.CustomerDAL dalobj = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id);
+            CollectionLocation = new Position(dalobj.Longitude, dalobj.Latitude);
+            dalobj = DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id);
+            DeliveryDestinationLocation = new Position(dalobj.Longitude, dalobj.Latitude);
             Distance = DistanceBetweenCoordinates.CalculateDistance(CollectionLocation, DeliveryDestinationLocation);
         }
         public override string ToString()

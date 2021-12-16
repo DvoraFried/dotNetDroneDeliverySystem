@@ -46,7 +46,7 @@ namespace IBL.BO
             parcelDal.TargetId = parcelBl.Target.Id;
             parcelDal.Weight= (WeightCategories)(int)parcelBl.Weight;
             parcelDal.Priority = (Priorities)(int)parcelBl.Priority;
-            parcelDal.DroneId = parcelBl.DroneIdBL == null ? 0 : parcelBl.DroneIdBL.Id;
+            parcelDal.DroneId = parcelBl.DroneIdBL == null ? -1 : parcelBl.DroneIdBL.Id;
             parcelDal.Requested = parcelBl.RequestedBL;
             parcelDal.Scheduled = parcelBl.ScheduledBL;
             parcelDal.PickUp = parcelBl.PickUpBL;
