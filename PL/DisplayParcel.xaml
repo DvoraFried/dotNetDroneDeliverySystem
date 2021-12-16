@@ -61,7 +61,7 @@
                     <RadioButton x:Name="emergency" Content="emergency" Checked="emergency_Checked"/>
                 </StackPanel>
             </Grid>
-            <Grid Name="displayParcel" Visibility="Visible">
+            <Grid Name="displayParcel" Visibility="Hidden">
                 <Label Grid.Row="0" Margin="80,36,260,9">SENDER:</Label>
                 <TextBox Name="senderTextBox" IsReadOnly="True" Margin="45,59,205,-49"/>
                 <TextBox Name="targetTextBox" IsReadOnly="True" Margin="200,59,50,-49"/>
