@@ -9,7 +9,7 @@ namespace IBL.BO
 {
     public class CustomerBL
     {
-        public CustomerBL(int id, string name, string phone, Position p)
+        public CustomerBL(int id, string name, string phone, Position p, List<ParcelBL>parcels)
         {
             setIdBL(id);
             NameBL = name;
@@ -17,6 +17,11 @@ namespace IBL.BO
             Position = p;
             ImTheSender = new List<DeliveryAtCustomer>();
             ImTheTarget = new List<DeliveryAtCustomer>();
+            foreach(ParcelBL parcel in parcels)
+            {
+                if(parcel.Sender.Id == id) { ImTheSender.Add(new DeliveryAtCustomer(parcel, id)); }
+                if(parcel.Target.Id == id) { ImTheTarget.Add(new DeliveryAtCustomer(parcel, id)); }
+            }
         }
 
         private int IdBL;

@@ -16,8 +16,8 @@ namespace IBL.BO
             IsDelivery = parcel.PickUpBL != null;
             Priority = parcel.Priority;
             Weight = parcel.Weight;
-            Sender = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id)));
-            Target = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id)));
+            Sender = parcel.Sender;
+            Target = parcel.Target;
             CollectionLocation = ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Sender.Id)).Position;
             DeliveryDestinationLocation = ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == parcel.Target.Id)).Position;
             Distance = DistanceBetweenCoordinates.CalculateDistance(CollectionLocation, DeliveryDestinationLocation);

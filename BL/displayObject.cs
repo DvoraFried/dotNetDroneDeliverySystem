@@ -31,17 +31,6 @@ namespace BL
         {
             if (!DalObj.returnCustomerArray().ToList().Any(customer => customer.Id == idC)) { throw new ObjectDoesntExistsInListException("customer"); }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
-            CustomerBL customer = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC));
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray()) {
-                if(parcel.SenderId == idC) {
-                    customer.ImTheSender.Add(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC));
-                }
-            }
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray()) {
-                if (parcel.SenderId == idC) {
-                    customer.ImTheTarget.Add(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC));
-                }
-            }
             Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }

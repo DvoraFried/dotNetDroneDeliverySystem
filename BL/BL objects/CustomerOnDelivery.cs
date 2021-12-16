@@ -8,10 +8,10 @@ namespace IBL.BO
 {
     public class CustomerOnDelivery
     {
-        public CustomerOnDelivery(CustomerBL customer)
+        public CustomerOnDelivery(int id, string name)
         {
-            Id = customer.getIdBL();
-            CustomerName = customer.NameBL;
+            Id = id;
+            CustomerName = name;
         }
         public override string ToString()
         {

@@ -33,6 +33,5 @@ namespace IBL
         public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
         public List<ParcelToList> ReturnParcelList();
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList);
-
     }
 }
