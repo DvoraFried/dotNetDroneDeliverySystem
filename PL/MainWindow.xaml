@@ -10,8 +10,7 @@
         <Style x:Key="myButtonStyle"
                 TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="FontSize" Value="17" />
-            <Setter Property="FontStyle" Value="white"/>
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="Background" Value="#FFE7E3E3"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Width" Value="170"/>
@@ -26,8 +25,8 @@
                     </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="FontSize" Value="17.5" />
-                    <Setter Property="Background" Value="#FF324E85"/>
+                    <Setter Property="FontSize" Value="16.5" />
+                    <Setter Property="Background" Value="#FFCECCCC"/>
                     <Setter Property="Height" Value="63"/>
                     <Setter Property="Width" Value="175"/>
 
@@ -55,11 +54,33 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
                 <Button Style="{StaticResource myButtonStyle}"  x:Name="droneList" Content="DRONES" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="droneList_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
                 </Button>
                 <Button Style="{StaticResource myButtonStyle}"  x:Name="stationList" Click="stationList_Click" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
                 </Button>
-                <Button Style="{StaticResource myButtonStyle}"  x:Name="customerList" Content="CUSTOMERS" Click="customerList_Click" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2"/>
-                <Button Style="{StaticResource myButtonStyle}"  x:Name="parcelList" Content="PARCELS" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Click="parcelList_Click"/>
+                <Button Style="{StaticResource myButtonStyle}"  x:Name="customerList" Content="CUSTOMERS" Click="customerList_Click" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                </Button>
+                <Button Style="{StaticResource myButtonStyle}"  x:Name="parcelList" Content="PARCELS" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Click="parcelList_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                </Button>
             </Grid>
 
         </Grid>

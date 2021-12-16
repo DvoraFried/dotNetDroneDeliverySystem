@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="DisplayDrone" Height="600" Width="750">
     <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" Background="#FF91B4AB">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
@@ -45,6 +46,8 @@
                     <RowDefinition Height="43*"/>
                     <RowDefinition Height="43.262"/>
                 </Grid.RowDefinitions>
+        <Image  Source="/images/x.png" Opacity="0.9" Margin="106,10,-2,543" Grid.Column="2"/>
+                
                 <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="23,0,70,0">DRONE ID:</Label>
                 <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" Margin="59,-2,0,0"/>
                 <Label Grid.ColumnSpan="2" Margin="23,43,70,0" Grid.RowSpan="2">DRONE MODEL:</Label>
