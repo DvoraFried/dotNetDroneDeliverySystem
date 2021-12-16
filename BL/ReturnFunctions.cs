@@ -71,7 +71,19 @@ namespace BL
             }
             return droneUpdateList;
         }
-        
-
-     }
+        public List<ParcelToList> ReturnParcelList()
+        {
+            List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
+            foreach( ParcelDAL parcel in DalObj.returnParcelArray().ToList())
+            {
+                parcelsUpdateList.Add(new ParcelToList(ConvertToBL.ConvertToParcelBL(parcel)));
+            }
+            return parcelsUpdateList;
+        }
+        public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList)
+        {
+            ParcelDAL parcelDAL = DalObj.returnParcel(parcelToList.Id);
+            return new ParcelBL(parcelDAL.SenderId, parcelDAL.TargetId, (int)parcelDAL.Weight, (int)parcelDAL.Priority, parcelDAL.Id, parcelDAL.Requested, parcelDAL.Scheduled, parcelDAL.PickUp, parcelDAL.Delivered);
+        }
+    }
 }

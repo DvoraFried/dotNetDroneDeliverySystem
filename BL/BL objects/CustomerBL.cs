@@ -9,12 +9,19 @@ namespace IBL.BO
 {
     public class CustomerBL
     {
-        public CustomerBL(int id, string name, string phone, Position p)
+        public CustomerBL(int id, string name, string phone, Position p, List<ParcelBL>parcels)
         {
             setIdBL(id);
             NameBL = name;
             PhoneBL = phone;
             Position = p;
+            ImTheSender = new List<DeliveryAtCustomer>();
+            ImTheTarget = new List<DeliveryAtCustomer>();
+            foreach(ParcelBL parcel in parcels)
+            {
+                if(parcel.Sender.Id == id) { ImTheSender.Add(new DeliveryAtCustomer(parcel, id)); }
+                if(parcel.Target.Id == id) { ImTheTarget.Add(new DeliveryAtCustomer(parcel, id)); }
+            }
         }
 
         private int IdBL;
@@ -27,11 +34,13 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition - {Position.ToString()}";
+            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition - {Position.ToString()}\nParcels sent by this customer: {ImTheSender.ToString()}\nParcels that this customer receives: {ImTheTarget.ToString()}";
         }
         public int getIdBL() { return IdBL; }
         public string NameBL { get; set; }
         public string PhoneBL { get; set; }
         public Position Position { get; set; }
+        public List<DeliveryAtCustomer> ImTheSender { get; set; }
+        public List<DeliveryAtCustomer> ImTheTarget { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using static IBL.BO.EnumBL;
 
 namespace IBL.BO
 {
-    class DeliveryAtCustomer
+    public class DeliveryAtCustomer
     { 
         public DeliveryAtCustomer(ParcelBL parcel, int myId)
         {
@@ -20,7 +20,7 @@ namespace IBL.BO
                      parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
                      EnumBL.DeliveryStatus.created;
             int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
-            Customer = new CustomerOnDelivery(ConvertToBL.ConvertToCustomrtBL(DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSecondCustomer)));
+            Customer = new CustomerOnDelivery((DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSecondCustomer)).Id, (DalObject.DataSource.MyCustomers.ToList().First(customer => customer.Id == idSecondCustomer)).Name);
         }
         public override string ToString()
         {

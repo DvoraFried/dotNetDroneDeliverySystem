@@ -19,19 +19,25 @@ namespace PL
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /*<Button Content =" drones list" Background="AliceBlue"
+				Click="Button_Click" Margin="322,178,322,178"/>*/
     public partial class MainWindow : Window
     {
-        IBL.IBL bl;
+        IBL.IBL Bl;
         public MainWindow()
         {
-            bl = BLFactory.factory();
+            Bl = BLFactory.factory();
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void droneList_Click(object sender, RoutedEventArgs e)
         {
-            DroneList droneList = new DroneList(bl);
-            droneList.Show();
+            new DroneList(Bl).Show();
+        }
+
+        private void parcelList_Click(object sender, RoutedEventArgs e)
+        {
+            new DisplayParcelList(Bl).Show();
         }
     }
 }

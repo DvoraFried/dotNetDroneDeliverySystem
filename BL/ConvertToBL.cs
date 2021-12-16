@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL {
+    public partial class BL 
+    {
         public class ConvertToBL
         {
             public static List<DroneBL> ConvertToDroneArrayBL(List<DroneDAL> droneDalArray)
@@ -22,7 +23,7 @@ namespace BL
             }
             public static CustomerBL ConvertToCustomrtBL(CustomerDAL customerDal)
             {
-                CustomerBL customerBL = new CustomerBL(customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude));
+                CustomerBL customerBL = new CustomerBL(customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
                 return customerBL;
             }
             public static ParcelBL ConvertToParcelBL(ParcelDAL parcelDal)
@@ -39,7 +40,6 @@ namespace BL
                 }
                 return parcelsBl;
             }
-
             public static StationBL ConvertToStationBL(StationDAL stationDAL)
             {
                 StationBL stationBL = new StationBL(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);

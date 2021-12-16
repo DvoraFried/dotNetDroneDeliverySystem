@@ -36,29 +36,40 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="87*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="43.262"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0">ENTER ID:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
-                <Label Grid.Row="1">ENTER MODEL:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
-                <Label Grid.Row="2">MAXWEIGHT :</Label>
-                <StackPanel Grid.Row="2" Grid.Column="1" >
-                    <RadioButton Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                    <RadioButton Content="medium" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                    <RadioButton Content="heavy" Grid.Column="3" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="23,0,70,0">DRONE ID:</Label>
+                <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Text="" Margin="59,-2,0,0"/>
+                <Label Grid.ColumnSpan="2" Margin="23,43,70,0" Grid.RowSpan="2">DRONE MODEL:</Label>
+                <TextBox Name="ModelTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="59,43,0,0" Grid.RowSpan="2"/>
+                <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="23,43,70,43" Grid.RowSpan="3">MAXWEIGHT :</Label>
+                <StackPanel Name="MaxWeightCheckBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,41,35,3" Grid.RowSpan="2" >
+                    <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
+                    <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
+                    <RadioButton x:Name="heavy" Content="heavy" Checked="heavy_Checked"/>
                 </StackPanel>
-                <Label Grid.Row="3">ENTER MODEL:</Label>
-                <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="0,86,0,0" Grid.RowSpan="2"/>
+                <Label Name="statioIdLabel" Grid.Row="2" Grid.ColumnSpan="2" Margin="23,86,70,2" Grid.RowSpan="2">STATION ID:</Label>
+                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="2"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="59,85,0,0" Grid.RowSpan="2"/>
             </Grid>
-
+            <Grid Name="UPDATE_MENU" Visibility="Hidden" Margin="-172,10,-138,10" Grid.RowSpan="3">
+                <Label Name="DroneStatusLabel" Margin="176,250,362,283">DRONE STATUS:</Label>
+                <TextBox Name="DroneStatusTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Margin="286,246,0,0" />
+                <Label Name="batteryStatusLabel" Margin="176,281,420,242">BATTERY STATUS:</Label>
+                <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="10" Margin="286,289,0,0" VerticalAlignment="Top" Width="186"/>
+                <Button Name="UpdateDrone" Content="APDATE DRONE" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="UpdateModelClick" Margin="407,390,0,0"/>
+                <Button Name="SendDroneToCharge" Content="SEND TO CHARGE" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="SendDroneToChargeClick" Margin="407,440,0,0"/>
+                <Button Name="ReleaseDroneFromCharging" Content="RELEASE FROM CHARGE" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="ReleaseDroneFromChargingClick" Margin="186,390,0,0"/>
+                <Button Name="AssigningPackageToDrone" Content="ASSIGNING DRONE TO PARCEL" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="AssigningPackageToDroneClick" Margin="186,440,0,0"/>
+                <Button Name="CollectionOfAParcelByDrone" Content="COLLECTION OF A PARCEL" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="CollectionOfAParcelByDroneClick" Margin="186,491,0,0"/>
+                <Button Name="DeliveryAParcelByDrone" Content="DELIVERY A PARCEL" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="167" Click="DeliveryAParcelByDroneClick" Margin="407,491,0,0"/>
+            </Grid>
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
                 <Grid.ColumnDefinitions>
@@ -67,6 +78,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
+            <Button Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="30" Margin="0,388,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" Click="Button_Click" Grid.RowSpan="2"/>
         </Grid>
     </Grid>
 </Window>

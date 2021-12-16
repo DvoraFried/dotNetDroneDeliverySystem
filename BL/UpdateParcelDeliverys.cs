@@ -16,15 +16,15 @@ namespace BL
     {
         public IEnumerable<ParcelDAL> returnParcelWithEmergencyParcelsPriority()
         {
-            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if ((int)element.Priority == (int)EnumBL.PrioritiesBL.emergency) yield return element; }
+            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.emergency) yield return element; }
         }
         public IEnumerable<ParcelDAL> returnParcelWithUsualParcelsPriority()
         {
-            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if ((int)element.Priority == (int)EnumBL.PrioritiesBL.usual) yield return element; }
+            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.usual) yield return element; }
         }
         public IEnumerable<ParcelDAL> returnParcelWithRapidlParcelsPriority()
         {
-            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if ((int)element.Priority == (int)EnumBL.PrioritiesBL.rapid) yield return element; }
+            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.rapid) yield return element; }
         }
         public IEnumerable<ParcelDAL> returnPacelWitSuitWeight(IEnumerable<ParcelDAL> parcelArr,int droneMaxW)
         {
