@@ -42,7 +42,7 @@ namespace BL
             {
                 if (!(DataSource.MyCustomers.Any(c => c.Id == idSender)))  {throw new ObjectDoesntExistsInListException("sender customer"); }
                 if (!(DataSource.MyCustomers.Any(c => c.Id == idTarget)))  {throw new ObjectDoesntExistsInListException("target customer"); }
-                ParcelBL parcel = new ParcelBL(idSender, idTarget, (int)weight, (int)priority);
+                ParcelBL parcel = new ParcelBL(DalObj, idSender, idTarget, (int)weight, (int)priority);
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
             }
      }
