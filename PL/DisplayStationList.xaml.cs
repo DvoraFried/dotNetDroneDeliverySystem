@@ -29,12 +29,14 @@ namespace PL
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             IBL.BO.StationToList station = (sender as ListView).SelectedValue as IBL.BO.StationToList;
-            new DisplayStation(Bl, Bl.convertStationToListToStationBl(station)).Show();
+            this.Close();
+            new DisplayStation(Bl, Bl.convertStationToListToStationBl(station)).ShowDialog();
         }
 
         private void ButtonAddStation_Click(object sender, RoutedEventArgs e)
         {
-            new DisplayStation(Bl).Show();
+            this.Close();
+            new DisplayStation(Bl).ShowDialog();
         }
     }
 }

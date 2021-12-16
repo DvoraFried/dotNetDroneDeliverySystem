@@ -29,12 +29,17 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+
             IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
-            new DisplayCustomer(Bl, Bl.convertCustomerToListToCustomerBl(customer)).Show();
+            this.Close();
+            new DisplayCustomer(Bl, Bl.convertCustomerToListToCustomerBl(customer)).ShowDialog();
+
         }
         private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            new DisplayCustomer(Bl).Show();
+            this.Close();
+            new DisplayCustomer(Bl).ShowDialog();
+            
         }
     }
 }
