@@ -41,6 +41,7 @@ namespace PL
         }
         private string returnLis(List<DeliveryAtCustomer> parcels)
         {
+            if (parcels.Count == 0) { return "No parcels found"; }
             string myList = "";
             foreach (DeliveryAtCustomer parcel in parcels) { myList += parcel.ToString(); }
             return myList;
