@@ -38,10 +38,11 @@ namespace PL
             LatitudeText.Text = station.Position.Latitude.ToString();
             dronesInCharge.Content = returnList(station.DronesInCharging);
             ADD_BUTTON.Visibility = Visibility.Hidden;
-            UPDATE_STATION.Visibility = Visibility.Visible;
+            UPDATE_STATION.Visibility = dronesInCharge.Visibility = Visibility.Visible;
         }
         private string returnList(List<DroneInChargeBL> drones)
         {
+            if(drones.Count == 0) { return "No drones in charge"; }
             string myString = "";
             foreach(DroneInChargeBL drone in drones) { myString += drone.ToString(); }
             return myString;
