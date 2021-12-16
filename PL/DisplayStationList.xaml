@@ -20,13 +20,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
         </Grid>
-        <ListView ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="stationDisplay" Grid.Row="1" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ListView ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="stationDisplay" Grid.Row="1" />
         <Grid Name="BottomGrid" Background="Azure" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
