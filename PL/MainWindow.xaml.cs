@@ -39,5 +39,10 @@ namespace PL
         {
             new DisplayParcelList(Bl).Show();
         }
+
+        private void customerList_Click(object sender, RoutedEventArgs e)
+        {
+            new DisplayCustomerList(Bl).Show();
+        }
     }
 }
