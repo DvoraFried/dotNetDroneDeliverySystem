@@ -97,5 +97,9 @@ namespace BL
         {
             return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerToList.Id));
         }
+        public StationBL convertStationToListToStationBl(StationToList stationToList)
+        {
+            return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationToList.Id));
+        }
     }
 }
