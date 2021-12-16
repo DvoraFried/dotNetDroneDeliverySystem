@@ -12,7 +12,7 @@
             <Setter Property="Background" Value="#FFA2BDB8"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Width" Value="180"/>
-                    <Setter Property="Template">
+            <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="{TemplateBinding Background}">
@@ -26,6 +26,9 @@
                     <Setter Property="Background" Value="#FFA0DCD2"/>
                     <Setter Property="Height" Value="70"/>
                     <Setter Property="Width" Value="190"/>
+                    <Setter Property="BorderBrush" Value="DarkGray" />
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="BorderThickness" Value="1,1,2,2" />
                 </Trigger>
             </Style.Triggers>
         </Style>
