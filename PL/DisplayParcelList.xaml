@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions >
                 </Grid>
-        <ListView ItemsSource="{Binding}"  MouseDoubleClick="listView_MouseDoubleClick" SelectionChanged="parcelDisplay_SelectionChanged" Name="parcelDisplay" Grid.Row="1" >
+        <ListView  MouseDoubleClick="listView_MouseDoubleClick" SelectionChanged="parcelDisplay_SelectionChanged" Name="parcelDisplay" Grid.Row="1" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn/>
