@@ -15,6 +15,8 @@ namespace IBL.BO
             NameBL = name;
             PhoneBL = phone;
             Position = p;
+            ImTheSender = new List<DeliveryAtCustomer>();
+            ImTheTarget = new List<DeliveryAtCustomer>();
         }
 
         private int IdBL;
@@ -27,11 +29,13 @@ namespace IBL.BO
         }
         public override string ToString()
         {
-            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition - {Position.ToString()}";
+            return $"ID: {getIdBL()}\nName: {NameBL}\nPhone: {PhoneBL}\nPosition - {Position.ToString()}\nParcels sent by this customer: {ImTheSender.ToString()}\nParcels that this customer receives: {ImTheTarget.ToString()}";
         }
         public int getIdBL() { return IdBL; }
         public string NameBL { get; set; }
         public string PhoneBL { get; set; }
         public Position Position { get; set; }
+        public List<DeliveryAtCustomer> ImTheSender { get; set; }
+        public List<DeliveryAtCustomer> ImTheTarget { get; set; }
     }
 }

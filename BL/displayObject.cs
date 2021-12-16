@@ -31,19 +31,18 @@ namespace BL
         {
             if (!DalObj.returnCustomerArray().ToList().Any(customer => customer.Id == idC)) { throw new ObjectDoesntExistsInListException("customer"); }
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
-            Console.WriteLine("Parcels sent by this customer: ");
-            foreach(ParcelDAL parcel in DalObj.returnParcelArray()) {
-                if(parcel.SenderId == idC) {
-                    Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC).ToString());
-                }
-            }
-            Console.WriteLine("Parcels that this customer receives: ");
+            CustomerBL customer = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC));
             foreach (ParcelDAL parcel in DalObj.returnParcelArray()) {
-                if (parcel.TargetId == idC) {
-                    Console.WriteLine(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC).ToString());
+                if(parcel.SenderId == idC) {
+                    customer.ImTheSender.Add(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC));
                 }
             }
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray()) {
+                if (parcel.SenderId == idC) {
+                    customer.ImTheTarget.Add(new DeliveryAtCustomer(ConvertToBL.ConvertToParcelBL(parcel), idC));
+                }
+            }
+            Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         public void DisplayParcel(int idP)
