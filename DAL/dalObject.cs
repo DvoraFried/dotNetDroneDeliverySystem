@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
 using IDAL;
-using static IDAL.DO.ExceptionsDAL;
 
 namespace DalObject
 {
