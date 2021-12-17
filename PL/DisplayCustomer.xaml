@@ -60,7 +60,7 @@
                     <ColumnDefinition Width="14*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
-            <Button Name="ADD_BUTTON" Content="ADD Customer" HorizontalAlignment="Left" Height="44" Grid.Row="1" VerticalAlignment="Top" Width="280" Click="Button_Click" Margin="54,201,0,0"/>
+            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD Customer" HorizontalAlignment="Left" Height="44" Grid.Row="1" VerticalAlignment="Top" Width="280" Click="Button_Click" Margin="54,201,0,0"/>
             <Label Content="ID:" HorizontalAlignment="Left" Margin="54,4,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
             <Label Content="NAME:" HorizontalAlignment="Left" Margin="54,34,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
             <Label Content="PHONE:" HorizontalAlignment="Left" Margin="54,62,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
