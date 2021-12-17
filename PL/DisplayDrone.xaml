@@ -57,7 +57,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
-        <Button Cursor="Hand" Grid.Column="2"  Click="Button_Click_1" Margin="94,10,10,514" >close</Button>
+        <Button Cursor="Hand" Grid.Column="2"  Click="Button_Click_1" Margin="94,10,10,514">close</Button>
         <Grid Grid.Column="1" Name="FormGrid" Background="#a8cacd" Margin="10,0,10,0">
 
             <Grid.RowDefinitions>
