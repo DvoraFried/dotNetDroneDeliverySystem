@@ -40,8 +40,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Button Background="#FFFFB2B2" Cursor="Hand" Content="ADD DRONE" Grid.Column="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddDrone_Click" Margin="10,0,0,0">
-                
+            <Button  Cursor="Hand" Content="ADD DRONE" Grid.Column="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddDrone_Click" Margin="10,0,0,0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
         </Grid>
     </Grid>
