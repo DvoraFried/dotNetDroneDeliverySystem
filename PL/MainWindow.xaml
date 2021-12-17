@@ -54,32 +54,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
                 <Button Style="{StaticResource myButtonStyle}"  x:Name="droneList" Content="DRONES" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="droneList_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
                 </Button>
                 <Button Style="{StaticResource myButtonStyle}"  x:Name="stationList" Click="stationList_Click" Content="STATIONS" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
                 </Button>
                 <Button Style="{StaticResource myButtonStyle}"  x:Name="customerList" Content="CUSTOMERS" Click="customerList_Click" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
                 </Button>
                 <Button Style="{StaticResource myButtonStyle}"  x:Name="parcelList" Content="PARCELS" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Click="parcelList_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
                 </Button>
             </Grid>
 

@@ -6,7 +6,49 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DisplayDrone" Height="600" Width="750">
+    <Window.Resources >
+        <Style x:Key="myButtonGroup1"
+                TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="#FFE7E3E3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFFB2B2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="myButtonGroup2"
+                TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="#FFCECCCC"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFFB2B2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" >
+        <Button Margin="116,10,8,545" Grid.Column="2" Click="Button_Click_1" >close</Button>
         <Grid.Background>
             <ImageBrush Opacity="0.3" ImageSource="/images/background.jpg"/>
         </Grid.Background>
@@ -67,12 +109,12 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Grid.Column="0" Name="SendDroneToCharge" Content="SEND TO CHARGE" Click="SendDroneToChargeClick"/>
-                <Button Grid.Column="1" Name="ReleaseDroneFromCharging" Content="RELEASE FROM CHARGE" Click="ReleaseDroneFromChargingClick"/>
-                <Button Grid.Row="1" FontSize="11.7" Name="AssigningPackageToDrone" Content="ASSIGNING DRONE TO PARCEL"  Click="AssigningPackageToDroneClick"/>
-                <Button Grid.Row="1" Grid.Column="1" Name="CollectionOfAParcelByDrone" Content="COLLECTION OF A PARCEL"  Click="CollectionOfAParcelByDroneClick"/>
-                <Button Grid.Row="2" Name="DeliveryAParcelByDrone" Content="DELIVERY A PARCEL"  Click="DeliveryAParcelByDroneClick"/>
-                <Button Grid.Row="2" Grid.Column="1" Name="UpdateDrone" Content="APDATE DRONE"  Click="UpdateModelClick" />
+                <Button Style="{StaticResource myButtonGroup1}" Grid.Column="0" Name="SendDroneToCharge" Content="SEND TO CHARGE" Click="SendDroneToChargeClick"/>
+                <Button Style="{StaticResource myButtonGroup2}" Grid.Column="1" Name="ReleaseDroneFromCharging" Content="RELEASE FROM CHARGE" Click="ReleaseDroneFromChargingClick"/>
+                <Button Style="{StaticResource myButtonGroup2}" Grid.Row="1" FontSize="11.7" Name="AssigningPackageToDrone" Content="ASSIGNING DRONE TO PARCEL"  Click="AssigningPackageToDroneClick"/>
+                <Button Style="{StaticResource myButtonGroup1}" Grid.Row="1" Grid.Column="1" Name="CollectionOfAParcelByDrone" Content="COLLECTION OF A PARCEL"  Click="CollectionOfAParcelByDroneClick"/>
+                <Button Style="{StaticResource myButtonGroup1}" Grid.Row="2" Name="DeliveryAParcelByDrone" Content="DELIVERY A PARCEL"  Click="DeliveryAParcelByDroneClick"/>
+                <Button Style="{StaticResource myButtonGroup2}" Grid.Row="2" Grid.Column="1" Name="UpdateDrone" Content="APDATE DRONE"  Click="UpdateModelClick" />
             </Grid>
 
         </Grid>
