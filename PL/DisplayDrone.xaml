@@ -47,8 +47,8 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+
     <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" >
-        <Button Margin="116,10,8,545" Grid.Column="2" Click="Button_Click_1" >close</Button>
         <Grid.Background>
             <ImageBrush Opacity="0.18" ImageSource="/images/background.jpg"/>
         </Grid.Background>
@@ -57,7 +57,9 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
+        <Button Cursor="Hand" Grid.Column="2"  Click="Button_Click_1" Margin="94,10,10,514" >close</Button>
         <Grid Grid.Column="1" Name="FormGrid" Background="Aqua" Margin="10,0,10,0">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*"/>
                 <RowDefinition Height="20*"/>
@@ -118,7 +120,7 @@
             </Grid>
 
         </Grid>
-        <Button Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="37" Margin="0,465,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click" Grid.Column="1"/>
+        <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="37" Margin="0,465,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click" Grid.Column="1"/>
 
     </Grid>
 </Window>
