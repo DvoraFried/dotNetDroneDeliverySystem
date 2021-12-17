@@ -50,7 +50,7 @@
     <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" >
         <Button Margin="116,10,8,545" Grid.Column="2" Click="Button_Click_1" >close</Button>
         <Grid.Background>
-            <ImageBrush Opacity="0.3" ImageSource="/images/background.jpg"/>
+            <ImageBrush Opacity="0.18" ImageSource="/images/background.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
