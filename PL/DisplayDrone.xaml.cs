@@ -30,6 +30,7 @@ namespace PL
             InitializeComponent();
             ADD_BUTTON.Visibility = Visibility.Hidden;
             UPDATE_MENU.Visibility = Visibility.Visible;
+            hidddenInfroUpDate.Visibility = Visibility.Visible;
             IDTextBox.Text = drone.getIdBL().ToString();
             IDTextBox.IsEnabled = false;
             ModelTextBox.Text = drone.ModelBL;
