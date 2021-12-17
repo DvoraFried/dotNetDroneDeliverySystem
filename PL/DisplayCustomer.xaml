@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DisplayCustomer" Height="450" Width="800">
-    <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" Background="#FF91B4AB">
+    <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" >
+        <Grid.Background>
+            <ImageBrush Opacity="0.18" ImageSource="/images/background.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
-        <Grid Grid.Column="1" Name="FormGrid" Background="#FF688B87">
+        <Grid Grid.Column="1" Name="FormGrid" Background="#FFDC7F93">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="200*"/>
