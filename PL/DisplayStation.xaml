@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
         <Button Cursor="Hand" Grid.Column="2"  Margin="94,10,10,370" Click="Button_Click_1" >close</Button>
-        <Grid Grid.Column="1" Name="FormGrid" Background="#FFABF1E1">
+        <Grid Grid.Column="1" Name="FormGrid" Background="#ddebf7">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="200*"/>

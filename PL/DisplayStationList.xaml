@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DisplayStationList" Height="450" Width="800">
-    <Grid Name="MainGrid">
+    <Grid Name="MainGrid" Background="#ddebf7">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" Background="#FFABF1E1" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,474" Grid.RowSpan="2">
+        <Grid Name="UpGrid" Background="#ddebf7" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,474" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions >
         </Grid>
         <ListView Cursor="Hand" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="stationDisplay" Grid.Row="1" />
-        <Grid Name="BottomGrid" Background="#FFABF1E1" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
+        <Grid Name="BottomGrid" Background="#ddebf7" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
