@@ -12,7 +12,7 @@
             <RowDefinition Height="463*"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" Background="#ddebf7" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,2">
+        <Grid Name="UpGrid" Background="#a6dfe1" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -33,7 +33,7 @@
 
         </Grid>
         <ListView Cursor="Hand" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Margin="0,1,0,0" Grid.Row="1" />
-        <Grid Name="BottomGrid" Background="#ddebf7" Height="auto" Grid.Row="2" Width="auto" Margin="0,12,0,0">
+        <Grid Name="BottomGrid" Background="#a6dfe1" Height="auto" Grid.Row="2" Width="auto" Margin="0,12,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
