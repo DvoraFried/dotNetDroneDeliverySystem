@@ -12,7 +12,7 @@
                     <RowDefinition Height="400*"/>
                     <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
-                <Grid Name="UpGrid" Background="#FF688B87" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,474" Grid.RowSpan="2">
+        <Grid Name="UpGrid" Background="#FFABF1E1" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,474" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -21,7 +21,7 @@
                     </Grid.ColumnDefinitions >
                 </Grid>
         <ListView Cursor="Hand" MouseDoubleClick="listView_MouseDoubleClick" Name="parcelDisplay" Grid.Row="1" />
-        <Grid Name="BottomGrid" Background="Azure" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
+        <Grid Name="BottomGrid" Background="#FFABF1E1" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
