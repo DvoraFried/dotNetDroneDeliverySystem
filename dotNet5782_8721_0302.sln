@@ -19,7 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{069C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI_BL", "ConsoleUI_BL\ConsoleUI_BL.csproj", "{F1A6122C-11ED-4E10-A8EB-C0C79ED6FDED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{A411F624-D362-46CC-BF14-5E505F274A3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{A411F624-D362-46CC-BF14-5E505F274A3B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A037CB5B-E779-4EEA-9774-436FFDAE46CA} = {A037CB5B-E779-4EEA-9774-436FFDAE46CA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
