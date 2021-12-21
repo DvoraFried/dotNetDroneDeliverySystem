@@ -25,7 +25,7 @@ namespace PL
         {
             InitializeComponent();
             Bl = bl;
-            customersDisplay.ItemsSource = Bl.ReturnCustomerList();
+            customersDisplay.ItemsSource = Bl.ReturnCustomerList();      
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {

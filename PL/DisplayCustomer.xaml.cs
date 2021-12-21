@@ -90,5 +90,11 @@ namespace PL
         {
             this.Close();
         }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveCustomerById(id);
+            this.Close();
+        }
     }
 }
