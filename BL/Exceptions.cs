@@ -67,6 +67,10 @@ namespace BO
         {
             public TheDroneHasAlreadyPickedUpTheParcel() : base(string.Format("The drone has already picked up the parcel")) { }
         }
-
+        
+        public class ThereAreParcelForTheCustomer : Exception
+        {
+            public ThereAreParcelForTheCustomer(int idParcel) : base(string.Format($"The parcel {idParcel} was assaighned to this Customer")) { }
+        }
     }
 }
