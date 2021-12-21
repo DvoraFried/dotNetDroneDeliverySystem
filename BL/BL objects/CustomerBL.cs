@@ -9,8 +9,8 @@ namespace IBL.BO
 {
     public class CustomerBL
     {
-        IDAL.IDAL dalOB;
-        public CustomerBL(IDAL.IDAL dalOBG,int id, string name, string phone, Position p, List<ParcelBL>parcels)
+        DalApi.IDAL dalOB;
+        public CustomerBL(DalApi.IDAL dalOBG,int id, string name, string phone, Position p, List<ParcelBL>parcels)
         {
             dalOB = dalOBG;
             setIdBL(id);

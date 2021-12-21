@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDAL.DO
+namespace DO
 {
     public static class DALFactory
     {
-        public static IDAL factory()
+        public static DalApi.IDAL factory()
         {
-            return DalObject.DalObject.GetDOBJ;
+            return DalObject.DalObject.GetDal;
         }
     }
 }

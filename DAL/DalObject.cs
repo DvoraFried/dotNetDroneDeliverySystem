@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using IDAL;
+using DO;
+using DalApi;
 
 namespace DalObject
 {
-    public class DalObject : IDAL.IDAL
+    internal class DalObject : DalApi.IDAL
     {
         DalObject() 
         {
@@ -18,7 +18,7 @@ namespace DalObject
 
         static DalObject DOBJ;
 
-        public static DalObject GetDOBJ
+        public static DalObject GetDal
         {
             get
             {

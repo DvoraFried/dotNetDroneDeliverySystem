@@ -10,8 +10,8 @@ namespace IBL.BO
 {
     public class ParcelBL
     {
-        IDAL.IDAL DalObj;
-        public ParcelBL(IDAL.IDAL dalOB, int idSender, int idTarget, int weight, int priority, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
+        DalApi.IDAL DalObj;
+        public ParcelBL(DalApi.IDAL dalOB, int idSender, int idTarget, int weight, int priority, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
         {
             DalObj = dalOB;
             parcelId++;
@@ -24,7 +24,7 @@ namespace IBL.BO
             RequestedBL = requested == null? DateTime.Now : requested;
             int droneId = id != -1 ? DalObject.DataSource.MyParcels.First(parcel => parcel.Id == id).DroneId : id;
             DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
-            IDAL.DO.CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender);
+            DO.CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender);
             Sender = new CustomerOnDelivery(customer.Id, customer.Name);
             customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget);
             Target = new CustomerOnDelivery(customer.Id, customer.Name);

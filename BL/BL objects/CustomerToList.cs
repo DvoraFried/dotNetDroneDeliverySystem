@@ -8,7 +8,7 @@ namespace IBL.BO
 {
     public class CustomerToList
     {
-        public CustomerToList(IDAL.IDAL dALOB,CustomerBL customer)
+        public CustomerToList(DalApi.IDAL dALOB,CustomerBL customer)
         {
             Id = customer.getIdBL();
             Name = customer.NameBL;

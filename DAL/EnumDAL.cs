@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IDAL.DO
+namespace DO
 {
     public enum WeightCategories { light , medium, heavy}
     public enum DroneStatuses { empty, maintenance , Shipping }

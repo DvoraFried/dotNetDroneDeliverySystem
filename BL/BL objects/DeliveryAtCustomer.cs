@@ -10,7 +10,7 @@ namespace IBL.BO
 {
     public class DeliveryAtCustomer
     { 
-        public DeliveryAtCustomer(IDAL.IDAL dalOBG,ParcelBL parcel, int myId)
+        public DeliveryAtCustomer(DalApi.IDAL dalOBG,ParcelBL parcel, int myId)
         {
             Id = parcel.IdBL;
             Weight = parcel.Weight;
@@ -20,7 +20,7 @@ namespace IBL.BO
                      parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
                      EnumBL.DeliveryStatus.created;
             int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
-            IDAL.DO.CustomerDAL customer = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == idSecondCustomer);
+            DO.CustomerDAL customer = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == idSecondCustomer);
             Customer = new CustomerOnDelivery(customer.Id, customer.Name);
         }
         public override string ToString()

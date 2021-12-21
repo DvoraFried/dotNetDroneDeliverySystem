@@ -8,7 +8,7 @@ namespace IBL.BO
 {
     public class DroneToList
     {
-        public DroneToList(IDAL.IDAL dalOB, DroneBL drone)
+        public DroneToList(DalApi.IDAL dalOB, DroneBL drone)
         {
             Id = drone.getIdBL();
             Model = drone.ModelBL;

@@ -8,7 +8,7 @@ namespace IBL.BO
 {
     public class ParcelToList
     {
-        public ParcelToList(IDAL.IDAL dalOBG, ParcelBL parcel)
+        public ParcelToList(DalApi.IDAL dalOBG, ParcelBL parcel)
         {
             Id = parcel.IdBL;
             SenderName = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id).Name;

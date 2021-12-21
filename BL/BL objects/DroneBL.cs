@@ -1,5 +1,5 @@
 ﻿using DalObject;
-using IDAL.DO;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace IBL.BO
     public class DroneBL
     {
 
-        public DroneBL(IDAL.IDAL dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
+        public DroneBL(DalApi.IDAL dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
         {
             Random rnd = new Random();
             setIdBL(id);

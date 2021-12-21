@@ -1,5 +1,5 @@
 ﻿using DalObject;
-using IDAL.DO;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace BL
     {
         Random rnd = new Random();
         public static List<DroneBL> DronesListBL;
-        static IDAL.IDAL DalObj;
+        static DalApi.IDAL DalObj;
         static BL BLOBJ;
         static double nonWeightPowerConsumption;
         static double lightWeightPowerConsumption;

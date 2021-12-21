@@ -10,7 +10,7 @@ namespace IBL.BO
 {
     public class ParcelByTransfer
     {
-        public ParcelByTransfer(IDAL.IDAL dalOB, ParcelBL parcel)
+        public ParcelByTransfer(DalApi.IDAL dalOB, ParcelBL parcel)
         {
             Id = parcel.IdBL;
             IsDelivery = parcel.PickUpBL != null;
@@ -18,7 +18,7 @@ namespace IBL.BO
             Weight = parcel.Weight;
             Sender = parcel.Sender;
             Target = parcel.Target;
-            IDAL.DO.CustomerDAL dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id);
+            DO.CustomerDAL dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id);
             CollectionLocation = new Position(dalobj.Longitude, dalobj.Latitude);
             dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Target.Id);
             DeliveryDestinationLocation = new Position(dalobj.Longitude, dalobj.Latitude);
