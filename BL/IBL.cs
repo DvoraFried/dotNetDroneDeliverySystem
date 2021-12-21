@@ -37,6 +37,6 @@ namespace BlApi
         public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList);
         public StationBL convertStationToListToStationBl(StationToList stationToList);
         public List<StationToList> ReturnStationList();
-
+        public ParcelBL convertParcelByTransferToParcelBl(ParcelByTransfer parcelByTransfer);
     }
 }

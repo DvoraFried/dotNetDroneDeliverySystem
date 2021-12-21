@@ -110,5 +110,9 @@ namespace BL
         {
             return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationToList.Id));
         }
+        public ParcelBL convertParcelByTransferToParcelBl(ParcelByTransfer parcelByTransfer)
+        {
+            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelByTransfer.Id));
+        }
     }
 }

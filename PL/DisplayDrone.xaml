@@ -59,7 +59,6 @@
         </Grid.ColumnDefinitions >
         <Button Cursor="Hand" Grid.Column="2"  Click="Button_Click_1" Margin="94,10,10,514">close</Button>
         <Grid Grid.Column="1" Name="FormGrid" Background="#a8cacd" Margin="10,0,10,0">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*"/>
                 <RowDefinition Height="20*"/>
@@ -90,14 +89,26 @@
                     <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
                     <RadioButton x:Name="heavy" Content="heavy" Checked="heavy_Checked"/>
                 </StackPanel>
-                <Label Name="statioIdLabel" Grid.Row="5" Margin="23,1,0,10">STATION ID:</Label>
-                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Grid.Row="5"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,0,0,0"/>
+                <Label Name="statioIdLabel" Grid.Row="4" Margin="23,66,0,46" Grid.RowSpan="2">STATION ID:</Label>
+                <TextBox Name="StationIdTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Grid.Row="4"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,63,0,0"/>
 
-                <Grid  x:Name="hidddenInfroUpDate" Visibility="Hidden" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="2">
-                    <Label x:Name="DroneStatusLabel" Margin="22,0,226,30" Content="DRONE STATUS:"/>
-                    <TextBox x:Name="DroneStatusTextBox" IsEnabled="False" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Grid.Row="6"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,0,0,0"/>
-                    <Label x:Name="batteryStatusLabel" Margin="22,49,226,0" Content="BATTERY:"/>
-                    <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="6" Margin="118,61,0,0" VerticalAlignment="Top" Width="178"/>
+                <Grid  x:Name="hidddenInfroUpDate" Visibility="Visible" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="133*"/>
+                        <ColumnDefinition Width="223*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="DroneStatusLabel" Margin="22,0,152,30" Content="DRONE STATUS:" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="DroneStatusTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="2"/>
+                    <Label x:Name="batteryStatusLabel" Margin="22,49,152,0" Content="BATTERY:" Grid.ColumnSpan="2"/>
+                    <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="6" Margin="119,61,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
+                    <Expander Expanded="expanderHasExpanded" Collapsed="expanderHasClose" Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-86,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="2">
+                        <ScrollViewer>
+                            <Label Name="parcelInDrone"/>
+                        </ScrollViewer>
+
+                    </Expander>
+
+
                 </Grid>
             </Grid>
 
