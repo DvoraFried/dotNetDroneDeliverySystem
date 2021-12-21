@@ -39,5 +39,6 @@ namespace BlApi
         public List<StationToList> ReturnStationList();
         public void RemoveCustomerById(int idCustomer);
 
+        public ParcelBL convertParcelByTransferToParcelBl(ParcelByTransfer parcelByTransfer);
     }
 }

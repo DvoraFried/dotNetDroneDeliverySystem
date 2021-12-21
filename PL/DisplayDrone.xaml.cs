@@ -34,6 +34,7 @@ namespace PL
             IDTextBox.Text = drone.getIdBL().ToString();
             IDTextBox.IsEnabled = false;
             ModelTextBox.Text = drone.ModelBL;
+            parcelInDrone.Content = drone.delivery == null ? "No Parcel in Drone" : drone.delivery.ToString();
             light.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.light ? true : false;
             medium.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.medium ? true : false;
             heavy.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.heavy ? true : false;
@@ -134,6 +135,16 @@ namespace PL
             catch (OverflowException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
+
+        private void expanderHasExpanded(object sender, RoutedEventArgs args)
+        {
+            parcelInDrone.Background = Brushes.DimGray;
+        }
+        private void expanderHasClose(object sender, RoutedEventArgs args)
+        {
+            parcelInDrone.Background = null;
+        }
+        
         private void light_Checked(object sender, RoutedEventArgs e)
         {
             maxWeight = 0;
