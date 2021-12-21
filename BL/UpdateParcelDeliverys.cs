@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static IBL.BO.EnumBL;
-using static IBL.BO.Exceptions;
-using static IBL.BO.DistanceBetweenCoordinates;
-using IBL.BO;
+using static BO.EnumBL;
+using static BO.Exceptions;
+using static BO.DistanceBetweenCoordinates;
+using BO;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
         public IEnumerable<ParcelDAL> returnParcelWithEmergencyParcelsPriority()
         {

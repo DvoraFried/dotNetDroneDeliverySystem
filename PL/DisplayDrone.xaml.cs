@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +21,10 @@ namespace PL
     /// </summary>
     public partial class DisplayDrone : Window
     {
-        IBL.IBL Bl;
+        BlApi.IBL Bl;
 
         int maxWeight = 1;
-        public DisplayDrone(IBL.IBL bl,DroneBL drone)
+        public DisplayDrone(BlApi.IBL bl,DroneBL drone)
         {
             Bl = bl;
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace PL
             DroneStatusTextBox.Text = drone.DroneStatus.ToString();
             statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
         }
-        public DisplayDrone(IBL.IBL bl)
+        public DisplayDrone(BlApi.IBL bl)
         {
             Bl = bl;
             InitializeComponent();

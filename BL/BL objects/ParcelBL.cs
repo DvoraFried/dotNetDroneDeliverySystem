@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BL.BL;
-using static IBL.BO.EnumBL;
+using static BO.EnumBL;
 
-namespace IBL.BO
+namespace BO
 {
     public class ParcelBL
     {

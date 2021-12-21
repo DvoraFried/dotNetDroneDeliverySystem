@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
 
         public StationDAL ReturnStationById(int idS)

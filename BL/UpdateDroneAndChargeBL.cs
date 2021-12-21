@@ -1,17 +1,17 @@
 ﻿using DalObject;
-using IBL.BO;
+using BO;
 using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static IBL.BO.EnumBL;
-using static IBL.BO.Exceptions;
+using static BO.EnumBL;
+using static BO.Exceptions;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
             public void SendDroneToCharge(int id)
             {

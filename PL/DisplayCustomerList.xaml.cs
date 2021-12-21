@@ -20,8 +20,8 @@ namespace PL
     public partial class DisplayCustomerList : Window
     {
 
-        IBL.IBL Bl;
-        public DisplayCustomerList(IBL.IBL bl)
+        BlApi.IBL Bl;
+        public DisplayCustomerList(BlApi.IBL bl)
         {
             InitializeComponent();
             Bl = bl;
@@ -30,7 +30,7 @@ namespace PL
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
-            IBL.BO.CustomerToList customer = (sender as ListView).SelectedValue as IBL.BO.CustomerToList;
+            BO.CustomerToList customer = (sender as ListView).SelectedValue as BO.CustomerToList;
             this.Close();
             new DisplayCustomer(Bl, Bl.convertCustomerToListToCustomerBl(customer)).ShowDialog();
 

@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +19,10 @@ namespace PL
     /// </summary>
     public partial class DroneList : Window
     {
-        IBL.IBL Bl;
+        BlApi.IBL Bl;
         int droneStatus = -1;
         int droneMaxWeight = -1;
-        public DroneList(IBL.IBL bl)
+        public DroneList(BlApi.IBL bl)
         {
             InitializeComponent();
             Bl = bl;
@@ -69,7 +69,7 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            IBL.BO.DroneBL drone = (sender as ListView).SelectedValue as IBL.BO.DroneBL;
+            BO.DroneBL drone = (sender as ListView).SelectedValue as BO.DroneBL;
             this.Close();
             new DisplayDrone(Bl, drone).ShowDialog();
         }

@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace PL
 				Click="Button_Click" Margin="322,178,322,178"/>*/
     public partial class MainWindow : Window
     {
-        IBL.IBL Bl;
+        BlApi.IBL Bl;
         public MainWindow()
         {
             Bl = BLFactory.factory();

@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +21,10 @@ namespace PL
     /// </summary>
     public partial class DisplayParcel : Window
     {
-        IBL.IBL Bl;
+        BlApi.IBL Bl;
         int weight = 0;
         int priority = 0;
-        public DisplayParcel(IBL.IBL bl, ParcelBL parcel)
+        public DisplayParcel(BlApi.IBL bl, ParcelBL parcel)
         {
             InitializeComponent();
             ADD_BUTTON.Visibility = PRIORITYlabel.Visibility = weightLabel.Visibility = senderIdlbel.Visibility = targetIdLabel.Visibility = priorityCheckBox.Visibility = WeightCheckBox.Visibility = IDSenderTextBox.Visibility = TargetIDTextBox.Visibility = Visibility.Hidden;
@@ -40,7 +40,7 @@ namespace PL
             PriorityTextBox.Text = parcel.Priority.ToString();
             WeightTextBox.Text = parcel.Weight.ToString();
         }
-        public DisplayParcel(IBL.IBL bl)
+        public DisplayParcel(BlApi.IBL bl)
         {
             Bl = bl;
             InitializeComponent();

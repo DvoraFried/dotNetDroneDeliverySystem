@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +21,8 @@ namespace PL
     /// </summary>
     public partial class DisplayCustomer : Window
     {
-        IBL.IBL Bl;
-        public DisplayCustomer(IBL.IBL bl, CustomerBL customer)
+        BlApi.IBL Bl;
+        public DisplayCustomer(BlApi.IBL bl, CustomerBL customer)
         {
             Bl = bl;
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace PL
             foreach (DeliveryAtCustomer parcel in parcels) { myList += parcel.ToString(); }
             return myList;
         }
-        public DisplayCustomer(IBL.IBL bl)
+        public DisplayCustomer(BlApi.IBL bl)
         {
             Bl = bl;
             InitializeComponent();

@@ -1,16 +1,16 @@
 ﻿using DalObject;
-using IBL.BO;
+using BO;
 using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static IBL.BO.Exceptions;
+using static BO.Exceptions;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
             public void UpDateDroneName(int id, string newModelName)
             {

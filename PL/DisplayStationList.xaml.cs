@@ -19,8 +19,8 @@ namespace PL
     /// </summary>
     public partial class DisplayStationList : Window
     {
-        IBL.IBL Bl;
-        public DisplayStationList(IBL.IBL bl)
+        BlApi.IBL Bl;
+        public DisplayStationList(BlApi.IBL bl)
         {
             InitializeComponent();
             Bl = bl;
@@ -28,7 +28,7 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            IBL.BO.StationToList station = (sender as ListView).SelectedValue as IBL.BO.StationToList;
+            BO.StationToList station = (sender as ListView).SelectedValue as BO.StationToList;
             this.Close();
             new DisplayStation(Bl, Bl.convertStationToListToStationBl(station)).ShowDialog();
         }

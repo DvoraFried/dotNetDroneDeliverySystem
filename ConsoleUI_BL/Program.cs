@@ -1,9 +1,9 @@
 ﻿using System;
-using IBL.BO;
-using static IBL.BO.EnumBL;
+using BO;
+using static BO.EnumBL;
 using System.Text;
-using IBL;
-using static IBL.BO.Exceptions;
+using BlApi;
+using static BO.Exceptions;
 namespace ConsoleUI_BL
 {
     class Program
@@ -406,7 +406,7 @@ namespace ConsoleUI_BL
                     Console.WriteLine("== ERROR =="); break;
             }
         }
-        public static IBL.IBL bl = BLFactory.factory();
+        public static BlApi.IBL bl = BLFactory.factory();
         static void Main(string[] args)
         {
             try

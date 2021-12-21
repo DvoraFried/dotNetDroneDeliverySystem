@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BL.BL;
-using static IBL.BO.EnumBL;
-using static IBL.BO.Exceptions;
+using static BO.EnumBL;
+using static BO.Exceptions;
 
-namespace IBL.BO
+namespace BO
 {
     public class DroneBL
     {

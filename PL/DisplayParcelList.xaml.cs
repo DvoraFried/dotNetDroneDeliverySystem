@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +20,8 @@ namespace PL
     /// </summary>
     public partial class DisplayParcelList : Window
     {
-        IBL.IBL BLobj;
-        public DisplayParcelList(IBL.IBL bl)
+        BlApi.IBL BLobj;
+        public DisplayParcelList(BlApi.IBL bl)
         {
             InitializeComponent();
             BLobj = bl;
@@ -35,7 +35,7 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            IBL.BO.ParcelToList parcel = (sender as ListView).SelectedValue as IBL.BO.ParcelToList;
+            BO.ParcelToList parcel = (sender as ListView).SelectedValue as BO.ParcelToList;
             this.Close();
 
             new DisplayParcel(BLobj, BLobj.convertParcelToListToParcelBl(parcel)).ShowDialog();

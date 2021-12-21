@@ -1,4 +1,4 @@
-﻿using IBL.BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +25,8 @@ namespace PL
         {
             InitializeComponent();
         }
-        IBL.IBL Bl;
-        public DisplayStation(IBL.IBL bl, StationBL station)
+        BlApi.IBL Bl;
+        public DisplayStation(BlApi.IBL bl, StationBL station)
         {
             Bl = bl;
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace PL
             foreach(DroneInChargeBL drone in drones) { myString += drone.ToString(); }
             return myString;
         }
-        public DisplayStation(IBL.IBL bl)
+        public DisplayStation(BlApi.IBL bl)
         {
             Bl = bl;
             InitializeComponent();
