@@ -10,7 +10,7 @@ namespace DalObject
 {
     internal sealed class DalObject : DalApi.IDAL {
 
-        private static DalObject instance = null;
+        internal static DalObject instance = null;
         private static readonly object padLock = new object();
         DalObject() 
         {
@@ -200,6 +200,13 @@ namespace DalObject
         public void DeleteObjFromDroneCharges(int id)
         {
             throw new NotImplementedException();
+        }
+        //=============================================
+        //remove item frm list by ID
+        //=============================================
+        public void RemoveCustomerById(int idCustomer)
+        {
+            DataSource.MyCustomers.RemoveAll(c => c.Id == idCustomer);
         }
     }
     
