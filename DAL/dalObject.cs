@@ -201,6 +201,13 @@ namespace DalObject
         {
             throw new NotImplementedException();
         }
+        //=============================================
+        //remove item frm list by ID
+        //=============================================
+        public void RemoveCustomerById(int idCustomer)
+        {
+            DataSource.MyCustomers.RemoveAll(c => c.Id == idCustomer);
+        }
     }
     
 }
