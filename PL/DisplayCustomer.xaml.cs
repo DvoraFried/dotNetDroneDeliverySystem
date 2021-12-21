@@ -93,7 +93,7 @@ namespace PL
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
-            RemoveCustomerById(id);
+            Bl.RemoveCustomerById(Int32.Parse(IDTebtBox.Text));
             this.Close();
         }
     }

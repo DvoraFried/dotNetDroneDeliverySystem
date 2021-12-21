@@ -12,8 +12,9 @@ namespace BL
     {
         public void RemoveCustomerById(int idCustomer)
         {
-            if (DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer))  { throw new ObjectDoesntExistsInListException("customer"); }
-            DalObj.returnCustomerArray().ToList().RemoveAll(c => c.Id == idCustomer);
+            if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer))  { throw new ObjectDoesntExistsInListException("customer"); }
+            DalObj.RemoveCustomerById(idCustomer);
+               
         }
     }
 }

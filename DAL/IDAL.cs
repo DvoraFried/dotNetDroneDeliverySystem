@@ -40,5 +40,7 @@ namespace DalApi
             public void ReplaceParcelById(ParcelDAL DALP);
 
             public void DeleteObjFromDroneCharges(int id);
-        }
+
+            public void RemoveCustomerById(int idCustomer);
+    }
 }
