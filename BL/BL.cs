@@ -23,7 +23,7 @@ namespace BL
         static double heavyWeightPowerConsumption;
         static double DroneLoadingRate;
 
-        public BL()
+        BL()
         {
             DalObj = DALFactory.factory();
             
@@ -82,13 +82,24 @@ namespace BL
                 }
             }
         }
-        public static BL GetBLOBJ
+        private static BL instance = null;
+        private static readonly object padLock = new object();
+
+        public static BL GetBl
         {
             get
             {
-                if (BLOBJ == null)
-                    BLOBJ = new BL();
-                return BLOBJ;
+                if (instance == null)
+                {
+                    lock (padLock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new BL();
+                        }
+                    }
+                }
+                return instance;
             }
         }
         public static double updateButteryStatus(DroneBL drone, Position position, int weight)

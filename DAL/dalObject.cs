@@ -8,25 +8,47 @@ using DalApi;
 
 namespace DalObject
 {
-    public class DalObject : DalApi.IDAL
-    {
+    internal sealed class DalObject : DalApi.IDAL {
+
+        private static DalObject instance = null;
+        private static readonly object padLock = new object();
         DalObject() 
         {
             DataSource.Initialize();
         }
-        static Random rnd = new Random();
-
-        static DalObject DOBJ;
+        public static DalObject GetDal
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (padLock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new DalObject();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+/*        private static DalObject instance = null;
 
         public static DalObject GetDal
         {
             get
             {
-                if (DOBJ == null)
-                    DOBJ = new DalObject();
-                return DOBJ;
+                if (instance == null)
+                {
+                    instance = new DalObject();
+                }
+                return instance;
             }
         }
+*/
+        static Random rnd = new Random();
+
         //=====================================================================
         //                     1. class add - add function
         //=====================================================================
