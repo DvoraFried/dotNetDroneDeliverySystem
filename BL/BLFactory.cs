@@ -10,7 +10,7 @@ namespace IBL.BO
     {
         public static IBL factory()
         {
-            return BL.BL.GetBLOBJ;
+            return BL.BL.GetBl;
         }
     }
 }

@@ -3,30 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using IDAL;
+using DO;
+using DalApi;
 
 namespace DalObject
 {
-    public class DalObject : IDAL.IDAL
-    {
+    internal sealed class DalObject : DalApi.IDAL {
+
+        private static DalObject instance = null;
+        private static readonly object padLock = new object();
         DalObject() 
         {
             DataSource.Initialize();
         }
-        static Random rnd = new Random();
-
-        static DalObject DOBJ;
-
-        public static DalObject GetDOBJ
+        public static DalObject GetDal
         {
             get
             {
-                if (DOBJ == null)
-                    DOBJ = new DalObject();
-                return DOBJ;
+                if (instance == null)
+                {
+                    lock (padLock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new DalObject();
+                        }
+                    }
+                }
+                return instance;
             }
         }
+/*        private static DalObject instance = null;
+
+        public static DalObject GetDal
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new DalObject();
+                }
+                return instance;
+            }
+        }
+*/
+        static Random rnd = new Random();
+
         //=====================================================================
         //                     1. class add - add function
         //=====================================================================
