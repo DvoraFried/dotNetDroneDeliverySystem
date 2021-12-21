@@ -33,6 +33,7 @@ namespace PL
             IDTextBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeText.IsEnabled = false;
             IDTextBox.Text = station.GetIdBL().ToString();
             NameTextBox.Text = station.NameBL;
+            expender.Visibility = Visibility.Visible;
             ChargesLotsTextBox.Text = station.ChargeSlotsBL.ToString();
             LongitudeTextBox.Text = station.Position.Longitude.ToString();
             LatitudeText.Text = station.Position.Latitude.ToString();
@@ -86,7 +87,14 @@ namespace PL
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-
+        private void expanderHasExpanded(object sender, RoutedEventArgs args)
+        {
+            dronesInCharge.Background = Brushes.DimGray;
+        }
+        private void expanderHasClose(object sender, RoutedEventArgs args)
+        {
+            dronesInCharge.Background = null;
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
