@@ -196,7 +196,6 @@ namespace DalObject
         {
             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
         }
-
         public void DeleteObjFromDroneCharges(int id)
         {
             throw new NotImplementedException();
