@@ -14,8 +14,10 @@ namespace DalApi
             public void AddDroneDAL(DroneDAL DALD);
             public  void AddCustomerDAL(CustomerDAL DALC);
             public  void AddParcelDAL(ParcelDAL DALP);
+            public void AddParcelDALWithNoTarget(ParcelDAL DALP);
 
-            public void Scheduled(int parcelIdS);
+
+        public void Scheduled(int parcelIdS);
             public void PickUp(int parcelIdS);
             public void Delivered(int parcelIdS);
             public void Charge(DroneChargeDAL DALDC);
@@ -42,5 +44,7 @@ namespace DalApi
             public void DeleteObjFromDroneCharges(int id);
 
             public void RemoveCustomerById(int idCustomer);
+            public void RemoveParcelById(ParcelDAL DALP);
+
     }
 }

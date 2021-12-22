@@ -19,8 +19,15 @@ namespace BL
                 ParcelBL p = ConvertToBL.ConvertToParcelBL(parcel);
                 if (p.Target.Id == idCustomer)
                 {
-                    { throw new ThereAreParcelForTheCustomer(p.Target.Id); }
-                    return;
+                    DalObj.RemoveParcelById(ConvertToDal.ConvertToParcelDal(p));
+                    p.Target.Id = -1;
+                    DalObj.AddParcelDALWithNoTarget(ConvertToDal.ConvertToParcelDal(p));
+                    /*{ throw new ThereAreParcelForTheCustomer(p.Target.Id); }
+                    return;*/
+                }
+                if (p.Sender.Id == idCustomer)
+                {
+                    DalObj.RemoveParcelById(ConvertToDal.ConvertToParcelDal(p));
                 }
             }
             DalObj.RemoveCustomerById(idCustomer);
