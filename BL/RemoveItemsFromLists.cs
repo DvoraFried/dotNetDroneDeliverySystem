@@ -20,8 +20,11 @@ namespace BL
                 if (p.Target.Id == idCustomer)
                 {
                     DalObj.RemoveParcelById(ConvertToDal.ConvertToParcelDal(p));
-                    p.Target.Id = -1;
-                    DalObj.AddParcelDALWithNoTarget(ConvertToDal.ConvertToParcelDal(p));
+                    if (parcel.Scheduled == null)
+                    {
+                        p.Target.Id = -1;
+                        DalObj.AddParcelDALWithNoTarget(ConvertToDal.ConvertToParcelDal(p));
+                    }
                     /*{ throw new ThereAreParcelForTheCustomer(p.Target.Id); }
                     return;*/
                 }
