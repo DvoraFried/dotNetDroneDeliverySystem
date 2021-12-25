@@ -44,5 +44,10 @@ namespace PL
             stationDisplay.ItemsSource = Bl.ReturnStationListSortedByEmptySlots();
 
         }
+
+        private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            stationDisplay.ItemsSource = Bl.ReturnStationList();
+        }
     }
 }
