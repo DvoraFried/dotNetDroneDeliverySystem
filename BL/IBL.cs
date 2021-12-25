@@ -31,6 +31,7 @@ namespace BlApi
         public void DisplayParcelList();
         public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone();
         public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
+        public IEnumerable<DroneBL> ReturnDronesByStatusOrder();
         public List<ParcelToList> ReturnParcelList();
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList);
         public List<CustomerToList> ReturnCustomerList();
