@@ -43,6 +43,7 @@ namespace BL
         {
             foreach (ParcelDAL element in DalObj.returnParcelArray().ToList()) { yield return element; }
         }
+
         public IEnumerable<ParcelDAL> ReturnNotScheduledParcel()
         {
             foreach(ParcelDAL element in DalObj.returnParcelArray()) { if (!string.IsNullOrEmpty(element.DroneId.ToString())) { yield return element; } }
@@ -110,6 +111,16 @@ namespace BL
             }
             return stationsToReturn;
         }
+        public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots()
+        {
+            IEnumerable<StationToList> sList = ReturnStationList().OrderBy(s => s.AvailableChargingStations);
+            
+            foreach (StationToList element in sList)
+            {
+                yield return element;
+            }
+        }
+        
         public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList)
         {
             return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerToList.Id));
