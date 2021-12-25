@@ -89,6 +89,15 @@ namespace BL
             }
             return parcelsUpdateList;
         }
+        public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
+        {
+            IEnumerable<ParcelToList> pList = ReturnParcelList().OrderBy(s => s.SenderId);
+
+            foreach (ParcelToList element in pList)
+            {
+                yield return element;
+            }
+        }
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList)
         {
             return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelToList.Id));

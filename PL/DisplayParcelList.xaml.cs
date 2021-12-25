@@ -40,5 +40,15 @@ namespace PL
 
             new DisplayParcel(BLobj, BLobj.convertParcelToListToParcelBl(parcel)).ShowDialog();
         }
+
+        private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)
+        {
+            parcelDisplay.ItemsSource = BLobj.ReturnPacelListGroupBySender();
+        }
+
+        private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
+        }
     }
 }

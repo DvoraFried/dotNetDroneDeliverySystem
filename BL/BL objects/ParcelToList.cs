@@ -12,6 +12,7 @@ namespace BO
         {
             Id = parcel.IdBL;
             SenderName = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id).Name;
+            SenderId = parcel.Sender.Id;
             UstomerReceivesName = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Target.Id).Name;
             weight = parcel.Weight;
             priority = parcel.Priority;
@@ -26,6 +27,7 @@ namespace BO
         }
         public int Id { get; set; }
         public string SenderName { get; set; }
+        public int SenderId { get; set; }
         public string UstomerReceivesName { get; set; }
         EnumBL.WeightCategoriesBL weight { get; set; }
         EnumBL.PrioritiesBL priority { get; set; }

@@ -20,8 +20,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
         </Grid>
-        <Button Margin="10,5,619,5" Click="ButtonSortByEmptySlots_Click" Content=" sort by empty charging slots"/>
-        <Button Cursor="Hand" Click="buttonClearFilter_Click" Content="clear" Margin="206,5,553,5">
+        <Button Margin="10,5,599,5" Click="ButtonSortByEmptySlots_Click" Content=" sort by empty charging slots"/>
+        <Button Cursor="Hand" Click="buttonClearFilter_Click" Content="clear" Margin="216,5,523,5">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="50"/>
