@@ -68,6 +68,11 @@ namespace DalObject
         {
             DataSource.MyParcels.Add(DALP);
         }
+        public void AddParcelDALWithNoTarget(ParcelDAL DALP)
+        {
+            DataSource.ParcelsWithNoTarget.Add(DALP);
+        }
+
         //=====================================================================
         //                     2. class update - update functions 
         //=====================================================================
@@ -207,6 +212,11 @@ namespace DalObject
         {
             DataSource.MyCustomers.RemoveAll(c => c.Id == idCustomer);
         }
+        public void RemoveParcelById(ParcelDAL DALP)
+        {
+            DataSource.MyParcels.RemoveAll(p => p.Id == DALP.Id);
+        }
+
     }
-    
+
 }

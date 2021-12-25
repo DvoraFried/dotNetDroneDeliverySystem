@@ -71,6 +71,14 @@ namespace BL
             }
             return droneUpdateList;
         }
+        public IEnumerable<DroneBL> ReturnDronesByStatusOrder()
+        {
+            IEnumerable<DroneBL> dList = DronesListBL.OrderBy(d => d.DroneStatus);
+            foreach (DroneBL element in dList)
+            {
+                yield return element;
+            }
+        }
         public List<ParcelToList> ReturnParcelList()
         {
             List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();

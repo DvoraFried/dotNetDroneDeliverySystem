@@ -23,9 +23,17 @@
             <ComboBox SelectionChanged="comboBoxOByStatus_SelectionChanged" x:Name="OrderByStatus" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="170" Margin="20,42,0,0"/>
             <Label Content="   &#xD;&#xA;     MAX WEIGHT:" Grid.Column="1" ></Label>
             <ComboBox SelectionChanged="comboBoxOByMaxW_SelectionChanged" x:Name="OrderByMaxWeight" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="170" Grid.Column="1" Margin="20,42,0,0"/>
-            <Button Cursor="Hand" Click="buttonClearFilter_Click" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="44" RenderTransformOrigin="0.432,-0.059" Margin="10,42,0,0">
+            <Button Cursor="Hand" Click="buttonClearFilter_Click" Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="0.432,-0.059" Margin="10,42,0,20">
+                <!--ReturnDronesByStatusOrder-->
                 <Button.Resources>
                     <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="50"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Cursor="Hand"  Content="sort by status" Grid.Column="2" HorizontalAlignment="Left" Width="119" RenderTransformOrigin="0.432,-0.059" Margin="71,42,0,20" Click="ButtonStatusSortFilter_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="50"/>
                     </Style>
                 </Button.Resources>

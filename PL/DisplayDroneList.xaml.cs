@@ -82,6 +82,11 @@ namespace PL
             addDrone.ShowDialog();
 
         }
+
+        private void ButtonStatusSortFilter_Click(object sender, RoutedEventArgs e)
+        {
+            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusOrder();
+        }
     }
 }
 
