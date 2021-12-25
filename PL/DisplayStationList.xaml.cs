@@ -38,5 +38,11 @@ namespace PL
             this.Close();
             new DisplayStation(Bl).ShowDialog();
         }
+
+        private void ButtonSortByEmptySlots_Click(object sender, RoutedEventArgs e)
+        {
+            stationDisplay.ItemsSource = Bl.ReturnStationListSortedByEmptySlots();
+
+        }
     }
 }

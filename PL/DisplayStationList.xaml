@@ -20,6 +20,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
         </Grid>
+        <Button Margin="10,5,619,5" Click="ButtonSortByEmptySlots_Click" Content=" sort by empty charging slots"/>
         <ListView Cursor="Hand" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="stationDisplay" Grid.Row="1" />
         <Grid Name="BottomGrid" Background="#a8cacd" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
