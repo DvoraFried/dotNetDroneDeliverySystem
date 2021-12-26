@@ -23,8 +23,25 @@ namespace PL
         {
             InitializeComponent();
         }
+        private void registerTab_Click(object sender, RoutedEventArgs e)
+        {
+            int newIndex = MyTabControl.SelectedIndex + 1;
+/*            if (newIndex >= MyTabControl.Items.Count)
+                newIndex = 0;*/
+            MyTabControl.SelectedIndex = newIndex;
+        }
+        private void logInTab_Click(object sender, RoutedEventArgs e)
+        {
+            int newIndex = MyTabControl.SelectedIndex - 1;
+/*            if (newIndex >= MyTabControl.Items.Count)
+                newIndex = 0;*/
+            MyTabControl.SelectedIndex = newIndex;
+        }
+        private void ButtonsignUp_Click(object sender, RoutedEventArgs e)
+        {
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        }
+        private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
 
         }
