@@ -20,7 +20,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
         </Grid>
-        <Button Margin="10,5,619,5" Click="ButtonSortByEmptySlots_Click" Content=" sort by empty charging slots"/>
+        <Button Margin="10,5,599,5" Click="ButtonSortByEmptySlots_Click" Content=" sort by empty charging slots"/>
+        <Button Cursor="Hand" Click="buttonClearFilter_Click" Content="clear" Margin="216,5,523,5">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="50"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <ListView Cursor="Hand" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="stationDisplay" Grid.Row="1" />
         <Grid Name="BottomGrid" Background="#a8cacd" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">

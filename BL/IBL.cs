@@ -33,6 +33,7 @@ namespace BlApi
         public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
         public IEnumerable<DroneBL> ReturnDronesByStatusOrder();
         public List<ParcelToList> ReturnParcelList();
+        public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList);
         public List<CustomerToList> ReturnCustomerList();
         public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList);
