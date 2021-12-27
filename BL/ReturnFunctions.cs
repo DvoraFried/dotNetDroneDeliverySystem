@@ -43,7 +43,6 @@ namespace BL
         {
             foreach (ParcelDAL element in DalObj.returnParcelArray().ToList()) { yield return element; }
         }
-
         public IEnumerable<ParcelDAL> ReturnNotScheduledParcel()
         {
             foreach(ParcelDAL element in DalObj.returnParcelArray()) { if (!string.IsNullOrEmpty(element.DroneId.ToString())) { yield return element; } }
@@ -83,9 +82,12 @@ namespace BL
         public List<ParcelToList> ReturnParcelList()
         {
             List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
-            foreach( ParcelDAL parcel in DalObj.returnParcelArray().ToList())
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
             {
-                parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
+                if (parcel.isActive == true)
+                {
+                    parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
+                }
             }
             return parcelsUpdateList;
         }
