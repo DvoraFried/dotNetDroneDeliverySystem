@@ -34,7 +34,7 @@ namespace PL
             IDTextBox.Text = drone.getIdBL().ToString();
             IDTextBox.IsEnabled = false;
             ModelTextBox.Text = drone.ModelBL;
-            parcelInDrone.Content = drone.delivery == null ? "No Parcel in Drone" : drone.delivery.ToString();
+            parcelInDrone.Items.Add(drone.delivery == null ? "No Parcel in Drone" : drone.delivery);
             light.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.light ? true : false;
             medium.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.medium ? true : false;
             heavy.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.heavy ? true : false;
@@ -48,7 +48,12 @@ namespace PL
             Bl = bl;
             InitializeComponent();
         }
-
+        private void showParcel(object sender, RoutedEventArgs e)
+        {
+            BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
+            this.Close();
+            new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+        }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

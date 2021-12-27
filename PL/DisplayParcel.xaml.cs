@@ -29,8 +29,8 @@ namespace PL
             InitializeComponent();
             ADD_BUTTON.Visibility = PRIORITYlabel.Visibility = weightLabel.Visibility = senderIdlbel.Visibility = targetIdLabel.Visibility = priorityCheckBox.Visibility = WeightCheckBox.Visibility = IDSenderTextBox.Visibility = TargetIDTextBox.Visibility = Visibility.Hidden;
             displayParcel.Visibility = Visibility.Visible;
-            senderTextBox.Text = parcel.Sender.ToString();
-            targetTextBox.Text = parcel.Target.ToString();
+            senderTextBox.Items.Add(parcel.Sender);
+            targetTextBox.Items.Add(parcel.Target);
             IDSenderTextBox.IsEnabled = TargetIDTextBox.IsEnabled = false;
             ParcelInDroneTextBox.Text = parcel.DroneIdBL != null ? parcel.DroneIdBL.ToString() : "non drone assign yet";
             RequestedTimeTextBox.Text = parcel.RequestedBL.ToString();
@@ -44,7 +44,13 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
-            
+        }
+        private void showCustomer(object sender, RoutedEventArgs e)
+        {
+            BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
+            this.Close();
+            CustomerBL customerBL = Bl.convertCustomerToCustomerBl(customer.Id);
+            new DisplayCustomer(Bl, customerBL).ShowDialog();
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {

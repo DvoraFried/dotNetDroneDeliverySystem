@@ -67,8 +67,8 @@
             </Grid>
             <Grid Name="displayParcel" Visibility="Hidden">
                 <Label Grid.Row="0" Margin="80,36,260,9">SENDER:</Label>
-                <TextBox Name="senderTextBox" IsReadOnly="True" Margin="45,59,205,-49"/>
-                <TextBox Name="targetTextBox" IsReadOnly="True" Margin="200,59,50,-49"/>
+                <ListView  Name="senderTextBox" MouseDoubleClick="showCustomer" Margin="45,59,205,-49"/>
+                <ListView  Name="targetTextBox" MouseDoubleClick="showCustomer" Margin="200,59,50,-49"/>
                 <Label Margin="245,36,95,12">TARGET:</Label>
                 <Label Margin="89,133,249,-86">WEIGHT :</Label>
                 <Label Margin="245,133,-152,-84">PRIORITY:</Label>

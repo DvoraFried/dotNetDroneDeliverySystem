@@ -61,7 +61,7 @@
             </Grid>
             <Expander Expanded="expanderHasExpanded" Collapsed="expanderHasClose" Name="expender" Visibility="Hidden" Header="DRONES IN CHARGE:" HorizontalAlignment="Left" Height="137" Margin="89,143,0,0" Grid.Row="1" VerticalAlignment="Top" Width="203">
                 <ScrollViewer>
-                    <Label Name="dronesInCharge"/>
+                    <ListView Name="dronesInCharge" MouseDoubleClick="showDrone"/>
                 </ScrollViewer>
             </Expander>
             <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="172,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
