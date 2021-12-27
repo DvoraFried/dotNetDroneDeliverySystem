@@ -45,6 +45,11 @@ namespace BL
                 StationBL stationBL = new StationBL(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);
                 return stationBL;
             }
+            public static EmpolyeeBL convertToEmployee(int idE)
+            {
+                EmployeeDAL employeeDAL = DalObj.returnEmployee(idE);
+                return new EmpolyeeBL(idE, employeeDAL.Name, employeeDAL.Manager);
+            }
         }
     }
 }

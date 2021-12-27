@@ -119,12 +119,14 @@ namespace DalObject
         {
             return DataSource.MyDrones.First(drone => drone.Id == DroneIdS);
         }
-
         public CustomerDAL returnCustomer(int CustomerIdS)
         {
             return DataSource.MyCustomers.First(customer => customer.Id == CustomerIdS);
         }
-
+        public EmployeeDAL returnEmployee(int idE)
+        {
+            return DataSource.MyEmployees.First(employee => employee.Id == idE);
+        }
         public ParcelDAL returnParcel(int ParcelIdS)
         {
             return DataSource.MyParcels.First(parcel => parcel.Id == ParcelIdS);
