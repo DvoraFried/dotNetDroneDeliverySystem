@@ -50,11 +50,11 @@ namespace PL
             }
             else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
             {
-                new MainWindow(bl,)
+                new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
             }
             else if (bl.userIsManager(name.Text, Int32.Parse(id.Password)))
             {
-
+                new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
             }
             else
             {

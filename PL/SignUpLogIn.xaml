@@ -21,13 +21,13 @@
             <TabItem Header="LogIn">
                 <Grid Background="#FFE5E5E5">
                     <Grid/>
-                    <Label Content="LOG IN"  FontSize="27" HorizontalAlignment="Center" Height="40" Margin="0,22,0,0" VerticalAlignment="Top" Width="95" FontWeight="Normal" FontFamily="Aachen BT"/>
-                    <Label Content="YOUR NAME" HorizontalAlignment="Center" Height="30" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" Width="210"/>
-                    <Label Content="YOUR ID" HorizontalAlignment="Center" Height="30" Margin="0,109,0,0" Grid.Row="1" VerticalAlignment="Top" Width="210"/>
-                    <TextBox Name="name" HorizontalAlignment="Center" Height="35" Margin="0,58,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
-                    <PasswordBox Name="id" HorizontalAlignment="Center" Height="35" Margin="0,139,0,0" Grid.Row="1" VerticalAlignment="Top" Width="210"/>
-                    <Button Content="Log in" Click="ButtonLogIn_Click"  HorizontalAlignment="Left" Height="39" Grid.Row="2" VerticalAlignment="Top" Width="95" Margin="144,13,0,0"/>
-                    <TextBlock MouseLeftButtonUp="registerTab_Click"  Cursor="Hand" Foreground="Blue" TextDecorations="Underline" RenderTransformOrigin="0.486,1.675" Margin="42,24,136,23" Grid.Row="2">not registered?</TextBlock>
+                    <Label Content="LOG IN"    HorizontalAlignment="Center" Height="40" Margin="0,22,0,0"   VerticalAlignment="Top" Width="95" FontWeight="Normal" FontSize="27"  FontFamily="Aachen BT"/>
+                    <Label Content="YOUR NAME" HorizontalAlignment="Center" Height="30" Margin="0,23,0,0"   VerticalAlignment="Top" Width="210" Grid.Row="1"/>
+                    <Label Content="YOUR ID"   HorizontalAlignment="Center" Height="30" Margin="0,109,0,0"  VerticalAlignment="Top" Width="210" Grid.Row="1"/>
+                    <TextBox     Name="name"   HorizontalAlignment="Center" Height="35" Margin="0,58,0,0"   VerticalAlignment="Top" Width="210" Grid.Row="1"/>
+                    <PasswordBox Name="id"     HorizontalAlignment="Center" Height="35" Margin="0,139,0,0"  VerticalAlignment="Top" Width="210" Grid.Row="1"/>
+                    <Button Content="Log in"   HorizontalAlignment="Left"   Height="39" Margin="144,13,0,0" VerticalAlignment="Top"  Width="95" Grid.Row="2" Click="ButtonLogIn_Click"    />
+                    <TextBlock  Cursor="Hand" Foreground="Blue" TextDecorations="Underline" RenderTransformOrigin="0.486,1.675" Margin="42,24,136,23" Grid.Row="2" MouseLeftButtonUp="registerTab_Click" >not registered?</TextBlock>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="3*"/>
@@ -38,12 +38,12 @@
             </TabItem>
             <TabItem Header="signUp">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="SIGN UP"  FontSize="27" HorizontalAlignment="Center" Height="40" Margin="0,22,0,0" VerticalAlignment="Top" Width="116" FontWeight="Normal" FontFamily="Aachen BT"/>
-                    <Label Content="ENTER YOUR NAME" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="210" Margin="0,53,0,0"/>
-                    <TextBox HorizontalAlignment="Center" Height="27" Margin="0,83,0,0" Grid.Row="1"  TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
-                    <Label Content="ENTER YOUR ID" HorizontalAlignment="Center" Height="26" Grid.Row="1" VerticalAlignment="Top" Width="210"/>
-                    <TextBox HorizontalAlignment="Center" Height="27" Margin="0,26,0,0" Grid.Row="1" VerticalAlignment="Top" Width="210"/>
-                    <Label Content="ENTER YOUR PHONE" HorizontalAlignment="Center" Height="26" Margin="0,110,0,0" Grid.Row="1" VerticalAlignment="Top" Width="210"/>
+                    <Label Content="SIGN UP" FontSize="27" HorizontalAlignment="Center" Height="40" Margin="0,22,0,0"  Width="116" VerticalAlignment="Top" FontWeight="Normal" FontFamily="Aachen BT"/>
+                    <Label Content="ENTER YOUR NAME"       HorizontalAlignment="Center" Height="30" Margin="0,53,0,0"  Width="210" VerticalAlignment="Top" Grid.Row="1"/>
+                    <TextBox                               HorizontalAlignment="Center" Height="27" Margin="0,83,0,0"  Width="210" VerticalAlignment="Top" Grid.Row="1" />
+                    <Label Content="ENTER YOUR ID"         HorizontalAlignment="Center" Height="26"                    Width="210" VerticalAlignment="Top" Grid.Row="1" />
+                    <TextBox                               HorizontalAlignment="Center" Height="27" Margin="0,26,0,0"  Width="210" VerticalAlignment="Top" Grid.Row="1"/>
+                    <Label Content="ENTER YOUR PHONE"      HorizontalAlignment="Center" Height="26" Margin="0,110,0,0" Width="210" VerticalAlignment="Top" Grid.Row="1"/>
                     <TextBox HorizontalAlignment="Center" Height="27" Margin="0,136,0,0" Grid.Row="1" VerticalAlignment="Top" Width="210"/>
                     <Label Content="longiutude:" HorizontalAlignment="Left" Height="26" Margin="29,163,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101"/>
                     <TextBox HorizontalAlignment="Left" Height="27" Margin="29,189,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101"/>
