@@ -142,5 +142,29 @@ namespace BL
         {
             return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
         }
+        public bool userIsCustomer(string name, int id)
+        {
+            if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool userIsEmployee(string name,int id)
+        {
+            if (DalObj.returnEmployeeArray().Any(c => c.Id == id&&c.Name==name&& !c.Manager))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool userIsManager(string name, int id)
+        {
+            if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name&&c.Manager))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -32,6 +32,7 @@ namespace DalApi
             public IEnumerable<StationDAL> returnStationArray();
             public IEnumerable<DroneDAL> returnDroneArray();
             public IEnumerable<CustomerDAL> returnCustomerArray();
+            public IEnumerable<EmployeeDAL> returnEmployeeArray();
             public IEnumerable<ParcelDAL> returnParcelArray();
 
             public double[] powerRequest();

@@ -151,6 +151,10 @@ namespace DalObject
         {
             foreach (CustomerDAL element in DataSource.MyCustomers) { yield return element; }
         }
+        public IEnumerable<EmployeeDAL> returnEmployeeArray()
+        {
+            foreach (EmployeeDAL element in DataSource.MyEmployees) { yield return element; }
+        }
 
         public IEnumerable<ParcelDAL> returnParcelArray()
         {

@@ -42,16 +42,24 @@ namespace PL
         }
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
-
-            if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password));
+            if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
             {
-                CustomerToList customer = (sender as ListView).SelectedValue as CustomerToList;
+
                 Close();
-                new ClientSide(bl, bl.convertToB  (customer)).ShowDialog();
+                new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(id.Password))).ShowDialog();
             }
-           /* CustomerToList customer = (sender as ListView).SelectedValue as CustomerToList;*/
-            Close();
-            new ClientSide(bl, bl.conver.ShowDialog();
+            else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
+            {
+                new MainWindow(bl,)
+            }
+            else if (bl.userIsManager(name.Text, Int32.Parse(id.Password)))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("user doesn't exict :(");
+            }
         }
     }
 }
