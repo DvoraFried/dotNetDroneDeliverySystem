@@ -60,7 +60,7 @@ namespace DalObject
             {
                 int senderId = MyCustomers[rnd.Next(0, 13)].Id;
                 int targetId = MyCustomers[rnd.Next(0, 13)].Id;
-                ParcelDAL parcel = new ParcelDAL() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, Requested = DateTime.Now, Delivered = null, PickUp = null, Scheduled = null };
+                ParcelDAL parcel = new ParcelDAL() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, isActive = true, Requested = DateTime.Now, Delivered = null, PickUp = null, Scheduled = null };
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {
