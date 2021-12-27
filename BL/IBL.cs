@@ -42,5 +42,6 @@ namespace BlApi
         public void RemoveCustomerById(int idCustomer);
         public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL);
         public ParcelBL convertParcelToParcelBl(int parcelID);
+        public void DeleteParcel(ParcelBL parcel);
     }
 }

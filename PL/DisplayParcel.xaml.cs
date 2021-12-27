@@ -24,6 +24,7 @@ namespace PL
         BlApi.IBL Bl;
         int weight = 0;
         int priority = 0;
+        ParcelBL currentParcel;
         public DisplayParcel(BlApi.IBL bl, ParcelBL parcel)
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace PL
             DeliveredTimeTextBox.Text = parcel.DeliveredBL != null ? parcel.DeliveredBL.ToString() : "deos not delivered yet";
             PriorityTextBox.Text = parcel.Priority.ToString();
             WeightTextBox.Text = parcel.Weight.ToString();
+            currentParcel = parcel;
         }
         public DisplayParcel(BlApi.IBL bl)
         {
@@ -76,6 +78,17 @@ namespace PL
                 catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
+        }
+
+        private void Delete_Click(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                Bl.DeleteParcel(currentParcel);
+            }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void light_Checked(object sender, RoutedEventArgs e)
