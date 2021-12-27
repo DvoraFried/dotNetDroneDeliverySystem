@@ -50,7 +50,8 @@ namespace PL
             }
             else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
             {
-                new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
+                EmpolyeeBL ew = bl.returnEmployee(Int32.Parse(id.Password));
+                new MainWindow(bl, ew).ShowDialog(); ;
             }
             else if (bl.userIsManager(name.Text, Int32.Parse(id.Password)))
             {
