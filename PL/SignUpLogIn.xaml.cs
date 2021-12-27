@@ -43,7 +43,7 @@ namespace PL
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
 
-            if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password));
+            if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
             {
                 CustomerToList customer = (sender as ListView).SelectedValue as CustomerToList;
                 Close();
@@ -51,7 +51,7 @@ namespace PL
             }
            /* CustomerToList customer = (sender as ListView).SelectedValue as CustomerToList;*/
             Close();
-            new ClientSide(bl, bl.conver.ShowDialog();
+            new ClientSide(bl, bl.conver.ShowDialog());
         }
     }
 }

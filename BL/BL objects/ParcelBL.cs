@@ -11,7 +11,7 @@ namespace BO
     public class ParcelBL
     {
         DalApi.IDAL DalObj;
-        public ParcelBL(DalApi.IDAL dalOB, int idSender, int idTarget, int weight, int priority, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
+        public ParcelBL(DalApi.IDAL dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
         {
             DalObj = dalOB;
             parcelId++;
@@ -28,6 +28,7 @@ namespace BO
             Sender = new CustomerOnDelivery(customer.Id, customer.Name);
             customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget);
             Target = new CustomerOnDelivery(customer.Id, customer.Name);
+            isActive = IsActive;
         }
         public override string ToString()
         {
@@ -51,6 +52,6 @@ namespace BO
         public DateTime? DeliveredBL { get; set; }//זמן הגעת חבילה למקבל
         public CustomerOnDelivery Sender { get; set; }
         public CustomerOnDelivery Target { get; set; }
-
+        public bool isActive { get; set; }
     }
 }
