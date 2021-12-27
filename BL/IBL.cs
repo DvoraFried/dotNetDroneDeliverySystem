@@ -42,10 +42,10 @@ namespace BlApi
         public void RemoveCustomerById(int idCustomer);
         public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL);
         public ParcelBL convertParcelToParcelBl(int parcelID);
+        public EmpolyeeBL returnEmployee(int idE);
         public bool userIsCustomer(string name, int id);
         public bool userIsEmployee(string name, int id);
         public bool userIsManager(string name, int id);
-
         public void DeleteParcel(ParcelBL parcel);
     }
 }
