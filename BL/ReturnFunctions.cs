@@ -130,9 +130,9 @@ namespace BL
         {
             return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
         }
-        public StationBL convertStationToListToStationBl(StationToList stationToList)
+        public StationBL convertStationToStationBl(int stationID)
         {
-            return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationToList.Id));
+            return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationID));
         }
         public ParcelBL convertParcelToParcelBl(int parcelID)
         {

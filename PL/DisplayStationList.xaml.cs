@@ -30,7 +30,7 @@ namespace PL
         {
             BO.StationToList station = (sender as ListView).SelectedValue as BO.StationToList;
             this.Close();
-            new DisplayStation(Bl, Bl.convertStationToListToStationBl(station)).ShowDialog();
+            new DisplayStation(Bl, Bl.convertStationToStationBl(station.Id)).ShowDialog();
         }
 
         private void ButtonAddStation_Click(object sender, RoutedEventArgs e)

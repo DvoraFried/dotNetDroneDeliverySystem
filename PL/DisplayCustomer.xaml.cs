@@ -41,8 +41,11 @@ namespace PL
         private void showParcel(object sender, RoutedEventArgs e)
         {
             BO.DeliveryAtCustomer parcel = (sender as ListView).SelectedValue as BO.DeliveryAtCustomer;
-            this.Close();
-            new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+            if (parcel != null)
+            {
+                this.Close();
+                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+            }
         }
         public DisplayCustomer(BlApi.IBL bl)
         {

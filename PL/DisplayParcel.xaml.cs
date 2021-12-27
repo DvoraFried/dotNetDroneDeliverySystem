@@ -48,9 +48,11 @@ namespace PL
         private void showCustomer(object sender, RoutedEventArgs e)
         {
             BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
-            this.Close();
-            CustomerBL customerBL = Bl.convertCustomerToCustomerBl(customer.Id);
-            new DisplayCustomer(Bl, customerBL).ShowDialog();
+            if (customer != null)
+            {
+                this.Close();
+                new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).ShowDialog();
+            }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
