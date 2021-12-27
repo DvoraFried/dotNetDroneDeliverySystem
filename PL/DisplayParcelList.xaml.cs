@@ -38,7 +38,7 @@ namespace PL
             BO.ParcelToList parcel = (sender as ListView).SelectedValue as BO.ParcelToList;
             this.Close();
 
-            new DisplayParcel(BLobj, BLobj.convertParcelToListToParcelBl(parcel)).ShowDialog();
+            new DisplayParcel(BLobj, BLobj.convertParcelToParcelBl(parcel.Id)).ShowDialog();
         }
 
         private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)

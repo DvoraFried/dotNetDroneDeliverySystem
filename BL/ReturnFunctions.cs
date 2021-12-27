@@ -98,10 +98,6 @@ namespace BL
                 yield return element;
             }
         }
-        public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList)
-        {
-            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelToList.Id));
-        }
         public List<CustomerToList> ReturnCustomerList()
         {
             List<CustomerToList> customersToReturn = new List<CustomerToList>();
@@ -138,9 +134,9 @@ namespace BL
         {
             return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationToList.Id));
         }
-        public ParcelBL convertParcelByTransferToParcelBl(ParcelByTransfer parcelByTransfer)
+        public ParcelBL convertParcelToParcelBl(int parcelID)
         {
-            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelByTransfer.Id));
+            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelID));
         }
         public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL)
         {

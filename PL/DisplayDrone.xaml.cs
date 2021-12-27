@@ -52,7 +52,7 @@ namespace PL
         {
             BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
             this.Close();
-            new DisplayParcel(Bl, Bl.convertParcelByTransferToParcelBl(parcel)).ShowDialog();
+            new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {

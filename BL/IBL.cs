@@ -34,7 +34,6 @@ namespace BlApi
         public IEnumerable<DroneBL> ReturnDronesByStatusOrder();
         public List<ParcelToList> ReturnParcelList();
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
-        public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList);
         public List<CustomerToList> ReturnCustomerList();
         public CustomerBL convertCustomerToCustomerBl(int customerID);
         public StationBL convertStationToListToStationBl(StationToList stationToList);
@@ -42,6 +41,6 @@ namespace BlApi
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots();
         public void RemoveCustomerById(int idCustomer);
         public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL);
-        public ParcelBL convertParcelByTransferToParcelBl(ParcelByTransfer parcelByTransfer);
+        public ParcelBL convertParcelToParcelBl(int parcelID);
     }
 }
