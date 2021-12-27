@@ -41,7 +41,7 @@ namespace BlApi
         public List<StationToList> ReturnStationList();
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots();
         public void RemoveCustomerById(int idCustomer);
-
+        public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL);
         public ParcelBL convertParcelByTransferToParcelBl(ParcelByTransfer parcelByTransfer);
     }
 }

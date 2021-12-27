@@ -142,5 +142,9 @@ namespace BL
         {
             return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelByTransfer.Id));
         }
+        public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL)
+        {
+            return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+        }
     }
 }
