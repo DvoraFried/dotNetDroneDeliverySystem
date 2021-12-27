@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,22 +20,20 @@ namespace PL
     /// </summary>
     public partial class SignUpLogIn : Window
     {
+        BlApi.IBL bl;
         public SignUpLogIn()
         {
+            bl = BLFactory.factory();
             InitializeComponent();
         }
         private void registerTab_Click(object sender, RoutedEventArgs e)
         {
             int newIndex = MyTabControl.SelectedIndex + 1;
-/*            if (newIndex >= MyTabControl.Items.Count)
-                newIndex = 0;*/
             MyTabControl.SelectedIndex = newIndex;
         }
         private void logInTab_Click(object sender, RoutedEventArgs e)
         {
             int newIndex = MyTabControl.SelectedIndex - 1;
-/*            if (newIndex >= MyTabControl.Items.Count)
-                newIndex = 0;*/
             MyTabControl.SelectedIndex = newIndex;
         }
         private void ButtonsignUp_Click(object sender, RoutedEventArgs e)
@@ -44,6 +43,15 @@ namespace PL
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
 
+            if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password));
+            {
+                CustomerToList customer = (sender as ListView).SelectedValue as CustomerToList;
+                Close();
+                new ClientSide(bl, bl.convertToB  (customer)).ShowDialog();
+            }
+           /* CustomerToList customer = (sender as ListView).SelectedValue as CustomerToList;*/
+            Close();
+            new ClientSide(bl, bl.conver.ShowDialog();
         }
     }
 }
