@@ -130,9 +130,9 @@ namespace BL
             }
         }
         
-        public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList)
+        public CustomerBL convertCustomerToCustomerBl(int customerID)
         {
-            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerToList.Id));
+            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
         }
         public StationBL convertStationToListToStationBl(StationToList stationToList)
         {

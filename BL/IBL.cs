@@ -36,7 +36,7 @@ namespace BlApi
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
         public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList);
         public List<CustomerToList> ReturnCustomerList();
-        public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList);
+        public CustomerBL convertCustomerToCustomerBl(int customerID);
         public StationBL convertStationToListToStationBl(StationToList stationToList);
         public List<StationToList> ReturnStationList();
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots();
