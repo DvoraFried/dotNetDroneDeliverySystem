@@ -26,9 +26,9 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
-            Isent.Visibility = SENDme.Visibility = Visibility.Visible;
-            Isent.Content = returnLis(customer.ImTheSender);
-            SENDme.Content = returnLis(customer.ImTheTarget);
+            exIsent.Visibility = exSENDme.Visibility = Visibility.Visible;
+            foreach(DeliveryAtCustomer parcel in customer.ImTheSender) { Isent.Items.Add(parcel);}
+            foreach (DeliveryAtCustomer parcel in customer.ImTheTarget) { Isent.Items.Add(parcel); }
             IDTebtBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeTextBox.IsEnabled = false;
             IDTebtBox.Text = customer.getIdBL().ToString();
             NameTextBox.Text = customer.NameBL;
@@ -37,14 +37,15 @@ namespace PL
             LatitudeTextBox.Text = customer.Position.Latitude.ToString();
             ADD_BUTTON.Visibility = Visibility.Hidden;
             UPDATE_BUTTON.Visibility = Visibility.Visible;
-
         }
-        private string returnLis(List<DeliveryAtCustomer> parcels)
+        private void showParcel(object sender, RoutedEventArgs e)
         {
-            if (parcels.Count == 0) { return "No parcels found"; }
-            string myList = "";
-            foreach (DeliveryAtCustomer parcel in parcels) { myList += parcel.ToString(); }
-            return myList;
+            BO.DeliveryAtCustomer parcel = (sender as ListView).SelectedValue as BO.DeliveryAtCustomer;
+            if (parcel != null)
+            {
+                this.Close();
+                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+            }
         }
         public DisplayCustomer(BlApi.IBL bl)
         {

@@ -72,5 +72,9 @@ namespace BO
         {
             public ThereAreParcelForTheCustomer(int idParcel) : base(string.Format($"The parcel {idParcel} was assaighned to this Customer")) { }
         }
+        public class ParcelAlreadyScheduled : Exception
+        {
+            public ParcelAlreadyScheduled(): base(string.Format("Sorry, the parcel already scheduled to drone")) { }
+        }
     }
 }

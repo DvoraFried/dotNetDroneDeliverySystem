@@ -37,16 +37,12 @@ namespace PL
             ChargesLotsTextBox.Text = station.ChargeSlotsBL.ToString();
             LongitudeTextBox.Text = station.Position.Longitude.ToString();
             LatitudeText.Text = station.Position.Latitude.ToString();
-            dronesInCharge.Content = returnList(station.DronesInCharging);
+            foreach (DroneInChargeBL drone in station.DronesInCharging)
+            {
+                dronesInCharge.Items.Add(drone);
+            }
             ADD_BUTTON.Visibility = Visibility.Hidden;
             UPDATE_STATION.Visibility = dronesInCharge.Visibility = Visibility.Visible;
-        }
-        private string returnList(List<DroneInChargeBL> drones)
-        {
-            if(drones.Count == 0) { return "No drones in charge"; }
-            string myString = "";
-            foreach(DroneInChargeBL drone in drones) { myString += drone.ToString(); }
-            return myString;
         }
         public DisplayStation(BlApi.IBL bl)
         {
@@ -74,6 +70,15 @@ namespace PL
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            }
+        }
+        private void showDrone(object sender, RoutedEventArgs e)
+        {
+            BO.DroneInChargeBL drone = (sender as ListView).SelectedValue as BO.DroneInChargeBL;
+            if (drone != null)
+            {
+                this.Close();
+                new DisplayDrone(Bl, Bl.convertDroneInChargeBLToDroneBl(drone)).ShowDialog();
             }
         }
         private void updateButton_Click(object sender, RoutedEventArgs e)

@@ -28,7 +28,7 @@ namespace BL
             }
             public static ParcelBL ConvertToParcelBL(ParcelDAL parcelDal)
             {
-                ParcelBL parcelBL = new ParcelBL(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered);
+                ParcelBL parcelBL = new ParcelBL(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority,parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered);
                 return parcelBL;
             }
             public static List<ParcelBL> ConvertToParcelArrayBL(List<ParcelDAL> parcelsDal)
@@ -44,6 +44,11 @@ namespace BL
             {
                 StationBL stationBL = new StationBL(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);
                 return stationBL;
+            }
+            public static EmpolyeeBL convertToEmployee(int idE)
+            {
+                EmployeeDAL employeeDAL = DalObj.returnEmployee(idE);
+                return new EmpolyeeBL(idE, employeeDAL.Name, employeeDAL.Manager);
             }
         }
     }

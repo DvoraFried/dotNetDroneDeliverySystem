@@ -24,13 +24,14 @@ namespace PL
         BlApi.IBL Bl;
         int weight = 0;
         int priority = 0;
+        ParcelBL currentParcel;
         public DisplayParcel(BlApi.IBL bl, ParcelBL parcel)
         {
             InitializeComponent();
             ADD_BUTTON.Visibility = PRIORITYlabel.Visibility = weightLabel.Visibility = senderIdlbel.Visibility = targetIdLabel.Visibility = priorityCheckBox.Visibility = WeightCheckBox.Visibility = IDSenderTextBox.Visibility = TargetIDTextBox.Visibility = Visibility.Hidden;
             displayParcel.Visibility = Visibility.Visible;
-            senderTextBox.Text = parcel.Sender.ToString();
-            targetTextBox.Text = parcel.Target.ToString();
+            senderTextBox.Items.Add(parcel.Sender);
+            targetTextBox.Items.Add(parcel.Target);
             IDSenderTextBox.IsEnabled = TargetIDTextBox.IsEnabled = false;
             ParcelInDroneTextBox.Text = parcel.DroneIdBL != null ? parcel.DroneIdBL.ToString() : "non drone assign yet";
             RequestedTimeTextBox.Text = parcel.RequestedBL.ToString();
@@ -39,12 +40,21 @@ namespace PL
             DeliveredTimeTextBox.Text = parcel.DeliveredBL != null ? parcel.DeliveredBL.ToString() : "deos not delivered yet";
             PriorityTextBox.Text = parcel.Priority.ToString();
             WeightTextBox.Text = parcel.Weight.ToString();
+            currentParcel = parcel;
         }
         public DisplayParcel(BlApi.IBL bl)
         {
             Bl = bl;
             InitializeComponent();
-            
+        }
+        private void showCustomer(object sender, RoutedEventArgs e)
+        {
+            BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
+            if (customer != null)
+            {
+                this.Close();
+                new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).ShowDialog();
+            }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -68,6 +78,17 @@ namespace PL
                 catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Bl.DeleteParcel(currentParcel);
+            }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void light_Checked(object sender, RoutedEventArgs e)

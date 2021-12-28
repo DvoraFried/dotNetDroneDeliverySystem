@@ -13,6 +13,7 @@ namespace DalObject
         public static List<StationDAL> MyBaseStations = new List<StationDAL>();
         public static List<DroneDAL> MyDrones = new List<DroneDAL>();
         public static List<CustomerDAL> MyCustomers = new List<CustomerDAL>();
+        public static List<EmployeeDAL> MyEmployees = new List<EmployeeDAL>();
         public static List<ParcelDAL> MyParcels = new List<ParcelDAL>();
         public static List<ParcelDAL> ParcelsWithNoTarget = new List<ParcelDAL>();
         public static List<DroneChargeDAL> MyDroneCharges=new List<DroneChargeDAL> ();
@@ -59,7 +60,7 @@ namespace DalObject
             {
                 int senderId = MyCustomers[rnd.Next(0, 13)].Id;
                 int targetId = MyCustomers[rnd.Next(0, 13)].Id;
-                ParcelDAL parcel = new ParcelDAL() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, Requested = DateTime.Now, Delivered = null, PickUp = null, Scheduled = null };
+                ParcelDAL parcel = new ParcelDAL() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, isActive = true, Requested = DateTime.Now, Delivered = null, PickUp = null, Scheduled = null };
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {
@@ -72,7 +73,10 @@ namespace DalObject
                 }
                 MyParcels.Add(parcel);
             }
-
+            EmployeeDAL manager1 = new EmployeeDAL() { Id = 213570302, Name = "hadas", Manager = true };
+            MyEmployees.Add(manager1);
+            EmployeeDAL manager2 = new EmployeeDAL() { Id = 212628721, Name = "dvora", Manager = true };
+            MyEmployees.Add(manager2);
         }
     }
 

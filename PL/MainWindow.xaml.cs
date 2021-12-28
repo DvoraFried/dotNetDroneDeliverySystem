@@ -24,9 +24,9 @@ namespace PL
     public partial class MainWindow : Window
     {
         BlApi.IBL Bl;
-        public MainWindow()
+        public MainWindow(BlApi.IBL bl,EmpolyeeBL employee)
         {
-            Bl = BLFactory.factory();
+            Bl = bl;
             InitializeComponent();
         }
 

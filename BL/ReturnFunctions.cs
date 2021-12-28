@@ -10,48 +10,6 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-
-        public StationDAL ReturnStationById(int idS)
-        {
-            return DalObj.returnStationArray().ToList().First(station => station.Id == idS);
-        }
-        public DroneDAL ReturnDroneById(int idD)
-        {
-            return DalObj.returnDroneArray().ToList().First(drone => drone.Id == idD);
-        }
-        public CustomerDAL ReturnCustomerById(int idC)
-        {
-            return DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idC);
-        }
-        public ParcelDAL ReturnParcelById(int idP)
-        {
-            return DalObj.returnParcelArray().ToList().First(parcel => parcel.Id == idP);
-        }
-        public IEnumerable<StationDAL> returnStationsArr()
-        {
-            foreach (StationDAL element in DalObj.returnStationArray().ToList()) { yield return element; }
-        }
-        public IEnumerable<DroneDAL> returnDronesArr()
-        {
-            foreach (DroneDAL element in DalObj.returnDroneArray().ToList()) { yield return element; }
-        }
-        public IEnumerable<CustomerDAL> returncustomersArr()
-        {
-            foreach (CustomerDAL element in DalObj.returnCustomerArray().ToList()) { yield return element; }
-        }
-        public IEnumerable<ParcelDAL> returnStationArr()
-        {
-            foreach (ParcelDAL element in DalObj.returnParcelArray().ToList()) { yield return element; }
-        }
-
-        public IEnumerable<ParcelDAL> ReturnNotScheduledParcel()
-        {
-            foreach(ParcelDAL element in DalObj.returnParcelArray()) { if (!string.IsNullOrEmpty(element.DroneId.ToString())) { yield return element; } }
-        }
-        public IEnumerable<StationDAL> ReturnStationWithChargeSlots()
-        {
-            foreach (StationDAL element in DalObj.returnStationArray()) { if (element.EmptyChargeSlots>0) { yield return element; } }
-        }
         public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus,int droneMaxWeight)
         {
             List<DroneBL> droneUpdateList = new List<DroneBL>();
@@ -83,9 +41,12 @@ namespace BL
         public List<ParcelToList> ReturnParcelList()
         {
             List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
-            foreach( ParcelDAL parcel in DalObj.returnParcelArray().ToList())
+            foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
             {
-                parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
+                if (parcel.isActive == true)
+                {
+                    parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
+                }
             }
             return parcelsUpdateList;
         }
@@ -97,10 +58,6 @@ namespace BL
             {
                 yield return element;
             }
-        }
-        public ParcelBL convertParcelToListToParcelBl(ParcelToList parcelToList)
-        {
-            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelToList.Id));
         }
         public List<CustomerToList> ReturnCustomerList()
         {
@@ -129,18 +86,49 @@ namespace BL
                 yield return element;
             }
         }
-        
-        public CustomerBL convertCustomerToListToCustomerBl(CustomerToList customerToList)
+        public EmpolyeeBL returnEmployee(int idE)
         {
-            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerToList.Id));
+            return ConvertToBL.convertToEmployee(idE);
         }
-        public StationBL convertStationToListToStationBl(StationToList stationToList)
+        public CustomerBL convertCustomerToCustomerBl(int customerID)
         {
-            return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationToList.Id));
+            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
         }
-        public ParcelBL convertParcelByTransferToParcelBl(ParcelByTransfer parcelByTransfer)
+        public StationBL convertStationToStationBl(int stationID)
         {
-            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelByTransfer.Id));
+            return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationID));
+        }
+        public ParcelBL convertParcelToParcelBl(int parcelID)
+        {
+            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelID));
+        }
+        public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL)
+        {
+            return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+        }
+        public bool userIsCustomer(string name, int id)
+        {
+            if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool userIsEmployee(string name,int id)
+        {
+            if (DalObj.returnEmployeeArray().Any(c => c.Id == id&&c.Name==name&& !c.Manager))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool userIsManager(string name, int id)
+        {
+            if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name&&c.Manager))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
