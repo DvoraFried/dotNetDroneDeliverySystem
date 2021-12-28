@@ -44,8 +44,6 @@ namespace PL
         {
             if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
             {
-
-                Close();
                 new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(id.Password))).ShowDialog();
             }
             else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
