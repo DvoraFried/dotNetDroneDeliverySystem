@@ -11,12 +11,10 @@ namespace BO
        {
             public UnValidIdException(int id,string type):base(string.Format($"the{id} is not valid to this {type}")){}
         }
-        
         public class UnValidLongitudeException : Exception
         {
             public UnValidLongitudeException(double lnd) : base(string.Format($"the longitude {lnd} is not valide")) { }
         }
-
         public class UnValidLatitudeException : Exception
         {
             public UnValidLatitudeException(double ltd) :base(string.Format($"the Latitude {ltd} is not valide")) { }
@@ -45,7 +43,6 @@ namespace BO
         {
             public NoParcelFoundException() : base(string.Format("there is no parcel to collect for this drone")) { }
         }
-
         public class NoDeliveryInTransferExcepyion : Exception
         {
             public NoDeliveryInTransferExcepyion() : base(string.Format("There is no delivery in transfer to this drone")) { }
@@ -61,7 +58,6 @@ namespace BO
         public class ThePackageHasNotYetBeenCollectedException : Exception
         {
             public ThePackageHasNotYetBeenCollectedException() : base(string.Format("The package has not yet been collected")) { }
-
         }
         public class TheDroneHasAlreadyPickedUpTheParcel : Exception
         {

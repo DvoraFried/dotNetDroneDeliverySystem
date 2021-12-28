@@ -57,7 +57,6 @@ namespace BL
                 Console.WriteLine(new DroneToList(DalObj, drone).ToString());
             }
         }
-
         public void DisplayCustomerList()
         {
             foreach (CustomerDAL customer in DalObj.returnCustomerArray())
@@ -65,7 +64,6 @@ namespace BL
                 Console.WriteLine(new CustomerToList(DalObj,ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
             }
         }
-
         public void DisplayParcelList()
         {
             foreach (ParcelDAL parcel in DalObj.returnParcelArray())
@@ -73,7 +71,6 @@ namespace BL
                 Console.WriteLine(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)).ToString());
             }
         }
-
         public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone()
         {
             foreach (ParcelBL parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
