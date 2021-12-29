@@ -46,12 +46,13 @@ namespace PL
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-
+            new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(newId.Text))).Show();
+            Close();
         }
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
-            if (name.Text == null || id.Password == null)
-           /////////////////////////////////////////////////////// { }
+/*            if (name.Text == null || id.Password == null)
+
            else {
               if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
                  {
@@ -74,7 +75,7 @@ namespace PL
         }
     }
 }
-            try
+     */       try
             {
                 if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
                 {
