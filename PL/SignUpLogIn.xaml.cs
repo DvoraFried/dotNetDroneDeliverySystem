@@ -38,28 +38,42 @@ namespace PL
         }
         private void ButtonsignUp_Click(object sender, RoutedEventArgs e)
         {
+            //check if all fields are full
+            try
+            {
+                bl.AddCustomer(Int32.Parse(newId.Text), newName.Text, newPhone.Text, Int32.Parse(lng.Text), Int32.Parse(ltd.Text));
+            }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
 
         }
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
-            if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
+            try
             {
+                if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
+                {
 
-                Close();
-                new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(id.Password))).ShowDialog();
+                    Close();
+                    new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(id.Password))).ShowDialog();
+                }
+                else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
+                {
+                    new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
+                }
+                else if (bl.userIsManager(name.Text, Int32.Parse(id.Password)))
+                {
+                    new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
+                }
+                else
+                {
+                    MessageBox.Show("user doesn't exict :(");
+                }
             }
-            else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
-            {
-                new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
-            }
-            else if (bl.userIsManager(name.Text, Int32.Parse(id.Password)))
-            {
-                new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
-            }
-            else
-            {
-                MessageBox.Show("user doesn't exict :(");
-            }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }

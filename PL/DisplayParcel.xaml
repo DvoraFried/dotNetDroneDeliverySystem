@@ -84,7 +84,8 @@
                 <TextBox Name="PickupTimeTextBox" IsReadOnly="True" Margin="200,363,50,-315"/>
                 <Label Margin="20,395,272,-348">DELIVERED TIME:</Label>
                 <TextBox Name="DeliveredTimeTextBox" IsReadOnly="True" Margin="200,395,50,-344"/>
-                <Button Cursor="Hand" Name="DELETE_BUTTON" Content="DELETE PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Delete_Click" Margin="0,270,0,0" Grid.RowSpan="2"/>
+                <Button Cursor="Hand" Name="DELETE_BUTTON" Content="DELETE PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Margin="0,270,0,0" Grid.RowSpan="2"/>
+                <!--Click="Delete_Click"-->
             </Grid>
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">

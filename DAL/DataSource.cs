@@ -73,9 +73,9 @@ namespace DalObject
                 }
                 MyParcels.Add(parcel);
             }
-            EmployeeDAL manager1 = new EmployeeDAL() { Id = 213570302, name = "hadas", Manager = true };
+            EmployeeDAL manager1 = new EmployeeDAL() { Id = 213570302, Name = "hadas", Manager = true };
             MyEmployees.Add(manager1);
-            EmployeeDAL manager2 = new EmployeeDAL() { Id = 212628721, name = "dvora", Manager = true };
+            EmployeeDAL manager2 = new EmployeeDAL() { Id = 212628721, Name = "dvora", Manager = true };
             MyEmployees.Add(manager2);
         }
     }
