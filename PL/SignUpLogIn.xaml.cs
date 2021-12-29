@@ -50,6 +50,30 @@ namespace PL
         }
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
         {
+            if (name.Text == null || id.Password == null)
+           /////////////////////////////////////////////////////// { }
+           else {
+              if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
+                 {
+                 new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(id.Password))).ShowDialog();
+                 }
+                 else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
+                 {
+                       EmpolyeeBL ew = bl.returnEmployee(Int32.Parse(id.Password));
+                            new MainWindow(bl, ew).ShowDialog(); ;
+                        }
+                        else if (bl.userIsManager(name.Text, Int32.Parse(id.Password)))
+                        {
+                            new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
+                        }
+                        else
+                        {
+                            MessageBox.Show("user doesn't exict :(");
+                        }
+                    }
+        }
+    }
+}
             try
             {
                 if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))

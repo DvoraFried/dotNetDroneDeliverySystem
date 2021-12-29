@@ -34,7 +34,6 @@ namespace BL
                 }
             }
             DalObj.RemoveCustomerById(idCustomer);
-               
         }
     }
 }

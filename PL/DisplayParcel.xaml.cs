@@ -80,7 +80,7 @@ namespace PL
             }
         }
 
-        private void Delete_Click(object sender, TextCompositionEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
             try
             {

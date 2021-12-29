@@ -8,7 +8,6 @@ using DO;
 namespace DalObject
 {
     public class DataSource
-  
     {
         public static List<StationDAL> MyBaseStations = new List<StationDAL>();
         public static List<DroneDAL> MyDrones = new List<DroneDAL>();

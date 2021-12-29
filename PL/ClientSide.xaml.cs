@@ -26,7 +26,6 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
-
         }
 
         private void personal_Click(object sender, RoutedEventArgs e)
