@@ -21,15 +21,16 @@ namespace PL
     /// </summary>
     public partial class DisplayParcel : Window
     {
-        BlApi.IBL Bl;
+        public static BlApi.IBL Bl;
         int weight = 0;
         int priority = 0;
         ParcelBL currentParcel;
         public DisplayParcel(BlApi.IBL bl, ParcelBL parcel)
         {
+            Bl = bl;
             InitializeComponent();
             ADD_BUTTON.Visibility = PRIORITYlabel.Visibility = weightLabel.Visibility = senderIdlbel.Visibility = targetIdLabel.Visibility = priorityCheckBox.Visibility = WeightCheckBox.Visibility = IDSenderTextBox.Visibility = TargetIDTextBox.Visibility = Visibility.Hidden;
-            displayParcel.Visibility = Visibility.Visible;
+            displayParcel.Visibility = DELETE_BUTTON.Visibility = Visibility.Visible;
             senderTextBox.Items.Add(parcel.Sender);
             targetTextBox.Items.Add(parcel.Target);
             IDSenderTextBox.IsEnabled = TargetIDTextBox.IsEnabled = false;
@@ -85,6 +86,7 @@ namespace PL
             try
             {
                 Bl.DeleteParcel(currentParcel);
+                Close();
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
