@@ -55,7 +55,7 @@ namespace BL
             if (drone.DroneStatus != DroneStatusesBL.maintenance) { throw new DroneIsNotInMaintenanceException(id); }
             DroneInChargeBL droneInCharge = new DroneInChargeBL(drone);
             droneInCharge.BatteryStatus = drone.BatteryStatus;
-            int timeInCharge = (DateTime.Now-droneInCharge.enterTime);
+            int timeInCharge = (DateTime.Now-droneInCharge.enterTime).Hours;
             drone.BatteryStatus = Math.Min(drone.BatteryStatus + timeInCharge * DataSource.Config.DroneLoadingRate, 100);
             drone.DroneStatus = DroneStatusesBL.empty;
             DronesListBL[DronesListBL.FindIndex(d => (d.getIdBL() == id))] = drone;

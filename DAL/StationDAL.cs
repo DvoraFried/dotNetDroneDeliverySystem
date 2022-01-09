@@ -14,5 +14,4 @@ namespace DO
         public double Latitude { get;set;}
         public int DronesInCharging { get; set; }
     };
-    
 }

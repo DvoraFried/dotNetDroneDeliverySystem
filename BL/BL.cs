@@ -11,12 +11,11 @@ using BO;
 
 namespace BL
 {
-    public sealed partial  class BL : BlApi.IBL
+    sealed partial  class BL : BlApi.IBL
     {
         Random rnd = new Random();
         public static List<DroneBL> DronesListBL;
         static DalApi.IDAL DalObj;
-        static BL BLOBJ;
         static double nonWeightPowerConsumption;
         static double lightWeightPowerConsumption;
         static double mediumWeightPowerConsumption;

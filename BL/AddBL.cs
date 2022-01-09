@@ -12,7 +12,7 @@ using static BO.Exceptions;
 
 namespace BL
 {
-    public partial class BL : BlApi.IBL
+    partial class BL : BlApi.IBL
     {
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
         {
