@@ -20,6 +20,7 @@ namespace PL
     /// </summary>
     public partial class DisplayParcelList : Window
     {
+        public CustomerBL currentCustomer = null;
         BlApi.IBL BLobj;
         public DisplayParcelList(BlApi.IBL bl)
         {
@@ -27,11 +28,22 @@ namespace PL
             BLobj = bl;
             parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
         }
-
+        public DisplayParcelList(BlApi.IBL bl, CustomerBL customer)
+        {
+            currentCustomer = customer;
+            InitializeComponent();
+            BLobj = bl;
+            List<ParcelToList> parcels = BLobj.ReturnParcelList();
+            parcelDisplay.ItemsSource = parcels.FindAll(parcel => parcel.SenderId == customer.getIdBL());
+        }
         private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            new DisplayParcel(BLobj).ShowDialog();
+            if (currentCustomer != null)
+            {
+                new DisplayParcel(BLobj, currentCustomer).ShowDialog();
+            }
+            else { new DisplayParcel(BLobj).ShowDialog(); }
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {

@@ -48,6 +48,7 @@ namespace PL
         private void customerParcels_Click(object sender, RoutedEventArgs e)
         {
             app.SelectedIndex = 1;
+            new DisplayParcelList(Bl, currentCustomer).ShowDialog();
         }
         private void ConfirmParcelReceipt_Click(object sender, RoutedEventArgs e)
         {

@@ -45,8 +45,10 @@ namespace PL
         }
         public DisplayParcel(BlApi.IBL bl, CustomerBL customer)
         {
-            IDSenderTextBox.IsEnabled = false;
+            Bl = bl;
+            InitializeComponent();
             IDSenderTextBox.Text = customer.getIdBL().ToString();
+            IDSenderTextBox.IsEnabled = false;
         }
         public DisplayParcel(BlApi.IBL bl)
         {
