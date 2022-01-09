@@ -99,12 +99,12 @@ namespace DalObject
             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
         }
         public void Charge(DroneChargeDAL DALDC)
-
         {
             DataSource.MyDroneCharges.Add(DALDC);
         }
-        public void releaseCharge(int DroneIdS)
+        public void releaseCharge(DroneChargeDAL Drone)
         {
+            DataSource.MyDroneCharges.Remove(Drone);
         }
         //=====================================================================
         //                     3. class returnObject - return functions 

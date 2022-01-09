@@ -20,6 +20,7 @@ namespace DalApi
         public void PickUp(int parcelIdS);
         public void Delivered(int parcelIdS);
         public void Charge(DroneChargeDAL DALDC);
+        public void releaseCharge(DroneChargeDAL DALDC);
 
         public StationDAL returnStation(int StationIdS);
         public DroneDAL returnDrone(int DroneIdS);

@@ -58,6 +58,7 @@ namespace BO
         DroneChargeDAL droneChargeDal = new DroneChargeDAL();
         droneChargeDal.DroneId = droneBl.Id;
         droneChargeDal.StationId = stationIdS;
+        droneChargeDal.enterTime = droneBl.enterTime;
         return droneChargeDal;
         }
     }

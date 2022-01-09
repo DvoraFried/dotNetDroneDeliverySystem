@@ -50,6 +50,10 @@ namespace BL
                 EmployeeDAL employeeDAL = DalObj.returnEmployee(idE);
                 return new EmpolyeeBL(idE, employeeDAL.Name, employeeDAL.Manager);
             }
+            public static DroneInChargeBL convertToDroneInChargeBL(DroneChargeDAL droneChargeDAL)
+            {
+                return new DroneInChargeBL(droneChargeDAL.DroneId, droneChargeDAL.enterTime);
+            }
         }
     }
 }
