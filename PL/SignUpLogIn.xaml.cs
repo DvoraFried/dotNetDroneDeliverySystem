@@ -75,13 +75,12 @@ namespace PL
         }
     }
 }
-     */       try
+     */     try
             {
                 if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
                 {
-
-                    Close();
                     new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(id.Password))).ShowDialog();
+                    Close();
                 }
                 else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
                 {

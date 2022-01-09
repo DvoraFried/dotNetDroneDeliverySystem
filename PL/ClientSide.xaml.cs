@@ -22,7 +22,7 @@ namespace PL
     {
 
         BlApi.IBL Bl;
-        public  ClientSide(BlApi.IBL bl, CustomerBL customer)
+        public ClientSide(BlApi.IBL bl, CustomerBL customer)
         {
             Bl = bl;
             InitializeComponent();
