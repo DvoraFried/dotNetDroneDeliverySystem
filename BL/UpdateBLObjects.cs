@@ -43,7 +43,7 @@ namespace BL
         }
         public void DeleteParcel(ParcelBL parcel)
         {
-            if(parcel.ScheduledBL != null)
+            if(parcel.ScheduledBL == null)
             {
                 parcel.isActive = false;
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));

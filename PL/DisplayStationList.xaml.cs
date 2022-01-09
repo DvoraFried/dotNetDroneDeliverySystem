@@ -29,8 +29,11 @@ namespace PL
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             BO.StationToList station = (sender as ListView).SelectedValue as BO.StationToList;
-            this.Close();
-            new DisplayStation(Bl, Bl.convertStationToStationBl(station.Id)).ShowDialog();
+            if (station != null)
+            {
+                this.Close();
+                new DisplayStation(Bl, Bl.convertStationToStationBl(station.Id)).ShowDialog();
+            }
         }
 
         private void ButtonAddStation_Click(object sender, RoutedEventArgs e)
