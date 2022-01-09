@@ -135,6 +135,11 @@ namespace DalObject
         {
             return DataSource.MyParcels.First(parcel => parcel.DroneId == DroneIdS);
         }
+        public DroneChargeDAL returnDroneInCharge(int idDC)
+        {
+            return DataSource.MyDroneCharges.First(drone => drone.DroneId == idDC);
+        }
+        
         //=====================================================================
         //             4. class returnArrayObject - return array
         //=====================================================================

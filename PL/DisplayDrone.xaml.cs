@@ -101,8 +101,7 @@ namespace PL
         {
             try
             {
-                double hour = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("enter time in charge"));
-                Bl.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text), hour);
+                Bl.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text));
                 this.Close();
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }

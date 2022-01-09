@@ -291,9 +291,7 @@ namespace ConsoleUI_BL
             {
                 Console.WriteLine("Enter drone's id: ");
                 int id = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter Time In Charging: ");
-                double timeInCharge = Convert.ToDouble(Console.ReadLine());
-                bl.ReleaseDroneFromCharging(id, timeInCharge);
+                bl.ReleaseDroneFromCharging(id);
             }
             catch (FormatException)
             {

@@ -50,13 +50,13 @@ namespace BL
         }
         public void ReleaseDroneFromCharging(int id)
         {
+
             if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
             DroneBL drone = DronesListBL.First(d => (d.getIdBL() == id));
             if (drone.DroneStatus != DroneStatusesBL.maintenance) { throw new DroneIsNotInMaintenanceException(id); }
-            DroneInChargeBL droneInCharge = new DroneInChargeBL(drone);
-            droneInCharge.BatteryStatus = drone.BatteryStatus;
-            int timeInCharge = (DateTime.Now-droneInCharge.enterTime).Hours;
-            drone.BatteryStatus = Math.Min(drone.BatteryStatus + timeInCharge * DataSource.Config.DroneLoadingRate, 100);
+            DroneInChargeBL droneInCharge = ConvertToBL.convertToDroneInChargeBL(DalObj.returnDroneInCharge(id));
+            double timeInCharge = (DateTime.Now-droneInCharge.enterTime).Minutes;
+            drone.BatteryStatus = Math.Min(drone.BatteryStatus + (timeInCharge/60) * DataSource.Config.DroneLoadingRate, 100);
             drone.DroneStatus = DroneStatusesBL.empty;
             DronesListBL[DronesListBL.FindIndex(d => (d.getIdBL() == id))] = drone;
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
