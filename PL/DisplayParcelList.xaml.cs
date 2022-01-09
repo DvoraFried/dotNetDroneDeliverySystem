@@ -36,11 +36,12 @@ namespace PL
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             BO.ParcelToList parcel = (sender as ListView).SelectedValue as BO.ParcelToList;
-            this.Close();
-
-            new DisplayParcel(BLobj, BLobj.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+            if (parcel != null)
+            {
+                this.Close();
+                new DisplayParcel(BLobj, BLobj.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+            }
         }
-
         private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)
         {
             parcelDisplay.ItemsSource = BLobj.ReturnPacelListGroupBySender();

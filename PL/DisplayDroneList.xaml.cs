@@ -70,10 +70,12 @@ namespace PL
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             BO.DroneBL drone = (sender as ListView).SelectedValue as BO.DroneBL;
-            this.Close();
-            new DisplayDrone(Bl, drone).ShowDialog();
+            if (drone != null)
+            {
+                this.Close();
+                new DisplayDrone(Bl, drone).ShowDialog();
+            }
         }
-
 
         private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
         {
