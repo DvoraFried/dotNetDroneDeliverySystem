@@ -42,6 +42,11 @@ namespace PL
             WeightTextBox.Text = parcel.Weight.ToString();
             currentParcel = parcel;
         }
+        public DisplayParcel(BlApi.IBL bl, CustomerBL customer)
+        {
+            IDSenderTextBox.IsEnabled = false;
+            IDSenderTextBox.Text = customer.getIdBL().ToString();
+        }
         public DisplayParcel(BlApi.IBL bl)
         {
             Bl = bl;
