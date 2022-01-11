@@ -35,6 +35,7 @@ namespace PL
             BLobj = bl;
             List<ParcelToList> parcels = BLobj.ReturnParcelList();
             parcelDisplay.ItemsSource = parcels.FindAll(parcel => parcel.SenderId == customer.getIdBL());
+            groupBy.Visibility = clear.Visibility = Visibility.Hidden;
         }
         private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)
         {

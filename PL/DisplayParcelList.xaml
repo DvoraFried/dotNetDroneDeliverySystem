@@ -20,8 +20,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions >
                 </Grid>
-        <Button Margin="10,5,599,5" Click="ButtonGroupBySender_Click" Content=" group by sender"/>
-        <Button Cursor="Hand" Click="buttonClearFilter_Click" Content="clear" Margin="216,5,523,5">
+        <Button Name="groupBy" Margin="10,5,599,5" Click="ButtonGroupBySender_Click" Content=" group by sender"/>
+        <Button Name="clear" Cursor="Hand" Click="buttonClearFilter_Click" Content="clear" Margin="216,5,523,5">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="50"/>

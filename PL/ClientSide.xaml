@@ -17,7 +17,6 @@
             <Button Name="personal"             Content="personal infro"    Grid.Column="0" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="personal_Click" />
             <Button Name="customerParcels"      Content="parcels you sent"      Grid.Column="1" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="customerParcels_Click" />
             <Button Name="ConfirmParcelReceipt" Content="receipt of parcel" Grid.Column="2" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="ConfirmParcelReceipt_Click" />
-            <!--<Button Name="addParcel"            Content="add parcel"        Grid.Column="1" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="addParcel_Click" />-->
         </Grid>
         <TabControl Name="app" HorizontalAlignment="Center" Height="332" Margin="0,72,0,0" VerticalAlignment="Top" Width="780">
             <TabControl.Resources>
@@ -63,7 +62,6 @@
                     <Expander Name="exIsent" Visibility="Hidden" Header="PARSELS YOU SENT:" HorizontalAlignment="Left" Height="404" Margin="33,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Grid.RowSpan="2">
                         <ListView Name="Isent" MouseDoubleClick="showParcel" />
                     </Expander>
-                    <Button Grid.Row="1" Cursor="Hand" Content="add parcel" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddParcel_Click" Margin="664,0,0,0"/>
                 </Grid>
             </TabItem>
             <TabItem Header="receipParcel">

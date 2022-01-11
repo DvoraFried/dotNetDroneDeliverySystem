@@ -54,11 +54,6 @@ namespace PL
         {
             app.SelectedIndex = 2;
         }
-        /*        private void addParcel_Click(object sender, RoutedEventArgs e)
-        {
-            app.SelectedIndex = 3;
-        }
-*/
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             try
