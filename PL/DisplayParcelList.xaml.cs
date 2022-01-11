@@ -58,7 +58,6 @@ namespace PL
         {
             parcelDisplay.ItemsSource = BLobj.ReturnPacelListGroupBySender();
         }
-
         private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
         {
             parcelDisplay.ItemsSource = BLobj.ReturnParcelList();

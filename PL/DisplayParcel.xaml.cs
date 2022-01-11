@@ -58,7 +58,7 @@ namespace PL
         private void showCustomer(object sender, RoutedEventArgs e)
         {
             BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
-            if (customer != null)
+            if (customer != null && currentParcel == null)
             {
                 this.Close();
                 new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).ShowDialog();
