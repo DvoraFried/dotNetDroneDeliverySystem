@@ -41,6 +41,8 @@ namespace BlApi
         public List<ParcelToList> ReturnParcelList();
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
         public List<CustomerToList> ReturnCustomerList();
+        public CustomerBL ReturnCustomer(int id);
+
         public List<StationToList> ReturnStationList();
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots();
         public EmpolyeeBL returnEmployee(int idE);

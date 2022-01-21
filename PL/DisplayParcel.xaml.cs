@@ -31,8 +31,8 @@ namespace PL
             InitializeComponent();
             ADD_BUTTON.Visibility = PRIORITYlabel.Visibility = weightLabel.Visibility = senderIdlbel.Visibility = targetIdLabel.Visibility = priorityCheckBox.Visibility = WeightCheckBox.Visibility = IDSenderTextBox.Visibility = TargetIDTextBox.Visibility = Visibility.Hidden;
             displayParcel.Visibility = DELETE_BUTTON.Visibility = Visibility.Visible;
-            senderTextBox.Items.Add(parcel.Sender);
-            targetTextBox.Items.Add(parcel.Target);
+            senderTextBox.Items.Add(parcel.Sender); 
+            targetTextBox.Items.Add(parcel.Target); 
             IDSenderTextBox.IsEnabled = TargetIDTextBox.IsEnabled = false;
             ParcelInDroneTextBox.Text = parcel.DroneIdBL != null ? parcel.DroneIdBL.ToString() : "non drone assign yet";
             RequestedTimeTextBox.Text = parcel.RequestedBL.ToString();

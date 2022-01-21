@@ -33,20 +33,6 @@ namespace DalObject
                 return instance;
             }
         }
-/*        private static DalObject instance = null;
-
-        public static DalObject GetDal
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new DalObject();
-                }
-                return instance;
-            }
-        }
-*/
         static Random rnd = new Random();
 
         //=====================================================================
@@ -67,10 +53,6 @@ namespace DalObject
         public void AddParcelDAL(ParcelDAL DALP)
         {
             DataSource.MyParcels.Add(DALP);
-        }
-        public void AddParcelDALWithNoTarget(ParcelDAL DALP)
-        {
-            DataSource.ParcelsWithNoTarget.Add(DALP);
         }
 
         //=====================================================================
@@ -114,7 +96,6 @@ namespace DalObject
         {
             return DataSource.MyBaseStations.First(station => station.Id == StationIdS);
         }
-
         public DroneDAL returnDrone(int DroneIdS)
         {
             return DataSource.MyDrones.First(drone => drone.Id == DroneIdS);
@@ -165,8 +146,9 @@ namespace DalObject
 
         public IEnumerable<ParcelDAL> returnParcelArray()
         {
-            foreach (ParcelDAL element in DataSource.MyParcels) { yield return element; }
+            foreach (ParcelDAL element in DataSource.MyParcels) { if (element.isActive) { yield return element; } }
         }
+ 
         //=====================================================================
         //returns a list of not scheduled parcels
         //=====================================================================
@@ -219,15 +201,10 @@ namespace DalObject
         //=============================================
         //remove item frm list by ID
         //=============================================
-        public void RemoveCustomerById(int idCustomer)
-        {
-            DataSource.MyCustomers.RemoveAll(c => c.Id == idCustomer);
-        }
         public void RemoveParcelById(ParcelDAL DALP)
         {
             DataSource.MyParcels.RemoveAll(p => p.Id == DALP.Id);
         }
-
     }
 
 }

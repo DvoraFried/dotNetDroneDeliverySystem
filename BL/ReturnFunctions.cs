@@ -10,16 +10,16 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus,int droneMaxWeight)
+        public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
             List<DroneBL> droneUpdateList = new List<DroneBL>();
             if (droneStatus != -1 && droneMaxWeight != -1)
             {
-                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus&& (int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
+                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus && (int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
             }
             else if (droneStatus != -1)
             {
-                foreach(DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus) { droneUpdateList.Add(element); }}
+                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus) { droneUpdateList.Add(element); } }
             }
             else if (droneMaxWeight != -1)
             {
@@ -29,6 +29,10 @@ namespace BL
                 return DronesListBL;
             }
             return droneUpdateList;
+        }
+        public CustomerBL ReturnCustomer(int id)
+        {
+            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(id));
         }
         public IEnumerable<DroneBL> ReturnDronesByStatusOrder()
         {
