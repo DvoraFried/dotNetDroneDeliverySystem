@@ -34,9 +34,16 @@ namespace BL
         }
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude)
         {
-            if (DalObj.returnCustomerArray().Any(c => c.Id == id)) { throw new ObjectExistsInListException("customer"); }
-            CustomerBL customer = new CustomerBL(DalObj, id, name, phone, new Position(longitude, latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
-            DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
+            CustomerBL customer = customer = new CustomerBL(DalObj, id, name, phone, new Position(longitude, latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
+            if (DalObj.returnCustomerArray().Any(c => c.Id == id))
+            {
+                if (DalObj.returnCustomer(id).isActive) { throw new ObjectExistsInListException("customer"); }
+                DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(customer));
+            }
+            else
+            {
+                DalObj.AddCustomerDAL(ConvertToDal.ConvertToCustomerDal(customer));
+            }
         }
         public void AddParcel(int idSender, int idTarget, EnumBL.WeightCategoriesBL weight, EnumBL.PrioritiesBL priority)
         {

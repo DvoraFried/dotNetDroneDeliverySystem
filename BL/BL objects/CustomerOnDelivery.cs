@@ -8,24 +8,18 @@ namespace BO
 {
     public class CustomerOnDelivery
     {
-        public CustomerOnDelivery() 
+        public CustomerOnDelivery(int id, string name, bool isActive = true)
         {
-            Id = -1;
-            CustomerName = "no data";
-        }
-        public CustomerOnDelivery(int id, string name)
-        {
+            flag = isActive;
             Id = id;
             CustomerName = name;
         }
         public override string ToString()
         {
-            if (Id != -1)
-            {
-                return $"ID: {Id}\nName: {CustomerName}";
-            }
-            return "";
+            if (flag) { return $"ID: {Id}\nName: {CustomerName}"; }
+            return "no data";
         }
+        private bool flag;
         public int Id { get; set; }
         public string CustomerName { get; set; }
     }

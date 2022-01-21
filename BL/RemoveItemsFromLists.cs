@@ -16,14 +16,8 @@ namespace BL
             if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer))  { throw new ObjectDoesntExistsInListException("customer"); }
             foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
             {
-                if (parcel.TargetId == idCustomer || parcel.SenderId == idCustomer)
-                {
-                    if(parcel.Delivered == null) { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
-                    ParcelDAL p = parcel;
-                    if (parcel.TargetId == idCustomer) { p.TargetId = -1; }
-                    else { p.SenderId = -1; }
-                    DalObj.ReplaceParcelById(p);
-                }
+                if ((parcel.TargetId == idCustomer || parcel.SenderId == idCustomer) && (parcel.Delivered == null)) 
+                { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
             }
             CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
             customer.isActive = false;

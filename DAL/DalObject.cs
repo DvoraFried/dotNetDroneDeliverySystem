@@ -96,7 +96,6 @@ namespace DalObject
         {
             return DataSource.MyBaseStations.First(station => station.Id == StationIdS);
         }
-
         public DroneDAL returnDrone(int DroneIdS)
         {
             return DataSource.MyDrones.First(drone => drone.Id == DroneIdS);
@@ -138,7 +137,7 @@ namespace DalObject
 
         public IEnumerable<CustomerDAL> returnCustomerArray()
         {
-            foreach (CustomerDAL element in DataSource.MyCustomers) { if (element.isActive) { yield return element; } }
+            foreach (CustomerDAL element in DataSource.MyCustomers) { yield return element; }
         }
         public IEnumerable<EmployeeDAL> returnEmployeeArray()
         {

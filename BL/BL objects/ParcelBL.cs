@@ -24,10 +24,10 @@ namespace BO
             RequestedBL = requested == null? DateTime.Now : requested;
             int droneId = id != -1 ? dalOB.returnParcelArray().ToList().First(parcel => parcel.Id == id).DroneId : id;
             DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
-            DO.CustomerDAL customer = idSender!=-1 ? DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender) : new DO.CustomerDAL();
-            Sender = idSender != -1 ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery();
-            customer = idTarget!=-1 ? DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget) : new DO.CustomerDAL();
-            Target = idTarget!=-1 ? new CustomerOnDelivery(customer.Id, customer.Name): new CustomerOnDelivery();
+            DO.CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender);
+            Sender = customer.isActive ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery(customer.Id, customer.Name,false);
+            customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget);
+            Target = customer.isActive ? new CustomerOnDelivery(customer.Id, customer.Name): new CustomerOnDelivery(customer.Id, customer.Name,false);
             isActive = IsActive;
         }
         public override string ToString()
