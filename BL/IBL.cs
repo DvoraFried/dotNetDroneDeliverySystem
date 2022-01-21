@@ -53,6 +53,5 @@ namespace BlApi
         public bool userIsCustomer(string name, int id);
         public bool userIsEmployee(string name, int id);
         public bool userIsManager(string name, int id);
-
     }
 }

@@ -27,6 +27,7 @@ namespace PL
             InitializeComponent();
             BLobj = bl;
             parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
+
         }
         public DisplayParcelList(BlApi.IBL bl, CustomerBL customer)
         {

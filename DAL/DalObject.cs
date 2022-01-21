@@ -33,20 +33,6 @@ namespace DalObject
                 return instance;
             }
         }
-/*        private static DalObject instance = null;
-
-        public static DalObject GetDal
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new DalObject();
-                }
-                return instance;
-            }
-        }
-*/
         static Random rnd = new Random();
 
         //=====================================================================
@@ -68,7 +54,7 @@ namespace DalObject
         {
             DataSource.MyParcels.Add(DALP);
         }
-        public void AddParcelDALWithNoTarget(ParcelDAL DALP)
+        public void AddParcelDALWithNoTargetOrSender(ParcelDAL DALP)
         {
             DataSource.ParcelsWithNoTarget.Add(DALP);
         }
@@ -167,6 +153,10 @@ namespace DalObject
         {
             foreach (ParcelDAL element in DataSource.MyParcels) { yield return element; }
         }
+        public IEnumerable<ParcelDAL> returnParcelWithOutTargetArray()
+        {
+            foreach(ParcelDAL element in DataSource.ParcelsWithNoTarget) { yield return element; }
+        }
         //=====================================================================
         //returns a list of not scheduled parcels
         //=====================================================================
@@ -219,15 +209,10 @@ namespace DalObject
         //=============================================
         //remove item frm list by ID
         //=============================================
-        public void RemoveCustomerById(int idCustomer)
-        {
-            DataSource.MyCustomers.RemoveAll(c => c.Id == idCustomer);
-        }
         public void RemoveParcelById(ParcelDAL DALP)
         {
             DataSource.MyParcels.RemoveAll(p => p.Id == DALP.Id);
         }
-
     }
 
 }

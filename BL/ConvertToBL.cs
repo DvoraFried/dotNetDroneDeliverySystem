@@ -23,7 +23,7 @@ namespace BL
             }
             public static CustomerBL ConvertToCustomrtBL(CustomerDAL customerDal)
             {
-                CustomerBL customerBL = new CustomerBL(DalObj,customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
+                CustomerBL customerBL = new CustomerBL(DalObj,customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()), customerDal.isActive);
                 return customerBL;
             }
             public static ParcelBL ConvertToParcelBL(ParcelDAL parcelDal)

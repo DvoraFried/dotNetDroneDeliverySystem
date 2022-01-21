@@ -11,9 +11,9 @@ namespace BO
         public ParcelToList(DalApi.IDAL dalOBG, ParcelBL parcel)
         {
             Id = parcel.IdBL;
-            SenderName = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id).Name;
+            SenderName = dalOBG.returnCustomerArray().ToList().Any(customer => customer.Id == parcel.Sender.Id) ? dalOBG.returnCustomer(parcel.Sender.Id).Name : null;
             SenderId = parcel.Sender.Id;
-            UstomerReceivesName = dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Target.Id).Name;
+            UstomerReceivesName = dalOBG.returnCustomerArray().ToList().Any(customer => customer.Id == parcel.Target.Id) ? dalOBG.returnCustomer(parcel.Target.Id).Name : null;
             weight = parcel.Weight;
             priority = parcel.Priority;
             PackageStatus = parcel.DeliveredBL != null ? EnumBL.DeliveryStatus.provided :

@@ -94,8 +94,14 @@ namespace PL
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
-            Bl.RemoveCustomerById(Int32.Parse(IDTebtBox.Text));
-            this.Close();
+            try
+            {
+                Bl.RemoveCustomerById(Int32.Parse(IDTebtBox.Text));
+                this.Close();
+            }
+            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }

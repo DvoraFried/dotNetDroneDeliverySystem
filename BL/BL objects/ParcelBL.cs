@@ -22,12 +22,12 @@ namespace BO
             PickUpBL = pickUp;
             DeliveredBL = delivered;
             RequestedBL = requested == null? DateTime.Now : requested;
-            int droneId = id != -1 ? DalObject.DataSource.MyParcels.First(parcel => parcel.Id == id).DroneId : id;
+            int droneId = id != -1 ? dalOB.returnParcelArray().ToList().Any(parcel => parcel.Id == id) ? dalOB.returnParcel(id).DroneId : dalOB.returnParcelWithOutTargetArray().ToList().First(parcel => parcel.Id == id).DroneId : id;
             DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
-            DO.CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender);
-            Sender = new CustomerOnDelivery(customer.Id, customer.Name);
-            customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget);
-            Target = new CustomerOnDelivery(customer.Id, customer.Name);
+            DO.CustomerDAL customer = idSender!=-1 ? DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender) : new DO.CustomerDAL();
+            Sender = idSender != -1 ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery();
+            customer = idTarget!=-1 ? DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget) : new DO.CustomerDAL();
+            Target = idTarget!=-1 ? new CustomerOnDelivery(customer.Id, customer.Name): new CustomerOnDelivery();
             isActive = IsActive;
         }
         public override string ToString()

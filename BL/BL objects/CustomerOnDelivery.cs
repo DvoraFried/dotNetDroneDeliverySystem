@@ -8,6 +8,11 @@ namespace BO
 {
     public class CustomerOnDelivery
     {
+        public CustomerOnDelivery() 
+        {
+            Id = -1;
+            CustomerName = "no data";
+        }
         public CustomerOnDelivery(int id, string name)
         {
             Id = id;
@@ -15,7 +20,11 @@ namespace BO
         }
         public override string ToString()
         {
-            return $"ID: {Id}\nName: {CustomerName}";
+            if (Id != -1)
+            {
+                return $"ID: {Id}\nName: {CustomerName}";
+            }
+            return "";
         }
         public int Id { get; set; }
         public string CustomerName { get; set; }

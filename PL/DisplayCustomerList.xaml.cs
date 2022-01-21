@@ -29,7 +29,6 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
             BO.CustomerToList customer = (sender as ListView).SelectedValue as BO.CustomerToList;
             if (customer != null)
             {

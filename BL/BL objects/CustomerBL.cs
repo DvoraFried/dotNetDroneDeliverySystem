@@ -10,13 +10,14 @@ namespace BO
     public class CustomerBL
     {
         DalApi.IDAL dalOB;
-        public CustomerBL(DalApi.IDAL dalOBG,int id, string name, string phone, Position p, List<ParcelBL>parcels)
+        public CustomerBL(DalApi.IDAL dalOBG,int id, string name, string phone, Position p, List<ParcelBL>parcels, bool active = true)
         {
             dalOB = dalOBG;
             setIdBL(id);
             NameBL = name;
             PhoneBL = phone;
             Position = p;
+            isActive = active;
             ImTheSender = new List<DeliveryAtCustomer>();
             ImTheTarget = new List<DeliveryAtCustomer>();
             foreach(ParcelBL parcel in parcels)
@@ -44,5 +45,6 @@ namespace BO
         public Position Position { get; set; }
         public List<DeliveryAtCustomer> ImTheSender { get; set; }
         public List<DeliveryAtCustomer> ImTheTarget { get; set; }
+        public bool isActive { get; set; }
     }
 }

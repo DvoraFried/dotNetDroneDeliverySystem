@@ -51,14 +51,18 @@ namespace DalObject
 
             for (int i = 0; i < 13; i++)
             {
-                CustomerDAL customerDAL = new CustomerDAL() { Id = rnd.Next(100000000, 1000000000), Name = "customer " + i.ToString(), Phone = rnd.Next(5830000, 60000000).ToString(), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180) };
+                CustomerDAL customerDAL = new CustomerDAL() { Id = rnd.Next(100000000, 1000000000), Name = "customer " + i.ToString(), Phone = rnd.Next(5830000, 60000000).ToString(), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), isActive = true };
                 MyCustomers.Add(customerDAL);
             }
 
             for (int i = 1; i < 11; i++)
             {
                 int senderId = MyCustomers[rnd.Next(0, 13)].Id;
-                int targetId = MyCustomers[rnd.Next(0, 13)].Id;
+                int targetId;
+                do {
+                    targetId = MyCustomers[rnd.Next(0, 13)].Id;
+                } while (targetId == senderId);
+
                 ParcelDAL parcel = new ParcelDAL() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, isActive = true, Requested = DateTime.Now, Delivered = null, PickUp = null, Scheduled = null };
                 int num = rnd.Next(0, 3);
                 switch (num)

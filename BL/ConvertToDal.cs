@@ -35,6 +35,7 @@ namespace BO
             customerDal.Phone = customerBl.PhoneBL;
             customerDal.Longitude = customerBl.Position.Longitude;
             customerDal.Latitude = customerBl.Position.Latitude;
+            customerDal.isActive = customerBl.isActive;
             return customerDal;
         }
         public static ParcelDAL ConvertToParcelDal(ParcelBL parcelBl)

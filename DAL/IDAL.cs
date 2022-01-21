@@ -14,7 +14,7 @@ namespace DalApi
         public void AddDroneDAL(DroneDAL DALD);
         public  void AddCustomerDAL(CustomerDAL DALC);
         public  void AddParcelDAL(ParcelDAL DALP);
-        public void AddParcelDALWithNoTarget(ParcelDAL DALP);
+        public void AddParcelDALWithNoTargetOrSender(ParcelDAL DALP);
         
         public void Scheduled(int parcelIdS);
         public void PickUp(int parcelIdS);
@@ -34,6 +34,7 @@ namespace DalApi
         public IEnumerable<CustomerDAL> returnCustomerArray();
         public IEnumerable<EmployeeDAL> returnEmployeeArray();
         public IEnumerable<ParcelDAL> returnParcelArray();
+        public IEnumerable<ParcelDAL> returnParcelWithOutTargetArray();
         public double[] powerRequest();
 
         public void ReplaceStationById(StationDAL DALS);
@@ -41,7 +42,6 @@ namespace DalApi
         public void ReplaceCustomerById(CustomerDAL DALC);
         public void ReplaceParcelById(ParcelDAL DALP);
         public void DeleteObjFromDroneCharges(int id);
-        public void RemoveCustomerById(int idCustomer);
         public void RemoveParcelById(ParcelDAL DALP);
 
     }

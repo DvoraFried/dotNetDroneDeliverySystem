@@ -16,24 +16,33 @@ namespace BL
             if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer))  { throw new ObjectDoesntExistsInListException("customer"); }
             foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
             {
-                ParcelBL p = ConvertToBL.ConvertToParcelBL(parcel);
-                if (p.Target.Id == idCustomer)
+                if (parcel.TargetId == idCustomer || parcel.SenderId == idCustomer)
                 {
-                    DalObj.RemoveParcelById(ConvertToDal.ConvertToParcelDal(p));
-                    if (parcel.Scheduled == null)
+                    ParcelDAL p = parcel;
+                    if (parcel.TargetId == idCustomer) { p.TargetId = -1; }
+                    else { p.SenderId = -1; }
+                    if (parcel.Delivered != null)
                     {
-                        p.Target.Id = -1;
-                        DalObj.AddParcelDALWithNoTarget(ConvertToDal.ConvertToParcelDal(p));
+                        //DalObj.RemoveParcelById(parcel);
+                        p.TargetId = -1;
+                        DalObj.ReplaceParcelById(p);
+                        //DalObj.AddParcelDALWithNoTargetOrSender(p);
                     }
-                    /*{ throw new ThereAreParcelForTheCustomer(p.Target.Id); }
-                    return;*/
-                }
-                if (p.Sender.Id == idCustomer)
-                {
-                    DalObj.RemoveParcelById(ConvertToDal.ConvertToParcelDal(p));
+                    else { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
                 }
             }
-            DalObj.RemoveCustomerById(idCustomer);
+            CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
+            customer.isActive = false;
+            DalObj.ReplaceCustomerById(customer);
+        }
+        public void DeleteParcel(ParcelBL parcel)
+        {
+            if (parcel.ScheduledBL == null)
+            {
+                parcel.isActive = false;
+                DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
+            }
+            else { throw new ParcelAlreadyScheduled(); }
         }
     }
 }

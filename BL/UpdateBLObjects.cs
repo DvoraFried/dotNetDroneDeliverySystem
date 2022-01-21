@@ -41,14 +41,5 @@ namespace BL
             CustomerBL replaceCustomer = new CustomerBL(DalObj, id, currentName, currentPhone, new Position(currentCustomer.Longitude, currentCustomer.Latitude),ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
             DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(replaceCustomer));
         }
-        public void DeleteParcel(ParcelBL parcel)
-        {
-            if(parcel.ScheduledBL == null)
-            {
-                parcel.isActive = false;
-                DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
-            }
-            else { throw new ParcelAlreadyScheduled(); }
-        }
     }
 }

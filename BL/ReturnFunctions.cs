@@ -43,7 +43,14 @@ namespace BL
             List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
             foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
             {
-                if (parcel.isActive == true)
+                if (parcel.isActive)
+                {
+                    parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
+                }
+            }
+            foreach(ParcelDAL parcel in DalObj.returnParcelWithOutTargetArray().ToList())
+            {
+                if (parcel.isActive)
                 {
                     parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
                 }
@@ -64,7 +71,10 @@ namespace BL
             List<CustomerToList> customersToReturn = new List<CustomerToList>();
             foreach (CustomerDAL customer in DalObj.returnCustomerArray())
             {
-                customersToReturn.Add(new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(customer)));
+                if (customer.isActive)
+                {
+                    customersToReturn.Add(new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(customer)));
+                }
             }
             return customersToReturn;
         }
