@@ -14,7 +14,6 @@ namespace DalObject
         public static List<CustomerDAL> MyCustomers = new List<CustomerDAL>();
         public static List<EmployeeDAL> MyEmployees = new List<EmployeeDAL>();
         public static List<ParcelDAL> MyParcels = new List<ParcelDAL>();
-        public static List<ParcelDAL> ParcelsWithNoTarget = new List<ParcelDAL>();
         public static List<DroneChargeDAL> MyDroneCharges=new List<DroneChargeDAL> ();
 
         //satandart drone speed per hour is 120 kilometers

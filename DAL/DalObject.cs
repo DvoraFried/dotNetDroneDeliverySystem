@@ -54,10 +54,6 @@ namespace DalObject
         {
             DataSource.MyParcels.Add(DALP);
         }
-        public void AddParcelDALWithNoTargetOrSender(ParcelDAL DALP)
-        {
-            DataSource.ParcelsWithNoTarget.Add(DALP);
-        }
 
         //=====================================================================
         //                     2. class update - update functions 
@@ -142,7 +138,7 @@ namespace DalObject
 
         public IEnumerable<CustomerDAL> returnCustomerArray()
         {
-            foreach (CustomerDAL element in DataSource.MyCustomers) { yield return element; }
+            foreach (CustomerDAL element in DataSource.MyCustomers) { if (element.isActive) { yield return element; } }
         }
         public IEnumerable<EmployeeDAL> returnEmployeeArray()
         {
@@ -151,12 +147,9 @@ namespace DalObject
 
         public IEnumerable<ParcelDAL> returnParcelArray()
         {
-            foreach (ParcelDAL element in DataSource.MyParcels) { yield return element; }
+            foreach (ParcelDAL element in DataSource.MyParcels) { if (element.isActive) { yield return element; } }
         }
-        public IEnumerable<ParcelDAL> returnParcelWithOutTargetArray()
-        {
-            foreach(ParcelDAL element in DataSource.ParcelsWithNoTarget) { yield return element; }
-        }
+ 
         //=====================================================================
         //returns a list of not scheduled parcels
         //=====================================================================

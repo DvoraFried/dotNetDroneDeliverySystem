@@ -48,13 +48,6 @@ namespace BL
                     parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
                 }
             }
-            foreach(ParcelDAL parcel in DalObj.returnParcelWithOutTargetArray().ToList())
-            {
-                if (parcel.isActive)
-                {
-                    parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
-                }
-            }
             return parcelsUpdateList;
         }
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()

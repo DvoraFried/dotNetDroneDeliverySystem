@@ -28,7 +28,7 @@ namespace PL
             InitializeComponent();
             exIsent.Visibility = exSENDme.Visibility = Visibility.Visible;
             foreach(DeliveryAtCustomer parcel in customer.ImTheSender) { Isent.Items.Add(parcel);}
-            foreach (DeliveryAtCustomer parcel in customer.ImTheTarget) { Isent.Items.Add(parcel); }
+            foreach (DeliveryAtCustomer parcel in customer.ImTheTarget) { SENDme.Items.Add(parcel); }
             IDTebtBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeTextBox.IsEnabled = false;
             IDTebtBox.Text = customer.getIdBL().ToString();
             NameTextBox.Text = customer.NameBL;

@@ -18,17 +18,11 @@ namespace BL
             {
                 if (parcel.TargetId == idCustomer || parcel.SenderId == idCustomer)
                 {
+                    if(parcel.Delivered == null) { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
                     ParcelDAL p = parcel;
                     if (parcel.TargetId == idCustomer) { p.TargetId = -1; }
                     else { p.SenderId = -1; }
-                    if (parcel.Delivered != null)
-                    {
-                        //DalObj.RemoveParcelById(parcel);
-                        p.TargetId = -1;
-                        DalObj.ReplaceParcelById(p);
-                        //DalObj.AddParcelDALWithNoTargetOrSender(p);
-                    }
-                    else { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
+                    DalObj.ReplaceParcelById(p);
                 }
             }
             CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
