@@ -80,36 +80,35 @@ namespace Dal
             parcels.ToList().Add(DALP);
             DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcels, dir + parcels);
         }
-        public void Scheduled(int parcelIdS)
+        public Station returnStation(int StationIdS)
         {
-            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-            Drone setD = DataSource.MyDrones.First(drone => drone.MaxWeight >= upP.Weight);
-            upP.DroneId = setD.Id;
-            upP.Scheduled = DateTime.Now;
-            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
+            IEnumerable<Station> stations = DL.XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + stationFilePath);
+            return stations.ToList().First(station => station.Id == StationIdS);
         }
-
-        public void PickUp(int parcelIdS)
+        public Drone returnDrone(int DroneIdS)
         {
-            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-            upP.PickUp = DateTime.Now;
-            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
+            IEnumerable<Drone> drones = DL.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + droneFilePath);
+            return drones.ToList().First(drone => drone.Id == DroneIdS);
         }
-
-        public void Delivered(int parcelIdS)
+        public Customer returnCustomer(int CustomerIdS)
         {
-            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-            upP.Delivered = DateTime.Now;
-            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
+            IEnumerable<Customer> customers = DL.XMLTools.LoadListFromXMLSerializer<DO.Customer>(dir + customerFilePath);
+            return customers.ToList().First(customer => customer.Id == CustomerIdS);
         }
-        public void Charge(DroneCharge DALDC)
+        public Employee returnEmployee(int idE)
         {
-            DataSource.MyDroneCharges.Add(DALDC);
+            IEnumerable<Employee> employees = DL.XMLTools.LoadListFromXMLSerializer<DO.Employee>(dir + employeeFilePath);
+            return employees.ToList().First(employee => employee.Id == idE);
         }
-        public void releaseCharge(DroneCharge Drone)
+        public Parcel returnParcel(int ParcelIdS)
         {
-            DataSource.MyDroneCharges.Remove(Drone);
+            IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
+            return parcels.ToList().First(parcel => parcel.Id == ParcelIdS);
         }
-
+        public Parcel returnParcelByDroneId(int DroneIdS)
+        {
+            IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
+            return parcels.ToList().First(parcel => parcel.DroneId == DroneIdS);
+        }
     }
 }

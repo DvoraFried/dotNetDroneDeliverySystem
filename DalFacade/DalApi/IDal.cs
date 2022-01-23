@@ -14,12 +14,12 @@ namespace DalApi
         public void AddDroneDAL(Drone DALD);
         public void AddCustomerDAL(Customer DALC);
         public void AddParcelDAL(Parcel DALP);
-        
+       /* 
         public void Scheduled(int parcelIdS);
         public void PickUp(int parcelIdS);
         public void Delivered(int parcelIdS);
         public void Charge(DroneCharge DALDC);
-        public void releaseCharge(DroneCharge DALDC);
+        public void releaseCharge(DroneCharge DALDC);*/
 
         public Station returnStation(int StationIdS);
         public Drone returnDrone(int DroneIdS);
@@ -27,7 +27,7 @@ namespace DalApi
         public Employee returnEmployee(int idE);
         public Parcel returnParcel(int ParcelIdS);
         public Parcel returnParcelByDroneId(int DroneIdS);
-        public DroneCharge returnDroneInCharge(int idDC);
+       // public DroneCharge returnDroneInCharge(int idDC);
         public IEnumerable<Station> returnStationArray();
         public IEnumerable<Drone> returnDroneArray();
         public IEnumerable<Customer> returnCustomerArray();
@@ -41,6 +41,5 @@ namespace DalApi
         public void ReplaceParcelById(Parcel DALP);
         public void DeleteObjFromDroneCharges(int id);
         public void RemoveParcelById(Parcel DALP);
-
     }
 }
