@@ -12,8 +12,8 @@ namespace DalApi
     {
         public void AddStationDAL(Station DALS);
         public void AddDroneDAL(Drone DALD);
-        public  void AddCustomerDAL(Customer DALC);
-        public  void AddParcelDAL(Parcel DALP);
+        public void AddCustomerDAL(Customer DALC);
+        public void AddParcelDAL(Parcel DALP);
         
         public void Scheduled(int parcelIdS);
         public void PickUp(int parcelIdS);
