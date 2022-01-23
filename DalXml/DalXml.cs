@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DO;
 using DalApi;
 using System.IO;
+using static DalFacade.DalApi.Exeptions.Exceptions;
 
 namespace Dal
 {
@@ -102,6 +103,74 @@ namespace Dal
             Parcel parcel = parcelsList.First(t => t.Id == DALP.Id);
             parcelsList.ToList().Remove(parcel);
             DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcelsList, dir + parcelFilePath);
+        }
+
+
+        public void AddStationDAL(Station DALS)
+        {
+            IEnumerable<Station> stations = DL.XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + stationFilePath);
+            if(!stations.Any(station => station.Id == DALS.Id))
+            {
+                throw new ObjectExistsInListException("Station");
+            }
+            stations.ToList().Add(DALS);
+            DL.XMLTools.SaveListToXMLSerializer<Station>(stations, dir + stationFilePath);
+        }
+        public void AddDroneDAL(Drone DALD)
+        {
+            IEnumerable<Drone> drones = DL.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + droneFilePath);
+            if (!drones.Any(drone => drone.Id == DALD.Id))
+            {
+                throw new ObjectExistsInListException("Drone");
+            }
+            drones.ToList().Add(DALD);
+            DL.XMLTools.SaveListToXMLSerializer<Drone>(drones, dir + droneFilePath);
+        }
+        public void AddCustomerDAL(Customer DALC)
+        {
+            IEnumerable<Customer> customers = DL.XMLTools.LoadListFromXMLSerializer<DO.Customer>(dir + customerFilePath);
+            if (!customers.Any(customer => customer.Id == DALC.Id))
+            {
+                throw new ObjectExistsInListException("Customer");
+            }
+            customers.ToList().Add(DALC);
+            DL.XMLTools.SaveListToXMLSerializer<Customer>(customers, dir + customerFilePath);
+        }
+        public void AddParcelDAL(Parcel DALP)
+        {
+            IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
+            parcels.ToList().Add(DALP);
+            DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcels, dir + parcels);
+        }
+        public void Scheduled(int parcelIdS)
+        {
+            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
+            Drone setD = DataSource.MyDrones.First(drone => drone.MaxWeight >= upP.Weight);
+            upP.DroneId = setD.Id;
+            upP.Scheduled = DateTime.Now;
+            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
+        }
+
+        public void PickUp(int parcelIdS)
+        {
+            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
+            upP.PickUp = DateTime.Now;
+            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
+        }
+
+        public void Delivered(int parcelIdS)
+        {
+            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
+            upP.Delivered = DateTime.Now;
+            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
+        }
+        public void Charge(DroneCharge DALDC)
+        {
+            DataSource.MyDroneCharges.Add(DALDC);
+        }
+        public void releaseCharge(DroneCharge Drone)
+        {
+            DataSource.MyDroneCharges.Remove(Drone);
         }
 
     }
