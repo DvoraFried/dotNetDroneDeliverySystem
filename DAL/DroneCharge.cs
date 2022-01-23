@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class DroneChargeDAL
+    public class DroneCharge
     {
         public int DroneId { get; set; }
         public int StationId { get; set; }

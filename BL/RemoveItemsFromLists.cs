@@ -14,12 +14,12 @@ namespace BL
         public void RemoveCustomerById(int idCustomer)
         {
             if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer))  { throw new ObjectDoesntExistsInListException("customer"); }
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
+            foreach (Parcel parcel in DalObj.returnParcelArray().ToList())
             {
                 if ((parcel.TargetId == idCustomer || parcel.SenderId == idCustomer) && (parcel.Delivered == null)) 
                 { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
             }
-            CustomerDAL customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
+            Customer customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
             customer.isActive = false;
             DalObj.ReplaceCustomerById(customer);
         }

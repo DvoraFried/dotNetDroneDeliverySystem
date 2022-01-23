@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using DO;
 using DalApi;
 
-namespace DalObject
+namespace Dal
 {
-    internal sealed class DalObject : DalApi.IDAL {
+    internal sealed class DalObject : IDal {
 
         internal static DalObject instance = null;
         private static readonly object padLock = new object();

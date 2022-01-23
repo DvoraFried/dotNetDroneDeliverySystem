@@ -45,7 +45,7 @@ namespace BL
         }
         public void DisplayStatoinList()
         {
-            foreach (StationDAL station in DalObj.returnStationArray())
+            foreach (Station station in DalObj.returnStationArray())
             {
                 Console.WriteLine(new StationToList(ConvertToBL.ConvertToStationBL(station)).ToString());
             }
@@ -59,14 +59,14 @@ namespace BL
         }
         public void DisplayCustomerList()
         {
-            foreach (CustomerDAL customer in DalObj.returnCustomerArray())
+            foreach (Customer customer in DalObj.returnCustomerArray())
             {
                 Console.WriteLine(new CustomerToList(DalObj,ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
             }
         }
         public void DisplayParcelList()
         {
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray())
+            foreach (Parcel parcel in DalObj.returnParcelArray())
             {
                 Console.WriteLine(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)).ToString());
             }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DalApi
 {
-    public interface IDAL
+    public interface IDal
     {
         public void AddStationDAL(Station DALS);
         public void AddDroneDAL(Drone DALD);

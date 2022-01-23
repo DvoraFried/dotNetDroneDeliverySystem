@@ -14,28 +14,28 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        public IEnumerable<ParcelDAL> returnParcelWithEmergencyParcelsPriority()
+        public IEnumerable<Parcel> returnParcelWithEmergencyParcelsPriority()
         {
-            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.emergency) yield return element; }
+            foreach (Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.emergency) yield return element; }
         }
-        public IEnumerable<ParcelDAL> returnParcelWithUsualParcelsPriority()
+        public IEnumerable<Parcel> returnParcelWithUsualParcelsPriority()
         {
-            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.usual) yield return element; }
+            foreach (Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.usual) yield return element; }
         }
-        public IEnumerable<ParcelDAL> returnParcelWithRapidlParcelsPriority()
+        public IEnumerable<Parcel> returnParcelWithRapidlParcelsPriority()
         {
-            foreach (ParcelDAL element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.rapid) yield return element; }
+            foreach (Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.rapid) yield return element; }
         }
-        public IEnumerable<ParcelDAL> returnPacelWitSuitWeight(IEnumerable<ParcelDAL> parcelArr,int droneMaxW)
+        public IEnumerable<Parcel> returnPacelWitSuitWeight(IEnumerable<Parcel> parcelArr,int droneMaxW)
         {
-            foreach (ParcelDAL element in parcelArr) { if ((int)element.Weight <= droneMaxW) yield return element; }
+            foreach (Parcel element in parcelArr) { if ((int)element.Weight <= droneMaxW) yield return element; }
         }
-        public ParcelDAL returnTheClosestParcelId(IEnumerable<ParcelDAL> parcelArr, Position dronePosition)
+        public Parcel returnTheClosestParcelId(IEnumerable<Parcel> parcelArr, Position dronePosition)
         {
-            ParcelDAL currentParcel= parcelArr.ToArray()[0];
-            foreach (ParcelDAL element in parcelArr ) {
-                CustomerDAL currentParcelSender = DalObj.returnCustomerArray().First(d => (d.Id== currentParcel.SenderId));
-                CustomerDAL compairParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == element.SenderId));
+            Parcel currentParcel= parcelArr.ToArray()[0];
+            foreach (Parcel element in parcelArr ) {
+                Customer currentParcelSender = DalObj.returnCustomerArray().First(d => (d.Id== currentParcel.SenderId));
+                Customer compairParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == element.SenderId));
                 if (CalculateDistance(dronePosition, new Position(currentParcelSender.Longitude, currentParcelSender.Latitude))> CalculateDistance(dronePosition, new Position(compairParcelSender.Longitude, compairParcelSender.Latitude)))
                 {
                     currentParcel = element;
@@ -48,7 +48,7 @@ namespace BL
             if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
             DroneBL drone = DronesListBL.First(d => (d.getIdBL() == idD));
             if(drone.DroneStatus != DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }
-            List<ParcelDAL> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(),(int)drone.MaxWeight).ToList();
+            List<Parcel> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(),(int)drone.MaxWeight).ToList();
             if(myParcelsSuitWeightArr.Count == 0) {
                 myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithRapidlParcelsPriority(), (int)drone.MaxWeight).ToList();
                 if (myParcelsSuitWeightArr.Count == 0) {

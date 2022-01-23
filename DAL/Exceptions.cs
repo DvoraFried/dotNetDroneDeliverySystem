@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public partial class ExceptionsDAL : Exception
+    public partial class Exceptions : Exception
     {
         public class ObjectAlreadyExistInList : Exception
         {

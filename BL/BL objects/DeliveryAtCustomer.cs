@@ -20,7 +20,7 @@ namespace BO
                      parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
                      EnumBL.DeliveryStatus.created;
             int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
-            DO.CustomerDAL customer = idSecondCustomer!=0 ?  dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == idSecondCustomer) : new DO.CustomerDAL();
+            DO.Customer customer = idSecondCustomer!=0 ?  dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == idSecondCustomer) : new DO.Customer();
             Customer = customer .isActive ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery(customer.Id, customer.Name, false);
         }
         public override string ToString()

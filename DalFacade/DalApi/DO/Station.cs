@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace DO
 {
-   public struct StationDAL
+   public struct Station
     {
         public int Id { get;set;}
         public string Name { get;set;}

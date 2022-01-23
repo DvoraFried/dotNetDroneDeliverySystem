@@ -18,7 +18,7 @@ namespace BO
             Weight = parcel.Weight;
             Sender = parcel.Sender;
             Target = parcel.Target;
-            DO.CustomerDAL dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id);
+            DO.Customer dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id);
             CollectionLocation = new Position(dalobj.Longitude, dalobj.Latitude);
             dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Target.Id);
             DeliveryDestinationLocation = new Position(dalobj.Longitude, dalobj.Latitude);

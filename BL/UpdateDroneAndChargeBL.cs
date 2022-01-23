@@ -19,8 +19,8 @@ namespace BL
             int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
             DroneBL drone = DronesListBL[droneBLIndex];
             if (drone.DroneStatus!= DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }             
-            StationDAL station = new StationDAL();
-            foreach (StationDAL element in DalObj.returnStationArray())
+            Station station = new Station();
+            foreach (Station element in DalObj.returnStationArray())
             {
                 Position stationP = new Position(element.Longitude, element.Latitude);
                 if (element.EmptyChargeSlots > 0 && updateButteryStatus(drone, stationP, 0) > 0)
@@ -60,7 +60,7 @@ namespace BL
             drone.DroneStatus = DroneStatusesBL.empty;
             DronesListBL[DronesListBL.FindIndex(d => (d.getIdBL() == id))] = drone;
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-            StationDAL station = DalObj.returnStationArray().ToList().First(station => station.Latitude == drone.CurrentPosition.Latitude && station.Longitude == drone.CurrentPosition.Longitude);
+            Station station = DalObj.returnStationArray().ToList().First(station => station.Latitude == drone.CurrentPosition.Latitude && station.Longitude == drone.CurrentPosition.Longitude);
             station.DronesInCharging -= 1;
             station.EmptyChargeSlots += 1;
             DalObj.ReplaceStationById(station);

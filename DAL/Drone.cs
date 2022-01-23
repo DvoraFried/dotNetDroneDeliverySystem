@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public struct DroneDAL
+    public struct Drone
     {
         public int Id { get; set; }
         public string Model { get;set;}

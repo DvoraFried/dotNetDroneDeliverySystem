@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public struct ParcelDAL
+    public struct Parcel
     {
         public int Id { get;set;}
         public int  SenderId { get;set;}

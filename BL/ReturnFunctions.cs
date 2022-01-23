@@ -45,7 +45,7 @@ namespace BL
         public List<ParcelToList> ReturnParcelList()
         {
             List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
-            foreach (ParcelDAL parcel in DalObj.returnParcelArray().ToList())
+            foreach (Parcel parcel in DalObj.returnParcelArray().ToList())
             {
                 if (parcel.isActive)
                 {
@@ -66,7 +66,7 @@ namespace BL
         public List<CustomerToList> ReturnCustomerList()
         {
             List<CustomerToList> customersToReturn = new List<CustomerToList>();
-            foreach (CustomerDAL customer in DalObj.returnCustomerArray())
+            foreach (Customer customer in DalObj.returnCustomerArray())
             {
                 if (customer.isActive)
                 {
@@ -78,7 +78,7 @@ namespace BL
         public List<StationToList> ReturnStationList()
         {
             List<StationToList> stationsToReturn = new List<StationToList>();
-            foreach (StationDAL station in DalObj.returnStationArray())
+            foreach (Station station in DalObj.returnStationArray())
             {
                 stationsToReturn.Add(new StationToList(ConvertToBL.ConvertToStationBL(station)));
             }

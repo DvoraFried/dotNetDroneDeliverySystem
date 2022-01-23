@@ -24,7 +24,7 @@ namespace BL
         {
             if (DalObj.returnDroneArray().ToList().Any(d => d.Id == id)) { throw new ObjectExistsInListException("drone"); };
             if (!DalObj.returnStationArray().ToList().Any(s => s.Id == stationId)) { throw new ObjectDoesntExistsInListException("station"); };
-            StationDAL s = DalObj.returnStationArray().ToList().Find(d => d.Id == stationId);
+            Station s = DalObj.returnStationArray().ToList().Find(d => d.Id == stationId);
             s.DronesInCharging += 1;
             s.EmptyChargeSlots -= 1;
             DalObj.ReplaceStationById(s);
