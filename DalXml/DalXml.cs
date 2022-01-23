@@ -110,5 +110,101 @@ namespace Dal
             IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
             return parcels.ToList().First(parcel => parcel.DroneId == DroneIdS);
         }
+        public void ReplaceStationById(Station DALS)
+        {
+            IEnumerable<Station> stationList = DL.XMLTools.LoadListFromXMLSerializer<Station>(dir + stationFilePath);
+            if (!stationList.Any(t => t.Id == DALS.Id))
+            {
+                throw new Exception("DL: station with the same id not found...");
+                //throw new SomeException("DL: cuxtomer with the same id not found...");
+            }
+            stationList.ToList()[DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(p => p.Id == DALS.Id))] = DALS;
+            DL.XMLTools.SaveListToXMLSerializer<Station>(stationList, dir + stationFilePath);
+        }
+        public IEnumerable<Station> returnStationArray()
+        {
+            IEnumerable<Station> stationList = DL.XMLTools.LoadListFromXMLSerializer<Station>(dir + stationFilePath);
+            foreach (Station element in stationList) { yield return element; }
+        }
+        public IEnumerable<Drone> returnDroneArray()
+        {
+            IEnumerable<Drone> droneList = DL.XMLTools.LoadListFromXMLSerializer<Drone>(dir + droneFilePath);
+            foreach (Drone element in droneList) { yield return element; }
+        }
+        public IEnumerable<Customer> returnCustomerArray()
+        {
+            IEnumerable<Customer> customerList = DL.XMLTools.LoadListFromXMLSerializer<Customer>(dir + customerFilePath);
+            foreach (Customer element in customerList) { yield return element; }
+        }
+        public IEnumerable<Employee> returnEmployeeArray()
+        {
+            IEnumerable<Employee> employeeList = DL.XMLTools.LoadListFromXMLSerializer<Employee>(dir + employeeFilePath);
+            foreach (Employee element in employeeList) { yield return element; }
+        }
+        public IEnumerable<Parcel> returnParcelArray()
+        {
+            IEnumerable<Parcel> parcelList = DL.XMLTools.LoadListFromXMLSerializer<Parcel>(dir + parcelFilePath);
+            foreach (Parcel element in parcelList) { yield return element; }
+        }
+        public double[] powerRequest()
+        {
+            double[] arr = new double[5];
+            arr[0] = DataSource.Config.available;
+            arr[1] = DataSource.Config.carryLightWeight;
+            arr[2] = DataSource.Config.carrymediumWeight;
+            arr[3] = DataSource.Config.carryHeavyWeight;
+            arr[4] = DataSource.Config.DroneLoadingRate;
+            return arr;
+        }
+        public void ReplaceDroneById(Drone DALD)
+        {
+            IEnumerable<Drone> droneList = DL.XMLTools.LoadListFromXMLSerializer<Drone>(dir + droneFilePath);
+            if (!droneList.Any(t => t.Id == DALD.Id))
+            {
+                throw new Exception("DL: cuxtomer with the same id not found...");
+                //throw new SomeException("DL: cuxtomer with the same id not found...");
+            }
+            droneList.ToList()[DataSource.MyDrones.IndexOf(DataSource.MyDrones.First(p => p.Id == DALD.Id))] = DALD;
+            DL.XMLTools.SaveListToXMLSerializer<Drone>(droneList, dir + droneFilePath);
+        }
+        public void ReplaceCustomerById(Customer DALC)
+        {
+            IEnumerable<Customer> customerList = DL.XMLTools.LoadListFromXMLSerializer<Customer>(dir + customerFilePath);
+            if (!customerList.Any(t => t.Id == DALC.Id))
+            {
+                throw new Exception("DL: cuxtomer with the same id not found...");
+                //throw new SomeException("DL: cuxtomer with the same id not found...");
+            }
+            customerList.ToList()[DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(p => p.Id == DALC.Id))] = DALC;
+            DL.XMLTools.SaveListToXMLSerializer<Customer>(customerList, dir + customerFilePath);
+        }
+        public void ReplaceParcelById(Parcel DALP)
+        {
+            IEnumerable<Parcel> parcelsList = DL.XMLTools.LoadListFromXMLSerializer<Parcel>(dir + parcelFilePath);
+            if (!parcelsList.Any(t => t.Id == DALP.Id))
+            {
+                throw new Exception("DL: parcel with the same id not found...");
+                //throw new SomeException("DL: Student with the same id not found...");
+            }
+            parcelsList.ToList()[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
+            DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcelsList, dir + parcelFilePath);
+        }
+        public void DeleteObjFromDroneCharges(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public void RemoveParcelById(Parcel DALP)
+        {
+            IEnumerable<Parcel> parcelsList = DL.XMLTools.LoadListFromXMLSerializer<Parcel>(dir + parcelFilePath);
+            if (parcelsList.Any(t => t.Id == DALP.Id))
+            {
+                throw new Exception("DL: parcel with the same id not found...");
+                //throw new SomeException("DL: Student with the same id not found...");
+            }
+            Parcel parcel = parcelsList.First(t => t.Id == DALP.Id);
+            parcelsList.ToList().Remove(parcel);
+            DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcelsList, dir + parcelFilePath);
+        }
+
     }
 }
