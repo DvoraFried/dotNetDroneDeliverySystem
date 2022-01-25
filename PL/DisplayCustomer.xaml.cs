@@ -22,7 +22,7 @@ namespace PL
     public partial class DisplayCustomer : Window
     {
         BlApi.IBL Bl;
-        public DisplayCustomer(BlApi.IBL bl, CustomerBL customer)
+        public DisplayCustomer(BlApi.IBL bl, Customer customer)
         {
             Bl = bl;
             InitializeComponent();

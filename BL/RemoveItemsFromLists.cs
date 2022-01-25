@@ -14,7 +14,7 @@ namespace BL
         public void RemoveCustomerById(int idCustomer)
         {
             if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer))  { throw new ObjectDoesntExistsInListException("customer"); }
-            foreach (Parcel parcel in DalObj.returnParcelArray().ToList())
+            foreach (DO.Parcel parcel in DalObj.returnParcelArray().ToList())
             {
                 if ((parcel.TargetId == idCustomer || parcel.SenderId == idCustomer) && (parcel.Delivered == null)) 
                 { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
@@ -23,7 +23,7 @@ namespace BL
             customer.isActive = false;
             DalObj.ReplaceCustomerById(customer);
         }
-        public void DeleteParcel(ParcelBL parcel)
+        public void DeleteParcel(BO.Parcel parcel)
         {
             if (parcel.ScheduledBL == null)
             {

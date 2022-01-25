@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BL.BL;
-using static BO.EnumBL;
+using static BO.Enum;
 
 namespace BO
 {
-    public class ParcelBL
+    public class Parcel
     {
-        DalApi.IDAL DalObj;
-        public ParcelBL(DalApi.IDAL dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
+        DalApi.IDal DalObj;
+        public Parcel(DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
         {
             DalObj = dalOB;
             parcelId++;

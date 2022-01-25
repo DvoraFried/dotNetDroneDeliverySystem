@@ -1,6 +1,6 @@
 ﻿using System;
 using BO;
-using static BO.EnumBL;
+using static BO.Enum;
 using System.Text;
 using BlApi;
 using static BO.Exceptions;

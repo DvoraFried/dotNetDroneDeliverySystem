@@ -24,7 +24,7 @@ namespace PL
         BlApi.IBL Bl;
 
         int maxWeight = 1;
-        public DisplayDrone(BlApi.IBL bl,DroneBL drone)
+        public DisplayDrone(BlApi.IBL bl,Drone drone)
         {
             Bl = bl;
             InitializeComponent();
@@ -35,9 +35,9 @@ namespace PL
             IDTextBox.IsEnabled = false;
             ModelTextBox.Text = drone.ModelBL;
             parcelInDrone.Items.Add(drone.delivery == null ? "No Parcel in Drone" : drone.delivery);
-            light.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.light ? true : false;
-            medium.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.medium ? true : false;
-            heavy.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.heavy ? true : false;
+            light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
+            medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
+            heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
             batteryStatus.Value = drone.BatteryStatus;
             DroneStatusTextBox.Text = drone.DroneStatus.ToString();
@@ -73,7 +73,7 @@ namespace PL
             {
                 try
                 {
-                    Bl.AddDrone(Int32.Parse(IDTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
+                    Bl.AddDrone(int.Parse(IDTextBox.Text), ModelTextBox.Text, (BO.Enum.WeightCategoriesBL)maxWeight, int.Parse(StationIdTextBox.Text));
                     this.Close();
                 }
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }

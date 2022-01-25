@@ -26,7 +26,7 @@ namespace PL
             InitializeComponent();
         }
         BlApi.IBL Bl;
-        public DisplayStation(BlApi.IBL bl, StationBL station)
+        public DisplayStation(BlApi.IBL bl, Station station)
         {
             Bl = bl;
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace PL
             ChargesLotsTextBox.Text = station.ChargeSlotsBL.ToString();
             LongitudeTextBox.Text = station.Position.Longitude.ToString();
             LatitudeText.Text = station.Position.Latitude.ToString();
-            foreach (DroneInChargeBL drone in station.DronesInCharging)
+            foreach (DroneInCharge drone in station.DronesInCharging)
             {
                 dronesInCharge.Items.Add(drone);
             }
@@ -74,7 +74,7 @@ namespace PL
         }
         private void showDrone(object sender, RoutedEventArgs e)
         {
-            BO.DroneInChargeBL drone = (sender as ListView).SelectedValue as BO.DroneInChargeBL;
+            BO.DroneInCharge drone = (sender as ListView).SelectedValue as BO.DroneInCharge;
             if (drone != null)
             {
                 this.Close();

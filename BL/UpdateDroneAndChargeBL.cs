@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BO.EnumBL;
+using static BO.Enum;
 using static BO.Exceptions;
 
 namespace BL
@@ -17,7 +17,7 @@ namespace BL
         {
             if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
             int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
-            DroneBL drone = DronesListBL[droneBLIndex];
+            BO.Drone drone = DronesListBL[droneBLIndex];
             if (drone.DroneStatus!= DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }             
             Station station = new Station();
             foreach (Station element in DalObj.returnStationArray())
@@ -42,7 +42,7 @@ namespace BL
             drone.DroneStatus = DroneStatusesBL.maintenance;
             DronesListBL[droneBLIndex] = drone;
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-            DroneInChargeBL droneC = new DroneInChargeBL(drone);
+            DroneInCharge droneC = new DroneInCharge(drone);
             DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(droneC, station.Id));
             station.DronesInCharging += 1;
             station.EmptyChargeSlots -= 1;
@@ -52,9 +52,9 @@ namespace BL
         {
 
             if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
-            DroneBL drone = DronesListBL.First(d => (d.getIdBL() == id));
+            BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == id));
             if (drone.DroneStatus != DroneStatusesBL.maintenance) { throw new DroneIsNotInMaintenanceException(id); }
-            DroneInChargeBL droneInCharge = ConvertToBL.convertToDroneInChargeBL(DalObj.returnDroneInCharge(id));
+            DroneInCharge droneInCharge = ConvertToBL.convertToDroneInChargeBL(DalObj.returnDroneInCharge(id));
             double timeInCharge = (DateTime.Now-droneInCharge.enterTime).Minutes;
             drone.BatteryStatus = Math.Min(drone.BatteryStatus + (timeInCharge/60) * DataSource.Config.DroneLoadingRate, 100);
             drone.DroneStatus = DroneStatusesBL.empty;

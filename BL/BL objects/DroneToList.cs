@@ -8,7 +8,7 @@ namespace BO
 {
     public class DroneToList
     {
-        public DroneToList(DalApi.IDAL dalOB, DroneBL drone)
+        public DroneToList(DalApi.IDAL dalOB, Drone drone)
         {
             Id = drone.getIdBL();
             Model = drone.ModelBL;
@@ -26,9 +26,9 @@ namespace BO
         }
         public int Id { get; set; }
         public string Model { get; set; }
-        EnumBL.WeightCategoriesBL Weight { get; set; }
+        Enum.WeightCategoriesBL Weight { get; set; }
         public double BatteryStatus { get; set; }
-        EnumBL.DroneStatusesBL DroneStatus { get; set; }
+        Enum.DroneStatusesBL DroneStatus { get; set; }
         Position CurrentPosition { get; set; }
         public int ParcelNun { get; set; }
     }

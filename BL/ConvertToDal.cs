@@ -9,9 +9,9 @@ namespace BO
 {
     public class ConvertToDal
     {
-        public static Station ConvertToStationDal(StationBL stationBl)
+        public static DO.Station ConvertToStationDal(Station stationBl)
         {
-            Station stationDal = new Station();
+            DO.Station stationDal = new DO.Station();
             stationDal.Id = stationBl.GetIdBL();
             stationDal.Name = stationBl.NameBL;
             stationDal.EmptyChargeSlots = stationBl.ChargeSlotsBL;
@@ -19,17 +19,17 @@ namespace BO
             stationDal.Latitude = stationBl.Position.Latitude;
             return stationDal;           
         }
-        public static Drone ConvertToDroneDal(DroneBL droneBl)
+        public static DO.Drone ConvertToDroneDal(Drone droneBl)
         {
-            Drone droneDal = new Drone();
+            DO.Drone droneDal = new DO.Drone();
             droneDal.Id = droneBl.getIdBL();
             droneDal.Model = droneBl.ModelBL;
             droneDal.MaxWeight = (WeightCategories)(int)droneBl.MaxWeight;
             return droneDal;
         }
-        public static Customer ConvertToCustomerDal(CustomerBL customerBl)
+        public static DO.Customer ConvertToCustomerDal(Customer customerBl)
         {
-            Customer customerDal = new Customer();
+            DO.Customer customerDal = new DO.Customer();
             customerDal.Id = customerBl.getIdBL();
             customerDal.Name = customerBl.NameBL;
             customerDal.Phone = customerBl.PhoneBL;
@@ -38,9 +38,9 @@ namespace BO
             customerDal.isActive = customerBl.isActive;
             return customerDal;
         }
-        public static Parcel ConvertToParcelDal(ParcelBL parcelBl)
+        public static DO.Parcel ConvertToParcelDal(Parcel parcelBl)
         {
-            Parcel parcelDal = new Parcel();
+            DO.Parcel parcelDal = new DO.Parcel();
             parcelDal.Id = parcelBl.IdBL;
             parcelDal.SenderId = parcelBl.Sender.Id;
             parcelDal.TargetId = parcelBl.Target.Id;
@@ -55,9 +55,9 @@ namespace BO
             return parcelDal;
         }
 
-        public static DroneCharge ConvertToDroneChargeDal(DroneInChargeBL droneBl,int stationIdS)
+        public static DO.DroneCharge ConvertToDroneChargeDal(DroneInCharge droneBl,int stationIdS)
         {
-            DroneCharge droneChargeDal = new DroneCharge();
+            DO.DroneCharge droneChargeDal = new DO.DroneCharge();
             droneChargeDal.DroneId = droneBl.Id;
             droneChargeDal.StationId = stationIdS;
             droneChargeDal.enterTime = droneBl.enterTime;

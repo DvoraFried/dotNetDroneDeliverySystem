@@ -23,8 +23,8 @@ namespace PL
     {
 
         BlApi.IBL Bl;
-        CustomerBL currentCustomer;
-        public ClientSide(BlApi.IBL bl, CustomerBL customer)
+        Customer currentCustomer;
+        public ClientSide(BlApi.IBL bl, Customer customer)
         {
             Bl = bl;
             InitializeComponent();

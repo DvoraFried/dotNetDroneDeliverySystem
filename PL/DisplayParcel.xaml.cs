@@ -24,8 +24,8 @@ namespace PL
         public static BlApi.IBL Bl;
         int weight = 0;
         int priority = 0;
-        ParcelBL currentParcel;
-        public DisplayParcel(BlApi.IBL bl, ParcelBL parcel)
+        Parcel currentParcel;
+        public DisplayParcel(BlApi.IBL bl, Parcel parcel)
         {
             Bl = bl;
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace PL
             WeightTextBox.Text = parcel.Weight.ToString();
             currentParcel = parcel;
         }
-        public DisplayParcel(BlApi.IBL bl, CustomerBL customer)
+        public DisplayParcel(BlApi.IBL bl, Customer customer)
         {
             Bl = bl;
             InitializeComponent();
@@ -79,7 +79,7 @@ namespace PL
             {
                 try
                 {
-                    Bl.AddParcel(Int32.Parse(IDSenderTextBox.Text), Int32.Parse(TargetIDTextBox.Text), (EnumBL.WeightCategoriesBL)weight, (EnumBL.PrioritiesBL)priority);
+                    Bl.AddParcel(int.Parse(IDSenderTextBox.Text), int.Parse(TargetIDTextBox.Text), (BO.Enum.WeightCategoriesBL)weight, (BO.Enum.PrioritiesBL)priority);
                     this.Close();
                 }
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }

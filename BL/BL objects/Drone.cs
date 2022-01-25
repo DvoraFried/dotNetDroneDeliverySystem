@@ -1,4 +1,4 @@
-﻿using DalObject;
+﻿//using DalObject;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BL.BL;
-using static BO.EnumBL;
+using static BO.Enum;
 using static BO.Exceptions;
 
 namespace BO
 {
-    public class DroneBL
+    public class Drone
     {
 
-        public DroneBL(DalApi.IDAL dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
+        public Drone(DalApi.IDal dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
         {
             Random rnd = new Random();
             setIdBL(id);
