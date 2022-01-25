@@ -27,7 +27,7 @@ namespace DalApi
         public Employee returnEmployee(int idE);
         public Parcel returnParcel(int ParcelIdS);
         public Parcel returnParcelByDroneId(int DroneIdS);
-       // public DroneCharge returnDroneInCharge(int idDC);
+        public DroneCharge returnDroneInCharge(int idDC);
         public IEnumerable<Station> returnStationArray();
         public IEnumerable<Drone> returnDroneArray();
         public IEnumerable<Customer> returnCustomerArray();

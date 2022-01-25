@@ -1,4 +1,4 @@
-﻿using DalObject;
+﻿//using DalObject;
 using BO;
 using DO;
 using System;
@@ -45,7 +45,7 @@ namespace BL
         }
         public void DisplayStatoinList()
         {
-            foreach (Station station in DalObj.returnStationArray())
+            foreach (DO.Station station in DalObj.returnStationArray())
             {
                 Console.WriteLine(new StationToList(ConvertToBL.ConvertToStationBL(station)).ToString());
             }
@@ -59,7 +59,7 @@ namespace BL
         }
         public void DisplayCustomerList()
         {
-            foreach (Customer customer in DalObj.returnCustomerArray())
+            foreach (DO.Customer customer in DalObj.returnCustomerArray())
             {
                 Console.WriteLine(new CustomerToList(DalObj,ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
             }

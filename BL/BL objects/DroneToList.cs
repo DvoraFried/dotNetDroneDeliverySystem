@@ -8,7 +8,7 @@ namespace BO
 {
     public class DroneToList
     {
-        public DroneToList(DalApi.IDAL dalOB, Drone drone)
+        public DroneToList(DalApi.IDal dalOB, Drone drone)
         {
             Id = drone.getIdBL();
             Model = drone.ModelBL;

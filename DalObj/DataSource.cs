@@ -14,7 +14,7 @@ namespace Dal
         public static List<Customer> MyCustomers = new List<Customer>();
         public static List<Employee> MyEmployees = new List<Employee>();
         public static List<Parcel> MyParcels = new List<Parcel>();
-        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge> ();
+        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
 
         //satandart drone speed per hour is 120 kilometers
         public class Config {

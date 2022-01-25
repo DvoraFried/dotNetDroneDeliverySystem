@@ -24,7 +24,7 @@ namespace BL
 
         public void UpDateStationData(int id, string name = null, int chargeslots = -1)
         {
-            if (!DataSource.MyBaseStations.Any(s => (s.Id == id)))      {throw new ObjectDoesntExistsInListException("station"); }
+            if (!DalObj.returnStationArray().Any(s => (s.Id == id)))      {throw new ObjectDoesntExistsInListException("station"); }
             DO.Station station= (DalObj.returnStationArray().ToList().First(s => (s.Id == id)));
             string currentName = name != null ? name : station.Name;
             int currentChargeLots = chargeslots != -1 ? chargeslots : station.EmptyChargeSlots;
@@ -34,11 +34,11 @@ namespace BL
 
         public void UpDateCustomerData(int id, string name = null, string newPhone = null)
         {
-            if(!DataSource.MyCustomers.Any(c => (c.Id == id))) {  throw new ObjectDoesntExistsInListException("customer"); }
+            if(!DalObj.returnCustomerArray().Any(c => (c.Id == id))) {  throw new ObjectDoesntExistsInListException("customer"); }
             DO.Customer currentCustomer = DalObj.returnCustomerArray().ToList().First(c => (c.Id == id));
             string currentName = name != null ? name : currentCustomer.Name;
             string currentPhone = newPhone != null ? newPhone : currentCustomer.Phone;
-            Customer replaceCustomer = new CustomerBL(DalObj, id, currentName, currentPhone, new Position(currentCustomer.Longitude, currentCustomer.Latitude),ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
+            BO.Customer replaceCustomer = new BO.Customer(DalObj, id, currentName, currentPhone, new Position(currentCustomer.Longitude, currentCustomer.Latitude),ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
             DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(replaceCustomer));
         }
     }

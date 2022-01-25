@@ -8,7 +8,7 @@ namespace BO
 {
     public class ParcelToList
     {
-        public ParcelToList(DalApi.IDAL dalOBG, Parcel parcel)
+        public ParcelToList(DalApi.IDal dalOBG, Parcel parcel)
         {
             Id = parcel.IdBL;
             SenderName = dalOBG.returnCustomerArray().ToList().Any(customer => customer.Id == parcel.Sender.Id) ? dalOBG.returnCustomer(parcel.Sender.Id).Name : null;

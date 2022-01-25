@@ -19,7 +19,7 @@ namespace BL
                 if ((parcel.TargetId == idCustomer || parcel.SenderId == idCustomer) && (parcel.Delivered == null)) 
                 { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
             }
-            Customer customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
+            DO.Customer customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
             customer.isActive = false;
             DalObj.ReplaceCustomerById(customer);
         }

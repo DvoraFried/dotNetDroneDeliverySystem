@@ -17,18 +17,18 @@ namespace BL
                 List<BO.Drone> droneArrayBl = new List<BO.Drone>();
                 foreach (DO.Drone drone in droneDalArray)
                 {
-                    droneArrayBl.Add((BO.Drone)new BO.DroneBL(DalObj, drone.Id, drone.Model, (BO.Enum.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0));
+                    droneArrayBl.Add((BO.Drone)new BO.Drone(DalObj, drone.Id, drone.Model, (BO.Enum.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0));
                 };
                 return droneArrayBl;
             }
             public static BO.Customer ConvertToCustomrtBL(DO.Customer customerDal)
             {
-                Customer customerBL = new CustomerBL(DalObj,customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()), customerDal.isActive);
+                BO.Customer customerBL = new BO.Customer(DalObj,customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()), customerDal.isActive);
                 return customerBL;
             }
             public static BO.Parcel ConvertToParcelBL(DO.Parcel parcelDal)
             {
-                Parcel parcelBL = new ParcelBL(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority,parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered);
+                BO.Parcel parcelBL = new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority,parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered);
                 return parcelBL;
             }
             public static List<BO.Parcel> ConvertToParcelArrayBL(List<DO.Parcel> parcelsDal)
@@ -50,7 +50,7 @@ namespace BL
                 Employee employeeDAL = DalObj.returnEmployee(idE);
                 return new EmpolyeeBL(idE, employeeDAL.Name, employeeDAL.Manager);
             }
-            public static DroneInCharge convertToDroneInChargeBL(DroneCharge droneChargeDAL)
+            public static DroneInCharge convertToDroneInChargeBL(DO.DroneCharge droneChargeDAL)
             {
                 return new DroneInCharge(droneChargeDAL.DroneId, droneChargeDAL.enterTime);
             }
