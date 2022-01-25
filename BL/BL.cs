@@ -11,7 +11,7 @@ using BO;
 
 namespace BL
 {
-    sealed partial  class BL : BlApi.IBL
+    sealed partial class BL : BlApi.IBL
     {
         Random rnd = new Random();
         public static List<DroneBL> DronesListBL;
