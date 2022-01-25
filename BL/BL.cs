@@ -14,7 +14,7 @@ namespace BL
     sealed partial class BL : BlApi.IBL
     {
         Random rnd = new Random();
-        public static List<DroneBL> DronesListBL;
+        public static List<BO.Drone> DronesListBL;
         static DalApi.IDal DalObj;
         static double nonWeightPowerConsumption;
         static double lightWeightPowerConsumption;
@@ -34,14 +34,14 @@ namespace BL
             
             DronesListBL = ConvertToBL.ConvertToDroneArrayBL(DalObj.returnDroneArray().ToList());
             
-            foreach(DroneBL drone in DronesListBL)
+            foreach(BO.Drone drone in DronesListBL)
             {
                 List<Parcel> arr = DalObj.returnParcelArray().ToList();
                 if (!arr.Any(parcel => parcel.DroneId == drone.getIdBL()))
                 {
                     if (rnd.Next(0, 2) == 0)
                     {
-                        drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
+                        drone.DroneStatus = BO.Enum.DroneStatusesBL.empty;
                         if (DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != null))
                         {
                             List<Parcel> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != null);
@@ -58,7 +58,7 @@ namespace BL
                     }
                     else
                     {
-                        drone.DroneStatus = EnumBL.DroneStatusesBL.maintenance;
+                        drone.DroneStatus = BO.Enum.DroneStatusesBL.maintenance;
                         drone.BatteryStatus = rnd.Next(0, 21);
                         List<Station> stations = DalObj.returnStationArray().ToList();
                         int randomIndex = rnd.Next(0, stations.Count);
@@ -68,14 +68,14 @@ namespace BL
                 }
                 else
                 {
-                    drone.DroneStatus = EnumBL.DroneStatusesBL.Shipping;
+                    drone.DroneStatus = BO.Enum.DroneStatusesBL.Shipping;
                     Parcel parcel = DalObj.returnParcelByDroneId(drone.getIdBL());
                     Position senderPos = new Position(DalObj.returnCustomer(parcel.SenderId).Longitude, DalObj.returnCustomer(parcel.SenderId).Latitude);
                     Position targetPos = new Position(DalObj.returnCustomer(parcel.TargetId).Longitude, DalObj.returnCustomer(parcel.TargetId).Latitude);
                     drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos) : senderPos;
-                    double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition,targetPos);
-                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos))*nonWeightPowerConsumption;
-                    drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget*lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
+                    double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, targetPos);
+                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos)) * nonWeightPowerConsumption;
+                    drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget * lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           (int)parcel.Weight == 2 ? rnd.Next((int)(distanceToTarget * mediumWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           rnd.Next((int)(distanceToTarget * heavyWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100);
                 }
@@ -101,12 +101,12 @@ namespace BL
                 return instance;
             }
         }
-        public static double updateButteryStatus(DroneBL drone, Position position, int weight)
+        public static double updateButteryStatus(BO.Drone drone, Position position, int weight)
         {
             double distance = CalculateDistance(drone.CurrentPosition, position);
-            double lessPower = drone.DroneStatus == EnumBL.DroneStatusesBL.empty ? distance* nonWeightPowerConsumption :
-                               weight == (int)EnumBL.WeightCategoriesBL.light ? distance * lightWeightPowerConsumption :
-                               weight == (int)EnumBL.WeightCategoriesBL.medium ? distance*mediumWeightPowerConsumption :
+            double lessPower = drone.DroneStatus == BO.Enum.DroneStatusesBL.empty ? distance* nonWeightPowerConsumption :
+                               weight == (int)BO.Enum.WeightCategoriesBL.light ? distance * lightWeightPowerConsumption :
+                               weight == (int)BO.Enum.WeightCategoriesBL.medium ? distance* mediumWeightPowerConsumption :
                                distance * heavyWeightPowerConsumption;
             if (lessPower > drone.BatteryStatus)
             {

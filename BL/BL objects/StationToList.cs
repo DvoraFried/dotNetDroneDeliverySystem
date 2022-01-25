@@ -8,7 +8,7 @@ namespace BO
 {
     public class StationToList
     {
-        public StationToList(StationBL station)
+        public StationToList(Station station)
         {
             Id = station.GetIdBL();
             Name = station.NameBL;

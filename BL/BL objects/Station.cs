@@ -7,19 +7,19 @@ using static BO.Exceptions;
 
 namespace BO
 {
-    public class StationBL
+    public class Station
     {
-        public StationBL(int id, string name, Position p, int chargS, List<DroneBL> drones)
+        public Station(int id, string name, Position p, int chargS, List<Drone> drones)
         {
             SetId(id);
             NameBL = name;
             Position = p;
             ChargeSlotsBL = chargS;
-            DronesInCharging = new List<DroneInChargeBL>();
-            foreach (DroneBL drone in drones)
+            DronesInCharging = new List<DroneInCharge>();
+            foreach (Drone drone in drones)
             {
-                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == EnumBL.DroneStatusesBL.maintenance) {
-                    DronesInCharging.Add(new DroneInChargeBL(drone));
+                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == Enum.DroneStatusesBL.maintenance) {
+                    DronesInCharging.Add(new DroneInCharge(drone));
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace BO
             if (DronesInCharging != null)
             {
                 Console.WriteLine("DronesInCharging: ");
-                foreach (DroneInChargeBL drone in DronesInCharging)
+                foreach (DroneInCharge drone in DronesInCharging)
                 {
                     Console.WriteLine(drone.ToString());
                 }
@@ -50,6 +50,6 @@ namespace BO
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
         public Position Position { get; set; }
-        public List<DroneInChargeBL> DronesInCharging;
+        public List<DroneInCharge> DronesInCharging;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class EnumBL
+    public class Enum
     {
         public enum WeightCategoriesBL { light, medium, heavy }
         public enum DroneStatusesBL { empty, maintenance, Shipping }

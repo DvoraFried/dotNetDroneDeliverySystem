@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BO.EnumBL;
+using static BO.Enum;
 using static BO.Exceptions;
 using static BO.DistanceBetweenCoordinates;
 using BO;
@@ -14,28 +14,28 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        public IEnumerable<Parcel> returnParcelWithEmergencyParcelsPriority()
+        public IEnumerable<DO.Parcel> returnParcelWithEmergencyParcelsPriority()
         {
-            foreach (Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.emergency) yield return element; }
+            foreach (DO.Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)BO.Enum.PrioritiesBL.emergency) yield return element; }
         }
-        public IEnumerable<Parcel> returnParcelWithUsualParcelsPriority()
+        public IEnumerable<DO.Parcel> returnParcelWithUsualParcelsPriority()
         {
-            foreach (Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.usual) yield return element; }
+            foreach (DO.Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)BO.Enum.PrioritiesBL.usual) yield return element; }
         }
-        public IEnumerable<Parcel> returnParcelWithRapidlParcelsPriority()
+        public IEnumerable<DO.Parcel> returnParcelWithRapidlParcelsPriority()
         {
-            foreach (Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)EnumBL.PrioritiesBL.rapid) yield return element; }
+            foreach (DO.Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)BO.Enum.PrioritiesBL.rapid) yield return element; }
         }
-        public IEnumerable<Parcel> returnPacelWitSuitWeight(IEnumerable<Parcel> parcelArr,int droneMaxW)
+        public IEnumerable<DO.Parcel> returnPacelWitSuitWeight(IEnumerable<DO.Parcel> parcelArr,int droneMaxW)
         {
-            foreach (Parcel element in parcelArr) { if ((int)element.Weight <= droneMaxW) yield return element; }
+            foreach (DO.Parcel element in parcelArr) { if ((int)element.Weight <= droneMaxW) yield return element; }
         }
-        public Parcel returnTheClosestParcelId(IEnumerable<Parcel> parcelArr, Position dronePosition)
+        public DO.Parcel returnTheClosestParcelId(IEnumerable<DO.Parcel> parcelArr, Position dronePosition)
         {
-            Parcel currentParcel= parcelArr.ToArray()[0];
-            foreach (Parcel element in parcelArr ) {
-                Customer currentParcelSender = DalObj.returnCustomerArray().First(d => (d.Id== currentParcel.SenderId));
-                Customer compairParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == element.SenderId));
+            DO.Parcel currentParcel= parcelArr.ToArray()[0];
+            foreach (DO.Parcel element in parcelArr ) {
+                DO.Customer currentParcelSender = DalObj.returnCustomerArray().First(d => (d.Id== currentParcel.SenderId));
+                DO.Customer compairParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == element.SenderId));
                 if (CalculateDistance(dronePosition, new Position(currentParcelSender.Longitude, currentParcelSender.Latitude))> CalculateDistance(dronePosition, new Position(compairParcelSender.Longitude, compairParcelSender.Latitude)))
                 {
                     currentParcel = element;
@@ -46,9 +46,9 @@ namespace BL
         public void AssigningPackageToDrone(int idD)
         {
             if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
-            DroneBL drone = DronesListBL.First(d => (d.getIdBL() == idD));
+            BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == idD));
             if(drone.DroneStatus != DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }
-            List<Parcel> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(),(int)drone.MaxWeight).ToList();
+            List<DO.Parcel> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(),(int)drone.MaxWeight).ToList();
             if(myParcelsSuitWeightArr.Count == 0) {
                 myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithRapidlParcelsPriority(), (int)drone.MaxWeight).ToList();
                 if (myParcelsSuitWeightArr.Count == 0) {
@@ -56,8 +56,8 @@ namespace BL
                     if(myParcelsSuitWeightArr.Count == 0) { throw new NoSuitableParcelException(idD); }
                 }
             }
-            ParcelBL theclosetParcel = ConvertToBL.ConvertToParcelBL(returnTheClosestParcelId(myParcelsSuitWeightArr, drone.CurrentPosition));
-            CustomerBL sender = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(theclosetParcel.Sender.Id));
+            BO.Parcel theclosetParcel = ConvertToBL.ConvertToParcelBL(returnTheClosestParcelId(myParcelsSuitWeightArr, drone.CurrentPosition));
+            BO.Customer sender = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(theclosetParcel.Sender.Id));
             if (updateButteryStatus(drone, sender.Position, (int)theclosetParcel.Weight) - (DistanceBetweenCoordinates.CalculateDistance(sender.Position, findClosestStation(sender.Position)) * nonWeightPowerConsumption) <= 0)
             { 
                 throw new ThereIsNotEnoughBatteryException(); 
@@ -74,9 +74,9 @@ namespace BL
         {
             if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
             if(!DalObj.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idD)) { throw new NoParcelFoundException();}
-            DroneBL drone = DronesListBL.First(drone => drone.getIdBL() == idD);
+            BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
             if(drone.delivery.IsDelivery) { throw new TheDroneHasAlreadyPickedUpTheParcel(); }
-            ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
+            BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
             Position senderPosition = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Sender.Id)).Position;
             parcel.PickUpBL = DateTime.Now;
             drone.BatteryStatus = updateButteryStatus(drone, senderPosition,(int)parcel.Weight);
@@ -89,9 +89,9 @@ namespace BL
         public void DeliveryOfAParcelByDrone(int idD)
         {
             if(!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
-            DroneBL drone = DronesListBL.First(drone => drone.getIdBL() == idD);
+            BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
             if(drone.DroneStatus != DroneStatusesBL.Shipping) { throw new NoDeliveryInTransferExcepyion(); }
-            ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
+            BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
             if(parcel.PickUpBL == null) { throw new ThePackageHasNotYetBeenCollectedException(); }
             parcel.DeliveredBL = DateTime.Now;
             parcel.DroneIdBL = null;

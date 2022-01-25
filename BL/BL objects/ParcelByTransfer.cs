@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BL.BL;
-using static BO.EnumBL;
+using static BO.Enum;
 
 namespace BO
 {
     public class ParcelByTransfer
     {
-        public ParcelByTransfer(DalApi.IDAL dalOB, ParcelBL parcel)
+        public ParcelByTransfer(DalApi.IDal dalOB, Parcel parcel)
         {
             Id = parcel.IdBL;
             IsDelivery = parcel.PickUpBL != null;

@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class DisplayParcelList : Window
     {
-        public CustomerBL currentCustomer = null;
+        public Customer currentCustomer = null;
         BlApi.IBL BLobj;
         public DisplayParcelList(BlApi.IBL bl)
         {
@@ -29,7 +29,7 @@ namespace PL
             parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
 
         }
-        public DisplayParcelList(BlApi.IBL bl, CustomerBL customer)
+        public DisplayParcelList(BlApi.IBL bl, Customer customer)
         {
             currentCustomer = customer;
             InitializeComponent();

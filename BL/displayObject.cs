@@ -37,7 +37,7 @@ namespace BL
         public void DisplayParcel(int idP)
         {
             if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.Id == idP)) { throw new ObjectDoesntExistsInListException("parcel"); }
-            ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
+            BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine(parcel.ToString());
             if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: "+parcel.DroneIdBL.ToString()); }
@@ -52,7 +52,7 @@ namespace BL
         }
         public void DisplayDroneList()
         {
-            foreach(DroneBL drone in DronesListBL)
+            foreach(BO.Drone drone in DronesListBL)
             {
                 Console.WriteLine(new DroneToList(DalObj, drone).ToString());
             }
@@ -66,14 +66,14 @@ namespace BL
         }
         public void DisplayParcelList()
         {
-            foreach (Parcel parcel in DalObj.returnParcelArray())
+            foreach (DO.Parcel parcel in DalObj.returnParcelArray())
             {
                 Console.WriteLine(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)).ToString());
             }
         }
         public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone()
         {
-            foreach (ParcelBL parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
+            foreach (BO.Parcel parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
             {
                 if (parcel.DroneIdBL == null) { Console.WriteLine(new ParcelToList(DalObj, parcel).ToString()); }
             }

@@ -8,7 +8,7 @@ namespace BO
 {
     public class ParcelToList
     {
-        public ParcelToList(DalApi.IDAL dalOBG, ParcelBL parcel)
+        public ParcelToList(DalApi.IDAL dalOBG, Parcel parcel)
         {
             Id = parcel.IdBL;
             SenderName = dalOBG.returnCustomerArray().ToList().Any(customer => customer.Id == parcel.Sender.Id) ? dalOBG.returnCustomer(parcel.Sender.Id).Name : null;
@@ -16,10 +16,10 @@ namespace BO
             UstomerReceivesName = dalOBG.returnCustomerArray().ToList().Any(customer => customer.Id == parcel.Target.Id) ? dalOBG.returnCustomer(parcel.Target.Id).Name : null;
             weight = parcel.Weight;
             priority = parcel.Priority;
-            PackageStatus = parcel.DeliveredBL != null ? EnumBL.DeliveryStatus.provided :
-                            parcel.PickUpBL != null ? EnumBL.DeliveryStatus.collected :
-                            parcel.ScheduledBL != null ? EnumBL.DeliveryStatus.associated :
-                            EnumBL.DeliveryStatus.created;
+            PackageStatus = parcel.DeliveredBL != null ? Enum.DeliveryStatus.provided :
+                            parcel.PickUpBL != null ? Enum.DeliveryStatus.collected :
+                            parcel.ScheduledBL != null ? Enum.DeliveryStatus.associated :
+                            Enum.DeliveryStatus.created;
         }
         public override string ToString()
         {
@@ -29,8 +29,8 @@ namespace BO
         public string SenderName { get; set; }
         public int SenderId { get; set; }
         public string UstomerReceivesName { get; set; }
-        EnumBL.WeightCategoriesBL weight { get; set; }
-        EnumBL.PrioritiesBL priority { get; set; }
-        EnumBL.DeliveryStatus PackageStatus { get; set; }
+        Enum.WeightCategoriesBL weight { get; set; }
+        Enum.PrioritiesBL priority { get; set; }
+        Enum.DeliveryStatus PackageStatus { get; set; }
     }
 }

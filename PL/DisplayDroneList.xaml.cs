@@ -31,7 +31,7 @@ namespace PL
             
             for (int i = 0; i < 3; i++) {
                 ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = (EnumBL.DroneStatusesBL)(i);
+                newItem.Content = (BO.Enum.DroneStatusesBL)(i);
                 itemList.Add(newItem);
             }
             OrderByStatus.ItemsSource = itemList;
@@ -39,7 +39,7 @@ namespace PL
             for (int i = 0; i < 3; i++)
             {
                 ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = (EnumBL.WeightCategoriesBL)(i);
+                newItem.Content = (BO.Enum.WeightCategoriesBL)(i);
                 itemList.Add(newItem);
             }
             OrderByMaxWeight.ItemsSource = itemList;
@@ -69,7 +69,7 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            BO.DroneBL drone = (sender as ListView).SelectedValue as BO.DroneBL;
+            BO.Drone drone = (sender as ListView).SelectedValue as BO.Drone;
             if (drone != null)
             {
                 this.Close();

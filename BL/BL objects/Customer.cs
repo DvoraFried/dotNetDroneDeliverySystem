@@ -7,10 +7,10 @@ using static BO.Exceptions;
 
 namespace BO
 {
-    public class CustomerBL
+    public class Customer
     {
-        DalApi.IDAL dalOB;
-        public CustomerBL(DalApi.IDAL dalOBG,int id, string name, string phone, Position p, List<ParcelBL>parcels, bool active = true)
+        DalApi.IDal dalOB;
+        public Customer(DalApi.IDal dalOBG,int id, string name, string phone, Position p, List<Parcel>parcels, bool active = true)
         {
             dalOB = dalOBG;
             setIdBL(id);
@@ -20,7 +20,7 @@ namespace BO
             isActive = active;
             ImTheSender = new List<DeliveryAtCustomer>();
             ImTheTarget = new List<DeliveryAtCustomer>();
-            foreach(ParcelBL parcel in parcels)
+            foreach(Parcel parcel in parcels)
             {
                 if(parcel.Sender.Id == id) { ImTheSender.Add(new DeliveryAtCustomer(dalOB,parcel, id)); }
                 if(parcel.Target.Id == id) { ImTheTarget.Add(new DeliveryAtCustomer(dalOB,parcel, id)); }
