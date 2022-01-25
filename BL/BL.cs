@@ -1,4 +1,4 @@
-﻿using DalObject;
+﻿
 using DO;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace BL
     {
         Random rnd = new Random();
         public static List<DroneBL> DronesListBL;
-        static DalApi.IDAL DalObj;
+        static DalApi.IDal DalObj;
         static double nonWeightPowerConsumption;
         static double lightWeightPowerConsumption;
         static double mediumWeightPowerConsumption;
@@ -24,8 +24,7 @@ namespace BL
 
         BL()
         {
-            DalObj = DALFactory.factory();
-            
+            DalObj = DalApi.DalFactory.GetDal();
             double[] electricityUse = DalObj.powerRequest();
             nonWeightPowerConsumption = electricityUse[0];
             lightWeightPowerConsumption = electricityUse[1];
@@ -43,13 +42,13 @@ namespace BL
                     if (rnd.Next(0, 2) == 0)
                     {
                         drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
-                        if(DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != null))
+                        if (DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != null))
                         {
                             List<Parcel> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != null);
                             Customer randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
                             drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
                         }
-                        else 
+                        else
                         {
                             List<Station> stations = DalObj.returnStationArray().ToList();
                             int randomIndex = rnd.Next(0, stations.Count);
@@ -64,7 +63,7 @@ namespace BL
                         List<Station> stations = DalObj.returnStationArray().ToList();
                         int randomIndex = rnd.Next(0, stations.Count);
                         drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
-                        DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new DroneInChargeBL(drone), stations[randomIndex].Id));
+                        SendDroneToCharge(drone.getIdBL());
                     }
                 }
                 else
@@ -119,8 +118,8 @@ namespace BL
         public static Position findClosestStation(Position current)
         {
             Position stationPos = null, closeP = current;
-            double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DataSource.MyBaseStations[0].Longitude, DataSource.MyBaseStations[0].Latitude)); 
-            foreach (Station element in DataSource.MyBaseStations)
+            double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DalObj.returnStationArray().ToList()[0].Longitude, DalObj.returnStationArray().ToList()[0].Latitude)); 
+            foreach (Station element in DalObj.returnStationArray())
             {
                 stationPos = new Position(element.Longitude, element.Latitude);
                 if (distance > DistanceBetweenCoordinates.CalculateDistance(current, stationPos)){
