@@ -7,6 +7,15 @@ using System.Xml.Linq;
 
 namespace DalApi
 {
+    //this is a big no no - the class config shouldnt be here, it is just a temperery solution to check if the xml works
+    public class Config
+    {
+        public static double available = 0.0003;
+        public static double carryLightWeight = 0.0005;
+        public static double carrymediumWeight = 0.001;
+        public static double carryHeavyWeight = 0.0015;
+        public static double DroneLoadingRate = 43.3;
+    }
     class DalConfig
     {
         internal static string DalName;
@@ -25,4 +34,6 @@ namespace DalApi
         public DalConfigException(string msg) : base(msg) { }
         public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
     }
+
+    
 }

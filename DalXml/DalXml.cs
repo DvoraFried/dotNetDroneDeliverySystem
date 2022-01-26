@@ -206,5 +206,9 @@ namespace Dal
             DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcelsList, dir + parcelFilePath);
         }
 
+        public DroneCharge returnDroneInCharge(int idDC)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
