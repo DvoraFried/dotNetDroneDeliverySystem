@@ -22,6 +22,7 @@ namespace Dal
         }
 
         string customerFilePath = @"customerList.xml";
+        string dronesInChargeFilePath = @"dronesInCharge.xml";
         string stationFilePath = @"stationList.xml";
         string droneFilePath = @"droneList.xml";
         string parcelFilePath = @"parcelList.xml";
@@ -30,7 +31,10 @@ namespace Dal
         {
             if (!File.Exists(dir + customerFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Customer>(DataSource.MyCustomers, dir + customerFilePath);
-
+            
+            if (!File.Exists(dir + dronesInChargeFilePath))
+                DL.XMLTools.SaveListToXMLSerializer<DroneCharge>(DataSource.MyDroneCharges, dir + dronesInChargeFilePath);
+            
             if (!File.Exists(dir + stationFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Station>(DataSource.MyBaseStations, dir + stationFilePath);
 
@@ -78,7 +82,13 @@ namespace Dal
         {
             IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
             parcels.ToList().Add(DALP);
-            DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcels, dir + parcels);
+            DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcels, dir + parcelFilePath);
+        }
+        public void Charge(DroneCharge DALDC)
+        {
+            IEnumerable<DroneCharge> drones = DL.XMLTools.LoadListFromXMLSerializer<DO.DroneCharge>(dir + dronesInChargeFilePath);
+            drones.ToList().Add(DALDC);
+            DL.XMLTools.SaveListToXMLSerializer<DroneCharge>(drones, dir + dronesInChargeFilePath);
         }
         public Station returnStation(int StationIdS)
         {
