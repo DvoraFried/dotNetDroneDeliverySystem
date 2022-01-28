@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalFacade", "DalFacade\DalF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{03359EFC-B39F-4166-AD53-ADEBEA281D44}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalObj", "DalObj\DalObj.csproj", "{CA33C47D-D93D-4563-9545-3798358C180D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalObject", "DalObj\DalObject.csproj", "{CA33C47D-D93D-4563-9545-3798358C180D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{BB714506-B3A8-4BF9-857D-CDD14CCA1A80}"
 	ProjectSection(SolutionItems) = preProject
