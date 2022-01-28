@@ -20,8 +20,8 @@ namespace DalApi
             IDal dal = (IDal)type.GetProperty("GetDal",
                       BindingFlags.Public | BindingFlags.Static).GetValue(null);
             if (dal == null) throw new DalConfigException($"Class {dalPkg} is not a singleton or wrong propertry name for Instance");
-
             return dal;
+            
         }
     }
 }
