@@ -14,13 +14,12 @@ namespace DalApi
         public void AddDroneDAL(Drone DALD);
         public void AddCustomerDAL(Customer DALC);
         public void AddParcelDAL(Parcel DALP);
-       /* 
-        public void Scheduled(int parcelIdS);
-        public void PickUp(int parcelIdS);
-        public void Delivered(int parcelIdS);
+        /* 
+         public void Scheduled(int parcelIdS);
+         public void PickUp(int parcelIdS);
+         public void Delivered(int parcelIdS);
+         public void releaseCharge(DroneCharge DALDC);*/
         public void Charge(DroneCharge DALDC);
-        public void releaseCharge(DroneCharge DALDC);*/
-
         public Station returnStation(int StationIdS);
         public Drone returnDrone(int DroneIdS);
         public Customer returnCustomer(int CustomerIdS);

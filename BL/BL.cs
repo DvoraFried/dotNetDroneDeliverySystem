@@ -63,7 +63,7 @@ namespace BL
                         List<DO.Station> stations = DalObj.returnStationArray().ToList();
                         int randomIndex = rnd.Next(0, stations.Count);
                         drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
-                        SendDroneToCharge(drone.getIdBL());
+                        DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new DroneInCharge(drone), stations[randomIndex].Id));
                     }
                 }
                 else
