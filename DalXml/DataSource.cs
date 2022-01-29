@@ -24,7 +24,7 @@ namespace Dal
             public static double carryHeavyWeight=0.0015;
             public static double DroneLoadingRate=43.3;
         }
-        public static void Initialize()
+        public static void Initialize(string dir, string stationFilePath, string dronesFilePath, string parcelsFilePath, string employeesFilePath, string customersFilePath)
         {
             Random rnd = new Random();
             for (int i = 1; i < 11; i++)
@@ -79,6 +79,11 @@ namespace Dal
             MyEmployees.Add(manager1);
             Employee manager2 = new Employee() { Id = 212628721, Name = "dvora", Manager = true };
             MyEmployees.Add(manager2);
+            DL.XMLTools.SaveListToXMLSerializer<Station>(MyBaseStations, dir + stationFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Drone>(MyDrones, dir + dronesFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Customer>(MyCustomers, dir + customersFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Parcel>(MyParcels, dir + parcelsFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Employee>(MyEmployees, dir + employeesFilePath);
         }
     }
 

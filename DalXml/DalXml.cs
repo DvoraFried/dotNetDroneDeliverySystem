@@ -18,15 +18,18 @@ namespace Dal
         static DalXml()
         {
             if (!Directory.Exists(dir))
+            {
+                DataSource.Initialize(dir, stationFilePath, droneFilePath, parcelFilePath, employeeFilePath, customerFilePath);
                 Directory.CreateDirectory(dir);
+            }
         }
 
-        string customerFilePath = @"customerList.xml";
-        string dronesInChargeFilePath = @"dronesInCharge.xml";
-        string stationFilePath = @"stationList.xml";
-        string droneFilePath = @"droneList.xml";
-        string parcelFilePath = @"parcelList.xml";
-        string employeeFilePath = @"employeeList.xml";
+        static string customerFilePath = @"customerList.xml";
+        static string dronesInChargeFilePath = @"dronesInCharge.xml";
+        static string stationFilePath = @"stationList.xml";
+        static string droneFilePath = @"droneList.xml";
+        static string parcelFilePath = @"parcelList.xml";
+        static string employeeFilePath = @"employeeList.xml";
         public DalXml()
         {
             if (!File.Exists(dir + customerFilePath))
