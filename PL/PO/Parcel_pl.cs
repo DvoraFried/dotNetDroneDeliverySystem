@@ -23,7 +23,7 @@ namespace PO
             RequestedBL = requested == null ? DateTime.Now : requested;
             int droneId = id != -1 ? dalOB.returnParcelArray().ToList().First(parcel => parcel.Id == id).DroneId : id;
             //@@@@@@@ dvora!! DronesListPl deosnt exist yet, have fun tring to figuer out what to do, just kidding, you need to a class with list for pl  .goodluck!
-            DroneIdBL = droneId != -1 ? new DroneInParcel_pl(DronesListPl.First(drone => drone.getIdBL() == droneId)) : null;
+           // DroneIdBL = droneId != -1 ? new DroneInParcel_pl(DronesListPl.First(drone => drone.getIdBL() == droneId)) : null;
             DO.Customer customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender);
             Sender = customer.isActive ? new CustomerOnDelivery_pl(customer.Id, customer.Name) : new CustomerOnDelivery_pl(customer.Id, customer.Name, false);
             customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget);

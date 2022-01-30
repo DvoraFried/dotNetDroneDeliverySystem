@@ -19,7 +19,6 @@ namespace Dal
         {
             if (!Directory.Exists(dir))
             {
-                DataSource.Initialize(dir, stationFilePath, droneFilePath, parcelFilePath, employeeFilePath, customerFilePath);
                 Directory.CreateDirectory(dir);
             }
         }
@@ -32,6 +31,8 @@ namespace Dal
         static string employeeFilePath = @"employeeList.xml";
         public DalXml()
         {
+            DataSource.Initialize();
+
             if (!File.Exists(dir + customerFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Customer>(DataSource.MyCustomers, dir + customerFilePath);
             
@@ -49,6 +50,7 @@ namespace Dal
             
             if (!File.Exists(dir + employeeFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Employee>(DataSource.MyEmployees, dir + employeeFilePath);
+            
         }
 
         public void AddStationDAL(Station DALS)
