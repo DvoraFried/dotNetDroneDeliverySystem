@@ -10,16 +10,37 @@ using static DalFacade.DalApi.Exeptions.Exceptions;
 
 namespace Dal
 {
-    sealed class DalXml : IDal
+    internal sealed class DalXml : IDal
     {
-        static readonly IDal instance = new DalXml();
-        public static IDal Instance { get => instance; }
+        internal static DalXml instance = null;
+        private static readonly object padLock = new object();
+
+       // static readonly IDal instance = new DalXml();
+        //public static IDal Instance { get => instance; }
         static string dir = @"..\..\..\..\xmlData\";
         static DalXml()
         {
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
+            }
+        }
+
+        public static DalXml GetDal
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (padLock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new DalXml();
+                        }
+                    }
+                }
+                return instance;
             }
         }
 

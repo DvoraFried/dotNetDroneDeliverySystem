@@ -22,7 +22,8 @@ namespace DalApi
         internal static Dictionary<string, string> DalPackages;
         static DalConfig()
         {
-         XElement dalConfig = XElement.Load(@"..\..\..\..\xml\dal-config.xml");
+        
+         XElement dalConfig = XElement.Load(@"C:\Users\פריד דבורה\Source\Repos\mirtle8232\dotNet5782_8721_0302\dal-config.xml");
             DalName = dalConfig.Element("dal").Value;
             DalPackages = (from pkg in dalConfig.Element("dal-packages").Elements()
                            select pkg
