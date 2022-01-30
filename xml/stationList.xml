@@ -96,4 +96,20 @@
     <Latitude>11</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
+  <Station>
+    <Id>123</Id>
+    <Name>qwe</Name>
+    <EmptyChargeSlots>12</EmptyChargeSlots>
+    <Longitude>12</Longitude>
+    <Latitude>12</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
+  <Station>
+    <Id>123212312</Id>
+    <Name>qewqweqwe</Name>
+    <EmptyChargeSlots>123</EmptyChargeSlots>
+    <Longitude>12</Longitude>
+    <Latitude>12</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
 </ArrayOfStation>
