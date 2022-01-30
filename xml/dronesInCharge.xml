@@ -50,4 +50,39 @@
     <StationId>123</StationId>
     <enterTime>2022-01-31T01:27:57.1711441+02:00</enterTime>
   </DroneCharge>
+  <DroneCharge>
+    <DroneId>2</DroneId>
+    <StationId>7</StationId>
+    <enterTime>2022-01-31T01:32:24.5001014+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>3</DroneId>
+    <StationId>8</StationId>
+    <enterTime>2022-01-31T01:32:24.5328501+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>6</DroneId>
+    <StationId>2</StationId>
+    <enterTime>2022-01-31T01:32:24.5579544+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>2</DroneId>
+    <StationId>321</StationId>
+    <enterTime>2022-01-31T01:44:55.1339763+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>3</DroneId>
+    <StationId>123212312</StationId>
+    <enterTime>2022-01-31T01:44:55.1990163+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>5</DroneId>
+    <StationId>4</StationId>
+    <enterTime>2022-01-31T01:44:55.2055255+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>6</DroneId>
+    <StationId>66</StationId>
+    <enterTime>2022-01-31T01:44:55.2180536+02:00</enterTime>
+  </DroneCharge>
 </ArrayOfDroneCharge>

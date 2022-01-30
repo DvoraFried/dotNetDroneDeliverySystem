@@ -12,6 +12,7 @@ namespace DO
         public string Model { get;set;}
         public WeightCategories MaxWeight { get; set;}
         public double Battery { get; set; }
+        public bool isActive { get; set; }
     };
 }
 

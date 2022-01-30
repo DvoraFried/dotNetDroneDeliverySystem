@@ -17,7 +17,7 @@ namespace BL
                 List<BO.Drone> droneArrayBl = new List<BO.Drone>();
                 foreach (DO.Drone drone in droneDalArray)
                 {
-                    droneArrayBl.Add((BO.Drone)new BO.Drone(DalObj, drone.Id, drone.Model, (BO.Enum.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0));
+                    droneArrayBl.Add((BO.Drone)new BO.Drone(DalObj, drone.Id, drone.Model, (BO.Enum.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0, drone.isActive));
                 };
                 return droneArrayBl;
             }
