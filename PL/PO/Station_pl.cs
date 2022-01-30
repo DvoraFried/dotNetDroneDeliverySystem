@@ -17,7 +17,7 @@ namespace PO
             DronesInCharging = new List<DroneInCharge_pl>();
             foreach (Drone_pl drone in drones)
             {
-                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == Enum.DroneStatusesBL.maintenance)
+                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == Enum_pl.DroneStatuses.maintenance)
                 {
                     DronesInCharging.Add(new DroneInCharge_pl(drone));
                 }
@@ -34,7 +34,7 @@ namespace PO
             {
                 Console.WriteLine("DronesInCharging: ");
                 //@@@@@@@ dvora!! DronesListPl deosnt exist yet, have fun tring to figuer out what to do, just kidding, you need to a class with list for pl  .goodluck!
-                foreach (DroneInCharge_pl drone in DronesInChargingPl)
+                foreach (DroneInCharge_pl drone in DronesInCharging_Pl)
                 {
                     Console.WriteLine(drone.ToString());
                 }
@@ -50,4 +50,4 @@ namespace PO
         public List<DroneInCharge_pl> DronesInCharging;
     }
 }
-}
+

@@ -23,4 +23,4 @@ namespace PO
         public Position_pl CurrentPosition { get; set; }
     }
 }
-}
+

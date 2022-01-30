@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PO
 {
-    class CustomerOnDelivery_pl
+    public class CustomerOnDelivery_pl
     {
         public CustomerOnDelivery_pl(int id, string name, bool isActive = true)
         {
