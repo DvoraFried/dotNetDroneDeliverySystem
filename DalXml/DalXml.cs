@@ -17,7 +17,7 @@ namespace Dal
 
        // static readonly IDal instance = new DalXml();
         //public static IDal Instance { get => instance; }
-        static string dir = @"..\..\..\..\xmlData\";
+        static string dir = @"..\..\..\..\xml\";
         static DalXml()
         {
             if (!Directory.Exists(dir))
@@ -77,7 +77,7 @@ namespace Dal
         public void AddStationDAL(Station DALS)
         {
             IEnumerable<Station> stations = DL.XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + stationFilePath);
-            if(!stations.Any(station => station.Id == DALS.Id))
+            if(stations.Any(station => station.Id == DALS.Id))
             {
                 throw new ObjectExistsInListException("Station");
             }
@@ -87,7 +87,7 @@ namespace Dal
         public void AddDroneDAL(Drone DALD)
         {
             IEnumerable<Drone> drones = DL.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + droneFilePath);
-            if (!drones.Any(drone => drone.Id == DALD.Id))
+            if (drones.Any(drone => drone.Id == DALD.Id))
             {
                 throw new ObjectExistsInListException("Drone");
             }
@@ -97,7 +97,7 @@ namespace Dal
         public void AddCustomerDAL(Customer DALC)
         {
             IEnumerable<Customer> customers = DL.XMLTools.LoadListFromXMLSerializer<DO.Customer>(dir + customerFilePath);
-            if (!customers.Any(customer => customer.Id == DALC.Id))
+            if (customers.Any(customer => customer.Id == DALC.Id))
             {
                 throw new ObjectExistsInListException("Customer");
             }
@@ -154,7 +154,7 @@ namespace Dal
                 throw new Exception("DL: station with the same id not found...");
                 //throw new SomeException("DL: cuxtomer with the same id not found...");
             }
-            stationList.ToList()[DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(p => p.Id == DALS.Id))] = DALS;
+            stationList.ToList()[stationList.ToList().IndexOf(stationList.First(p => p.Id == DALS.Id))] = DALS;
             DL.XMLTools.SaveListToXMLSerializer<Station>(stationList, dir + stationFilePath);
         }
         public IEnumerable<Station> returnStationArray()
@@ -200,7 +200,7 @@ namespace Dal
                 throw new Exception("DL: cuxtomer with the same id not found...");
                 //throw new SomeException("DL: cuxtomer with the same id not found...");
             }
-            droneList.ToList()[DataSource.MyDrones.IndexOf(DataSource.MyDrones.First(p => p.Id == DALD.Id))] = DALD;
+            droneList.ToList()[droneList.ToList().IndexOf(droneList.First(p => p.Id == DALD.Id))] = DALD;
             DL.XMLTools.SaveListToXMLSerializer<Drone>(droneList, dir + droneFilePath);
         }
         public void ReplaceCustomerById(Customer DALC)
@@ -211,7 +211,7 @@ namespace Dal
                 throw new Exception("DL: cuxtomer with the same id not found...");
                 //throw new SomeException("DL: cuxtomer with the same id not found...");
             }
-            customerList.ToList()[DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(p => p.Id == DALC.Id))] = DALC;
+            customerList.ToList()[customerList.ToList().IndexOf(customerList.First(p => p.Id == DALC.Id))] = DALC;
             DL.XMLTools.SaveListToXMLSerializer<Customer>(customerList, dir + customerFilePath);
         }
         public void ReplaceParcelById(Parcel DALP)
@@ -222,7 +222,7 @@ namespace Dal
                 throw new Exception("DL: parcel with the same id not found...");
                 //throw new SomeException("DL: Student with the same id not found...");
             }
-            parcelsList.ToList()[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
+            parcelsList.ToList()[parcelsList.ToList().IndexOf(parcelsList.First(p => p.Id == DALP.Id))] = DALP;
             DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcelsList, dir + parcelFilePath);
         }
         public void DeleteObjFromDroneCharges(int id)
