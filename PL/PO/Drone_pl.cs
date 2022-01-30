@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PO
 {
-    class Drone_pl
+    public class Drone_pl
     {
         private int idBL;
         public void setIdBL(int idD)
@@ -18,7 +18,7 @@ namespace PO
         public Enum_pl.WeightCategories MaxWeight { get; set; }
         public double BatteryStatus { get; set; }
         public Enum_pl.DroneStatuses DroneStatus { get; set; }
-        public ParcelByTransfer_pl delivery { get; set; }
+        public ParcelByTransfer_pl Delivery { get; set; }
         public Position_pl CurrentPosition { get; set; }
         
     }

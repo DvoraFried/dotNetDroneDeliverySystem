@@ -14,7 +14,7 @@ namespace Dal
         public static List<Customer> MyCustomers = new List<Customer>();
         public static List<Employee> MyEmployees = new List<Employee>();
         public static List<Parcel> MyParcels = new List<Parcel>();
-        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge> ();
+        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
 
         //satandart drone speed per hour is 120 kilometers
         public class Config {
@@ -75,6 +75,7 @@ namespace Dal
                 }
                 MyParcels.Add(parcel);
             }
+
             Employee manager1 = new Employee() { Id = 213570302, Name = "hadas", Manager = true };
             MyEmployees.Add(manager1);
             Employee manager2 = new Employee() { Id = 212628721, Name = "dvora", Manager = true };

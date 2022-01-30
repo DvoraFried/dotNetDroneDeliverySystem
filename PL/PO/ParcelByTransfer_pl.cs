@@ -8,7 +8,7 @@ using static PO.Enum_pl;
 
 namespace PO
 {
-    class ParcelByTransfer_pl
+    public class ParcelByTransfer_pl
     {
         public ParcelByTransfer_pl(DalApi.IDal dalOB, Parcel parcel)
         {
@@ -40,4 +40,4 @@ namespace PO
         double Distance { get; set; }
     }
 }
-}
+

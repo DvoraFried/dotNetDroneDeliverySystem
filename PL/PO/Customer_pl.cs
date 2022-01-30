@@ -37,9 +37,8 @@ namespace PO
         public string NameBL { get; set; }
         public string PhoneBL { get; set; }
         public Position_pl Position { get; set; }
-        public List<DeliveryAtCustomer> ImTheSender { get; set; }
-        public List<DeliveryAtCustomer> ImTheTarget { get; set; }
+        public List<DeliveryAlCustomer_pl> ImTheSender { get; set; }
+        public List<DeliveryAlCustomer_pl> ImTheTarget { get; set; }
         public bool isActive { get; set; }
     }
-}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PO
 {
-    class DeliveryAlCustomer_pl
+    public class DeliveryAlCustomer_pl
     {
         public int Id { get; set; }
         Enum_pl.WeightCategories Weight { get; set; }

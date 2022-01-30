@@ -34,9 +34,9 @@ namespace PO
             {
                 Console.WriteLine("DronesInCharging: ");
                 //@@@@@@@ dvora!! DronesListPl deosnt exist yet, have fun tring to figuer out what to do, just kidding, you need to a class with list for pl  .goodluck!
-                foreach (DroneInCharge_pl drone in DronesInChargingPl)
+        //        foreach (DroneInCharge_pl drone in DronesInCharging_Pl)
                 {
-                    Console.WriteLine(drone.ToString());
+        //            Console.WriteLine(drone.ToString());
                 }
                 return $"ID: {GetIdBL()}\nName: {NameBL}\nPosition - {Position.ToString()}";
             }
@@ -50,4 +50,4 @@ namespace PO
         public List<DroneInCharge_pl> DronesInCharging;
     }
 }
-}
+

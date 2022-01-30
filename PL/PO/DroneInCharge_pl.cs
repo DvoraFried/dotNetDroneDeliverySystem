@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PO
 {
-    class DroneInCharge_pl
+    public class DroneInCharge_pl
     {
         public DroneInCharge_pl(Drone_pl drone)
         {
@@ -28,4 +28,4 @@ namespace PO
         public double BatteryStatus { get; set; }
     }
 }
-}
+

@@ -79,11 +79,11 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="2" Margin="23,49,10,73" Grid.RowSpan="3">DRONE ID:</Label>
+                <Label Grid.Row="2" Margin="23,49,10,25" Grid.RowSpan="2">DRONE ID:</Label>
                 <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Text="" Margin="118,0,0,0"/>
-                <Label Margin="23,1,10,0" Grid.Row="2">DRONE MODEL:</Label>
+                <Label Margin="23,1,0,25" Grid.Row="2">DRONE MODEL:</Label>
                 <TextBox Name="ModelTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,0,0,0" Grid.Row="3"/>
-                <Label Grid.Row="4" Margin="23,0,0,32">MAXWEIGHT :</Label>
+                <Label Grid.Row="4" Margin="23,0,0,76">MAXWEIGHT :</Label>
                 <StackPanel Name="MaxWeightCheckBox" Grid.Row="4" Grid.ColumnSpan="3" Margin="118,0,118,4" >
                     <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
                     <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
