@@ -2,7 +2,7 @@
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
     <Id>1</Id>
-    <Name>station1</Name>
+    <Name>ghjkggh</Name>
     <EmptyChargeSlots>10</EmptyChargeSlots>
     <Longitude>5</Longitude>
     <Latitude>142</Latitude>

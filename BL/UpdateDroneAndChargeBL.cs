@@ -44,7 +44,7 @@ namespace BL
             DronesListBL[droneBLIndex] = drone;
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             DroneInCharge droneC = new DroneInCharge(drone);
-            SendDroneToCharge(droneC.Id);
+            DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new DroneInCharge(drone), station.Id));
             station.DronesInCharging += 1;
             station.EmptyChargeSlots -= 1;
             DalObj.ReplaceStationById(station);
