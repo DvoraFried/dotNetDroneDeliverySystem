@@ -80,4 +80,20 @@
     <Latitude>101</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
+  <Station>
+    <Id>321</Id>
+    <Name>321</Name>
+    <EmptyChargeSlots>11</EmptyChargeSlots>
+    <Longitude>11</Longitude>
+    <Latitude>11</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
+  <Station>
+    <Id>66</Id>
+    <Name>321</Name>
+    <EmptyChargeSlots>11</EmptyChargeSlots>
+    <Longitude>11</Longitude>
+    <Latitude>11</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
 </ArrayOfStation>

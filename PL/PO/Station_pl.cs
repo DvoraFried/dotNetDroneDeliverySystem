@@ -17,7 +17,7 @@ namespace PO
             DronesInCharging = new List<DroneInCharge_pl>();
             foreach (Drone_pl drone in drones)
             {
-                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == Enum.DroneStatuses.maintenance)
+                if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == Enum_pl.DroneStatuses.maintenance)
                 {
                     DronesInCharging.Add(new DroneInCharge_pl(drone));
                 }

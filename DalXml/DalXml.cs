@@ -76,12 +76,12 @@ namespace Dal
 
         public void AddStationDAL(Station DALS)
         {
-            IEnumerable<Station> stations = DL.XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + stationFilePath);
+            List<Station> stations = DL.XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + stationFilePath).ToList();
             if(stations.Any(station => station.Id == DALS.Id))
             {
                 throw new ObjectExistsInListException("Station");
             }
-            stations.ToList().Add(DALS);
+            stations.Add(DALS);
             DL.XMLTools.SaveListToXMLSerializer<Station>(stations, dir + stationFilePath);
         }
         public void AddDroneDAL(Drone DALD)
