@@ -24,13 +24,15 @@ namespace PL
     {
         BlApi.IBL Bl;
         Drone_pl dronePO;
+        Drone droneB;
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL bl,Drone drone)
         {
             dronePO = new Drone_pl(drone);
             Bl = bl;
+            droneB = drone;
             InitializeComponent();
-            stackPanel.DataContext = dronePO;
+            DataContext = dronePO;
             ADD_BUTTON.Visibility = Visibility.Hidden;
             UPDATE_MENU.Visibility = Visibility.Visible;
             hidddenInfroUpDate.Visibility = Visibility.Visible;
@@ -175,6 +177,12 @@ namespace PL
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            dronePO.Id = 44444;
+            dronePO.Model = "hadasIsAwsome";
         }
     }
 }

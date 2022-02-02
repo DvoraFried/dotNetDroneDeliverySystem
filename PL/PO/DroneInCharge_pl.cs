@@ -10,7 +10,7 @@ namespace PO
     {
         public DroneInCharge_pl(Drone_pl drone)
         {
-            Id = drone.getId();
+            Id = drone.Id;
             BatteryStatus = drone.BatteryStatus;
             enterTime = DateTime.Now;
         }
