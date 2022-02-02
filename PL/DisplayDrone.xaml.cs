@@ -24,13 +24,11 @@ namespace PL
     {
         BlApi.IBL Bl;
         Drone_pl dronePO;
-        Drone droneB;
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL bl,Drone drone)
         {
             dronePO = new Drone_pl(drone);
             Bl = bl;
-            droneB = drone;
             InitializeComponent();
             DataContext = dronePO;
             ADD_BUTTON.Visibility = Visibility.Hidden;
@@ -88,9 +86,7 @@ namespace PL
         }
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
-            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
-
-            this.Close();
+            Bl.UpDateDroneName(Int32.Parse(n.Text), ModelTextBox.Text);
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
