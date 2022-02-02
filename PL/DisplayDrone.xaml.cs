@@ -1,4 +1,5 @@
 ﻿using BO;
+using PO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,11 @@ namespace PL
     public partial class DisplayDrone : Window
     {
         BlApi.IBL Bl;
-
+        Drone_pl dronePO;
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL bl,Drone drone)
         {
+            dronePO = new Drone_pl(drone);
             Bl = bl;
             InitializeComponent();
             ADD_BUTTON.Visibility = Visibility.Hidden;
@@ -84,6 +86,7 @@ namespace PL
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
             Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
+
             this.Close();
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)

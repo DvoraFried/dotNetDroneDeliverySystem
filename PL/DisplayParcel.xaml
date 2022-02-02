@@ -48,17 +48,21 @@
                     <RowDefinition Height="43*"/>
                     <RowDefinition Height="43.262"/>
                 </Grid.RowDefinitions>
+               
                 <Label Name="senderIdlbel" Grid.Row="0" Grid.ColumnSpan="2" Margin="23,-13,70,13">SENDER ID:</Label>
                 <TextBox Name="IDSenderTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="" Margin="59,-13,0,0"/>
                 <Label Name="targetIdLabel" Grid.ColumnSpan="2" Margin="23,16,70,19" Grid.RowSpan="2">TARGET ID:</Label>
                 <TextBox Name="TargetIDTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Margin="59,20,0,0" Grid.RowSpan="2"/>
                 <Label Name="weightLabel" Grid.Row="1" Margin="23,21,9,36" Grid.RowSpan="2">WEIGHT :</Label>
+                
                 <StackPanel Name="WeightCheckBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,23,35,9" Grid.RowSpan="2" >
                     <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
                     <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
                     <RadioButton x:Name="heavy" Content="heavy" Checked="heavy_Checked"/>
                 </StackPanel>
+                
                 <Label Name="PRIORITYlabel" Grid.Row="3" Grid.ColumnSpan="2" Margin="23,1,70,24" Grid.RowSpan="2">PRIORITY:</Label>
+                
                 <StackPanel Name="priorityCheckBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,61,35,28" Grid.RowSpan="4" >
                     <RadioButton x:Name="usual" Content="usual" IsChecked="True" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="usual_Checked"/>
                     <RadioButton x:Name="rapid" Content="rapid" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="rapid_Checked"/>
