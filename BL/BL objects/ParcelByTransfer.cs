@@ -30,13 +30,13 @@ namespace BO
             return $"--------------\nID: {Id}\nStatus: {status}\nPriority: {Priority}\nWeight: {Weight}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}\n--------------";
         }
         public int Id { get; set; }
-        WeightCategoriesBL Weight { get; set; }
-        PrioritiesBL Priority { get; set; }
+        public WeightCategoriesBL Weight { get; set; }
+        public PrioritiesBL Priority { get; set; }
         public bool IsDelivery { get; set; }
-        Position CollectionLocation { get; set; }
-        Position DeliveryDestinationLocation { get; set; }
-        CustomerOnDelivery Sender { get; set; }
-        CustomerOnDelivery Target { get; set; }
-        double Distance { get; set; }
+        public Position CollectionLocation { get; set; }
+        public Position DeliveryDestinationLocation { get; set; }
+        public CustomerOnDelivery Sender { get; set; }
+        public CustomerOnDelivery Target { get; set; }
+        public double Distance { get; set; }
     }
 }

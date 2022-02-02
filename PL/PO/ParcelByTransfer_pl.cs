@@ -10,19 +10,18 @@ namespace PO
 {
     public class ParcelByTransfer_pl
     {
-        public ParcelByTransfer_pl(DalApi.IDal dalOB, Parcel parcel)
+        public ParcelByTransfer_pl(ParcelByTransfer blObj)
         {
-            Id = parcel.IdBL;
-            IsDelivery = parcel.PickUpBL != null;
-            Priority = (Priorities)parcel.Priority;
-            Weight = (WeightCategories)parcel.Weight;
-            Sender = parcel.Sender;
-            Target = parcel.Target;
-            DO.Customer dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id);
-            CollectionLocation = new Position(dalobj.Longitude, dalobj.Latitude);
-            dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Target.Id);
-            DeliveryDestinationLocation = new Position(dalobj.Longitude, dalobj.Latitude);
-            Distance = DistanceBetweenCoordinates.CalculateDistance(CollectionLocation, DeliveryDestinationLocation);
+            this.Id = blObj.Id;
+            this.Weight = (WeightCategories)blObj.Weight;
+            this.Priority = (Priorities)blObj.Priority;
+            this.IsDelivery = blObj.IsDelivery;
+            this.CollectionLocation = blObj.CollectionLocation;
+            this.DeliveryDestinationLocation = blObj.DeliveryDestinationLocation;
+            this.Sender = blObj.Sender;
+            this.Target = blObj.Target;
+            this.Distance = blObj.Distance;
+
         }
         public override string ToString()
         {
