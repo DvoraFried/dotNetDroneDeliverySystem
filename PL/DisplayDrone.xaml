@@ -80,7 +80,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="2" Margin="23,49,10,25" Grid.RowSpan="2">DRONE ID:</Label>
-                <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Text="" Margin="118,0,0,0"/>
+                <TextBox Name="IDTextBox" Text="{Binding=}" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Text="" Margin="118,0,0,0"/>
                 <Label Margin="23,1,0,25" Grid.Row="2">DRONE MODEL:</Label>
                 <TextBox Name="ModelTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,0,0,0" Grid.Row="3"/>
                 <Label Grid.Row="4" Margin="23,0,0,76">MAXWEIGHT :</Label>

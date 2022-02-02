@@ -96,4 +96,20 @@
     <Latitude>11</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
+  <Station>
+    <Id>990</Id>
+    <Name>hadasIsSoSmart!!</Name>
+    <EmptyChargeSlots>12</EmptyChargeSlots>
+    <Longitude>12</Longitude>
+    <Latitude>12</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
+  <Station>
+    <Id>4536</Id>
+    <Name>justChekingIfItWorks</Name>
+    <EmptyChargeSlots>56</EmptyChargeSlots>
+    <Longitude>1</Longitude>
+    <Latitude>1</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
 </ArrayOfStation>
