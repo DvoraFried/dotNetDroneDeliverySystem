@@ -30,10 +30,11 @@ namespace PL
             dronePO = new Drone_pl(drone);
             Bl = bl;
             InitializeComponent();
+            stackPanel.DataContext = dronePO;
             ADD_BUTTON.Visibility = Visibility.Hidden;
             UPDATE_MENU.Visibility = Visibility.Visible;
             hidddenInfroUpDate.Visibility = Visibility.Visible;
-            IDTextBox.Text = drone.getIdBL().ToString();
+            //IDTextBox.Text = drone.getIdBL().ToString();
             IDTextBox.IsEnabled = false;
             ModelTextBox.Text = drone.ModelBL;
             parcelInDrone.Items.Add(drone.delivery == null ? "No Parcel in Drone" : drone.delivery);

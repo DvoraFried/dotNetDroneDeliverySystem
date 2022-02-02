@@ -12,15 +12,18 @@ namespace PO
     {
         public ParcelByTransfer_pl(ParcelByTransfer blObj)
         {
-            this.Id = blObj.Id;
-            this.Weight = (WeightCategories)blObj.Weight;
-            this.Priority = (Priorities)blObj.Priority;
-            this.IsDelivery = blObj.IsDelivery;
-            this.CollectionLocation = blObj.CollectionLocation;
-            this.DeliveryDestinationLocation = blObj.DeliveryDestinationLocation;
-            this.Sender = blObj.Sender;
-            this.Target = blObj.Target;
-            this.Distance = blObj.Distance;
+            if (blObj != null)
+            {
+                this.Id = blObj.Id;
+                this.Weight = (WeightCategories)blObj.Weight;
+                this.Priority = (Priorities)blObj.Priority;
+                this.IsDelivery = blObj.IsDelivery;
+                this.CollectionLocation = blObj.CollectionLocation;
+                this.DeliveryDestinationLocation = blObj.DeliveryDestinationLocation;
+                this.Sender = blObj.Sender;
+                this.Target = blObj.Target;
+                this.Distance = blObj.Distance;
+            }
 
         }
         public override string ToString()

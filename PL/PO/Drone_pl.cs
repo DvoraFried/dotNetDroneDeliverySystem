@@ -19,18 +19,38 @@ namespace PO
             this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
         }
         private int id;
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         public void setId(int idD)
         {
             id = idD;
+            if(PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs("id"));
         }
         public int getId() { return id; }
-        public string Model{ get; set; }
+        private string Model;
+        public string getModel()
+        {
+            return Model;
+        }
+        public void set_Model(string newModel)
+        {
+            Model = newModel;
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs("Model"));
+        }
         public Enum_pl.WeightCategories MaxWeight { get; set; }
         public double BatteryStatus { get; set; }
-        public Enum_pl.DroneStatuses DroneStatus { get; set; }
+        public void setDroneStatus(Enum_pl.DroneStatuses newS)
+        {
+            DroneStatus = newS;
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs("DroneStatus"));
+        }
+        private Enum_pl.DroneStatuses DroneStatus;
+        public Enum_pl.DroneStatuses getDroneStatus()
+        {
+            return DroneStatus;
+        }
         public ParcelByTransfer_pl Delivery { get; set; }
         public Position_pl CurrentPosition { get; set; }
         
