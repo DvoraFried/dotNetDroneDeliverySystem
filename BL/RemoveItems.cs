@@ -32,5 +32,10 @@ namespace BL
             }
             else { throw new ParcelAlreadyScheduled(); }
         }
+        public void DeleteDrone(BO.Drone drone)
+        {
+            drone.isActive = false;
+            DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
+        }
     }
 }

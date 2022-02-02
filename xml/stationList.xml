@@ -2,7 +2,7 @@
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
     <Id>1</Id>
-    <Name>station1</Name>
+    <Name>ghjkggh</Name>
     <EmptyChargeSlots>10</EmptyChargeSlots>
     <Longitude>5</Longitude>
     <Latitude>142</Latitude>
@@ -110,6 +110,22 @@
     <EmptyChargeSlots>56</EmptyChargeSlots>
     <Longitude>1</Longitude>
     <Latitude>1</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
+  <Station>
+    <Id>123</Id>
+    <Name>qwe</Name>
+    <EmptyChargeSlots>12</EmptyChargeSlots>
+    <Longitude>12</Longitude>
+    <Latitude>12</Latitude>
+    <DronesInCharging>0</DronesInCharging>
+  </Station>
+  <Station>
+    <Id>123212312</Id>
+    <Name>qewqweqwe</Name>
+    <EmptyChargeSlots>123</EmptyChargeSlots>
+    <Longitude>12</Longitude>
+    <Latitude>12</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
 </ArrayOfStation>

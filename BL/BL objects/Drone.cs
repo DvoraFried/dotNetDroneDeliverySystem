@@ -14,7 +14,7 @@ namespace BO
     public class Drone
     {
 
-        public Drone(DalApi.IDal dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
+        public Drone(DalApi.IDal dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId, bool active = true)
         {
             Random rnd = new Random();
             setIdBL(id);
@@ -23,6 +23,7 @@ namespace BO
             CurrentPosition = p;
             BatteryStatus = rnd.Next(20, 41);
             DroneStatus = status;
+            isActive = active;
             delivery = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idBL)?
                        new ParcelByTransfer(dalOB, ConvertToBL.ConvertToParcelBL(dalOB.returnParcelArray().ToList().First(parcel => parcel.DroneId == idBL)))
                        : null;
@@ -49,6 +50,7 @@ namespace BO
         public DroneStatusesBL DroneStatus { get; set; }
         public ParcelByTransfer delivery { get; set; }
         public Position CurrentPosition { get; set; }
+        public bool isActive { get; set; }
 
     }
 }

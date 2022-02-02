@@ -8,12 +8,13 @@ namespace PO
 {
     public class Drone_pl
     {
-        private int idBL;
+        public Drone_pl()
+        private int id;
         public void setIdBL(int idD)
         {
-            idBL = idD;
+            id = idD;
         }
-        public int getIdBL() { return idBL; }
+        public int getIdBL() { return id; }
         public string ModelBL { get; set; }
         public Enum_pl.WeightCategories MaxWeight { get; set; }
         public double BatteryStatus { get; set; }

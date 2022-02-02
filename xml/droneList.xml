@@ -14,9 +14,9 @@
   </Drone>
   <Drone>
     <Id>3</Id>
-    <Model>Model3</Model>
+    <Model>mn.l,jk</Model>
     <MaxWeight>light</MaxWeight>
-    <Battery>94</Battery>
+    <Battery>0</Battery>
   </Drone>
   <Drone>
     <Id>4</Id>
