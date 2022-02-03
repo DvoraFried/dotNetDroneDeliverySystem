@@ -27,7 +27,7 @@ namespace PL
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL bl,Drone drone)
         {
-            dronePO = new Drone_pl(drone);
+            dronePO = new Drone_pl(bl,drone);
             Bl = bl;
             InitializeComponent();
             DataContext = dronePO;
