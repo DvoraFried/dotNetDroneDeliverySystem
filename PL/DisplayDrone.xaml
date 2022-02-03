@@ -112,14 +112,12 @@
                 Orientation="Horizontal"
                 Grid.Row="0">
                         <TextBlock Text="id: " />
-                        <TextBox x:Name="n" Text="{Binding Id , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="121" />
+                        <TextBox x:Name="n" Text="{Binding Path=Id , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="121" />
                         <TextBlock Text="model: " />
-                        <TextBox Text="{Binding Model , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="234" />
+                        <TextBox Text="{Binding Path=Model , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="234" />
                         <Button Content="Button"/>
                     </StackPanel>
                 </Grid>
-                <Button Content="Button" Grid.ColumnSpan="2" Margin="108,30,10,20" Grid.RowSpan="2" Click="Button_Click_2"/>
-
             </Grid>
 
             <Grid Name="UPDATE_MENU" Visibility="Hidden" Grid.Row="1" Background="AntiqueWhite">

@@ -27,7 +27,7 @@ namespace PL
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL bl,Drone drone)
         {
-            dronePO = new Drone_pl(drone);
+            dronePO = new Drone_pl(bl,drone);
             Bl = bl;
             InitializeComponent();
             DataContext = dronePO;
@@ -173,12 +173,6 @@ namespace PL
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            dronePO.Id = 44444;
-            dronePO.Model = "hadasIsAwsome";
         }
     }
 }

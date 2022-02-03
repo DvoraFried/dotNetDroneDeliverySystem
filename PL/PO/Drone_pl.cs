@@ -11,15 +11,30 @@ namespace PO
 {
     public class Drone_pl: DependencyObject
     {
-        public Drone_pl(Drone droneBl) {
+        public Drone_pl(BlApi.IBL blObj,Drone droneBl) {
             Id = droneBl.getIdBL();
-            //setId(droneBl.getIdBL());
             this.Model = droneBl.ModelBL;
             this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
             this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;
             this.Delivery =  new ParcelByTransfer_pl(droneBl.delivery);//לבנות קונסטרקטור
             this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
+            blObj.ActionDroneChanged += UpdatePlDrone;
         }
+        public Drone_pl(BlApi.IBL blObj)
+        {
+            blObj.ActionDroneChanged += UpdatePlDrone;
+        }
+
+        public void UpdatePlDrone(BO.Drone droneBl)
+        {
+            Id = droneBl.getIdBL();
+            this.Model = droneBl.ModelBL;
+            this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
+            this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;
+            this.Delivery = new ParcelByTransfer_pl(droneBl.delivery);//לבנות קונסטרקטור
+            this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
+        }
+
         public static readonly DependencyProperty idProperty =
         DependencyProperty.Register("Id",
                      typeof(object),

@@ -11,6 +11,9 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        //אולי טעות
+        public Action<BO.Drone> ActionDroneChanged { get ; set ; }
+
         public void UpDateDroneName(int id, string newModelName)
         {
             if (!DronesListBL.Any(d => (d.getIdBL() == id)))      { throw new ObjectDoesntExistsInListException("drone"); }
@@ -19,6 +22,7 @@ namespace BL
             drone.ModelBL = newModelName;
             DronesListBL[droneBLIndex] = drone;
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
+            ActionDroneChanged?.Invoke(drone);
         }
 
         public void UpDateStationData(int id, string name = null, int chargeslots = -1)
