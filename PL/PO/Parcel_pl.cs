@@ -11,7 +11,6 @@ namespace PO
 {
     public class Parcel_pl: DependencyObject
     {
-        DalApi.IDal DalObj;
         public Parcel_pl(BlApi.IBL blObj, Parcel parcelBL)
         {
             Id = parcelBL.GetParcelId();
@@ -25,25 +24,95 @@ namespace PO
             Sender = new CustomerOnDelivery_pl(parcelBL.Sender);
             Target = new CustomerOnDelivery_pl(parcelBL.Target);
         }
-/*        public override string ToString()
-        {
-            Console.WriteLine($"ID: {IdBL}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nWeight: {Weight}\nPriority: {Priority}\nRequested Time: {RequestedBL}");
-            if (ScheduledBL != null) { Console.WriteLine($"Scheduled Time: {ScheduledBL}"); }
-            if (PickUpBL != null) { Console.WriteLine($"PickUp Time: {PickUpBL}"); }
-            if (DeliveredBL != null) { Console.WriteLine($"Delivered Time: {DeliveredBL}"); }
-            return "";
-        }*/
+        /*        public override string ToString()
+                {
+                    Console.WriteLine($"ID: {IdBL}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nWeight: {Weight}\nPriority: {Priority}\nRequested Time: {RequestedBL}");
+                    if (ScheduledBL != null) { Console.WriteLine($"Scheduled Time: {ScheduledBL}"); }
+                    if (PickUpBL != null) { Console.WriteLine($"PickUp Time: {PickUpBL}"); }
+                    if (DeliveredBL != null) { Console.WriteLine($"Delivered Time: {DeliveredBL}"); }
+                    return "";
+                }*/
 
-        public int Id { get; set; }
-        public WeightCategories Weight { get; set; }
-        public Priorities Priority { get; set; }
-        public DroneInParcel_pl DroneInParcel { get; set; }
-        public DateTime? Requested { get; set; }//יצירת חבילה למשלוח
-        public DateTime? Scheduled { get; set; }//שיוך חבילה לרחפן
-        public DateTime? PickUp { get; set; }//איסוף חבילה מלקוח
-        public DateTime? Delivered { get; set; }//זמן הגעת חבילה למקבל
-        public CustomerOnDelivery_pl Sender { get; set; }
-        public CustomerOnDelivery_pl Target { get; set; }
+        public static readonly DependencyProperty idPProperty =
+        DependencyProperty.Register("Id",
+                     typeof(object),
+                     typeof(Drone_pl),
+                     new UIPropertyMetadata(0));
+        private int Id
+        {
+            get { return (int)GetValue(idPProperty); }
+            set { SetValue(idPProperty, value); }
+        }
+
+        public static readonly DependencyProperty WeightPProperty =
+        DependencyProperty.Register("Weight",
+                     typeof(object),
+                     typeof(Drone_pl),
+                     new UIPropertyMetadata(0));
+        private WeightCategories Weight
+        {
+            get { return (WeightCategories)GetValue(WeightPProperty); }
+            set { SetValue(WeightPProperty, value); }
+        }
+
+        public static readonly DependencyProperty PriorityPProperty =
+        DependencyProperty.Register("Priority",
+                   typeof(object),
+                   typeof(Drone_pl),
+                   new UIPropertyMetadata(0));
+        private Priorities Priority
+        {
+            get { return (Priorities)GetValue(PriorityPProperty); }
+            set { SetValue(PriorityPProperty, value); }
+        }
+
+        public static readonly DependencyProperty RequestedPProperty =
+        DependencyProperty.Register("Priority",
+                typeof(object),
+                typeof(Drone_pl),
+                new UIPropertyMetadata(0));
+        private DateTime? Requested
+        {
+            get { return (DateTime?)GetValue(RequestedPProperty); }
+            set { SetValue(RequestedPProperty, value); }
+        }
+
+        public static readonly DependencyProperty ScheduledPProperty =
+        DependencyProperty.Register("Scheduled",
+              typeof(object),
+              typeof(Drone_pl),
+              new UIPropertyMetadata(0));
+        private DateTime? Scheduled
+        {
+            get { return (DateTime?)GetValue(ScheduledPProperty); }
+            set { SetValue(ScheduledPProperty, value); }
+        }
+
+        public static readonly DependencyProperty PickUpPProperty =
+        DependencyProperty.Register("PickUp",
+              typeof(object),
+              typeof(Drone_pl),
+              new UIPropertyMetadata(0));
+        private DateTime? PickUp
+        {
+            get { return (DateTime?)GetValue(PickUpPProperty); }
+            set { SetValue(PickUpPProperty, value); }
+        }
+
+        public static readonly DependencyProperty DeliveredPProperty =
+        DependencyProperty.Register("Delivered",
+              typeof(object),
+              typeof(Drone_pl),
+              new UIPropertyMetadata(0));
+        private DateTime? Delivered
+        {
+            get { return (DateTime?)GetValue(DeliveredPProperty); }
+            set { SetValue(DeliveredPProperty, value); }
+        }
+
+        private DroneInParcel_pl DroneInParcel { get; set; }
+        private CustomerOnDelivery_pl Sender { get; set; }
+        private CustomerOnDelivery_pl Target { get; set; }
     }
 }
 

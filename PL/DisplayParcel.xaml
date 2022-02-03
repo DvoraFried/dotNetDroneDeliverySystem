@@ -76,18 +76,18 @@
                 <Label Margin="245,36,95,12">TARGET:</Label>
                 <Label Margin="89,133,249,-86">WEIGHT :</Label>
                 <Label Margin="245,133,-152,-84">PRIORITY:</Label>
-                <TextBox Name="WeightTextBox" IsReadOnly="True" Margin="45,158,205,-110"/>
-                <TextBox Name="PriorityTextBox" IsReadOnly="True" Margin="200,158,50,-110"/>
+                <TextBox Text="{Binding Path=Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="WeightTextBox" IsReadOnly="True" Margin="45,158,205,-110"/>
+                <TextBox Text="{Binding Path=Priority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PriorityTextBox" IsReadOnly="True" Margin="200,158,50,-110"/>
                 <Label Margin="136,192,140,-146">PARCEL IN DRONE:</Label>
                 <TextBox Name="ParcelInDroneTextBox" IsReadOnly="True" Margin="45,216,50,-221"/>
                 <Label Margin="20,299,256,-252">REQUESTED TIME:</Label>
-                <TextBox Name="RequestedTimeTextBox" IsReadOnly="True" Margin="200,300,50,-251"/>
+                <TextBox Text="{Binding Path=Requested, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="RequestedTimeTextBox" IsReadOnly="True" Margin="200,300,50,-251"/>
                 <Label Margin="20,332,200,-291">ASSIGN TO A DRONE TIME:</Label>
-                <TextBox Name="AssignToDroneTimeTextBox" IsReadOnly="True" Margin="200,331,50,-283"/>
+                <TextBox Text="{Binding Path=Scheduled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="AssignToDroneTimeTextBox" IsReadOnly="True" Margin="200,331,50,-283"/>
                 <Label Margin="20,364,272,-324">PICK-UP TIME:</Label>
-                <TextBox Name="PickupTimeTextBox" IsReadOnly="True" Margin="200,363,50,-315"/>
+                <TextBox Text="{Binding Path=PickUp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PickupTimeTextBox" IsReadOnly="True" Margin="200,363,50,-315"/>
                 <Label Margin="20,395,272,-348">DELIVERED TIME:</Label>
-                <TextBox Name="DeliveredTimeTextBox" IsReadOnly="True" Margin="200,395,50,-344"/>
+                <TextBox Text="{Binding Path=Delivered, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="DeliveredTimeTextBox" IsReadOnly="True" Margin="200,395,50,-344"/>
             </Grid>
             <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
