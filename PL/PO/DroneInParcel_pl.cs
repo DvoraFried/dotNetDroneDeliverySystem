@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace PO
 {
-    class DroneInParcel_pl
+    public class DroneInParcel_pl
     {
-        public DroneInParcel_pl(Drone_pl drone)
+        public DroneInParcel_pl(DroneInParcel drone)
         {
             Id = drone.Id;
             BatteryStatus = drone.BatteryStatus;
-            CurrentPosition = drone.CurrentPosition;
+            CurrentPosition = new Position_pl(drone.CurrentPosition);
         }
         public override string ToString()
         {

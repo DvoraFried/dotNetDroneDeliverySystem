@@ -2,6 +2,7 @@
 using PO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,19 +32,14 @@ namespace PL
             Bl = bl;
             InitializeComponent();
             DataContext = dronePO;
-            ADD_BUTTON.Visibility = Visibility.Hidden;
-            UPDATE_MENU.Visibility = Visibility.Visible;
-            hidddenInfroUpDate.Visibility = Visibility.Visible;
-            //IDTextBox.Text = drone.getIdBL().ToString();
-            //ModelTextBox.Text = drone.ModelBL;
-            //parcelInDrone.Items.Add(drone.delivery == null ? "No Parcel in Drone" : drone.delivery);
+            parcelInDrone.Items.Add(drone.delivery == null ? "No Parcel in Drone" : drone.delivery);
             light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
             medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
             heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
             batteryStatus.Value = drone.BatteryStatus;
-            //DroneStatusTextBox.Text = drone.DroneStatus.ToString();
-            statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
+            UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = Visibility.Visible;
+            ADD_BUTTON.Visibility = statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
         }
         public DisplayDrone(BlApi.IBL bl)
         {
@@ -52,7 +48,6 @@ namespace PL
         }
         private void showParcel(object sender, RoutedEventArgs e)
         {
-            
             BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
             if (parcel != null)
             {

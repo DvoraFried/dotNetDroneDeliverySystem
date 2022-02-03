@@ -100,7 +100,7 @@
                     <Label x:Name="DroneStatusLabel" Margin="22,0,152,30" Content="DRONE STATUS:" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="DroneStatusTextBox" Text="{Binding Path=DroneStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="2"/>
                     <Label x:Name="batteryStatusLabel" Margin="22,49,152,0" Content="BATTERY:" Grid.ColumnSpan="2"/>
-                    <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="25" Margin="112,49,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
+                    <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="25" Margin="119,50,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
                     <TextBlock Text="{Binding ElementName=batteryStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="59,54,0,0" />
                     <Expander Expanded="expanderHasExpanded" Collapsed="expanderHasClose" Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-86,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="2">
                         <ScrollViewer>

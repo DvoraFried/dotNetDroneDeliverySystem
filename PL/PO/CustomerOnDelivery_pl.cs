@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,12 @@ namespace PO
 {
     public class CustomerOnDelivery_pl
     {
-        public CustomerOnDelivery_pl(int id, string name, bool isActive = true)
+        public CustomerOnDelivery_pl(CustomerOnDelivery customerOnDelivery)
         {
-            flag = isActive;
-            Id = id;
-            CustomerName = name;
+            Id = customerOnDelivery.Id;
+            CustomerName = customerOnDelivery.CustomerName;
         }
-        private bool flag;
-        public int Id { get; set; }
-        public string CustomerName { get; set; }
+        private int Id { get; set; }
+        private string CustomerName { get; set; }
     }
 }

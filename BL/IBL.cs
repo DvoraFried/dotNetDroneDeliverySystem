@@ -10,6 +10,7 @@ namespace BlApi
     public interface IBL
     {
         public Action<Drone> ActionDroneChanged { get; set; }
+        
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots);
         public void AddDrone(int id, string model, BO.Enum.WeightCategoriesBL weight, int stationId);
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude);
