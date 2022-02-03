@@ -87,6 +87,7 @@ namespace PL
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
             Bl.UpDateDroneName(Int32.Parse(n.Text), ModelTextBox.Text);
+
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
@@ -173,12 +174,6 @@ namespace PL
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            dronePO.Id = 44444;
-            dronePO.Model = "hadasIsAwsome";
         }
     }
 }

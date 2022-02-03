@@ -27,15 +27,10 @@ namespace PO
                      new UIPropertyMetadata(0));
         public int Id
         {
-            get
-            {
-                return (int)GetValue(idProperty);
-            }
-            set
-            {
-                SetValue(idProperty, value);
-            }
+            get { return (int)GetValue(idProperty);}
+            set { SetValue(idProperty, value);}
         }
+
         public static readonly DependencyProperty modelProperty =
         DependencyProperty.Register("Model",
                typeof(object),
@@ -43,24 +38,15 @@ namespace PO
                new UIPropertyMetadata(0));
         public string Model
         {
-            get
-            {
-                return (string)GetValue(modelProperty);
-            }
-            set
-            {
-                SetValue(modelProperty, value);
-            }
+            get { return (string)GetValue(modelProperty);}
+            set { SetValue(modelProperty, value);}
         }
 
         public Enum_pl.WeightCategories MaxWeight { get; set; }
         public double BatteryStatus { get; set; }
 
         private Enum_pl.DroneStatuses DroneStatus;
-        public Enum_pl.DroneStatuses getDroneStatus()
-        {
-            return DroneStatus;
-        }
+        public Enum_pl.DroneStatuses getDroneStatus() { return DroneStatus; }
         public ParcelByTransfer_pl Delivery { get; set; }
         public Position_pl CurrentPosition { get; set; }
         

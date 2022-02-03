@@ -110,7 +110,7 @@
                 <Grid Background="Gold" Grid.ColumnSpan="3" Margin="0,0,0,25">
                     <StackPanel x:Name="stackPanel"
                 Orientation="Horizontal"
-                Grid.Row="0">
+                Grid.Row="0" Margin="10,13,-10,-13">
                         <TextBlock Text="id: " />
                         <TextBox x:Name="n" Text="{Binding Id , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="121" />
                         <TextBlock Text="model: " />
@@ -118,7 +118,6 @@
                         <Button Content="Button"/>
                     </StackPanel>
                 </Grid>
-                <Button Content="Button" Grid.ColumnSpan="2" Margin="108,30,10,20" Grid.RowSpan="2" Click="Button_Click_2"/>
 
             </Grid>
 
