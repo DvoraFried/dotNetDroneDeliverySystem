@@ -57,12 +57,40 @@ namespace PO
             set { SetValue(modelProperty, value);}
         }
 
-        public Enum_pl.WeightCategories MaxWeight { get; set; }
-        public double BatteryStatus { get; set; }
+        public static readonly DependencyProperty DroneStatusProperty =
+        DependencyProperty.Register("DroneStatus",
+               typeof(object),
+               typeof(Drone_pl),
+               new UIPropertyMetadata(0));
+        public Enum_pl.DroneStatuses DroneStatus
+        {
+            get { return (Enum_pl.DroneStatuses)GetValue(DroneStatusProperty); }
+            set { SetValue(DroneStatusProperty, value); }
+        }
 
-        private Enum_pl.DroneStatuses DroneStatus;
-        public Enum_pl.DroneStatuses getDroneStatus() { return DroneStatus; }
-        public ParcelByTransfer_pl Delivery { get; set; }
+        public static readonly DependencyProperty DeliveryProperty =
+        DependencyProperty.Register("Delivery",
+               typeof(object),
+               typeof(Drone_pl),
+               new UIPropertyMetadata(0));
+        public ParcelByTransfer_pl Delivery
+        {
+            get { return (ParcelByTransfer_pl)GetValue(DeliveryProperty); }
+            set { SetValue(DeliveryProperty, value); }
+        }
+
+        public static readonly DependencyProperty BatteryStatusProperty =
+        DependencyProperty.Register("BatteryStatus",
+            typeof(object),
+            typeof(Drone_pl),
+            new UIPropertyMetadata(0));
+        public double BatteryStatus
+        {
+            get { return (double)GetValue(BatteryStatusProperty); }
+            set { SetValue(BatteryStatusProperty, value); }
+        }
+
+        public Enum_pl.WeightCategories MaxWeight { get; set; }
         public Position_pl CurrentPosition { get; set; }
         
     }

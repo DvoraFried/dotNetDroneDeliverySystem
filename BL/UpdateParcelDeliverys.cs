@@ -68,6 +68,7 @@ namespace BL
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(theclosetParcel));
             DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+            ActionDroneChanged?.Invoke(drone);
         }
         public void CollectionOfAParcelByDrone(int idD)
         {
@@ -84,6 +85,7 @@ namespace BL
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
             DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+            ActionDroneChanged?.Invoke(drone);
         }
         public void DeliveryOfAParcelByDrone(int idD)
         {
@@ -101,6 +103,7 @@ namespace BL
             drone.delivery = null;
             DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
+            ActionDroneChanged?.Invoke(drone);
         }
     }
 }

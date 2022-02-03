@@ -79,10 +79,10 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label    Grid.Row="2" Margin="23,49,10,25" Grid.RowSpan="2">DRONE ID:</Label>
-                <TextBox  Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,46,0,0" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="1"/>
-                <Label Margin="23,1,0,25" Grid.Row="2">DRONE MODEL:</Label>
-                <TextBox Name="ModelTextBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,0,0,0" Grid.Row="3"/>
+                <Label    Grid.Row="2" Margin="28,0,5,23">DRONE ID:</Label>
+                <TextBox IsEnabled="False" Name="IDTextBox" Text="{Binding Path=Id , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,46,0,0" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="1"/>
+                <Label Margin="23,3,0,23" Grid.Row="3">DRONE MODEL:</Label>
+                <TextBox Name="ModelTextBox" Text="{Binding Path=Model , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="118,0,0,0" Grid.Row="3"/>
                 <Label Grid.Row="4" Margin="23,0,0,76">MAXWEIGHT :</Label>
                 <StackPanel Name="MaxWeightCheckBox" Grid.Row="4" Grid.ColumnSpan="3" Margin="118,0,118,4" >
                     <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
@@ -98,9 +98,10 @@
                         <ColumnDefinition Width="223*"/>
                     </Grid.ColumnDefinitions>
                     <Label x:Name="DroneStatusLabel" Margin="22,0,152,30" Content="DRONE STATUS:" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="DroneStatusTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="DroneStatusTextBox" Text="{Binding Path=DroneStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="2"/>
                     <Label x:Name="batteryStatusLabel" Margin="22,49,152,0" Content="BATTERY:" Grid.ColumnSpan="2"/>
-                    <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="6" Margin="119,61,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
+                    <ProgressBar Name="batteryStatus" HorizontalAlignment="Left" Height="25" Margin="112,49,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
+                    <TextBlock Text="{Binding ElementName=batteryStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="59,54,0,0" />
                     <Expander Expanded="expanderHasExpanded" Collapsed="expanderHasClose" Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-86,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="2">
                         <ScrollViewer>
                             <ListView Name="parcelInDrone" MouseDoubleClick="showParcel"/>
@@ -108,15 +109,6 @@
                     </Expander>
                 </Grid>
                 <Grid Background="Gold" Grid.ColumnSpan="3" Margin="0,0,0,25">
-                    <StackPanel x:Name="stackPanel"
-                Orientation="Horizontal"
-                Grid.Row="0" Margin="10,13,-10,-13">
-                        <TextBlock Text="id: " />
-                        <TextBox x:Name="n" Text="{Binding Path=Id , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="121" />
-                        <TextBlock Text="model: " />
-                        <TextBox Text="{Binding Path=Model , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="234" />
-                        <Button Content="Button"/>
-                    </StackPanel>
                 </Grid>
             </Grid>
 

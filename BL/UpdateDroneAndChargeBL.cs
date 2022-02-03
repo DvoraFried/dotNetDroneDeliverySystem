@@ -48,6 +48,7 @@ namespace BL
             station.DronesInCharging += 1;
             station.EmptyChargeSlots -= 1;
             DalObj.ReplaceStationById(station);
+            ActionDroneChanged?.Invoke(drone);
         }
         public void ReleaseDroneFromCharging(int id)
         {
@@ -65,6 +66,7 @@ namespace BL
             station.DronesInCharging -= 1;
             station.EmptyChargeSlots += 1;
             DalObj.ReplaceStationById(station);
+            ActionDroneChanged?.Invoke(drone);
         }
     }
 }

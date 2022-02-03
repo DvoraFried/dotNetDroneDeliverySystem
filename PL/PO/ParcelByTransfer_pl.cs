@@ -10,9 +10,11 @@ namespace PO
 {
     public class ParcelByTransfer_pl
     {
+        BO.ParcelByTransfer blOB;
         public ParcelByTransfer_pl(ParcelByTransfer blObj)
         {
-            if (blObj != null)
+            blOB = blObj;
+            if (blOB != null)
             {
                 this.Id = blObj.Id;
                 this.Weight = (WeightCategories)blObj.Weight;
@@ -28,6 +30,10 @@ namespace PO
         }
         public override string ToString()
         {
+            if(blOB == null)
+            {
+                return "no parcel in drone";
+            }
             string status = IsDelivery ? "On the way to the destination" : "Awaiting collection";
             return $"--------------\nID: {Id}\nStatus: {status}\nPriority: {Priority}\nWeight: {Weight}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}\n--------------";
         }
