@@ -4,7 +4,7 @@
     <Id>1</Id>
     <Model>Model1</Model>
     <MaxWeight>medium</MaxWeight>
-    <Battery>98</Battery>
+    <Battery>0</Battery>
     <isActive>false</isActive>
   </Drone>
   <Drone>

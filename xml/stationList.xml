@@ -27,10 +27,10 @@
   <Station>
     <Id>4</Id>
     <Name>station4</Name>
-    <EmptyChargeSlots>9</EmptyChargeSlots>
+    <EmptyChargeSlots>10</EmptyChargeSlots>
     <Longitude>1</Longitude>
     <Latitude>27</Latitude>
-    <DronesInCharging>0</DronesInCharging>
+    <DronesInCharging>-1</DronesInCharging>
   </Station>
   <Station>
     <Id>5</Id>

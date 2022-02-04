@@ -18,6 +18,7 @@ namespace PO
             this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;
             this.Delivery =  new ParcelByTransfer_pl(droneBl.delivery);//לבנות קונסטרקטור
             this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
+            BatteryStatus = droneBl.BatteryStatus;
             blObj.ActionDroneChanged += UpdatePlDrone;
         }
         public Drone_pl(BlApi.IBL blObj)
@@ -33,6 +34,7 @@ namespace PO
             this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;
             this.Delivery = new ParcelByTransfer_pl(droneBl.delivery);//לבנות קונסטרקטור
             this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
+            BatteryStatus = droneBl.BatteryStatus;
         }
 
         public static readonly DependencyProperty idProperty =
