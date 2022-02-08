@@ -59,10 +59,10 @@
   <Station>
     <Id>8</Id>
     <Name>station8</Name>
-    <EmptyChargeSlots>12</EmptyChargeSlots>
+    <EmptyChargeSlots>11</EmptyChargeSlots>
     <Longitude>16</Longitude>
     <Latitude>99</Latitude>
-    <DronesInCharging>0</DronesInCharging>
+    <DronesInCharging>1</DronesInCharging>
   </Station>
   <Station>
     <Id>9</Id>
