@@ -11,7 +11,7 @@ namespace BO
     public class Parcel
     {
         DalApi.IDal DalObj;
-        public Parcel(DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
+        public Parcel( DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
         {
             DalObj = dalOB;
             parcelId++;
@@ -23,7 +23,7 @@ namespace BO
             DeliveredBL = delivered;
             RequestedBL = requested == null? DateTime.Now : requested;
             int droneId = id != -1 ? dalOB.returnParcelArray().ToList().First(parcel => parcel.Id == id).DroneId : id;
-            DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
+            DroneIdBL = droneId != -1 ? new DroneInParcel(ConvertToBL.ConvertToDroneBL( dalOB.returnDroneArray().First(drone => drone.Id == droneId))) : null;
             DO.Customer customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender);
             Sender = customer.isActive ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery(customer.Id, customer.Name,false);
             customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget);

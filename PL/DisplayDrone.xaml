@@ -104,7 +104,7 @@
                     <TextBlock Text="{Binding ElementName=batteryStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="59,54,0,0" />
                     <Expander Expanded="expanderHasExpanded" Collapsed="expanderHasClose" Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-86,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="2">
                         <ScrollViewer>
-                            <ListView ItemsSource="{Binding Path=Delivery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="parcelInDrone" MouseDoubleClick="showParcel"/>
+                            <ListView DataContext="{Binding Path=Delivery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="parcelInDrone" MouseDoubleClick="showParcel"/>
                         </ScrollViewer>
                     </Expander>
                 </Grid>

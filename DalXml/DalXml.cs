@@ -54,22 +54,22 @@ namespace Dal
         {
             DataSource.Initialize();
 
-            if (!File.Exists(dir + customerFilePath))
+            //if (!File.Exists(dir + customerFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Customer>(DataSource.MyCustomers, dir + customerFilePath);
             
-            if (!File.Exists(dir + dronesInChargeFilePath))
+            //if (!File.Exists(dir + dronesInChargeFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<DroneCharge>(DataSource.MyDroneCharges, dir + dronesInChargeFilePath);
             
-            if (!File.Exists(dir + stationFilePath))
+            //if (!File.Exists(dir + stationFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Station>(DataSource.MyBaseStations, dir + stationFilePath);
 
-            if (!File.Exists(dir + droneFilePath))
+           // if (!File.Exists(dir + droneFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Drone>(DataSource.MyDrones, dir + droneFilePath);
 
-            if (!File.Exists(dir + parcelFilePath))
+            //if (!File.Exists(dir + parcelFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Parcel>(DataSource.MyParcels, dir + parcelFilePath);
             
-            if (!File.Exists(dir + employeeFilePath))
+            //if (!File.Exists(dir + employeeFilePath))
                 DL.XMLTools.SaveListToXMLSerializer<Employee>(DataSource.MyEmployees, dir + employeeFilePath);
             
         }
