@@ -8,6 +8,7 @@ using DO;
 using DalApi;
 using System.IO;
 using static DalFacade.DalApi.Exeptions.Exceptions;
+using System.Xml.Linq;
 
 namespace Dal
 {
@@ -16,8 +17,6 @@ namespace Dal
         internal static DalXml instance = null;
         private static readonly object padLock = new object();
 
-       // static readonly IDal instance = new DalXml();
-        //public static IDal Instance { get => instance; }
         static string dir = @"..\..\..\..\xml\";
         static DalXml()
         {
@@ -55,28 +54,14 @@ namespace Dal
         {
             DataSource.Initialize();
 
-            //if (!File.Exists(dir + customerFilePath))
-                DL.XMLTools.SaveListToXMLSerializer<Customer>(DataSource.MyCustomers, dir + customerFilePath);
-            
-            //if (!File.Exists(dir + dronesInChargeFilePath))
-                DL.XMLTools.SaveListToXMLSerializer<DroneCharge>(DataSource.MyDroneCharges, dir + dronesInChargeFilePath);
-            
-            //if (!File.Exists(dir + stationFilePath))
-                DL.XMLTools.SaveListToXMLSerializer<Station>(DataSource.MyBaseStations, dir + stationFilePath);
-
-           // if (!File.Exists(dir + droneFilePath))
-                DL.XMLTools.SaveListToXMLSerializer<Drone>(DataSource.MyDrones, dir + droneFilePath);
-
-            //if (!File.Exists(dir + parcelFilePath))
-                DL.XMLTools.SaveListToXMLSerializer<Parcel>(DataSource.MyParcels, dir + parcelFilePath);
-            
-            //if (!File.Exists(dir + employeeFilePath))
-                DL.XMLTools.SaveListToXMLSerializer<Employee>(DataSource.MyEmployees, dir + employeeFilePath);
-            
+            DL.XMLTools.SaveListToXMLSerializer<Customer>(DataSource.MyCustomers, dir + customerFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<DroneCharge>(DataSource.MyDroneCharges, dir + dronesInChargeFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Station>(DataSource.MyBaseStations, dir + stationFilePath);
+           //DL.XMLTools.SaveListToXMLSerializer<Drone>(DataSource.MyDrones, dir + droneFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Parcel>(DataSource.MyParcels, dir + parcelFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Employee>(DataSource.MyEmployees, dir + employeeFilePath);
+            DL.XMLTools.SaveDronesWithXElement(DataSource.MyDrones, dir + droneFilePath);
         }
-
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStationDAL(Station DALS)
         {
             List<Station> stations = DL.XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + stationFilePath).ToList();
@@ -92,13 +77,18 @@ namespace Dal
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddDroneDAL(Drone DALD)
         {
-            List<Drone> drones = DL.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + droneFilePath).ToList();
+            List<Drone> drones = DL.XMLTools.LoadListWithXElement(dir+droneFilePath).ToList();
+            if (drones.Any(drone => drone.Id == DALD.Id)) { throw new ObjectExistsInListException("Drone"); }
+            drones.Add(DALD);
+            DL.XMLTools.SaveDronesWithXElement(drones, dir + droneFilePath);
+
+            /*List<Drone> drones = DL.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + droneFilePath).ToList();
             if (drones.Any(drone => drone.Id == DALD.Id))
             {
                 throw new ObjectExistsInListException("Drone");
             }
             drones.Add(DALD);
-            DL.XMLTools.SaveListToXMLSerializer<Drone>(drones, dir + droneFilePath);
+            DL.XMLTools.SaveListToXMLSerializer<Drone>(drones, dir + droneFilePath);*/
         }
 
 
@@ -113,7 +103,6 @@ namespace Dal
             customers.Add(DALC);
             DL.XMLTools.SaveListToXMLSerializer<Customer>(customers, dir + customerFilePath);
         }
-
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddParcelDAL(Parcel DALP)
@@ -142,7 +131,7 @@ namespace Dal
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Drone returnDrone(int DroneIdS)
         {
-            IEnumerable<Drone> drones = DL.XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + droneFilePath);
+            IEnumerable<Drone> drones = DL.XMLTools.LoadListWithXElement(dir + droneFilePath);
             return drones.ToList().First(drone => drone.Id == DroneIdS);
         }
 
@@ -197,7 +186,7 @@ namespace Dal
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Drone> returnDroneArray()
         {
-            IEnumerable<Drone> droneList = DL.XMLTools.LoadListFromXMLSerializer<Drone>(dir + droneFilePath);
+            IEnumerable<Drone> droneList = DL.XMLTools.LoadListWithXElement(dir + droneFilePath);
             foreach (Drone element in droneList) { yield return element; }
         }
 
@@ -237,14 +226,14 @@ namespace Dal
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReplaceDroneById(Drone DALD)
         {
-            List<Drone> droneList = DL.XMLTools.LoadListFromXMLSerializer<Drone>(dir + droneFilePath).ToList();
+            List<Drone> droneList = DL.XMLTools.LoadListWithXElement(dir + droneFilePath).ToList();
             if (!droneList.Any(t => t.Id == DALD.Id))
             {
                 throw new Exception("DL: cuxtomer with the same id not found...");
                 //throw new SomeException("DL: cuxtomer with the same id not found...");
             }
             droneList[droneList.ToList().IndexOf(droneList.First(p => p.Id == DALD.Id))] = DALD;
-            DL.XMLTools.SaveListToXMLSerializer<Drone>(droneList, dir + droneFilePath);
+            DL.XMLTools.SaveDronesWithXElement(droneList, dir + droneFilePath);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]

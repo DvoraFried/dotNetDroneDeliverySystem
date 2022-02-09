@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,21 +54,38 @@ namespace Dal
                 throw new Exception();
             }
             #endregion
-
-            public static XElement LoadData(string filePath)
+            #region SaveLoadWithLinqToXml
+            public static void SaveDronesWithXElement(IEnumerable<Drone> list, string filePath)
             {
-                try
-                {
-                    return XElement.Load(filePath);
-                }
-                catch
-                {
-                    Console.WriteLine("File upload problem");
-                    return null;
-                }
+                XElement root = new XElement("drones", 
+                    from e in list select createDroneElement(e));
+                root.Save(filePath);
             }
+            public static XElement createDroneElement(Drone e)
+            {
+                return new XElement("drone",
+                        new XElement("Id", e.Id),
+                        new XElement("isActive", e.isActive),
+                        new XElement("Battery", e.Battery), 
+                        new XElement("MaxWeight", e.MaxWeight), 
+                        new XElement("Model", e.Model)
+                    );
+            }
+            public static IEnumerable<Drone> LoadListWithXElement(string filePath)
+            {
+               if (File.Exists(filePath))
+                   return (from e in XElement.Load(filePath).Elements() 
+                           select new Drone() {
+                               Battery = Convert.ToDouble(e.Element("Battery").Value),
+                               Id = Convert.ToInt32(e.Element("Id").Value),
+                               isActive = Convert.ToBoolean(e.Element("isActive").Value), 
+                               MaxWeight = (WeightCategories)Enum.Parse(typeof(WeightCategories), e.Element("MaxWeight").Value),
+                               Model = e.Element("Model").Value
+                           });
+               throw new Exception(); // - not exist
+            }
+            #endregion
         }
-
 
     }
 
