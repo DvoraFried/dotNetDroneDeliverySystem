@@ -10,8 +10,9 @@ namespace BO
 {
     public class ParcelByTransfer
     {
-        public ParcelByTransfer(DalApi.IDal dalOB, Parcel parcel)
+        public ParcelByTransfer(DalApi.IDal dalOB, int parcelId)
         {
+            Parcel parcel =ConvertToBL.ConvertToParcelBL(dalOB.returnParcel(parcelId));
             Id = parcel.IdBL;
             IsDelivery = parcel.PickUpBL != null;
             Priority = parcel.Priority;
