@@ -55,17 +55,12 @@ namespace BL
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
 
-            public static List<BO.Parcel> ConvertToParcelArrayBL(List<DO.Parcel> parcelsDal)
+            public static IEnumerable<BO.Parcel> ConvertToParcelArrayBL(IEnumerable<DO.Parcel> parcelsDal)
             {
                 lock (DalObj)
                 {
-                    List<BO.Parcel> parcelsBl = new List<BO.Parcel>();
-
-                    foreach (DO.Parcel parcelDal in parcelsDal)
-                    {
-                        parcelsBl.Add(ConvertToBL.ConvertToParcelBL(parcelDal));
-                    }
-                    return parcelsBl;
+                    return (IEnumerable<BO.Parcel>)(from parcel in parcelsDal
+                                                    select new { Parcel = ConvertToBL.ConvertToParcelBL(parcel) });
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
