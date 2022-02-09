@@ -162,12 +162,12 @@ namespace PL
         {
             Drone updateDrone = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
-             {
+            {
                  BL.StartSimulation(
-                     BL,
-                     droneBO.getIdBL(),
-                     (droneBO,i) => { updateDrone = droneBO; worker.ReportProgress(i); },
-                     () => worker.CancellationPending);
+                   BL,
+                   droneBO.getIdBL(),
+                   (droneBO,i) => { updateDrone = droneBO; worker.ReportProgress(i); },
+                   () => worker.CancellationPending);
              };
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
