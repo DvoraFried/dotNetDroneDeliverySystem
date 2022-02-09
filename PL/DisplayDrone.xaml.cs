@@ -32,12 +32,10 @@ namespace PL
             Bl = bl;
             InitializeComponent();
             DataContext = dronePO;
-            //parcelInDrone.Items.Add(dronePO.Delivery == null ? "No Parcel in Drone" : dronePO.Delivery);
             light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
             medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
             heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
-            //batteryStatus.Value = drone.BatteryStatus;
             UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = Visibility.Visible;
             ADD_BUTTON.Visibility = statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
         }
@@ -48,11 +46,11 @@ namespace PL
         }
         private void showParcel(object sender, RoutedEventArgs e)
         {
-            BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
-            if (parcel != null)
+            //BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
+            if (dronePO.Delivery.Id != 0)
             {
                 this.Close();
-                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(dronePO.Delivery.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

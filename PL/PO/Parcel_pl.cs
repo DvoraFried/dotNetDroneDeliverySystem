@@ -34,7 +34,7 @@ namespace PO
                 }*/
 
         public static readonly DependencyProperty idPProperty =
-        DependencyProperty.Register("Id",
+        DependencyProperty.Register("IdParcel",
                      typeof(object),
                      typeof(Drone_pl),
                      new UIPropertyMetadata(0));
@@ -45,7 +45,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty WeightPProperty =
-        DependencyProperty.Register("Weight",
+        DependencyProperty.Register("WeightParcel",
                      typeof(object),
                      typeof(Drone_pl),
                      new UIPropertyMetadata(0));
@@ -56,7 +56,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty PriorityPProperty =
-        DependencyProperty.Register("Priority",
+        DependencyProperty.Register("PriorityParcel",
                    typeof(object),
                    typeof(Drone_pl),
                    new UIPropertyMetadata(0));
@@ -67,7 +67,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty RequestedPProperty =
-        DependencyProperty.Register("Priority",
+        DependencyProperty.Register("RequestedParcel",
                 typeof(object),
                 typeof(Drone_pl),
                 new UIPropertyMetadata(0));
@@ -78,7 +78,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty ScheduledPProperty =
-        DependencyProperty.Register("Scheduled",
+        DependencyProperty.Register("ScheduledParcel",
               typeof(object),
               typeof(Drone_pl),
               new UIPropertyMetadata(0));
@@ -89,7 +89,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty PickUpPProperty =
-        DependencyProperty.Register("PickUp",
+        DependencyProperty.Register("PickUpParcel",
               typeof(object),
               typeof(Drone_pl),
               new UIPropertyMetadata(0));
@@ -100,7 +100,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty DeliveredPProperty =
-        DependencyProperty.Register("Delivered",
+        DependencyProperty.Register("DeliveredParcel",
               typeof(object),
               typeof(Drone_pl),
               new UIPropertyMetadata(0));

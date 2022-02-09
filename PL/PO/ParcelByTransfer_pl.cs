@@ -35,7 +35,7 @@ namespace PO
                 return "no parcel in drone";
             }
             string status = IsDelivery ? "On the way to the destination" : "Awaiting collection";
-            return $"--------------\nID: {Id}\nStatus: {status}\nPriority: {Priority}\nWeight: {Weight}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}\n--------------";
+            return $"--------------\nID: {Id}\nStatus: {status}\nPriority: {Priority}\nWeight: {Weight}\n*** Sender *** \n{Sender.ToString()}\n*** Target *** \n{Target.ToString()}\nCollection Location: {CollectionLocation}\nTarget Location: {DeliveryDestinationLocation}\nDistance: {Distance}\n--------------";
         }
         public int Id { get; set; }
         WeightCategories Weight { get; set; }
