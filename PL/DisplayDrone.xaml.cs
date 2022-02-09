@@ -135,15 +135,6 @@ namespace PL
             catch (OverflowException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-
-        private void expanderHasExpanded(object sender, RoutedEventArgs args)
-        {
-            parcelInDrone.Background = Brushes.DimGray;
-        }
-        private void expanderHasClose(object sender, RoutedEventArgs args)
-        {
-            parcelInDrone.Background = null;
-        }
         
         private void light_Checked(object sender, RoutedEventArgs e)
         {
