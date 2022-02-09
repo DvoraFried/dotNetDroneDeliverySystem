@@ -15,18 +15,21 @@ namespace BL
         IBL BL;
         public Simulation(IBL BL,int droneID,Action<Drone,int> dronedroneSimulation, Func<bool> needToStop)
         {
+            int DELAY = 1000;
+            double SPEED = 100;
             Drone drone = DronesListBL.First(d => d.getIdBL() == droneID);
             this.BL = BL;
             while (!needToStop())
             {
                switch (drone.DroneStatus)
-                {
+               {
                     case BO.Enum.DroneStatusesBL.empty:
                         try {
                             BL.AssigningPackageToDrone(droneID);
                         }
                         catch {
                             try {
+                                if(drone.BatteryStatus != 100)
                                 BL.SendDroneToCharge(droneID);
                             }
                             catch
@@ -46,6 +49,7 @@ namespace BL
                             BL.CollectionOfAParcelByDrone(droneID); 
                         break;
                }
+               Thread.Sleep(DELAY);
                 //here we need to add the logic of the drone and threadsleep(delay) after every step
             }
         }

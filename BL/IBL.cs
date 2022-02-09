@@ -41,6 +41,7 @@ namespace BlApi
         public IEnumerable<Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
         public IEnumerable<Drone> ReturnDronesByStatusOrder();
         public IEnumerable<ParcelToList> ReturnParcelList();
+        public BO.Parcel returnParcel(int id);
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
         public IEnumerable<CustomerToList> ReturnCustomerList();
         //public Customer ReturnCustomer(int id);
