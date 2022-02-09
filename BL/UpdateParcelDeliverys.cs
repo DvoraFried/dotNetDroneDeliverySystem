@@ -91,7 +91,7 @@ namespace BL
         {
             if(!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
             BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
-            if(drone.DroneStatus != DroneStatusesBL.Shipping) { throw new NoDeliveryInTransferExcepyion(); }
+            if(drone.DroneStatus != DroneStatusesBL.Shipping) { throw new NoParcelFoundException(); }
             BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
             if(parcel.PickUpBL == null) { throw new ThePackageHasNotYetBeenCollectedException(); }
             parcel.DeliveredBL = DateTime.Now;

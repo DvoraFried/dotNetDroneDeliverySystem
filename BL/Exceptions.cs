@@ -37,11 +37,7 @@ namespace BO
         }
         public class NoParcelFoundException : Exception
         {
-            public NoParcelFoundException() : base(string.Format("there is no parcel to collect for this drone")) { }
-        }
-        public class NoDeliveryInTransferExcepyion : Exception
-        {
-            public NoDeliveryInTransferExcepyion() : base(string.Format("There is no delivery in transfer to this drone")) { }
+            public NoParcelFoundException() : base(string.Format("There is no delivery in transfer at this drone")) { }
         }
         public class NoSuitableParcelException : Exception
         {
