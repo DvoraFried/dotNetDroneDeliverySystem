@@ -1,52 +1,52 @@
-<?xml version="1.0"?>
-<ArrayOfDrone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Drone>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<drones>
+  <drone>
     <Id>1</Id>
+    <isActive>false</isActive>
+    <Battery>0</Battery>
+    <MaxWeight>heavy</MaxWeight>
     <Model>Model1</Model>
-    <MaxWeight>light</MaxWeight>
-    <Battery>71</Battery>
-    <isActive>false</isActive>
-  </Drone>
-  <Drone>
+  </drone>
+  <drone>
     <Id>2</Id>
+    <isActive>false</isActive>
+    <Battery>60</Battery>
+    <MaxWeight>medium</MaxWeight>
     <Model>Model2</Model>
-    <MaxWeight>medium</MaxWeight>
-    <Battery>75</Battery>
-    <isActive>false</isActive>
-  </Drone>
-  <Drone>
+  </drone>
+  <drone>
     <Id>3</Id>
+    <isActive>false</isActive>
+    <Battery>83</Battery>
+    <MaxWeight>heavy</MaxWeight>
     <Model>Model3</Model>
-    <MaxWeight>light</MaxWeight>
-    <Battery>82</Battery>
-    <isActive>false</isActive>
-  </Drone>
-  <Drone>
+  </drone>
+  <drone>
     <Id>4</Id>
+    <isActive>false</isActive>
+    <Battery>83</Battery>
+    <MaxWeight>light</MaxWeight>
     <Model>Model4</Model>
-    <MaxWeight>heavy</MaxWeight>
-    <Battery>69</Battery>
-    <isActive>false</isActive>
-  </Drone>
-  <Drone>
+  </drone>
+  <drone>
     <Id>5</Id>
+    <isActive>false</isActive>
+    <Battery>95</Battery>
+    <MaxWeight>heavy</MaxWeight>
     <Model>Model5</Model>
-    <MaxWeight>medium</MaxWeight>
-    <Battery>66</Battery>
-    <isActive>false</isActive>
-  </Drone>
-  <Drone>
+  </drone>
+  <drone>
     <Id>6</Id>
+    <isActive>false</isActive>
+    <Battery>89</Battery>
+    <MaxWeight>light</MaxWeight>
     <Model>Model6</Model>
-    <MaxWeight>heavy</MaxWeight>
-    <Battery>87</Battery>
-    <isActive>false</isActive>
-  </Drone>
-  <Drone>
+  </drone>
+  <drone>
     <Id>7</Id>
-    <Model>Model7</Model>
-    <MaxWeight>heavy</MaxWeight>
-    <Battery>76</Battery>
     <isActive>false</isActive>
-  </Drone>
-</ArrayOfDrone>
+    <Battery>76</Battery>
+    <MaxWeight>medium</MaxWeight>
+    <Model>Model7</Model>
+  </drone>
+</drones>
