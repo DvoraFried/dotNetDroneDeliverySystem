@@ -1,4 +1,5 @@
-﻿using DO;
+﻿using System.Runtime.CompilerServices;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace BO
 {
     public class ConvertToDal
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static DO.Station ConvertToStationDal(Station stationBl)
         {
             DO.Station stationDal = new DO.Station();
@@ -19,6 +21,8 @@ namespace BO
             stationDal.Latitude = stationBl.Position.Latitude;
             return stationDal;           
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static DO.Drone ConvertToDroneDal(Drone droneBl)
         {
             DO.Drone droneDal = new DO.Drone();
@@ -27,6 +31,8 @@ namespace BO
             droneDal.MaxWeight = (WeightCategories)(int)droneBl.MaxWeight;
             return droneDal;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static DO.Customer ConvertToCustomerDal(Customer customerBl)
         {
             DO.Customer customerDal = new DO.Customer();
@@ -38,6 +44,8 @@ namespace BO
             customerDal.isActive = customerBl.isActive;
             return customerDal;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static DO.Parcel ConvertToParcelDal(Parcel parcelBl)
         {
             DO.Parcel parcelDal = new DO.Parcel();
@@ -55,6 +63,7 @@ namespace BO
             return parcelDal;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static DO.DroneCharge ConvertToDroneChargeDal(DroneInCharge droneBl,int stationIdS)
         {
             DO.DroneCharge droneChargeDal = new DO.DroneCharge();

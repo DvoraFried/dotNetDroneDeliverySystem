@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using System.Runtime.CompilerServices;
+using BO;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
             List<BO.Drone> droneUpdateList = new List<BO.Drone>();
@@ -27,10 +30,16 @@ namespace BL
             return DronesListBL;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Customer ReturnCustomer(int id)
         {
-            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(id));
+            lock (DalObj)
+            {
+                return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(id));
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<BO.Drone> ReturnDronesByStatusOrder()
         {
             IEnumerable<BO.Drone> dList = DronesListBL.OrderBy(d => d.DroneStatus);
@@ -39,12 +48,19 @@ namespace BL
                 yield return element;
             }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<ParcelToList> ReturnParcelList()
         {
-            return (from P in DalObj.returnParcelArray()
-                    where P.isActive
-                    select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P))).ToList();
+            lock (DalObj)
+            {
+                return (from P in DalObj.returnParcelArray()
+                        where P.isActive
+                        select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P))).ToList();
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
         {
             IEnumerable<ParcelToList> pList = ReturnParcelList().OrderBy(s => s.SenderId);
@@ -54,17 +70,29 @@ namespace BL
                 yield return element;
             }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<CustomerToList> ReturnCustomerList()
         {
-            return (from C in DalObj.returnCustomerArray()
-                    where C.isActive
-                    select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C))).ToList();
+            lock (DalObj)
+            {
+                return (from C in DalObj.returnCustomerArray()
+                        where C.isActive
+                        select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C))).ToList();
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<StationToList> ReturnStationList()
         {
-            return (from S in DalObj.returnStationArray()
-                    select new StationToList(ConvertToBL.ConvertToStationBL(S))).ToList();
+            lock (DalObj)
+            {
+                return (from S in DalObj.returnStationArray()
+                        select new StationToList(ConvertToBL.ConvertToStationBL(S))).ToList();
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots()
         {
             IEnumerable<StationToList> sList = ReturnStationList().OrderBy(s => s.AvailableChargingStations);
@@ -74,49 +102,86 @@ namespace BL
                 yield return element;
             }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public EmpolyeeBL returnEmployee(int idE)
         {
             return ConvertToBL.convertToEmployee(idE);
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Customer convertCustomerToCustomerBl(int customerID)
         {
-            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
+            lock (DalObj)
+            {
+                return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Station convertStationToStationBl(int stationID)
         {
-            return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationID));
+            lock (DalObj)
+            {
+                return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationID));
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Parcel convertParcelToParcelBl(int parcelID)
         {
-            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelID));
+            lock (DalObj)
+            {
+                return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelID));
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BO.Drone convertDroneInChargeBLToDroneBl(DroneInCharge chargeBL)
         {
-            return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+            lock (DalObj)
+            {
+                return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public bool userIsCustomer(string name, int id)
         {
-            if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
+            lock (DalObj)
             {
-                return true;
+                if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public bool userIsEmployee(string name,int id)
         {
-            if (DalObj.returnEmployeeArray().Any(c => c.Id == id&&c.Name==name&& !c.Manager))
+            lock (DalObj)
             {
-                return true;
+                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && !c.Manager))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public bool userIsManager(string name, int id)
         {
-            if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name&&c.Manager))
+            lock (DalObj)
             {
-                return true;
+                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && c.Manager))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
     }
 }
