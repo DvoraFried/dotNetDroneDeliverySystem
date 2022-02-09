@@ -46,11 +46,11 @@ namespace PL
         }
         private void showParcel(object sender, RoutedEventArgs e)
         {
-            BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
-            if (parcel != null)
+            //BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
+            if (dronePO.Delivery.Id != 0)
             {
                 this.Close();
-                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(dronePO.Delivery.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
