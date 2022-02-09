@@ -11,9 +11,12 @@ namespace PO
     {
         public DroneInParcel_pl(DroneInParcel drone)
         {
-            Id = drone.Id;
-            BatteryStatus = drone.BatteryStatus;
-            CurrentPosition = new Position_pl(drone.CurrentPosition);
+            if (drone != null)
+            {
+                Id = drone.Id;
+                BatteryStatus = drone.BatteryStatus;
+                CurrentPosition = new Position_pl(drone.CurrentPosition);
+            }
         }
         public override string ToString()
         {
