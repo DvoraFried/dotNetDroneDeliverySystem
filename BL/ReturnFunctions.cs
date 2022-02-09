@@ -13,19 +13,24 @@ namespace BL
     {
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public List<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
+        public IEnumerable<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
-            List<BO.Drone> droneUpdateList = new List<BO.Drone>();
+            //List<BO.Drone> droneUpdateList = new List<BO.Drone>();
             if (droneStatus != -1)
             {
-                if(droneMaxWeight != -1)
-                return (from D in DronesListBL where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D).ToList();
-                else 
-                return (from D in DronesListBL where ((int)D.DroneStatus == droneStatus) select D).ToList();
+                if (droneMaxWeight != -1)
+                {
+                    return from D in DronesListBL where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D;
+                }
+                else
+                {
+                    return from D in DronesListBL where ((int)D.DroneStatus == droneStatus) select D;
+                }
             }
             else if (droneMaxWeight != -1)
             {
-                return (from D in DronesListBL where ((int)D.MaxWeight == droneMaxWeight) select D).ToList();
+                return  (from D in DronesListBL where ((int)D.MaxWeight == droneMaxWeight) select D);
+                
             }
             return DronesListBL;
         }
@@ -50,57 +55,52 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public List<ParcelToList> ReturnParcelList()
+        public IEnumerable<ParcelToList> ReturnParcelList()
         {
             lock (DalObj)
             {
                 return (from P in DalObj.returnParcelArray()
                         where P.isActive
-                        select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P))).ToList();
+                        select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P)));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
         {
-            IEnumerable<ParcelToList> pList = ReturnParcelList().OrderBy(s => s.SenderId);
-
-            foreach (ParcelToList element in pList)
-            {
-                yield return element;
-            }
+            return (
+                    ((IEnumerable<ParcelToList>)(from parcel in ReturnParcelList()
+                                                 group parcel by parcel.SenderId))
+            );
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public List<CustomerToList> ReturnCustomerList()
+        public IEnumerable<CustomerToList> ReturnCustomerList()
         {
             lock (DalObj)
             {
                 return (from C in DalObj.returnCustomerArray()
                         where C.isActive
-                        select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C))).ToList();
+                        select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C)));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public List<StationToList> ReturnStationList()
+        public IEnumerable<StationToList> ReturnStationList()
         {
             lock (DalObj)
             {
                 return (from S in DalObj.returnStationArray()
-                        select new StationToList(ConvertToBL.ConvertToStationBL(S))).ToList();
+                        select new StationToList(ConvertToBL.ConvertToStationBL(S)));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots()
         {
-            IEnumerable<StationToList> sList = ReturnStationList().OrderBy(s => s.AvailableChargingStations);
-            
-            foreach (StationToList element in sList)
-            {
-                yield return element;
-            }
+            return (from station in ReturnStationList()
+                    orderby station.AvailableChargingStations 
+                    select station);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]

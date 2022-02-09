@@ -34,8 +34,11 @@ namespace PL
             currentCustomer = customer;
             InitializeComponent();
             BLobj = bl;
-            List<ParcelToList> parcels = BLobj.ReturnParcelList();
-            parcelDisplay.ItemsSource = parcels.FindAll(parcel => parcel.SenderId == customer.getIdBL());
+            IEnumerable<ParcelToList> parcels = BLobj.ReturnParcelList();
+            parcelDisplay.ItemsSource = from parcel in parcels
+                                        where parcel.SenderId == customer.getIdBL()
+                                        select parcel;
+                //parcels.FindAll(parcel => parcel.SenderId == customer.getIdBL());
             groupBy.Visibility = clear.Visibility = Visibility.Hidden;
         }
         private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)
