@@ -8,14 +8,14 @@ namespace PO
 {
     class Station_pl
     {
-        public Station_pl(int id, string name, Position_pl p, int chargS, List<Drone_pl> drones)
+        public Station_pl(int id, string name, Position_pl p, int chargS, List<drone_pl> drones)
         {
             SetId(id);
             NameBL = name;
             Position = p;
             ChargeSlotsBL = chargS;
             DronesInCharging = new List<DroneInCharge_pl>();
-            foreach (Drone_pl drone in drones)
+            foreach (drone_pl drone in drones)
             {
                 if (drone.CurrentPosition.Longitude == p.Longitude && drone.CurrentPosition.Latitude == p.Latitude && drone.DroneStatus == Enum_pl.DroneStatuses.maintenance)
                 {

@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using static BO.Exceptions;
 using DO;
 using BO;
+using BlApi;
 
 namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        public event Action<BO.Drone, bool> droneSimulation;
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void RemoveCustomerById(int idCustomer)
@@ -52,6 +54,13 @@ namespace BL
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             }
+        }
+
+
+
+        public void StartSimulation(IBL BL, BO.Drone drone, Action<BO.Drone, int> droneSimulation, Func<bool> needToStop)
+        {
+            var simulator = new Simulation(BL, drone, droneSimulation, needToStop);
         }
     }
 }

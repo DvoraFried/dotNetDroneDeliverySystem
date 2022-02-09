@@ -15,7 +15,7 @@ namespace BL
     {
         Random rnd = new Random();
         public static List<BO.Drone> DronesListBL;
-        static DalApi.IDal DalObj;
+        internal static DalApi.IDal DalObj;
         static double nonWeightPowerConsumption;
         static double lightWeightPowerConsumption;
         static double mediumWeightPowerConsumption;

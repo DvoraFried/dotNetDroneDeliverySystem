@@ -8,7 +8,7 @@ namespace PO
 {
     public class DroneInCharge_pl
     {
-        public DroneInCharge_pl(Drone_pl drone)
+        public DroneInCharge_pl(drone_pl drone)
         {
             Id = drone.Id;
             BatteryStatus = drone.BatteryStatus;

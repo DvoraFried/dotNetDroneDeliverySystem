@@ -3,9 +3,11 @@ using PO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,13 +25,15 @@ namespace PL
     /// </summary>
     public partial class DisplayDrone : Window
     {
-        BlApi.IBL Bl;
-        Drone_pl dronePO;
+        BlApi.IBL BL;
+        drone_pl dronePO;
+        Drone droneBO;
         int maxWeight = 1;
-        public DisplayDrone(BlApi.IBL bl,Drone drone)
+        public DisplayDrone(BlApi.IBL BL,Drone drone)
         {
-            dronePO = new Drone_pl(bl,drone);
-            Bl = bl;
+            droneBO = drone;
+            dronePO = new drone_pl(BL,drone);
+            this.BL = BL;
             InitializeComponent();
             DataContext = dronePO;
             light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
@@ -41,7 +45,7 @@ namespace PL
         }
         public DisplayDrone(BlApi.IBL bl)
         {
-            Bl = bl;
+            BL = bl;
             InitializeComponent();
         }
         private void showParcel(object sender, RoutedEventArgs e)
@@ -50,7 +54,7 @@ namespace PL
             if (dronePO.Delivery.Id != 0)
             {
                 this.Close();
-                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(dronePO.Delivery.Id)).ShowDialog();
+                new DisplayParcel(BL, BL.convertParcelToParcelBl(dronePO.Delivery.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -68,7 +72,7 @@ namespace PL
             {
                 try
                 {
-                    Bl.AddDrone(int.Parse(IDTextBox.Text), ModelTextBox.Text, (BO.Enum.WeightCategoriesBL)maxWeight, int.Parse(StationIdTextBox.Text));
+                    BL.AddDrone(int.Parse(IDTextBox.Text), ModelTextBox.Text, (BO.Enum.WeightCategoriesBL)maxWeight, int.Parse(StationIdTextBox.Text));
                     this.Close();
                 }
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -78,14 +82,14 @@ namespace PL
         }
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
-            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
+            BL.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
 
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
+                BL.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -95,7 +99,7 @@ namespace PL
         {
             try
             {
-                Bl.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text));
+                BL.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -105,7 +109,7 @@ namespace PL
         {
             try
             {
-                Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
+                BL.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -116,7 +120,7 @@ namespace PL
         {
             try
             {
-                Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+                BL.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -127,7 +131,7 @@ namespace PL
         {
             try
             {
-                Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
+                BL.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -152,6 +156,22 @@ namespace PL
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        BackgroundWorker worker = new BackgroundWorker();
+        private void simulationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Drone updateDrone = null;
+            worker.DoWork += (object? sender, DoWorkEventArgs e) =>
+             {
+                 BL.StartSimulation(
+                     BL,
+                     droneBO,
+                     (droneBO,i) => { updateDrone = droneBO; worker.ReportProgress(i); },
+                     () => worker.CancellationPending);
+             };
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.RunWorkerAsync();
         }
     }
 }

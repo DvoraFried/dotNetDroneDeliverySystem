@@ -54,9 +54,7 @@ namespace BL
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
-                BO.Parcel parcelBL = new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority,parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered, parcelDal.DroneId);
-                return parcelBL;
-            }
+
             public static List<BO.Parcel> ConvertToParcelArrayBL(List<DO.Parcel> parcelsDal)
             {
                 lock (DalObj)

@@ -9,9 +9,9 @@ using System.Windows;
 
 namespace PO
 {
-    public class Drone_pl: DependencyObject
+    public class drone_pl: DependencyObject
     {
-        public Drone_pl(BlApi.IBL blObj,Drone droneBl) {
+        public drone_pl(BlApi.IBL blObj,Drone droneBl) {
             Id = droneBl.getIdBL();
             this.Model = droneBl.ModelBL;
             this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
@@ -21,7 +21,7 @@ namespace PO
             BatteryStatus = droneBl.BatteryStatus;
             blObj.ActionDroneChanged += UpdatePlDrone;
         }
-        public Drone_pl(BlApi.IBL blObj)
+        public drone_pl(BlApi.IBL blObj)
         {
             blObj.ActionDroneChanged += UpdatePlDrone;
         }
@@ -40,7 +40,7 @@ namespace PO
         public static readonly DependencyProperty idProperty =
         DependencyProperty.Register("Id",
                      typeof(object),
-                     typeof(Drone_pl),
+                     typeof(drone_pl),
                      new UIPropertyMetadata(0));
         public int Id
         {
@@ -51,7 +51,7 @@ namespace PO
         public static readonly DependencyProperty modelProperty =
         DependencyProperty.Register("Model",
                typeof(object),
-               typeof(Drone_pl),
+               typeof(drone_pl),
                new UIPropertyMetadata(0));
         public string Model
         {
@@ -62,7 +62,7 @@ namespace PO
         public static readonly DependencyProperty DroneStatusProperty =
         DependencyProperty.Register("DroneStatus",
                typeof(object),
-               typeof(Drone_pl),
+               typeof(drone_pl),
                new UIPropertyMetadata(0));
         public Enum_pl.DroneStatuses DroneStatus
         {
@@ -73,7 +73,7 @@ namespace PO
         public static readonly DependencyProperty DeliveryProperty =
         DependencyProperty.Register("Delivery",
                typeof(object),
-               typeof(Drone_pl),
+               typeof(drone_pl),
                new UIPropertyMetadata(0));
         public ParcelByTransfer_pl Delivery
         {
@@ -84,7 +84,7 @@ namespace PO
         public static readonly DependencyProperty BatteryStatusProperty =
         DependencyProperty.Register("BatteryStatus",
             typeof(object),
-            typeof(Drone_pl),
+            typeof(drone_pl),
             new UIPropertyMetadata(0));
         public double BatteryStatus
         {

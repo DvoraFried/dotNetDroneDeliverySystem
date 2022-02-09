@@ -36,7 +36,7 @@ namespace PO
         public static readonly DependencyProperty idPProperty =
         DependencyProperty.Register("IdParcel",
                      typeof(object),
-                     typeof(Drone_pl),
+                     typeof(drone_pl),
                      new UIPropertyMetadata(0));
         private int Id
         {
@@ -47,7 +47,7 @@ namespace PO
         public static readonly DependencyProperty WeightPProperty =
         DependencyProperty.Register("WeightParcel",
                      typeof(object),
-                     typeof(Drone_pl),
+                     typeof(drone_pl),
                      new UIPropertyMetadata(0));
         private WeightCategories Weight
         {
@@ -58,7 +58,7 @@ namespace PO
         public static readonly DependencyProperty PriorityPProperty =
         DependencyProperty.Register("PriorityParcel",
                    typeof(object),
-                   typeof(Drone_pl),
+                   typeof(drone_pl),
                    new UIPropertyMetadata(0));
         private Priorities Priority
         {
@@ -69,7 +69,7 @@ namespace PO
         public static readonly DependencyProperty RequestedPProperty =
         DependencyProperty.Register("RequestedParcel",
                 typeof(object),
-                typeof(Drone_pl),
+                typeof(drone_pl),
                 new UIPropertyMetadata(0));
         private DateTime? Requested
         {
@@ -80,7 +80,7 @@ namespace PO
         public static readonly DependencyProperty ScheduledPProperty =
         DependencyProperty.Register("ScheduledParcel",
               typeof(object),
-              typeof(Drone_pl),
+              typeof(drone_pl),
               new UIPropertyMetadata(0));
         private DateTime? Scheduled
         {
@@ -91,7 +91,7 @@ namespace PO
         public static readonly DependencyProperty PickUpPProperty =
         DependencyProperty.Register("PickUpParcel",
               typeof(object),
-              typeof(Drone_pl),
+              typeof(drone_pl),
               new UIPropertyMetadata(0));
         private DateTime? PickUp
         {
@@ -102,7 +102,7 @@ namespace PO
         public static readonly DependencyProperty DeliveredPProperty =
         DependencyProperty.Register("DeliveredParcel",
               typeof(object),
-              typeof(Drone_pl),
+              typeof(drone_pl),
               new UIPropertyMetadata(0));
         private DateTime? Delivered
         {
