@@ -11,17 +11,13 @@ namespace BO
        {
             public UnValidIdException(int id,string type):base(string.Format($"the{id} is not valid to this {type}")){}
         }
-        public class UnValidLongitudeException : Exception
+        public class UnValidPositionException : Exception
         {
-            public UnValidLongitudeException(double lnd) : base(string.Format($"the longitude {lnd} is not valide")) { }
-        }
-        public class UnValidLatitudeException : Exception
-        {
-            public UnValidLatitudeException(double ltd) :base(string.Format($"the Latitude {ltd} is not valide")) { }
+            public UnValidPositionException(double value, string type ) : base(string.Format($"the {type} {value} is not valide")) { }
         }
         public class ObjectExistsInListException : Exception
         {
-            public ObjectExistsInListException(string type) : base(string.Format($"the {type} is alreadt exists in the {type}list")) { }
+            public ObjectExistsInListException(string type) : base(string.Format($"the {type} is alreadt exists in the {type}'s list")) { }
         }
         public class ObjectDoesntExistsInListException : Exception
         {
@@ -63,7 +59,6 @@ namespace BO
         {
             public TheDroneHasAlreadyPickedUpTheParcel() : base(string.Format("The drone has already picked up the parcel")) { }
         }
-        
         public class ThereAreParcelForTheCustomer : Exception
         {
             public ThereAreParcelForTheCustomer(int idParcel) : base(string.Format($"The parcel {idParcel} was assaighned to this Customer")) { }
