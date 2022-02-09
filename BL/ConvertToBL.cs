@@ -26,6 +26,11 @@ namespace BL
                 BO.Customer customerBL = new BO.Customer(DalObj,customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()), customerDal.isActive);
                 return customerBL;
             }
+            public static BO.Drone ConvertToDroneBL(DO.Drone droneDal)
+            {
+                BO.Drone droneBl = new BO.Drone(DalObj, droneDal.Id, droneDal.Model, (BO.Enum.WeightCategoriesBL)(int)droneDal.MaxWeight, 0, null, 0, droneDal.isActive);
+                return droneBl;
+            }
             public static BO.Parcel ConvertToParcelBL(DO.Parcel parcelDal)
             {
                 BO.Parcel parcelBL = new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority,parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered);

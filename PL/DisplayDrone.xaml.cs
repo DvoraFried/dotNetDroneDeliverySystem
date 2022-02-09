@@ -32,7 +32,7 @@ namespace PL
             Bl = bl;
             InitializeComponent();
             DataContext = dronePO;
-            parcelInDrone.Items.Add(drone.delivery == null ? "No Parcel in Drone" : dronePO.Delivery);
+            parcelInDrone.Items.Add(dronePO.Delivery == null ? "No Parcel in Drone" : dronePO.Delivery);
             light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
             medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
             heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
