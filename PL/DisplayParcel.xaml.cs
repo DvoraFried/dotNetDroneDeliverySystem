@@ -31,6 +31,7 @@ namespace PL
         {
             parcelPO = new Parcel_pl(bl,parcel);
             Bl = bl;
+            DataContext = parcelPO;
             InitializeComponent();
             ADD_BUTTON.Visibility = PRIORITYlabel.Visibility = weightLabel.Visibility = senderIdlbel.Visibility = targetIdLabel.Visibility = priorityCheckBox.Visibility = WeightCheckBox.Visibility = IDSenderTextBox.Visibility = TargetIDTextBox.Visibility = Visibility.Hidden;
             displayParcel.Visibility = DELETE_BUTTON.Visibility = Visibility.Visible;
@@ -39,9 +40,9 @@ namespace PL
             //IDSenderTextBox.IsEnabled = TargetIDTextBox.IsEnabled = false;
             ParcelInDroneTextBox.Text = parcel.DroneIdBL != null ? parcel.DroneIdBL.ToString() : "non drone assign yet";
             //RequestedTimeTextBox.Text = parcel.RequestedBL.ToString();
-            AssignToDroneTimeTextBox.Text = parcel.ScheduledBL != null ? parcel.ScheduledBL.ToString() : "deos not assign yet";
-            PickupTimeTextBox.Text = parcel.PickUpBL != null ? parcel.PickUpBL.ToString() : "deos not pickUp yet";
-            DeliveredTimeTextBox.Text = parcel.DeliveredBL != null ? parcel.DeliveredBL.ToString() : "deos not delivered yet";
+            //AssignToDroneTimeTextBox.Text = parcel.ScheduledBL != null ? parcel.ScheduledBL.ToString() : "deos not assign yet";
+            //PickupTimeTextBox.Text = parcel.PickUpBL != null ? parcel.PickUpBL.ToString() : "deos not pickUp yet";
+            //DeliveredTimeTextBox.Text = parcel.DeliveredBL != null ? parcel.DeliveredBL.ToString() : "deos not delivered yet";
             //PriorityTextBox.Text = parcel.Priority.ToString();
             //WeightTextBox.Text = parcel.Weight.ToString();
             currentParcel = parcel;
