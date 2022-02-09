@@ -102,7 +102,7 @@ namespace BL
             }
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static double updateButteryStatus(BO.Drone drone, Position position, int weight)
+        internal static double updateButteryStatus(BO.Drone drone, Position position, int weight)
         {
             double distance = CalculateDistance(drone.CurrentPosition, position);
             double lessPower = drone.DroneStatus == BO.Enum.DroneStatusesBL.empty ? distance * nonWeightPowerConsumption :
@@ -116,7 +116,7 @@ namespace BL
             return (drone.BatteryStatus - lessPower);
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static Position findClosestStation(Position current)
+        internal static Position findClosestStation(Position current)
         {
             Position stationPos = null, closeP = current;
             double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DalObj.returnStationArray().ToList()[0].Longitude, DalObj.returnStationArray().ToList()[0].Latitude));
@@ -132,7 +132,7 @@ namespace BL
             return stationPos;
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static String getFormattedLocationInDegree(double latitude, double longitude)
+        internal static String getFormattedLocationInDegree(double latitude, double longitude)
         {
             try
             {

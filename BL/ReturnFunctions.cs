@@ -68,10 +68,9 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
         {
-            return (
-                    ((IEnumerable<ParcelToList>)(from parcel in ReturnParcelList()
-                                                 group parcel by parcel.SenderId))
-            );
+            return from parcel in ReturnParcelList()
+                   orderby parcel.SenderId
+                   select parcel;        
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]

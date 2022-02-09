@@ -10,7 +10,7 @@ namespace BO
     public class Customer
     {
         DalApi.IDal dalOB;
-        public Customer(DalApi.IDal dalOBG,int id, string name, string phone, Position p, List<Parcel>parcels, bool active = true)
+        public Customer(DalApi.IDal dalOBG,int id, string name, string phone, Position p, IEnumerable<Parcel>parcels, bool active = true)
         {
             dalOB = dalOBG;
             setIdBL(id);

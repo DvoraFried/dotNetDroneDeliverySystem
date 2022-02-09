@@ -16,15 +16,19 @@ namespace BlApi
         public void AddDrone(int id, string model, BO.Enum.WeightCategoriesBL weight, int stationId);
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude);
         public void AddParcel(int idSender, int idTarget, BO.Enum.WeightCategoriesBL weight, BO.Enum.PrioritiesBL priority);
+
         public void UpDateDroneName(int id, string newModelName);
         public void UpDateStationData(int id, string name = null, int chargeslots = -1);
         public void UpDateCustomerData(int id, string name = null, string newPhone = null);
+
         public void SendDroneToCharge(int id);
         public void ReleaseDroneFromCharging(int id);
         public void AssigningPackageToDrone(int idD);
         public void CollectionOfAParcelByDrone(int idD);
         public void DeliveryOfAParcelByDrone(int idD);
+
         public void DeleteParcel(Parcel parcel);
+        Parcel returnParcel(int id);
         public void RemoveCustomerById(int idCustomer);
 
 
@@ -45,7 +49,6 @@ namespace BlApi
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
         public IEnumerable<CustomerToList> ReturnCustomerList();
         //public Customer ReturnCustomer(int id);
-
         public IEnumerable<StationToList> ReturnStationList();
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots();
         public EmpolyeeBL returnEmployee(int idE);

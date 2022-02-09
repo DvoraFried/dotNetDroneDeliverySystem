@@ -13,13 +13,15 @@ using static BO.Exceptions;
 
 namespace BL
 {
+   
     partial class BL : BlApi.IBL
     {
+        #region ADD FUNCTIONS
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
         {
             lock (DalObj)
             {
-                if (DalObj.returnStationArray().ToList().Any(s => s.Id == id)) { throw new ObjectExistsInListException("Station"); };
+                if (DalObj.returnStationArray().Any(s => s.Id == id)) { throw new ObjectExistsInListException("Station"); };
                 BO.Station station = new BO.Station(id, name, new Position(longitude, latitude), chargeSlots, DronesListBL);
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
@@ -28,8 +30,8 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (DalObj.returnDroneArray().ToList().Any(d => d.Id == id)) { throw new ObjectExistsInListException("drone"); };
-                if (!DalObj.returnStationArray().ToList().Any(s => s.Id == stationId)) { throw new ObjectDoesntExistsInListException("station"); };
+                if (DalObj.returnDroneArray().Any(d => d.Id == id)) { throw new ObjectExistsInListException("drone"); };
+                if (!DalObj.returnStationArray().Any(s => s.Id == stationId)) { throw new ObjectDoesntExistsInListException("station"); };
                 DO.Station s = DalObj.returnStationArray().ToList().Find(d => d.Id == stationId);
                 s.DronesInCharging += 1;
                 s.EmptyChargeSlots -= 1;
@@ -43,7 +45,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                BO.Customer customer = customer = new BO.Customer(DalObj, id, name, phone, new Position(longitude, latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
+                BO.Customer customer = customer = new BO.Customer(DalObj, id, name, phone, new Position(longitude, latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray()));
                 if (DalObj.returnCustomerArray().Any(c => c.Id == id))
                 {
                     if (DalObj.returnCustomer(id).isActive) { throw new ObjectExistsInListException("customer"); }
@@ -65,5 +67,6 @@ namespace BL
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
             }
         }
+        #endregion
     }
 }
