@@ -13,23 +13,20 @@ namespace BL
         public List<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
             List<BO.Drone> droneUpdateList = new List<BO.Drone>();
-            if (droneStatus != -1 && droneMaxWeight != -1)
+            if (droneStatus != -1)
             {
-                foreach (BO.Drone element in DronesListBL) { if ((int)element.DroneStatus == droneStatus && (int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
-            }
-            else if (droneStatus != -1)
-            {
-                foreach (BO.Drone element in DronesListBL) { if ((int)element.DroneStatus == droneStatus) { droneUpdateList.Add(element); } }
+                if(droneMaxWeight != -1)
+                return (from D in DronesListBL where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D).ToList();
+                else 
+                return (from D in DronesListBL where ((int)D.DroneStatus == droneStatus) select D).ToList();
             }
             else if (droneMaxWeight != -1)
             {
-                foreach (BO.Drone element in DronesListBL) { if ((int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
+                return (from D in DronesListBL where ((int)D.MaxWeight == droneMaxWeight) select D).ToList();
             }
-            else {
-                return DronesListBL;
-            }
-            return droneUpdateList;
+            return DronesListBL;
         }
+
         public BO.Customer ReturnCustomer(int id)
         {
             return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(id));
@@ -44,15 +41,9 @@ namespace BL
         }
         public List<ParcelToList> ReturnParcelList()
         {
-            List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
-            foreach (DO.Parcel parcel in DalObj.returnParcelArray().ToList())
-            {
-                if (parcel.isActive)
-                {
-                    parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
-                }
-            }
-            return parcelsUpdateList;
+            return (from P in DalObj.returnParcelArray()
+                    where P.isActive
+                    select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P))).ToList();
         }
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
         {
@@ -65,24 +56,14 @@ namespace BL
         }
         public List<CustomerToList> ReturnCustomerList()
         {
-            List<CustomerToList> customersToReturn = new List<CustomerToList>();
-            foreach (DO.Customer customer in DalObj.returnCustomerArray())
-            {
-                if (customer.isActive)
-                {
-                    customersToReturn.Add(new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(customer)));
-                }
-            }
-            return customersToReturn;
+            return (from C in DalObj.returnCustomerArray()
+                    where C.isActive
+                    select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C))).ToList();
         }
         public List<StationToList> ReturnStationList()
         {
-            List<StationToList> stationsToReturn = new List<StationToList>();
-            foreach (DO.Station station in DalObj.returnStationArray())
-            {
-                stationsToReturn.Add(new StationToList(ConvertToBL.ConvertToStationBL(station)));
-            }
-            return stationsToReturn;
+            return (from S in DalObj.returnStationArray()
+                    select new StationToList(ConvertToBL.ConvertToStationBL(S))).ToList();
         }
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots()
         {
