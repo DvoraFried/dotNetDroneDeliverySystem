@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,21 +53,41 @@ namespace Dal
                 throw new Exception();
             }
             #endregion
-
-            public static XElement LoadData(string filePath)
+            #region SaveLoadWithLinqToXml
+            public static void SaveParcelsWithXElement<T>(IEnumerable<Parcel> list, string filePath)
             {
-                try
-                {
-                    return XElement.Load(filePath);
-                }
-                catch
-                {
-                    Console.WriteLine("File upload problem");
-                    return null;
-                }
+                XElement root = new XElement("parcels", 
+                    from e in list select createParcelElement(e));
+                root.Save(filePath);
             }
+            public static void SaveParcelsWithXElement<T>(XElement root, string filePath)
+            {
+                root.Save(filePath);
+            }
+            public static XElement createParcelElement(Parcel e)
+            {
+                return new XElement("parcel",
+                        new XElement("Id", e.Id),
+                        new XElement("SenderId", e.SenderId),
+                        new XElement("TargetId", e.TargetId),
+                        new XElement("isActive", e.isActive),
+                        new XElement("Requested", e.Requested),
+                        new XElement("Scheduled", e.Scheduled),
+                        new XElement("PickUp", e.PickUp),
+                        new XElement("Delivered", e.Delivered),
+                        new XElement("Priority", e.Priority),
+                        new XElement("Weight", e.Weight),
+                        new XElement("DroneId", e.DroneId)
+                    );
+            }
+            public static XElement LoadListWithXElement<T>(string filePath)
+            {
+               if (File.Exists(filePath))
+                   return XElement.Load(filePath);
+               throw new Exception(); // - not exist
+            }
+            #endregion
         }
-
 
     }
 

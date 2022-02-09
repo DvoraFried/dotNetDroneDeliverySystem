@@ -58,32 +58,6 @@ namespace Dal
         //=====================================================================
         //                     2. class update - update functions 
         //=====================================================================
-        /*        public void Scheduled(int parcelIdS)
-                {
-                    Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-                    Drone setD = DataSource.MyDrones.First(drone => drone.MaxWeight >= upP.Weight);
-                    upP.DroneId = setD.Id;
-                    upP.Scheduled = DateTime.Now;
-                    DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
-                }*/
-
-        /* public void PickUp(int parcelIdS)
-         {
-             Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-             upP.PickUp = DateTime.Now;
-             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
-         }*/
-
-        /*public void Delivered(int parcelIdS)
-        {
-            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-            upP.Delivered = DateTime.Now;
-            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
-        }*/
-        /* public void Charge(DroneCharge DALDC)
-         {
-             DataSource.MyDroneCharges.Add(DALDC);
-         }*/
         public void Charge(DroneCharge DALDC)
         {
 
