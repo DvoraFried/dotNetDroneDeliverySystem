@@ -28,7 +28,6 @@ namespace BlApi
         public void DeliveryOfAParcelByDrone(int idD);
 
         public void DeleteParcel(Parcel parcel);
-        Parcel returnParcel(int id);
         public void RemoveCustomerById(int idCustomer);
 
 
@@ -45,7 +44,6 @@ namespace BlApi
         public IEnumerable<Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
         public IEnumerable<Drone> ReturnDronesByStatusOrder();
         public IEnumerable<ParcelToList> ReturnParcelList();
-        public BO.Parcel returnParcel(int id);
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
         public IEnumerable<CustomerToList> ReturnCustomerList();
         //public Customer ReturnCustomer(int id);
@@ -56,7 +54,7 @@ namespace BlApi
         public Customer convertCustomerToCustomerBl(int customerID);
         public Station convertStationToStationBl(int stationID);
         public Drone convertDroneInChargeBLToDroneBl(DroneInCharge chargeBL);
-        public Parcel convertParcelToParcelBl(int parcelID);
+        public Parcel returnParcel(int parcelID);
 
         public bool userIsCustomer(string name, int id);
         public bool userIsEmployee(string name, int id);

@@ -44,7 +44,7 @@ namespace PL
             if (parcel != null)
             {
                 this.Close();
-                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(Bl, Bl.returnParcel(parcel.Id)).ShowDialog();
             }
         }
         public DisplayCustomer(BlApi.IBL bl)

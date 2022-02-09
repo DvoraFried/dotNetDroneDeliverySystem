@@ -54,7 +54,7 @@ namespace PL
             if (dronePO.Delivery.Id != 0)
             {
                 this.Close();
-                new DisplayParcel(BL, BL.convertParcelToParcelBl(dronePO.Delivery.Id)).ShowDialog();
+                new DisplayParcel(BL, BL.returnParcel(dronePO.Delivery.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

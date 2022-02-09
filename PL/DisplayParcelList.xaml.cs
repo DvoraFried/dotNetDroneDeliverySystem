@@ -56,7 +56,7 @@ namespace PL
             if (parcel != null)
             {
                 this.Close();
-                new DisplayParcel(BLobj, BLobj.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(BLobj, BLobj.returnParcel(parcel.Id)).ShowDialog();
             }
         }
         private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)

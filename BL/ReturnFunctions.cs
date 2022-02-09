@@ -127,7 +127,7 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public BO.Parcel convertParcelToParcelBl(int parcelID)
+        public BO.Parcel returnParcel(int parcelID)
         {
             lock (DalObj)
             {
@@ -181,11 +181,6 @@ namespace BL
                 }
                 return false;
             }
-        }
-
-        public BO.Parcel returnParcel(int id)
-        {
-            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(id));
         }
     }
 }
