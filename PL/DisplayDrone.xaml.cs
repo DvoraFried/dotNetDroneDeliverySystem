@@ -32,12 +32,10 @@ namespace PL
             Bl = bl;
             InitializeComponent();
             DataContext = dronePO;
-            //parcelInDrone.Items.Add(dronePO.Delivery == null ? "No Parcel in Drone" : dronePO.Delivery);
             light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
             medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
             heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
-            //batteryStatus.Value = drone.BatteryStatus;
             UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = Visibility.Visible;
             ADD_BUTTON.Visibility = statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
         }
