@@ -183,5 +183,10 @@ namespace BL
                 return false;
             }
         }
+
+        public BO.Parcel returnParcel(int id)
+        {
+            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(id));
+        }
     }
 }

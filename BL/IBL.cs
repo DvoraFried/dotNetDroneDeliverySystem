@@ -11,7 +11,7 @@ namespace BlApi
     {
         public Action<Drone> ActionDroneChanged { get; set; }
         public event Action<Drone, bool> droneSimulation;
-        public void StartSimulation(IBL BL,Drone drone, Action<Drone, int> droneSimulation, Func<bool> needToStop);
+        public void StartSimulation(IBL BL,int droneID, Action<Drone, int> droneSimulation, Func<bool> needToStop);
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots);
         public void AddDrone(int id, string model, BO.Enum.WeightCategoriesBL weight, int stationId);
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude);
@@ -42,6 +42,7 @@ namespace BlApi
         public List<Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
         public IEnumerable<Drone> ReturnDronesByStatusOrder();
         public List<ParcelToList> ReturnParcelList();
+        public BO.Parcel returnParcel(int id);
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
         public List<CustomerToList> ReturnCustomerList();
         //public Customer ReturnCustomer(int id);
