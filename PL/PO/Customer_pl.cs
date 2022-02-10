@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,35 +11,82 @@ namespace PO
     class Customer_pl: DependencyObject
 
     {
-        DalApi.IDal dalOB;
-/*        public Customer(DalApi.IDal dalOBG, int id, string name, string phone, Position p, List<Parcel> parcels, bool active = true)
+        BlApi.IBL dalOB;
+        public Customer_pl(BlApi.IBL blObj, Customer customerBl)
         {
-            dalOB = dalOBG;
-            setIdBL(id);
-            NameBL = name;
-            PhoneBL = phone;
-            Position = p;
-            isActive = active;
-            ImTheSender = new List<DeliveryAtCustomer>();
-            ImTheTarget = new List<DeliveryAtCustomer>();
-            foreach (Parcel parcel in parcels)
-            {
-                if (parcel.Sender.Id == id) { ImTheSender.Add(new DeliveryAtCustomer(dalOB, parcel, id)); }
-                if (parcel.Target.Id == id) { ImTheTarget.Add(new DeliveryAtCustomer(dalOB, parcel, id)); }
-            }
-        }*/
-
-        private int IdBL;
-        public void setIdBL(int idC)
-        {
-            IdBL = idC;
+            dalOB = blObj;
+            id = customerBl.getIdBL();
+            name = customerBl.NameBL;
+            phone = customerBl.PhoneBL;
+            position = new Position_pl(customerBl.Position);
+            ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
+            ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList(); ;
         }
-        public int getIdBL() { return IdBL; }
-        public string NameBL { get; set; }
-        public string PhoneBL { get; set; }
-        public Position_pl Position { get; set; }
-        public List<DeliveryAlCustomer_pl> ImTheSender { get; set; }
-        public List<DeliveryAlCustomer_pl> ImTheTarget { get; set; }
-        public bool isActive { get; set; }
+        
+        public static readonly DependencyProperty idProperty =
+        DependencyProperty.Register("Id",
+                     typeof(object),
+                     typeof(Customer_pl),
+                     new UIPropertyMetadata(0));
+        private int id
+        {
+            get { return (int)GetValue(idProperty); }
+            set { SetValue(idProperty, value); }
+        }
+
+        public static readonly DependencyProperty nameProperty =
+        DependencyProperty.Register("name",
+                     typeof(object),
+                     typeof(Customer_pl),
+                     new UIPropertyMetadata(0));
+        public string name
+        {
+            get { return (string)GetValue(nameProperty); }
+            set { SetValue(nameProperty, value); }
+        }
+
+        public static readonly DependencyProperty phoneProperty =
+        DependencyProperty.Register("phone",
+                     typeof(object),
+                     typeof(Customer_pl),
+                     new UIPropertyMetadata(0));
+        public string phone
+        {
+            get { return (string)GetValue(phoneProperty); }
+            set { SetValue(phoneProperty, value); }
+        }
+
+        public static readonly DependencyProperty PositionProperty =
+        DependencyProperty.Register("position",
+                     typeof(object),
+                     typeof(Customer_pl),
+                     new UIPropertyMetadata(0));
+        public Position_pl position
+        {
+            get { return (Position_pl)GetValue(PositionProperty); }
+            set { SetValue(PositionProperty, value); }
+        }
+
+        public static readonly DependencyProperty ImTheSenderProperty =
+        DependencyProperty.Register("ImTheSender",
+                  typeof(object),
+                  typeof(Customer_pl),
+                  new UIPropertyMetadata(0));
+        public List<DeliveryAlCustomer_pl> ImTheSender
+        {
+            get { return (List<DeliveryAlCustomer_pl>)GetValue(ImTheSenderProperty); }
+            set { SetValue(ImTheSenderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ImTheTargetProperty =
+        DependencyProperty.Register("ImTheTarget",
+                  typeof(object),
+                  typeof(Customer_pl),
+                  new UIPropertyMetadata(0));
+        public List<DeliveryAlCustomer_pl> ImTheTarget
+        {
+            get { return (List<DeliveryAlCustomer_pl>)GetValue(ImTheTargetProperty); }
+            set { SetValue(ImTheTargetProperty, value); }
+        }
     }
 }

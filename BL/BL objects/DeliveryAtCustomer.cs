@@ -28,9 +28,9 @@ namespace BO
             return $"----------------\nID: {Id}\nWeight: {Weight}\nPriotity: {Priority}\nStatus: {Status}\nAnother Customer in Parcel: {Customer.ToString()}\n----------------";
         }
         public int Id { get; set; }
-        WeightCategoriesBL Weight { get; set; }
-        PrioritiesBL Priority { get; set; }
-        DeliveryStatus Status { get; set; }     
-        CustomerOnDelivery Customer { get; set; }
+        public WeightCategoriesBL Weight { get; set; }
+        public PrioritiesBL Priority { get; set; }
+        public DeliveryStatus Status { get; set; }     
+        public CustomerOnDelivery Customer { get; set; }
     }
 }

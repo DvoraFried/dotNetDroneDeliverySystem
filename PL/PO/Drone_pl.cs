@@ -21,10 +21,6 @@ namespace PO
             BatteryStatus = droneBl.BatteryStatus;
             blObj.ActionDroneChanged += UpdatePlDrone;
         }
-        public drone_pl(BlApi.IBL blObj)
-        {
-            blObj.ActionDroneChanged += UpdatePlDrone;
-        }
 
         public void UpdatePlDrone(BO.Drone droneBl)
         {
@@ -81,7 +77,7 @@ namespace PO
             set { SetValue(DeliveryProperty, value); }
         }
 
-        public static readonly DependencyProperty BatteryStatusProperty =
+        private static readonly DependencyProperty BatteryStatusProperty =
         DependencyProperty.Register("BatteryStatus",
             typeof(object),
             typeof(drone_pl),
@@ -92,8 +88,27 @@ namespace PO
             set { SetValue(BatteryStatusProperty, value); }
         }
 
-        public Enum_pl.WeightCategories MaxWeight { get; set; }
-        public Position_pl CurrentPosition { get; set; }
+        public static readonly DependencyProperty MaxWeightProperty =
+        DependencyProperty.Register("MaxWeight",
+            typeof(object),
+            typeof(drone_pl),
+            new UIPropertyMetadata(0));
+        public Enum_pl.WeightCategories MaxWeight
+        {
+            get { return (Enum_pl.WeightCategories)GetValue(MaxWeightProperty); }
+            set { SetValue(MaxWeightProperty, value); }
+        }
+
+        private static readonly DependencyProperty CurrentPositionProperty =
+        DependencyProperty.Register("CurrentPosition",
+          typeof(object),
+          typeof(drone_pl),
+          new UIPropertyMetadata(0));
+        public Position_pl CurrentPosition
+        {
+            get { return (Position_pl)GetValue(CurrentPositionProperty); }
+            set { SetValue(CurrentPositionProperty, value); }
+        }
         
     }
 }

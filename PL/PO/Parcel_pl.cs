@@ -25,10 +25,6 @@ namespace PO
             Target = new CustomerOnDelivery_pl(parcelBL.Target);
             blObj.ActionParcelChanged += UpdatePlParcel;
         }
-        public Parcel_pl(BlApi.IBL blObj)
-        {
-            blObj.ActionParcelChanged += UpdatePlParcel;
-        }
         public void UpdatePlParcel(BO.Parcel parcelBL)
         {
             Id = parcelBL.GetParcelId();
@@ -130,8 +126,29 @@ namespace PO
             get { return (DroneInParcel_pl)GetValue(DroneInParcelProperty); }
             set { SetValue(DroneInParcelProperty, value); }
         }
-        private CustomerOnDelivery_pl Sender { get; set; }
-        private CustomerOnDelivery_pl Target { get; set; }
+
+        public static readonly DependencyProperty SenderProperty =
+        DependencyProperty.Register("Sender",
+          typeof(object),
+          typeof(Parcel_pl),
+          new UIPropertyMetadata(0));
+        private CustomerOnDelivery_pl Sender
+        {
+            get { return (CustomerOnDelivery_pl)GetValue(SenderProperty); }
+            set { SetValue(SenderProperty, value); }
+        }
+
+
+        public static readonly DependencyProperty TargetProperty =
+        DependencyProperty.Register("Target",
+       typeof(object),
+       typeof(Parcel_pl),
+       new UIPropertyMetadata(0));
+        private CustomerOnDelivery_pl Target
+        {
+            get { return (CustomerOnDelivery_pl)GetValue(TargetProperty); }
+            set { SetValue(TargetProperty, value); }
+        }
     }
 }
 
