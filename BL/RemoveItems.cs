@@ -47,16 +47,14 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void DeleteDrone(BO.Drone drone)
+       /* public void DeleteDrone(BO.Drone drone)
         {
             lock (DalObj)
             {
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
             }
-        }
-
-
+        }*/
 
         public void StartSimulation(IBL BL, int droneID, Action<BO.Drone, int> droneSimulation, Func<bool> needToStop)
         {

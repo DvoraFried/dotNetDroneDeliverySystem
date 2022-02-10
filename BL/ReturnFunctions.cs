@@ -11,40 +11,33 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
             //List<BO.Drone> droneUpdateList = new List<BO.Drone>();
-            if (droneStatus != -1)
-            {
-                if (droneMaxWeight != -1)
-                {
+            if (droneStatus != -1) {
+                if (droneMaxWeight != -1) {
                     return from D in DronesListBL where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D;
                 }
-                else
-                {
+                else {
                     return from D in DronesListBL where ((int)D.DroneStatus == droneStatus) select D;
                 }
             }
-            else if (droneMaxWeight != -1)
-            {
+            else if (droneMaxWeight != -1) {
                 return  (from D in DronesListBL where ((int)D.MaxWeight == droneMaxWeight) select D);
-                
             }
             return DronesListBL;
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public BO.Customer ReturnCustomer(int id)
+       /* public BO.Customer ReturnCustomer(int id)
         {
             lock (DalObj)
             {
                 return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(id));
             }
         }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        [MethodImpl(MethodImplOptions.Synchronized)]*/
         public IEnumerable<BO.Drone> ReturnDronesByStatusOrder()
         {
             IEnumerable<BO.Drone> dList = DronesListBL.OrderBy(d => d.DroneStatus);

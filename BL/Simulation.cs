@@ -13,7 +13,7 @@ namespace BL
     class Simulation
     {
         IBL BL;
-        public Simulation(IBL BL,int droneID,Action<Drone,int> dronedroneSimulation, Func<bool> needToStop)
+        internal Simulation(IBL BL,int droneID,Action<Drone,int> dronedroneSimulation, Func<bool> needToStop)
         {
             int DELAY = 500;
             double SPEED = 100;
