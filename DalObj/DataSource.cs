@@ -25,7 +25,7 @@ namespace Dal
             public static double carryHeavyWeight=0.0015;
             public static double DroneLoadingRate=43.3;
         }
-        public static void Initialize()
+        internal static void Initialize()
         {
             Random rnd = new Random();
             for (int i = 1; i < 11; i++)

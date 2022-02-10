@@ -72,17 +72,14 @@ namespace PL
             BO.Drone drone = (sender as ListView).SelectedValue as BO.Drone;
             if (drone != null)
             {
-                this.Close();
-                new DisplayDrone(Bl, drone).ShowDialog();
+                new DisplayDrone(Bl, drone).Show();
             }
         }
 
         private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
         {
             DisplayDrone addDrone = new DisplayDrone(Bl);
-            this.Close();
-            addDrone.ShowDialog();
-
+            addDrone.Show();
         }
 
         private void ButtonStatusSortFilter_Click(object sender, RoutedEventArgs e)

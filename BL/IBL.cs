@@ -11,21 +11,21 @@ namespace BlApi
     {
         public Action<Drone> ActionDroneChanged { get; set; }
         public event Action<Drone, bool> droneSimulation;
-        public void StartSimulation(IBL BL,int droneID, Action<Drone, int> droneSimulation, Func<bool> needToStop);
+        public void StartSimulation(IBL BL,int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots);
         public void AddDrone(int id, string model, BO.Enum.WeightCategoriesBL weight, int stationId);
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude);
         public void AddParcel(int idSender, int idTarget, BO.Enum.WeightCategoriesBL weight, BO.Enum.PrioritiesBL priority);
 
-        public void UpDateDroneName(int id, string newModelName);
+        public void UpDateDroneName(int id, string newModelName, bool simulation = false);
         public void UpDateStationData(int id, string name = null, int chargeslots = -1);
         public void UpDateCustomerData(int id, string name = null, string newPhone = null);
 
-        public void SendDroneToCharge(int id);
-        public void ReleaseDroneFromCharging(int id);
-        public void AssigningPackageToDrone(int idD);
-        public void CollectionOfAParcelByDrone(int idD);
-        public void DeliveryOfAParcelByDrone(int idD);
+        public void SendDroneToCharge(int id, bool simulation = false);
+        public void ReleaseDroneFromCharging(int id, bool simulation = false);
+        public void AssigningPackageToDrone(int idD, bool simulation = false);
+        public void CollectionOfAParcelByDrone(int idD, bool simulation = false);
+        public void DeliveryOfAParcelByDrone(int idD, bool simulation = false);
 
         public void DeleteParcel(Parcel parcel);
         public void RemoveCustomerById(int idCustomer);

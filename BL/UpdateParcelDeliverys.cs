@@ -63,7 +63,7 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void AssigningPackageToDrone(int idD)
+        public void AssigningPackageToDrone(int idD, bool simulation = false)
         {
             lock (DalObj)
             {
@@ -94,12 +94,13 @@ namespace BL
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(theclosetParcel));
                 DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+                if(!simulation)
                 ActionDroneChanged?.Invoke(drone);
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void CollectionOfAParcelByDrone(int idD)
+        public void CollectionOfAParcelByDrone(int idD, bool simulation = false)
         {
             lock (DalObj)
             {
@@ -116,12 +117,13 @@ namespace BL
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
                 DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+                if(!simulation)
                 ActionDroneChanged?.Invoke(drone);
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void DeliveryOfAParcelByDrone(int idD)
+        public void DeliveryOfAParcelByDrone(int idD, bool simulation = false)
         {
             lock (DalObj)
             {
@@ -139,24 +141,9 @@ namespace BL
                 drone_.delivery = null;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone_));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel_));
-                ActionDroneChanged?.Invoke(drone_);
+                if (!simulation)
+                    ActionDroneChanged?.Invoke(drone_);
             }
-
-            if(!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
-            BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
-            if(drone.DroneStatus != DroneStatusesBL.Shipping) { throw new NoParcelFoundException(); }
-            BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
-            if(parcel.PickUpBL == null) { throw new ThePackageHasNotYetBeenCollectedException(); }
-            parcel.DeliveredBL = DateTime.Now;
-            parcel.DroneIdBL = null;
-            Position targetPos = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id)).Position;
-            drone.BatteryStatus = updateButteryStatus(drone, targetPos, (int)parcel.Weight);
-            drone.CurrentPosition = targetPos;
-            drone.DroneStatus = DroneStatusesBL.empty;
-            drone.delivery = null;
-            DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-            DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
-            ActionDroneChanged?.Invoke(drone);
         }
     }
 }

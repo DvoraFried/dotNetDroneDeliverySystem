@@ -13,10 +13,10 @@ namespace BL
     class Simulation
     {
         IBL BL;
-        internal Simulation(IBL BL,int droneID,Action<Drone,int> dronedroneSimulation, Func<bool> needToStop)
+        public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Func<bool> needToStop)
         {
             int DELAY = 500;
-            double SPEED = 100;
+            double SPEED = 0.001;
             Drone drone = DronesListBL.First(d => d.getIdBL() == droneID);
             this.BL = BL;
             while (!needToStop())
@@ -25,12 +25,14 @@ namespace BL
                 {
                     case BO.Enum.DroneStatusesBL.empty:
                         try {
-                            BL.AssigningPackageToDrone(droneID);
+                            BL.AssigningPackageToDrone(droneID, true);
+                            drone = DronesListBL.First(d => d.getIdBL() == droneID);
                         }
                         catch {
                             try {
                                 if(drone.BatteryStatus != 100)
-                                BL.SendDroneToCharge(droneID);
+                                BL.SendDroneToCharge(droneID, true);
+                                drone = DronesListBL.First(d => d.getIdBL() == droneID);
                             }
                             catch
                             {
@@ -39,16 +41,23 @@ namespace BL
                         }
                         break;
                     case BO.Enum.DroneStatusesBL.maintenance:
-                        if(drone.BatteryStatus == 100) { BL.ReleaseDroneFromCharging(droneID); }
+                        while(drone.BatteryStatus <= 100) {
+                            drone.BatteryStatus += SPEED;
+                            dronedroneSimulation(drone);
+                        }
+                        BL.ReleaseDroneFromCharging(droneID, true);
+                        drone = DronesListBL.First(d => d.getIdBL() == droneID);
                         break;
                     case BO.Enum.DroneStatusesBL.Shipping:
                         Parcel parcelInDrone = BL.returnParcel(drone.delivery.Id);
                         if (parcelInDrone.PickUpBL != null)
-                            BL.DeliveryOfAParcelByDrone(droneID); 
+                            BL.DeliveryOfAParcelByDrone(droneID, true); 
                         else
-                            BL.CollectionOfAParcelByDrone(droneID); 
+                            BL.CollectionOfAParcelByDrone(droneID, true);
+                        drone = DronesListBL.First(d => d.getIdBL() == droneID);
                         break;
-                } 
+                }
+                dronedroneSimulation(drone);
                 Thread.Sleep(DELAY);
                 //here we need to add the logic of the drone and threadsleep(delay) after every step
             }

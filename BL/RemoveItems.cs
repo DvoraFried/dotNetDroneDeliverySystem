@@ -46,7 +46,7 @@ namespace BL
             }
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        //[MethodImpl(MethodImplOptions.Synchronized)]
        /* public void DeleteDrone(BO.Drone drone)
         {
             lock (DalObj)
@@ -56,7 +56,7 @@ namespace BL
             }
         }*/
 
-        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone, int> droneSimulation, Func<bool> needToStop)
+        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Func<bool> needToStop)
         {
             var simulator = new Simulation(BL, droneID, droneSimulation, needToStop);
         }

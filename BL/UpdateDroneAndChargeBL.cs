@@ -15,7 +15,7 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        public void SendDroneToCharge(int id)
+        public void SendDroneToCharge(int id, bool simulation = false)
         {
             lock (DalObj)
             {
@@ -51,10 +51,11 @@ namespace BL
                 station.DronesInCharging += 1;
                 station.EmptyChargeSlots -= 1;
                 DalObj.ReplaceStationById(station);
+                if(!simulation)
                 ActionDroneChanged?.Invoke(drone);
             }
         }
-        public void ReleaseDroneFromCharging(int id)
+        public void ReleaseDroneFromCharging(int id, bool simulation = false)
         {
             lock (DalObj)
             {
@@ -71,6 +72,7 @@ namespace BL
                 station.DronesInCharging -= 1;
                 station.EmptyChargeSlots += 1;
                 DalObj.ReplaceStationById(station);
+                if(!simulation)
                 ActionDroneChanged?.Invoke(drone);
             }
         }

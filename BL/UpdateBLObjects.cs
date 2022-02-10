@@ -16,7 +16,7 @@ namespace BL
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void UpDateDroneName(int id, string newModelName)
+        public void UpDateDroneName(int id, string newModelName, bool simulation = false)
         {
             if (!DronesListBL.Any(d => (d.getIdBL() == id)))      { throw new ObjectDoesntExistsInListException("drone"); }
             int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
@@ -26,6 +26,7 @@ namespace BL
             lock (DalObj)
             {
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
+                if(!simulation)
                 ActionDroneChanged?.Invoke(drone);
             }
         }

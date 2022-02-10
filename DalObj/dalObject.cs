@@ -13,7 +13,7 @@ namespace Dal
 
         internal static DalObject instance = null;
         private static readonly object padLock = new object();
-        DalObject() 
+        DalObject()
         {
             DataSource.Initialize();
         }
@@ -34,6 +34,7 @@ namespace Dal
                 return instance;
             }
         }
+
         static Random rnd = new Random();
 
         //=====================================================================
@@ -111,11 +112,11 @@ namespace Dal
             return DataSource.MyBaseStations.First(station => station.Id == StationIdS);
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public Drone returnDrone(int DroneIdS)
-        {
-            return DataSource.MyDrones.First(drone => drone.Id == DroneIdS);
-        }
+        /* [MethodImpl(MethodImplOptions.Synchronized)]
+         public Drone returnDrone(int DroneIdS)
+         {
+             return DataSource.MyDrones.First(drone => drone.Id == DroneIdS);
+         }*/
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer returnCustomer(int CustomerIdS)
@@ -186,22 +187,22 @@ namespace Dal
         //returns a list of not scheduled parcels
         //=====================================================================
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<Parcel> returnNotScheduledParcel()
-        {
-            //String.IsNullOrEmpty(element.DroneId.ToString())
-            foreach (Parcel element in DataSource.MyParcels) { if (element.DroneId == -1) yield return element; }
-        }
+        /* [MethodImpl(MethodImplOptions.Synchronized)]
+         public IEnumerable<Parcel> returnNotScheduledParcel()
+         {
+             //String.IsNullOrEmpty(element.DroneId.ToString())
+             foreach (Parcel element in DataSource.MyParcels) { if (element.DroneId == -1) yield return element; }
+         }*/
         //=====================================================================
         //returns a list of station with empty cherge slots
         //=====================================================================
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
+        /*[MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> returnStationWithChargeSlots()
         {
             foreach (Station element in DataSource.MyBaseStations) { if (element.EmptyChargeSlots > 0) yield return element; }
         }
-
+*/
         public double[] powerRequest()
         {
             double[] arr = new double[5];
@@ -240,20 +241,20 @@ namespace Dal
             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public void DeleteObjFromDroneCharges(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //[MethodImpl(MethodImplOptions.Synchronized)]
+        /* public void DeleteObjFromDroneCharges(int id)
+         {
+             throw new NotImplementedException();
+         }*/
         //=============================================
         //remove item frm list by ID
         //=============================================
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public void RemoveParcelById(Parcel DALP)
-        {
-            DataSource.MyParcels.RemoveAll(p => p.Id == DALP.Id);
-        }
-    }
+        /* [MethodImpl(MethodImplOptions.Synchronized)]
+         public void RemoveParcelById(Parcel DALP)
+         {
+             DataSource.MyParcels.RemoveAll(p => p.Id == DALP.Id);
+         }*/
+    } 
 
 }

@@ -36,15 +36,7 @@ namespace BL
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
-            /*public static BO.Drone ConvertToDroneBL(DO.Drone droneDal)
-            {
-                lock (DalObj)
-                {
-                    BO.Drone droneBl = new BO.Drone(DalObj, droneDal.Id, droneDal.Model, (BO.Enum.WeightCategoriesBL)(int)droneDal.MaxWeight, 0, null, 0, droneDal.isActive);
-                    return droneBl;
-                }
-            }*/
-            //[MethodImpl(MethodImplOptions.Synchronized)]
+ 
             internal static BO.Parcel ConvertToParcelBL(DO.Parcel parcelDal)
             {
                 lock (DalObj)

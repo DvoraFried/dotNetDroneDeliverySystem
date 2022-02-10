@@ -157,19 +157,25 @@ namespace PL
         {
             this.Close();
         }
-        BackgroundWorker worker = new BackgroundWorker();
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
+            BackgroundWorker worker = new BackgroundWorker();
             Drone updateDrone = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {
                  BL.StartSimulation(
                    BL,
                    droneBO.getIdBL(),
-                   (droneBO,i) => { updateDrone = droneBO; worker.ReportProgress(i); },
+                   (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0);},
                    () => worker.CancellationPending);
-             };
+            };
             worker.WorkerReportsProgress = true;
+            
+            worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
+            {
+                dronePO.UpdatePlDrone(updateDrone);
+            };
+
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
         }
