@@ -12,8 +12,9 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        //אולי טעות
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
+        public Action<BO.Parcel> ActionParcelChanged { get; set; }
+
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpDateDroneName(int id, string newModelName, bool simulation = false)

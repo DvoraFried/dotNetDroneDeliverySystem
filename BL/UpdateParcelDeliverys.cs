@@ -94,8 +94,11 @@ namespace BL
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(theclosetParcel));
                 DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
-                if(!simulation)
-                ActionDroneChanged?.Invoke(drone);
+                if (!simulation)
+                {
+                    ActionDroneChanged?.Invoke(drone);
+                    ActionParcelChanged?.Invoke(theclosetParcel);
+                }
             }
         }
 
@@ -117,8 +120,11 @@ namespace BL
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
                 DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
-                if(!simulation)
-                ActionDroneChanged?.Invoke(drone);
+                if (!simulation)
+                {
+                    ActionDroneChanged?.Invoke(drone);
+                    ActionParcelChanged?.Invoke(parcel);
+                }
             }
         }
 
@@ -142,7 +148,10 @@ namespace BL
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone_));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel_));
                 if (!simulation)
+                {
                     ActionDroneChanged?.Invoke(drone_);
+                    ActionParcelChanged?.Invoke(parcel_);
+                }
             }
         }
     }

@@ -23,17 +23,27 @@ namespace PO
             Delivered = parcelBL.DeliveredBL;
             Sender = new CustomerOnDelivery_pl(parcelBL.Sender);
             Target = new CustomerOnDelivery_pl(parcelBL.Target);
+            blObj.ActionParcelChanged += UpdatePlParcel;
         }
-        /*        public override string ToString()
-                {
-                    Console.WriteLine($"ID: {IdBL}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nWeight: {Weight}\nPriority: {Priority}\nRequested Time: {RequestedBL}");
-                    if (ScheduledBL != null) { Console.WriteLine($"Scheduled Time: {ScheduledBL}"); }
-                    if (PickUpBL != null) { Console.WriteLine($"PickUp Time: {PickUpBL}"); }
-                    if (DeliveredBL != null) { Console.WriteLine($"Delivered Time: {DeliveredBL}"); }
-                    return "";
-                }*/
+        public Parcel_pl(BlApi.IBL blObj)
+        {
+            blObj.ActionParcelChanged += UpdatePlParcel;
+        }
+        public void UpdatePlParcel(BO.Parcel parcelBL)
+        {
+            Id = parcelBL.GetParcelId();
+            Weight = (Enum_pl.WeightCategories)parcelBL.Weight;
+            Priority = (Enum_pl.Priorities)parcelBL.Priority;
+            DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
+            Requested = parcelBL.RequestedBL;
+            Scheduled = parcelBL.ScheduledBL;
+            PickUp = parcelBL.PickUpBL;
+            Delivered = parcelBL.DeliveredBL;
+            Sender = new CustomerOnDelivery_pl(parcelBL.Sender);
+            Target = new CustomerOnDelivery_pl(parcelBL.Target);
+        }
 
-        public static readonly DependencyProperty idPProperty =
+    public static readonly DependencyProperty idPProperty =
         DependencyProperty.Register("IdParcel",
                      typeof(object),
                      typeof(drone_pl),
@@ -47,7 +57,7 @@ namespace PO
         public static readonly DependencyProperty WeightPProperty =
         DependencyProperty.Register("WeightParcel",
                      typeof(object),
-                     typeof(drone_pl),
+                     typeof(Parcel_pl),
                      new UIPropertyMetadata(0));
         private WeightCategories Weight
         {
@@ -58,7 +68,7 @@ namespace PO
         public static readonly DependencyProperty PriorityPProperty =
         DependencyProperty.Register("PriorityParcel",
                    typeof(object),
-                   typeof(drone_pl),
+                   typeof(Parcel_pl),
                    new UIPropertyMetadata(0));
         private Priorities Priority
         {
@@ -69,7 +79,7 @@ namespace PO
         public static readonly DependencyProperty RequestedPProperty =
         DependencyProperty.Register("RequestedParcel",
                 typeof(object),
-                typeof(drone_pl),
+                typeof(Parcel_pl),
                 new UIPropertyMetadata(0));
         private DateTime? Requested
         {
@@ -80,7 +90,7 @@ namespace PO
         public static readonly DependencyProperty ScheduledPProperty =
         DependencyProperty.Register("ScheduledParcel",
               typeof(object),
-              typeof(drone_pl),
+              typeof(Parcel_pl),
               new UIPropertyMetadata(0));
         private DateTime? Scheduled
         {
@@ -91,7 +101,7 @@ namespace PO
         public static readonly DependencyProperty PickUpPProperty =
         DependencyProperty.Register("PickUpParcel",
               typeof(object),
-              typeof(drone_pl),
+              typeof(Parcel_pl),
               new UIPropertyMetadata(0));
         private DateTime? PickUp
         {
@@ -102,7 +112,7 @@ namespace PO
         public static readonly DependencyProperty DeliveredPProperty =
         DependencyProperty.Register("DeliveredParcel",
               typeof(object),
-              typeof(drone_pl),
+              typeof(Parcel_pl),
               new UIPropertyMetadata(0));
         private DateTime? Delivered
         {
@@ -110,7 +120,16 @@ namespace PO
             set { SetValue(DeliveredPProperty, value); }
         }
 
-        private DroneInParcel_pl DroneInParcel { get; set; }
+        public static readonly DependencyProperty DroneInParcelProperty =
+        DependencyProperty.Register("DroneInParcel",
+          typeof(object),
+          typeof(Parcel_pl),
+          new UIPropertyMetadata(0));
+        private DroneInParcel_pl DroneInParcel
+        {
+            get { return (DroneInParcel_pl)GetValue(DroneInParcelProperty); }
+            set { SetValue(DroneInParcelProperty, value); }
+        }
         private CustomerOnDelivery_pl Sender { get; set; }
         private CustomerOnDelivery_pl Target { get; set; }
     }

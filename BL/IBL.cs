@@ -9,11 +9,7 @@ namespace BlApi
 {
     public interface IBL
     {
-        public Action<Drone> ActionDroneChanged { get; set; }
-        public event Action<Drone, bool> droneSimulation;
-        public void StartSimulation(IBL BL,int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
-
-
+        
         #region STATION'S FUNCTIONS
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots);
         public void UpDateStationData(int id, string name = null, int chargeslots = -1);
@@ -60,6 +56,11 @@ namespace BlApi
         public Parcel returnParcel(int parcelID);
         #endregion
 
+        public Action<Parcel> ActionParcelChanged { get; set; }
+        public Action<Drone> ActionDroneChanged { get; set; }
+
+        public event Action<Drone, bool> droneSimulation;
+        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
 
         public EmpolyeeBL returnEmployee(int idE);
         public bool userIsCustomer(string name, int id);
