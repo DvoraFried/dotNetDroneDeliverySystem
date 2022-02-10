@@ -99,7 +99,6 @@ namespace BL
                     ActionDroneChanged?.Invoke(drone);
                     ActionParcelChanged?.Invoke(theclosetParcel);
                 }
-
             }
         }
 
@@ -135,23 +134,23 @@ namespace BL
             lock (DalObj)
             {
                 if (!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
-                BO.Drone drone_ = DronesListBL.First(drone => drone.getIdBL() == idD);
-                if (drone_.DroneStatus != DroneStatusesBL.Shipping) { throw new NoParcelFoundException(); }
-                BO.Parcel parcel_ = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone_.delivery.Id));
-                if (parcel_.PickUpBL == null) { throw new ThePackageHasNotYetBeenCollectedException(); }
-                parcel_.DeliveredBL = DateTime.Now;
-                parcel_.DroneIdBL = null;
-                Position targetPos_ = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel_.Target.Id)).Position;
-                drone_.BatteryStatus = updateButteryStatus(drone_, targetPos_, (int)parcel_.Weight);
-                drone_.CurrentPosition = targetPos_;
-                drone_.DroneStatus = DroneStatusesBL.empty;
-                drone_.delivery = null;
-                DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone_));
-                DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel_));
+                BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
+                if (drone.DroneStatus != DroneStatusesBL.Shipping) { throw new NoParcelFoundException(); }
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
+                if (parcel.PickUpBL == null) { throw new ThePackageHasNotYetBeenCollectedException(); }
+                parcel.DeliveredBL = DateTime.Now;
+                parcel.DroneIdBL = null;
+                Position targetPos_ = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id)).Position;
+                drone.BatteryStatus = updateButteryStatus(drone, targetPos_, (int)parcel.Weight);
+                drone.CurrentPosition = targetPos_;
+                drone.DroneStatus = DroneStatusesBL.empty;
+                drone.delivery = null;
+                DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
+                DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
                 if (!simulation)
                 {
-                    ActionDroneChanged?.Invoke(drone_);
-                    ActionParcelChanged?.Invoke(parcel_);
+                    ActionDroneChanged?.Invoke(drone);
+                    ActionParcelChanged?.Invoke(parcel);
                 }
             }
         }

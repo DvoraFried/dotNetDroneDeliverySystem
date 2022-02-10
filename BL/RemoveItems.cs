@@ -13,8 +13,6 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        public event Action<BO.Drone, bool> droneSimulation;
-
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void RemoveCustomerById(int idCustomer)
         {

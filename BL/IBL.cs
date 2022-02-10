@@ -59,7 +59,6 @@ namespace BlApi
         public Action<Parcel> ActionParcelChanged { get; set; }
         public Action<Drone> ActionDroneChanged { get; set; }
 
-        public event Action<Drone, bool> droneSimulation;
         public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
 
         public EmpolyeeBL returnEmployee(int idE);
