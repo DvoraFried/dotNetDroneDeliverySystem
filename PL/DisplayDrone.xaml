@@ -57,7 +57,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
-        <Button Cursor="Hand" Grid.Column="2"  Click="Button_Click_1" Margin="94,10,10,514">close</Button>
+        <Button Cursor="Hand" Grid.Column="2"  Click="Button_Click_1" Margin="80,10,10,514">close</Button>
         <Grid Grid.Column="1" Name="FormGrid" Background="#a8cacd" Margin="10,0,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*"/>
@@ -133,8 +133,9 @@
             </Grid>
 
         </Grid>
+        <Button Visibility="Hidden" Cursor="Hand" Name="DELETE_BUTTON" Content="DELETE DRONE" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="98" Click="DELETE_Button_Click" Grid.Column="2" Margin="80,135,0,0"/>
         <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="37" Margin="0,465,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click" Grid.Column="1"/>
-        <Button Content="simulation" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="94,88,0,0" VerticalAlignment="Top" Width="84" Click="simulationButton_Click" />
+        <Button Visibility="Hidden" Name="Simulation" Content="simulation" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="80,88,0,0" VerticalAlignment="Top" Width="98" Click="simulationButton_Click" />
 
     </Grid>
 </Window>

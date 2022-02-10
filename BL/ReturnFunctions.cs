@@ -14,36 +14,29 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
-            //List<BO.Drone> droneUpdateList = new List<BO.Drone>();
+            List<BO.Drone> drones = (from d in DronesListBL where d.isActive || d.delivery != null select d).ToList();
             if (droneStatus != -1) {
                 if (droneMaxWeight != -1) {
-                    return from D in DronesListBL where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D;
+                    return from D in drones where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D;
                 }
                 else {
-                    return from D in DronesListBL where ((int)D.DroneStatus == droneStatus) select D;
+                    return from D in drones where ((int)D.DroneStatus == droneStatus) select D;
                 }
             }
             else if (droneMaxWeight != -1) {
-                return  (from D in DronesListBL where ((int)D.MaxWeight == droneMaxWeight) select D);
+                return  (from D in drones where ((int)D.MaxWeight == droneMaxWeight) select D);
             }
-            return DronesListBL;
+            return drones;
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-       /* public BO.Customer ReturnCustomer(int id)
+        public IEnumerable<BO.Drone> ReturnDronesByStatusOrder()
         {
             lock (DalObj)
             {
-                return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(id));
-            }
-        }
-        [MethodImpl(MethodImplOptions.Synchronized)]*/
-        public IEnumerable<BO.Drone> ReturnDronesByStatusOrder()
-        {
-            IEnumerable<BO.Drone> dList = DronesListBL.OrderBy(d => d.DroneStatus);
-            foreach (BO.Drone element in dList)
-            {
-                yield return element;
+                return from d in DronesListBL.OrderBy(d => d.DroneStatus)
+                       where d.isActive || d.delivery != null
+                       select d;
             }
         }
 
@@ -59,6 +52,17 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<BO.Drone> ReturnDroneListWithoutDeletedDrones()
+        {
+            lock (DalObj)
+            {
+                return (from D in DronesListBL
+                        where D.isActive
+                        select D);
+            }
+        }
+
+            [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
         {
             return from parcel in ReturnParcelList()

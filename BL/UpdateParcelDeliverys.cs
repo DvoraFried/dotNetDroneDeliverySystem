@@ -67,7 +67,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
+                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
                 BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == idD));
                 if (drone.DroneStatus != DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }
                 List<DO.Parcel> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(), (int)drone.MaxWeight).ToList();

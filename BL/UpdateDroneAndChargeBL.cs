@@ -19,7 +19,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DronesListBL.Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
+                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.getIdBL() == id))) { throw new ObjectDoesntExistsInListException("drone"); }
                 int droneBLIndex = DronesListBL.IndexOf(DronesListBL.First(d => (d.getIdBL() == id)));
                 BO.Drone drone = DronesListBL[droneBLIndex];
                 if (drone.DroneStatus != DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }

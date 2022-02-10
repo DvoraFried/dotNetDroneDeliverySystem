@@ -44,15 +44,17 @@ namespace BL
             }
         }
 
-        //[MethodImpl(MethodImplOptions.Synchronized)]
-       /* public void DeleteDrone(BO.Drone drone)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void DeleteDrone(int id)
         {
             lock (DalObj)
             {
+                BO.Drone drone = DronesListBL.First(d => d.getIdBL() == id);
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
+                DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == id)] = drone;
             }
-        }*/
+        }
 
         public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Func<bool> needToStop)
         {

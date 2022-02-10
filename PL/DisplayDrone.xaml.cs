@@ -40,7 +40,7 @@ namespace PL
             medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
             heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
-            UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = Visibility.Visible;
+            UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = DELETE_BUTTON.Visibility = Simulation.Visibility = Visibility.Visible;
             ADD_BUTTON.Visibility = statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
         }
         public DisplayDrone(BlApi.IBL bl)
@@ -78,6 +78,12 @@ namespace PL
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
+
+        private void DELETE_Button_Click(object sender, RoutedEventArgs e)
+        {
+            BL.DeleteDrone(int.Parse(IDTextBox.Text));
+        }
+
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
             BL.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);

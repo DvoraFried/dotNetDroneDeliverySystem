@@ -23,6 +23,7 @@ namespace BlApi
         #region DRONE'S FUNCRIONS
         public void AddDrone(int id, string model, BO.Enum.WeightCategoriesBL weight, int stationId);
         public void UpDateDroneName(int id, string newModelName, bool simulation = false);
+        public void DeleteDrone(int id);
         public void SendDroneToCharge(int id, bool simulation = false);
         public void ReleaseDroneFromCharging(int id, bool simulation = false);
         public void AssigningPackageToDrone(int idD, bool simulation = false);
@@ -58,9 +59,7 @@ namespace BlApi
 
         public Action<Parcel> ActionParcelChanged { get; set; }
         public Action<Drone> ActionDroneChanged { get; set; }
-
         public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
-
         public EmpolyeeBL returnEmployee(int idE);
         public bool userIsCustomer(string name, int id);
         public bool userIsEmployee(string name, int id);
