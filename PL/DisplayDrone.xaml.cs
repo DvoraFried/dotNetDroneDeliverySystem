@@ -151,7 +151,7 @@ namespace PL
                    droneBO.getIdBL(),
                    (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0); },
                    () => worker.CancellationPending);
-             };
+            };
             worker.WorkerReportsProgress = true;
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
             {
