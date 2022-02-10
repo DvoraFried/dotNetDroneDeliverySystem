@@ -11,10 +11,10 @@ namespace BL
 {
     public partial class BL
     {
-        public class ConvertToBL
+        internal class ConvertToBL
         {
             [MethodImpl(MethodImplOptions.Synchronized)]
-            public static List<BO.Drone> ConvertToDroneArrayBL(List<DO.Drone> droneDalArray)
+            internal static List<BO.Drone> ConvertToDroneArrayBL(List<DO.Drone> droneDalArray)
             {
                 lock (DalObj)
                 {
@@ -27,7 +27,7 @@ namespace BL
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
-            public static BO.Customer ConvertToCustomrtBL(DO.Customer customerDal)
+            internal static BO.Customer ConvertToCustomrtBL(DO.Customer customerDal)
             {
                 lock (DalObj)
                 {
@@ -36,16 +36,16 @@ namespace BL
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
-            public static BO.Drone ConvertToDroneBL(DO.Drone droneDal)
+            /*public static BO.Drone ConvertToDroneBL(DO.Drone droneDal)
             {
                 lock (DalObj)
                 {
                     BO.Drone droneBl = new BO.Drone(DalObj, droneDal.Id, droneDal.Model, (BO.Enum.WeightCategoriesBL)(int)droneDal.MaxWeight, 0, null, 0, droneDal.isActive);
                     return droneBl;
                 }
-            }
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            public static BO.Parcel ConvertToParcelBL(DO.Parcel parcelDal)
+            }*/
+            //[MethodImpl(MethodImplOptions.Synchronized)]
+            internal static BO.Parcel ConvertToParcelBL(DO.Parcel parcelDal)
             {
                 lock (DalObj)
                 {
@@ -55,7 +55,7 @@ namespace BL
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
 
-            public static IEnumerable<BO.Parcel> ConvertToParcelArrayBL(IEnumerable<DO.Parcel> parcelsDal)
+            internal static IEnumerable<BO.Parcel> ConvertToParcelArrayBL(IEnumerable<DO.Parcel> parcelsDal)
             {
                 lock (DalObj)
                 {
@@ -64,13 +64,13 @@ namespace BL
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
-            public static BO.Station ConvertToStationBL(DO.Station stationDAL)
+            internal static BO.Station ConvertToStationBL(DO.Station stationDAL)
             {
                 BO.Station stationBL = new BO.Station(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);
                 return stationBL;
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
-            public static EmpolyeeBL convertToEmployee(int idE)
+            internal static EmpolyeeBL convertToEmployee(int idE)
             {
                 lock (DalObj)
                 {
@@ -79,7 +79,7 @@ namespace BL
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
-            public static DroneInCharge convertToDroneInChargeBL(DO.DroneCharge droneChargeDAL)
+            internal static DroneInCharge convertToDroneInChargeBL(DO.DroneCharge droneChargeDAL)
             {
                 return new DroneInCharge(droneChargeDAL.DroneId, droneChargeDAL.enterTime);
             }

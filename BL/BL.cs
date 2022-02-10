@@ -81,6 +81,7 @@ namespace BL
                 }
             }
         }
+
         internal static BL instance = null;
         private static readonly object padLock = new object();
 
