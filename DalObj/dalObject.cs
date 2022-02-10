@@ -39,7 +39,7 @@ namespace Dal
 
         //=====================================================================
         //                     1. class add - add function
-        //==========
+        //=====================================================================
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStationDAL(Station DALS)
@@ -68,32 +68,6 @@ namespace Dal
         //=====================================================================
         //                     2. class update - update functions 
         //=====================================================================
-        /*        public void Scheduled(int parcelIdS)
-                {
-                    Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-                    Drone setD = DataSource.MyDrones.First(drone => drone.MaxWeight >= upP.Weight);
-                    upP.DroneId = setD.Id;
-                    upP.Scheduled = DateTime.Now;
-                    DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
-                }*/
-
-        /* public void PickUp(int parcelIdS)
-         {
-             Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-             upP.PickUp = DateTime.Now;
-             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
-         }*/
-
-        /*public void Delivered(int parcelIdS)
-        {
-            Parcel upP = DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS);
-            upP.Delivered = DateTime.Now;
-            DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(parcel => parcel.Id == parcelIdS))] = upP;
-        }*/
-        /* public void Charge(DroneCharge DALDC)
-         {
-             DataSource.MyDroneCharges.Add(DALDC);
-         }*/
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void Charge(DroneCharge DALDC)
@@ -111,12 +85,6 @@ namespace Dal
         {
             return DataSource.MyBaseStations.First(station => station.Id == StationIdS);
         }
-
-        /* [MethodImpl(MethodImplOptions.Synchronized)]
-         public Drone returnDrone(int DroneIdS)
-         {
-             return DataSource.MyDrones.First(drone => drone.Id == DroneIdS);
-         }*/
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer returnCustomer(int CustomerIdS)
@@ -182,26 +150,6 @@ namespace Dal
         {
             foreach (Parcel element in DataSource.MyParcels) { if (element.isActive) { yield return element; } }
         }
-
-        //=====================================================================
-        //returns a list of not scheduled parcels
-        //=====================================================================
-
-        /* [MethodImpl(MethodImplOptions.Synchronized)]
-         public IEnumerable<Parcel> returnNotScheduledParcel()
-         {
-             //String.IsNullOrEmpty(element.DroneId.ToString())
-             foreach (Parcel element in DataSource.MyParcels) { if (element.DroneId == -1) yield return element; }
-         }*/
-        //=====================================================================
-        //returns a list of station with empty cherge slots
-        //=====================================================================
-
-        /*[MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<Station> returnStationWithChargeSlots()
-        {
-            foreach (Station element in DataSource.MyBaseStations) { if (element.EmptyChargeSlots > 0) yield return element; }
-        }
 */
         public double[] powerRequest()
         {
@@ -240,21 +188,6 @@ namespace Dal
         {
             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
         }
-
-        //[MethodImpl(MethodImplOptions.Synchronized)]
-        /* public void DeleteObjFromDroneCharges(int id)
-         {
-             throw new NotImplementedException();
-         }*/
-        //=============================================
-        //remove item frm list by ID
-        //=============================================
-
-        /* [MethodImpl(MethodImplOptions.Synchronized)]
-         public void RemoveParcelById(Parcel DALP)
-         {
-             DataSource.MyParcels.RemoveAll(p => p.Id == DALP.Id);
-         }*/
     } 
 
 }

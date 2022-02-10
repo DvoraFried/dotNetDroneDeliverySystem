@@ -116,13 +116,6 @@ namespace Dal
             return stations.ToList().First(station => station.Id == StationIdS);
         }
 
-        /*[MethodImpl(MethodImplOptions.Synchronized)]
-        public Drone returnDrone(int DroneIdS)
-        {
-            IEnumerable<Drone> drones = DL.XMLTools.LoadListWithXElement(dir + droneFilePath);
-            return drones.ToList().First(drone => drone.Id == DroneIdS);
-        }*/
-
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer returnCustomer(int CustomerIdS)
         {
@@ -249,26 +242,6 @@ namespace Dal
             parcelsList[parcelsList.ToList().IndexOf(parcelsList.First(p => p.Id == DALP.Id))] = DALP;
             DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcelsList, dir + parcelFilePath);
         }
-
-       /* [MethodImpl(MethodImplOptions.Synchronized)]
-        public void DeleteObjFromDroneCharges(int id)
-        {
-            throw new NotImplementedException();
-        }*/
-
-       /* [MethodImpl(MethodImplOptions.Synchronized)]
-        public void RemoveParcelById(Parcel DALP)
-        {
-            List<Parcel> parcelsList = DL.XMLTools.LoadListFromXMLSerializer<Parcel>(dir + parcelFilePath).ToList();
-            if (parcelsList.Any(t => t.Id == DALP.Id))
-            {
-                throw new Exception("DL: parcel with the same id not found...");
-                //throw new SomeException("DL: Student with the same id not found...");
-            }
-            Parcel parcel = parcelsList.First(t => t.Id == DALP.Id);
-            parcelsList.Remove(parcel);
-            DL.XMLTools.SaveListToXMLSerializer<Parcel>(parcelsList, dir + parcelFilePath);
-        }*/
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public DroneCharge returnDroneInCharge(int idDC)
