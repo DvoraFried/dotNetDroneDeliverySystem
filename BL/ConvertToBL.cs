@@ -59,8 +59,8 @@ namespace BL
             {
                 lock (DalObj)
                 {
-                    return (IEnumerable<BO.Parcel>)(from parcel in parcelsDal
-                                                    select new { Parcel = ConvertToBL.ConvertToParcelBL(parcel) });
+                    return (from parcel in parcelsDal
+                                 select ConvertToBL.ConvertToParcelBL(parcel));
                 }
             }
             [MethodImpl(MethodImplOptions.Synchronized)]
