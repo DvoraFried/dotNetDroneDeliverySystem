@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class DistanceBetweenCoordinates
+    internal class DistanceBetweenCoordinates
     {
-        public static double CalculateDistance(Position c1,Position c2)  
+        internal static double CalculateDistance(Position c1,Position c2)  
         {
             double sLatitude = c1.Latitude;
             double sLongitude = c1.Longitude;

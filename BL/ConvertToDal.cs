@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class ConvertToDal
+    internal class ConvertToDal
     {
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static DO.Station ConvertToStationDal(Station stationBl)
+        internal static DO.Station ConvertToStationDal(Station stationBl)
         {
             DO.Station stationDal = new DO.Station();
             stationDal.Id = stationBl.GetIdBL();
@@ -23,7 +23,7 @@ namespace BO
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static DO.Drone ConvertToDroneDal(Drone droneBl)
+        internal static DO.Drone ConvertToDroneDal(Drone droneBl)
         {
             DO.Drone droneDal = new DO.Drone();
             droneDal.Id = droneBl.getIdBL();
@@ -33,7 +33,7 @@ namespace BO
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static DO.Customer ConvertToCustomerDal(Customer customerBl)
+        internal static DO.Customer ConvertToCustomerDal(Customer customerBl)
         {
             DO.Customer customerDal = new DO.Customer();
             customerDal.Id = customerBl.getIdBL();
@@ -46,7 +46,7 @@ namespace BO
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static DO.Parcel ConvertToParcelDal(Parcel parcelBl)
+        internal static DO.Parcel ConvertToParcelDal(Parcel parcelBl)
         {
             DO.Parcel parcelDal = new DO.Parcel();
             parcelDal.Id = parcelBl.IdBL;
@@ -64,7 +64,7 @@ namespace BO
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static DO.DroneCharge ConvertToDroneChargeDal(DroneInCharge droneBl,int stationIdS)
+        internal static DO.DroneCharge ConvertToDroneChargeDal(DroneInCharge droneBl,int stationIdS)
         {
             DO.DroneCharge droneChargeDal = new DO.DroneCharge();
             droneChargeDal.DroneId = droneBl.Id;
