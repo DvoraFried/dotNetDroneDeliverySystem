@@ -8,8 +8,8 @@ namespace BO
     internal partial class Exceptions : Exception
     {
         internal class UnValidIdException: Exception
-       {
-            internal UnValidIdException(int id,string type):base(string.Format($"the{id} is not valid to this {type}")){}
+        {
+            internal UnValidIdException(int id,string type):base(string.Format($"the {id} is not valid to this {type}")){}
         }
         internal class UnValidPositionException : Exception
         {

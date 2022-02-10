@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BlApi;
 using BO;
 using static BL.BL;
+using static BO.Exceptions;
 
 namespace BL
 {
@@ -21,45 +22,48 @@ namespace BL
             this.BL = BL;
             while (!needToStop())
             {
-                switch (drone.DroneStatus)
+                try
                 {
-                    case BO.Enum.DroneStatusesBL.empty:
-                        try {
-                            BL.AssigningPackageToDrone(droneID, true);
-                            drone = DronesListBL.First(d => d.getIdBL() == droneID);
-                        }
-                        catch {
+                    switch (drone.DroneStatus)
+                    {
+                        case BO.Enum.DroneStatusesBL.empty:
                             try {
-                                if(drone.BatteryStatus != 100)
+                                BL.AssigningPackageToDrone(droneID, true);
+                            } 
+                            catch {
+                                if (drone.BatteryStatus != 100)
                                 BL.SendDroneToCharge(droneID, true);
-                                drone = DronesListBL.First(d => d.getIdBL() == droneID);
                             }
-                            catch
+                            break;
+                        case BO.Enum.DroneStatusesBL.maintenance:
+                            while (drone.BatteryStatus <= 100) 
                             {
-                                ///???
+                                drone.BatteryStatus += SPEED;
+                                dronedroneSimulation(drone);
                             }
-                        }
-                        break;
-                    case BO.Enum.DroneStatusesBL.maintenance:
-                        while(drone.BatteryStatus <= 100) {
-                            drone.BatteryStatus += SPEED;
-                            dronedroneSimulation(drone);
-                        }
-                        BL.ReleaseDroneFromCharging(droneID, true);
-                        drone = DronesListBL.First(d => d.getIdBL() == droneID);
-                        break;
-                    case BO.Enum.DroneStatusesBL.Shipping:
-                        Parcel parcelInDrone = BL.returnParcel(drone.delivery.Id);
-                        if (parcelInDrone.PickUpBL != null)
-                            BL.DeliveryOfAParcelByDrone(droneID, true); 
-                        else
-                            BL.CollectionOfAParcelByDrone(droneID, true);
-                        drone = DronesListBL.First(d => d.getIdBL() == droneID);
-                        break;
+                            BL.ReleaseDroneFromCharging(droneID, true);
+                            break;
+                        case BO.Enum.DroneStatusesBL.Shipping:
+                            Parcel parcelInDrone = BL.returnParcel(drone.delivery.Id);
+                            if (parcelInDrone.PickUpBL != null)
+                                BL.DeliveryOfAParcelByDrone(droneID, true);
+                            else
+                                BL.CollectionOfAParcelByDrone(droneID, true);
+                            break;
+                    }
                 }
+                catch (ThereIsNotEnoughBatteryException e)
+                {
+                    try {
+                        BL.SendDroneToCharge(droneID, true);
+                    } 
+                    catch {
+                        ///???
+                    }
+                }
+                drone = DronesListBL.First(d => d.getIdBL() == droneID);
                 dronedroneSimulation(drone);
                 Thread.Sleep(DELAY);
-                //here we need to add the logic of the drone and threadsleep(delay) after every step
             }
         }
     }

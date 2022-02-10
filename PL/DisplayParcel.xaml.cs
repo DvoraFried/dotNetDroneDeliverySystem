@@ -64,7 +64,6 @@ namespace PL
             BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
             if (customer != null && currentParcel == null)
             {
-                this.Close();
                 new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).ShowDialog();
             }
         }
