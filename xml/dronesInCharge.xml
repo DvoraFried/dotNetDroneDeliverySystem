@@ -2,22 +2,27 @@
 <ArrayOfDroneCharge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneCharge>
     <DroneId>1</DroneId>
-    <StationId>9</StationId>
-    <enterTime>2022-02-10T18:09:56.0312387+02:00</enterTime>
+    <StationId>3</StationId>
+    <enterTime>2022-02-10T21:38:12.607549+02:00</enterTime>
   </DroneCharge>
   <DroneCharge>
-    <DroneId>2</DroneId>
-    <StationId>8</StationId>
-    <enterTime>2022-02-10T18:09:56.035438+02:00</enterTime>
+    <DroneId>3</DroneId>
+    <StationId>5</StationId>
+    <enterTime>2022-02-10T21:38:12.6164127+02:00</enterTime>
   </DroneCharge>
   <DroneCharge>
     <DroneId>4</DroneId>
-    <StationId>4</StationId>
-    <enterTime>2022-02-10T18:09:56.0423901+02:00</enterTime>
+    <StationId>8</StationId>
+    <enterTime>2022-02-10T21:38:12.622319+02:00</enterTime>
   </DroneCharge>
   <DroneCharge>
-    <DroneId>2</DroneId>
-    <StationId>6</StationId>
-    <enterTime>2022-02-10T18:10:14.8483227+02:00</enterTime>
+    <DroneId>5</DroneId>
+    <StationId>2</StationId>
+    <enterTime>2022-02-10T21:38:12.6321302+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>6</DroneId>
+    <StationId>8</StationId>
+    <enterTime>2022-02-10T21:38:12.6402799+02:00</enterTime>
   </DroneCharge>
 </ArrayOfDroneCharge>

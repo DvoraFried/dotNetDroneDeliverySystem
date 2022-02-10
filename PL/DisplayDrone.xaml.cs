@@ -50,10 +50,8 @@ namespace PL
         }
         private void showParcel(object sender, RoutedEventArgs e)
         {
-            //BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
             if (dronePO.Delivery.Id != 0)
             {
-                this.Close();
                 new DisplayParcel(BL, BL.returnParcel(dronePO.Delivery.Id)).ShowDialog();
             }
         }
@@ -87,8 +85,7 @@ namespace PL
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try {
                 BL.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -97,8 +94,7 @@ namespace PL
         }
         private void ReleaseDroneFromChargingClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try {
                 BL.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -107,8 +103,7 @@ namespace PL
         }
         public void AssigningPackageToDroneClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try {
                 BL.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -118,8 +113,7 @@ namespace PL
         
         public void CollectionOfAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try {
                 BL.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -129,8 +123,7 @@ namespace PL
         }
         public void DeliveryAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try {
                 BL.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -138,44 +131,32 @@ namespace PL
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         
-        private void light_Checked(object sender, RoutedEventArgs e)
-        {
-            maxWeight = 0;
-        }
+        private void light_Checked(object sender, RoutedEventArgs e) { maxWeight = 0; }
 
-        private void medium_Checked(object sender, RoutedEventArgs e)
-        {
-            maxWeight = 1;
-        }
+        private void medium_Checked(object sender, RoutedEventArgs e) { maxWeight = 1; }
 
-        private void heavy_Checked(object sender, RoutedEventArgs e)
-        {
-            maxWeight = 2;
-        }
+        private void heavy_Checked(object sender, RoutedEventArgs e) { maxWeight = 2; }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        private void Button_Click_1(object sender, RoutedEventArgs e) { this.Close(); }
+
+
+        BackgroundWorker worker = new BackgroundWorker();
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
-            BackgroundWorker worker = new BackgroundWorker();
             Drone updateDrone = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {
                  BL.StartSimulation(
                    BL,
                    droneBO.getIdBL(),
-                   (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0);},
+                   (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0); },
                    () => worker.CancellationPending);
-            };
+             };
             worker.WorkerReportsProgress = true;
-            
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
             {
-                dronePO.UpdatePlDrone(updateDrone);
+                dronePO.UpdatePlDrone(droneBO);
             };
-
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
         }
