@@ -31,15 +31,13 @@ namespace PL
             BO.StationToList station = (sender as ListView).SelectedValue as BO.StationToList;
             if (station != null)
             {
-                this.Close();
-                new DisplayStation(Bl, Bl.convertStationToStationBl(station.Id)).ShowDialog();
+                new DisplayStation(Bl, Bl.convertStationToStationBl(station.Id)).Show();
             }
         }
 
         private void ButtonAddStation_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            new DisplayStation(Bl).ShowDialog();
+            new DisplayStation(Bl).Show();
         }
 
         private void ButtonSortByEmptySlots_Click(object sender, RoutedEventArgs e)

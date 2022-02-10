@@ -43,8 +43,7 @@ namespace PL
             BO.DeliveryAtCustomer parcel = (sender as ListView).SelectedValue as BO.DeliveryAtCustomer;
             if (parcel != null)
             {
-                this.Close();
-                new DisplayParcel(Bl, Bl.returnParcel(parcel.Id)).ShowDialog();
+                new DisplayParcel(Bl, Bl.returnParcel(parcel.Id)).Show();
             }
         }
         public DisplayCustomer(BlApi.IBL bl)

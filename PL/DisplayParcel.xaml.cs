@@ -37,14 +37,7 @@ namespace PL
             displayParcel.Visibility = DELETE_BUTTON.Visibility = Visibility.Visible;
             senderTextBox.Items.Add(parcel.Sender); 
             targetTextBox.Items.Add(parcel.Target); 
-            //IDSenderTextBox.IsEnabled = TargetIDTextBox.IsEnabled = false;
             ParcelInDroneTextBox.Text = parcel.DroneIdBL != null ? parcel.DroneIdBL.ToString() : "non drone assign yet";
-            //RequestedTimeTextBox.Text = parcel.RequestedBL.ToString();
-            //AssignToDroneTimeTextBox.Text = parcel.ScheduledBL != null ? parcel.ScheduledBL.ToString() : "deos not assign yet";
-            //PickupTimeTextBox.Text = parcel.PickUpBL != null ? parcel.PickUpBL.ToString() : "deos not pickUp yet";
-            //DeliveredTimeTextBox.Text = parcel.DeliveredBL != null ? parcel.DeliveredBL.ToString() : "deos not delivered yet";
-            //PriorityTextBox.Text = parcel.Priority.ToString();
-            //WeightTextBox.Text = parcel.Weight.ToString();
             currentParcel = parcel;
         }
         public DisplayParcel(BlApi.IBL bl, Customer customer)
