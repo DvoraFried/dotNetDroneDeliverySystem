@@ -150,7 +150,6 @@ namespace Dal
         {
             foreach (Parcel element in DataSource.MyParcels) { if (element.isActive) { yield return element; } }
         }
-*/
         public double[] powerRequest()
         {
             double[] arr = new double[5];
