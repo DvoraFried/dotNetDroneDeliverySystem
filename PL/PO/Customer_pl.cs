@@ -20,7 +20,15 @@ namespace PO
             phone = customerBl.PhoneBL;
             position = new Position_pl(customerBl.Position);
             ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
-            ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList(); ;
+            ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();
+            blObj.ActionCustomerChanged += UpdatePlCustomer;
+        }
+        public void UpdatePlCustomer(Customer customerBl)
+        {
+            name = customerBl.NameBL;
+            phone = customerBl.PhoneBL;
+            ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
+            ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();
         }
         
         public static readonly DependencyProperty idProperty =

@@ -59,6 +59,8 @@ namespace BlApi
 
         public Action<Parcel> ActionParcelChanged { get; set; }
         public Action<Drone> ActionDroneChanged { get; set; }
+        public Action<Customer> ActionCustomerChanged { get; set; }
+
         public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
         public EmpolyeeBL returnEmployee(int idE);
         public bool userIsCustomer(string name, int id);

@@ -14,7 +14,7 @@ namespace BL
     {
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
         public Action<BO.Parcel> ActionParcelChanged { get; set; }
-
+        public Action <BO.Customer> ActionCustomerChanged { get; set; }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpDateDroneName(int id, string newModelName, bool simulation = false)
@@ -57,6 +57,7 @@ namespace BL
                 string currentPhone = newPhone != null ? newPhone : currentCustomer.Phone;
                 BO.Customer replaceCustomer = new BO.Customer(DalObj, id, currentName, currentPhone, new Position(currentCustomer.Longitude, currentCustomer.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()));
                 DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(replaceCustomer));
+                ActionCustomerChanged?.Invoke(replaceCustomer);
             }
         }
     }

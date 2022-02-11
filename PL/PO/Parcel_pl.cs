@@ -27,16 +27,10 @@ namespace PO
         }
         public void UpdatePlParcel(BO.Parcel parcelBL)
         {
-            Id = parcelBL.GetParcelId();
-            Weight = (Enum_pl.WeightCategories)parcelBL.Weight;
-            Priority = (Enum_pl.Priorities)parcelBL.Priority;
             DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
-            Requested = parcelBL.RequestedBL;
             Scheduled = parcelBL.ScheduledBL;
             PickUp = parcelBL.PickUpBL;
             Delivered = parcelBL.DeliveredBL;
-            Sender = new CustomerOnDelivery_pl(parcelBL.Sender);
-            Target = new CustomerOnDelivery_pl(parcelBL.Target);
         }
 
     public static readonly DependencyProperty idPProperty =
