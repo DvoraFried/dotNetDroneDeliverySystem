@@ -250,5 +250,10 @@ namespace Dal
             return droneCharges.First(drone => drone.DroneId == idDC);
         //    throw new NotImplementedException();
         }
+
+        public int GetNewParcelId()
+        {
+            return DataSource.Config.idParcels++;
+        }
     }
 }

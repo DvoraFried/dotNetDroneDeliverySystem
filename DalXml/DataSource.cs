@@ -18,6 +18,7 @@ namespace Dal
         public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
 
         public class Config {
+            public static int idParcels = 0;
             public static double available=0.0003;
             public static double carryLightWeight=0.0005;
             public static double carrymediumWeight=0.001;

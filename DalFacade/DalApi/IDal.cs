@@ -38,6 +38,7 @@ namespace DalApi
         public Parcel returnParcelByDroneId(int DroneIdS);
         public IEnumerable<Parcel> returnParcelArray();
         public void ReplaceParcelById(Parcel DALP);
+        public int GetNewParcelId();
         #endregion
 
         public Employee returnEmployee(int idE);

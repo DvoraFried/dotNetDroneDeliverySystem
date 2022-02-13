@@ -14,8 +14,8 @@ namespace BO
         public Parcel( DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null, int droneID = -1 )
         {
             DalObj = dalOB;
-            parcelId++;
-            IdBL = id > 0 ? id : parcelId;
+           // parcelId++;
+            IdBL = id > 0 ? id : DalObj.GetNewParcelId();
             Weight = (WeightCategoriesBL)weight;
             Priority = (PrioritiesBL)priority;
             ScheduledBL = scheduled;
@@ -38,9 +38,9 @@ namespace BO
             return "";
         }
 
-        private static int parcelId = 0;
-        public int GetParcelId() { return parcelId; }
-        public void SetParcelId(int pId) {  parcelId=pId; }
+        //private static int parcelId = 0;
+      //  public int GetParcelId() { return parcelId; }
+        //public void SetParcelId(int pId) {  parcelId=pId; }
         public int IdBL { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }
