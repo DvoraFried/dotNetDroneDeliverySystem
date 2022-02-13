@@ -172,9 +172,7 @@ namespace PL
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
             {
                 dronePO.UpdatePlDrone(droneBO);
-                if (ParcelInDrone != null) {
-                    ParcelInDrone.UpdatePlParcel(updateParcel);
-                }
+                BL.ActionDronesAdded(true);
             };
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
