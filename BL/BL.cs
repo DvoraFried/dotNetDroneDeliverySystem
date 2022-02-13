@@ -47,6 +47,7 @@ namespace BL
                             List<DO.Parcel> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != null);
                             DO.Customer randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
                             drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
+                            drone.BatteryStatus = rnd.Next((int)(DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, findClosestStation(drone.CurrentPosition).Position) * nonWeightPowerConsumption), 100);
                         }
                         else
                         {
@@ -54,7 +55,6 @@ namespace BL
                             int randomIndex = rnd.Next(0, stations.Count);
                             drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
                         }
-                        drone.BatteryStatus = rnd.Next((int)(DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, findClosestStation(drone.CurrentPosition)) * nonWeightPowerConsumption), 100);
                     }
                     else
                     {
@@ -72,9 +72,9 @@ namespace BL
                     DO.Parcel parcel = DalObj.returnParcelByDroneId(drone.getIdBL());
                     Position senderPos = new Position(DalObj.returnCustomer(parcel.SenderId).Longitude, DalObj.returnCustomer(parcel.SenderId).Latitude);
                     Position targetPos = new Position(DalObj.returnCustomer(parcel.TargetId).Longitude, DalObj.returnCustomer(parcel.TargetId).Latitude);
-                    drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos) : senderPos;
+                    drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos).Position : senderPos;
                     double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, targetPos);
-                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos)) * nonWeightPowerConsumption;
+                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos).Position) * nonWeightPowerConsumption;
                     drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget * lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           (int)parcel.Weight == 2 ? rnd.Next((int)(distanceToTarget * mediumWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           rnd.Next((int)(distanceToTarget * heavyWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100);
@@ -114,23 +114,43 @@ namespace BL
             {
                 throw new ThereIsNotEnoughBatteryException();
             }
-            return (drone.BatteryStatus - lessPower);
+            return drone.BatteryStatus - lessPower;
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
-        internal static Position findClosestStation(Position current)
+        internal static BO.Station findClosestStation(Position current)
         {
-            Position stationPos = null, closeP = current;
-            double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DalObj.returnStationArray().ToList()[0].Longitude, DalObj.returnStationArray().ToList()[0].Latitude));
+            DO.Station station = new DO.Station() {Name= null};
+            
             foreach (DO.Station element in DalObj.returnStationArray())
             {
-                stationPos = new Position(element.Longitude, element.Latitude);
-                if (distance > DistanceBetweenCoordinates.CalculateDistance(current, stationPos))
+                Position stationP = new Position(element.Longitude, element.Latitude);
+                if (element.EmptyChargeSlots > 0)
                 {
-                    distance = DistanceBetweenCoordinates.CalculateDistance(current, stationPos);
-                    closeP = stationPos;
+                    if (station.Name == null) { station = element; }
+                    else
+                    {
+                        Position cuurentStationP = new Position(station.Longitude, station.Latitude);
+                        if (DistanceBetweenCoordinates.CalculateDistance(cuurentStationP, current) > DistanceBetweenCoordinates.CalculateDistance(stationP, current))
+                        {
+                            station = element;
+                        }
+                    }
                 }
             }
-            return stationPos;
+            if (station.Name == null) throw new NoPlaceToChargeException();
+            return ConvertToBL.ConvertToStationBL(station);
+            /* Position stationPos = null, closeP = current;
+             double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DalObj.returnStationArray().ToList()[0].Longitude, DalObj.returnStationArray().ToList()[0].Latitude));
+             foreach (DO.Station element in DalObj.returnStationArray())
+             {
+                 stationPos = new Position(element.Longitude, element.Latitude);
+                 if (distance > DistanceBetweenCoordinates.CalculateDistance(current, stationPos))
+                 {
+                     distance = DistanceBetweenCoordinates.CalculateDistance(current, stationPos);
+                     closeP = stationPos;
+                 }
+             }
+             return stationPos;*/
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static String getFormattedLocationInDegree(double latitude, double longitude)

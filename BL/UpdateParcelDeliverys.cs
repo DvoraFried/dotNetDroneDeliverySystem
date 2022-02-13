@@ -83,7 +83,7 @@ namespace BL
 
                 BO.Parcel theclosetParcel = ConvertToBL.ConvertToParcelBL(returnTheClosestParcelId(myParcelsSuitWeightArr, drone.CurrentPosition));
                 BO.Customer sender = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(theclosetParcel.Sender.Id));
-                if (updateButteryStatus(drone, sender.Position, (int)theclosetParcel.Weight) - (DistanceBetweenCoordinates.CalculateDistance(sender.Position, findClosestStation(sender.Position)) * nonWeightPowerConsumption) <= 0)
+                if (updateButteryStatus(drone, sender.Position, (int)theclosetParcel.Weight) - (DistanceBetweenCoordinates.CalculateDistance(sender.Position, findClosestStation(sender.Position).Position) * nonWeightPowerConsumption) <= 0)
                 {
                     throw new ThereIsNotEnoughBatteryException();
                 }
