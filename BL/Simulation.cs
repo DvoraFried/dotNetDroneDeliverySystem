@@ -17,7 +17,7 @@ namespace BL
         public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Func<bool> needToStop)
         {
             int DELAY = 500;
-            double SPEED = 0.001;
+            double SPEED = 1;
             Drone drone = DronesListBL.First(d => d.getIdBL() == droneID);
             this.BL = BL;
             while (!needToStop())
@@ -40,6 +40,7 @@ namespace BL
                             {
                                 drone.BatteryStatus += SPEED;
                                 dronedroneSimulation(drone);
+                                Thread.Sleep(DELAY - 100);
                             }
                             BL.ReleaseDroneFromCharging(droneID, true);
                             break;
