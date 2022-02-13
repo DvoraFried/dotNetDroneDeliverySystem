@@ -26,6 +26,7 @@ namespace PL
         {
             InitializeComponent();
             Bl = bl;
+            Bl.ActionDronesAdded += AddPlDrone;
             dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             
@@ -44,7 +45,12 @@ namespace PL
             }
             OrderByMaxWeight.ItemsSource = itemList;
         }
-        
+
+        private void AddPlDrone(Drone arg1, bool arg2)
+        {
+            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+        }
+
         private void comboBoxOByStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

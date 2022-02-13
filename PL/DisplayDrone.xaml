@@ -95,14 +95,15 @@
                 <Grid  x:Name="hidddenInfroUpDate" Visibility="Visible" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="133*"/>
-                        <ColumnDefinition Width="223*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="214*"/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="DroneStatusLabel" Margin="22,0,152,30" Content="DRONE STATUS:" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="DroneStatusTextBox" Text="{Binding Path=DroneStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="2"/>
-                    <Label x:Name="batteryStatusLabel" Margin="22,49,152,0" Content="BATTERY:" Grid.ColumnSpan="2"/>
-                    <ProgressBar Value="{Binding Path=BatteryStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="batteryStatus" HorizontalAlignment="Left" Height="25" Margin="119,50,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
-                    <TextBlock Text="{Binding ElementName=batteryStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="59,54,0,0" />
-                    <Expander Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-86,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="2">
+                    <Label x:Name="DroneStatusLabel" Margin="22,0,152,30" Content="DRONE STATUS:" Grid.ColumnSpan="3"/>
+                    <TextBox x:Name="DroneStatusTextBox" Text="{Binding Path=DroneStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="3"/>
+                    <Label x:Name="batteryStatusLabel" Margin="22,49,152,0" Content="BATTERY:" Grid.ColumnSpan="3"/>
+                    <ProgressBar Value="{Binding Path=BatteryStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="batteryStatus" HorizontalAlignment="Left" Height="25" Margin="119,50,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="3"/>
+                    <TextBlock Text="{Binding ElementName=batteryStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="51,54,0,0" />
+                    <Expander Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-56,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="3">
                         <ScrollViewer>
                             <ListView  MouseDoubleClick="showParcel">
                                 <TextBlock Text="{Binding Path=Delivery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="parcelInDrone"></TextBlock>

@@ -40,7 +40,17 @@
             </Button>
 
         </Grid>
-        <ListView Cursor="Hand" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Margin="0,1,0,0" Grid.Row="1" />
+        <ListView Cursor="Hand" MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Margin="38,57,50,38" Grid.Row="1" >
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="drone id ">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Header="ID" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Model}" Header="MODEL" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DroneStatus}" Header="STATUS" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding BatteryStatus}" Header="BatteryStatus" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=CurrentPosition}" Header="CurrentPosition" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Grid Name="BottomGrid" Background="#a8cacd" Height="auto" Grid.Row="2" Width="auto" Margin="0,12,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
