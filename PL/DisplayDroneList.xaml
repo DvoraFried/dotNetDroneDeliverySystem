@@ -40,16 +40,16 @@
             </Button>
 
         </Grid>
-        <ListView Cursor="Hand" MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Margin="44,48,44,47" Grid.Row="1" >
-            <ListView.View>
+        <ListView ItemsSource="{Binding}" Cursor="Hand" MouseDoubleClick="listView_MouseDoubleClick" Name="dronesDisplay" Margin="44,48,44,47" Grid.Row="1" >
+            <!--<ListView.View>
                 <GridView AllowsColumnReorder="true">
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ID" Width="130"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="MODEL" Width="130"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=DroneStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="STATUS" Width="130"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding BatteryStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="BatteryStatus" Width="130"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatteryStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="BatteryStatus" Width="130"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=CurrentPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CurrentPosition" Width="130"/>
                 </GridView>
-            </ListView.View>
+            </ListView.View>-->
         </ListView>
         <Grid Name="BottomGrid" Background="#a8cacd" Height="auto" Grid.Row="2" Width="auto" Margin="0,12,0,0">
             <Grid.ColumnDefinitions>

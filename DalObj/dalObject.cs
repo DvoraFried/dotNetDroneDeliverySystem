@@ -150,6 +150,12 @@ namespace Dal
         {
             foreach (Parcel element in DataSource.MyParcels) { if (element.isActive) { yield return element; } }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public int GetNewParcelId()
+        {
+            return DataSource.Config.idParcel;
+        }
         public double[] powerRequest()
         {
             double[] arr = new double[5];
