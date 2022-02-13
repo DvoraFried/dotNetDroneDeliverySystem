@@ -110,18 +110,7 @@ namespace Dal
             IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
             return parcels.ToList().First(parcel => parcel.DroneId == DroneIdS);
         }
-        public void ReplaceStationById(Station DALS)
-        {
-            IEnumerable<Station> stationList = DL.XMLTools.LoadListFromXMLSerializer<Station>(dir + stationFilePath);
-            if (!stationList.Any(t => t.Id == DALS.Id))
-            {
-                throw new Exception("DL: station with the same id not found...");
-                //throw new SomeException("DL: cuxtomer with the same id not found...");
-            }
-            stationList.ToList()[DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(p => p.Id == DALS.Id))] = DALS;
-            DL.XMLTools.SaveListToXMLSerializer<Station>(stationList, dir + stationFilePath);
-        }
-        public IEnumerable<Station> returnStationArray()
+               public IEnumerable<Station> returnStationArray()
         {
             IEnumerable<Station> stationList = DL.XMLTools.LoadListFromXMLSerializer<Station>(dir + stationFilePath);
             foreach (Station element in stationList) { yield return element; }
@@ -155,6 +144,17 @@ namespace Dal
             arr[3] = DataSource.Config.carryHeavyWeight;
             arr[4] = DataSource.Config.DroneLoadingRate;
             return arr;
+        }
+        public void ReplaceStationById(Station DALS)
+        {
+            IEnumerable<Station> stationList = DL.XMLTools.LoadListFromXMLSerializer<Station>(dir + stationFilePath);
+            if (!stationList.Any(t => t.Id == DALS.Id))
+            {
+                throw new Exception("DL: station with the same id not found...");
+                //throw new SomeException("DL: cuxtomer with the same id not found...");
+            }
+            stationList.ToList()[DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(p => p.Id == DALS.Id))] = DALS;
+            DL.XMLTools.SaveListToXMLSerializer<Station>(stationList, dir + stationFilePath);
         }
         public void ReplaceDroneById(Drone DALD)
         {
