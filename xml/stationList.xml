@@ -3,81 +3,81 @@
   <Station>
     <Id>1</Id>
     <Name>station1</Name>
-    <EmptyChargeSlots>7</EmptyChargeSlots>
-    <Longitude>1</Longitude>
-    <Latitude>43</Latitude>
+    <EmptyChargeSlots>8</EmptyChargeSlots>
+    <Longitude>23</Longitude>
+    <Latitude>107</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>2</Id>
     <Name>station2</Name>
-    <EmptyChargeSlots>5</EmptyChargeSlots>
-    <Longitude>2</Longitude>
-    <Latitude>70</Latitude>
+    <EmptyChargeSlots>10</EmptyChargeSlots>
+    <Longitude>1</Longitude>
+    <Latitude>145</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>3</Id>
     <Name>station3</Name>
-    <EmptyChargeSlots>5</EmptyChargeSlots>
-    <Longitude>14</Longitude>
-    <Latitude>51</Latitude>
+    <EmptyChargeSlots>10</EmptyChargeSlots>
+    <Longitude>10</Longitude>
+    <Latitude>42</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>4</Id>
     <Name>station4</Name>
-    <EmptyChargeSlots>14</EmptyChargeSlots>
-    <Longitude>15</Longitude>
-    <Latitude>58</Latitude>
+    <EmptyChargeSlots>5</EmptyChargeSlots>
+    <Longitude>1</Longitude>
+    <Latitude>106</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>5</Id>
     <Name>station5</Name>
     <EmptyChargeSlots>12</EmptyChargeSlots>
-    <Longitude>8</Longitude>
-    <Latitude>10</Latitude>
+    <Longitude>0</Longitude>
+    <Latitude>165</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>6</Id>
     <Name>station6</Name>
-    <EmptyChargeSlots>10</EmptyChargeSlots>
-    <Longitude>22</Longitude>
-    <Latitude>23</Latitude>
+    <EmptyChargeSlots>5</EmptyChargeSlots>
+    <Longitude>4</Longitude>
+    <Latitude>50</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>7</Id>
     <Name>station7</Name>
-    <EmptyChargeSlots>5</EmptyChargeSlots>
+    <EmptyChargeSlots>11</EmptyChargeSlots>
     <Longitude>0</Longitude>
-    <Latitude>157</Latitude>
+    <Latitude>26</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>8</Id>
     <Name>station8</Name>
-    <EmptyChargeSlots>7</EmptyChargeSlots>
-    <Longitude>5</Longitude>
-    <Latitude>163</Latitude>
+    <EmptyChargeSlots>10</EmptyChargeSlots>
+    <Longitude>15</Longitude>
+    <Latitude>56</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>9</Id>
     <Name>station9</Name>
-    <EmptyChargeSlots>6</EmptyChargeSlots>
-    <Longitude>16</Longitude>
-    <Latitude>153</Latitude>
+    <EmptyChargeSlots>8</EmptyChargeSlots>
+    <Longitude>14</Longitude>
+    <Latitude>98</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
   <Station>
     <Id>10</Id>
     <Name>station10</Name>
-    <EmptyChargeSlots>12</EmptyChargeSlots>
-    <Longitude>4</Longitude>
-    <Latitude>108</Latitude>
+    <EmptyChargeSlots>6</EmptyChargeSlots>
+    <Longitude>1</Longitude>
+    <Latitude>137</Latitude>
     <DronesInCharging>0</DronesInCharging>
   </Station>
 </ArrayOfStation>

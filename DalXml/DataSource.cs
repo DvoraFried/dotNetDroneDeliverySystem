@@ -17,7 +17,6 @@ namespace Dal
         public static List<Parcel> MyParcels = new List<Parcel>();
         public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
 
-        //satandart drone speed per hour is 120 kilometers
         public class Config {
             public static double available=0.0003;
             public static double carryLightWeight=0.0005;

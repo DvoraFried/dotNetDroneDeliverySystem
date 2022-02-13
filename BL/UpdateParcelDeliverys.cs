@@ -44,7 +44,7 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public DO.Parcel returnTheClosestParcelId(IEnumerable<DO.Parcel> parcelArr, Position dronePosition)
+        public BO.Parcel returnTheClosestParcelId(IEnumerable<DO.Parcel> parcelArr, Position dronePosition)
         {
             lock (DalObj)
             {
@@ -58,8 +58,35 @@ namespace BL
                         currentParcel = element;
                     }
                 }
-                return currentParcel;
+                return ConvertToBL.ConvertToParcelBL(currentParcel);
             }
+        }
+
+        internal bool thereIsBattery(BO.Drone drone, BO.Parcel parcel)
+        {
+            BO.Customer sender = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Sender.Id));
+            BO.Customer target = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id));
+
+            double weightPower =  parcel.Weight == WeightCategoriesBL.light ? lightWeightPowerConsumption :
+                             parcel.Weight == WeightCategoriesBL.medium ? mediumWeightPowerConsumption :
+                             heavyWeightPowerConsumption;
+
+            double power = (DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, sender.Position) * nonWeightPowerConsumption);
+            power += DistanceBetweenCoordinates.CalculateDistance(sender.Position, target.Position) * weightPower;
+            power += DistanceBetweenCoordinates.CalculateDistance(target.Position, findClosestStation(target.Position).Position) * nonWeightPowerConsumption;
+
+            return power < drone.BatteryStatus;
+        }
+        internal List<DO.Parcel> getSuitWeightArr(BO.Drone drone)
+        {
+            List<DO.Parcel> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(), (int)drone.MaxWeight).ToList();
+            if (myParcelsSuitWeightArr.Count == 0) {
+                myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithRapidlParcelsPriority(), (int)drone.MaxWeight).ToList();
+                if (myParcelsSuitWeightArr.Count == 0) {
+                    myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithUsualParcelsPriority(), (int)drone.MaxWeight).ToList();
+                }
+            }
+            return myParcelsSuitWeightArr;
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -67,33 +94,32 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
+                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.getIdBL() == idD))) {
+                    throw new ObjectDoesntExistsInListException("drone"); }
+
                 BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == idD));
-                if (drone.DroneStatus != DroneStatusesBL.empty) { throw new DroneIsNotEmptyException(); }
-                List<DO.Parcel> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(), (int)drone.MaxWeight).ToList();
-                if (myParcelsSuitWeightArr.Count == 0)
-                {
-                    myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithRapidlParcelsPriority(), (int)drone.MaxWeight).ToList();
-                    if (myParcelsSuitWeightArr.Count == 0)
-                    {
-                        myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithUsualParcelsPriority(), (int)drone.MaxWeight).ToList();
-                        if (myParcelsSuitWeightArr.Count == 0) { throw new NoSuitableParcelException(idD); }
-                    }
+                if (drone.DroneStatus != DroneStatusesBL.empty) {
+                    throw new DroneIsNotEmptyException(); }
+
+                List<DO.Parcel> myParcelsSuitWeightArr = getSuitWeightArr(drone);
+                if (myParcelsSuitWeightArr.Count == 0) {
+                    throw new NoSuitableParcelException(idD);
                 }
 
-                BO.Parcel theclosetParcel = ConvertToBL.ConvertToParcelBL(returnTheClosestParcelId(myParcelsSuitWeightArr, drone.CurrentPosition));
-                BO.Customer sender = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(theclosetParcel.Sender.Id));
-                if (updateButteryStatus(drone, sender.Position, (int)theclosetParcel.Weight) - (DistanceBetweenCoordinates.CalculateDistance(sender.Position, findClosestStation(sender.Position).Position) * nonWeightPowerConsumption) <= 0)
-                {
+                BO.Parcel theclosetParcel = returnTheClosestParcelId(myParcelsSuitWeightArr, drone.CurrentPosition);
+                if(!thereIsBattery(drone, theclosetParcel)) {
                     throw new ThereIsNotEnoughBatteryException();
                 }
+
                 drone.DroneStatus = DroneStatusesBL.Shipping;
                 theclosetParcel.ScheduledBL = DateTime.Now;
                 theclosetParcel.DroneIdBL = new DroneInParcel(drone);
                 drone.delivery = new ParcelByTransfer(DalObj, theclosetParcel.IdBL);
+                
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(theclosetParcel));
                 DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+                
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);
@@ -107,19 +133,28 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DronesListBL.Any(d => (d.getIdBL() == idD))) { throw new ObjectDoesntExistsInListException("drone"); }
-                if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idD)) { throw new NoParcelFoundException(); }
+                if (!DronesListBL.Any(d => (d.getIdBL() == idD))) {
+                    throw new ObjectDoesntExistsInListException("drone"); }
+
+                if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idD)) {
+                    throw new NoParcelFoundException(); }
+
                 BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
-                if (drone.delivery.IsDelivery) { throw new TheDroneHasAlreadyPickedUpTheParcel(); }
+                if (drone.delivery.IsDelivery) {
+                    throw new TheDroneHasAlreadyPickedUpTheParcel(); }
+
                 BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
                 Position senderPosition = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Sender.Id)).Position;
+                
                 parcel.PickUpBL = DateTime.Now;
-                drone.BatteryStatus = updateButteryStatus(drone, senderPosition, (int)parcel.Weight);
+                drone.BatteryStatus = updateButteryStatus(drone, senderPosition, 0);
                 drone.CurrentPosition = senderPosition;
                 drone.delivery = new ParcelByTransfer(DalObj, parcel.IdBL);
+                
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
                 DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+                
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);
@@ -133,20 +168,28 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
+                if (!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) {
+                    throw new ObjectDoesntExistsInListException("drone"); }
+
                 BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
-                if (drone.DroneStatus != DroneStatusesBL.Shipping) { throw new NoParcelFoundException(); }
+                if (drone.DroneStatus != DroneStatusesBL.Shipping) {
+                    throw new NoParcelFoundException(); }
+
                 BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
-                if (parcel.PickUpBL == null) { throw new ThePackageHasNotYetBeenCollectedException(); }
+                if (parcel.PickUpBL == null) { 
+                    throw new ThePackageHasNotYetBeenCollectedException(); }
+                
+                Position targetPos_ = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id)).Position;
                 parcel.DeliveredBL = DateTime.Now;
                 parcel.DroneIdBL = null;
-                Position targetPos_ = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id)).Position;
                 drone.BatteryStatus = updateButteryStatus(drone, targetPos_, (int)parcel.Weight);
                 drone.CurrentPosition = targetPos_;
                 drone.DroneStatus = DroneStatusesBL.empty;
                 drone.delivery = null;
+                
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
+                
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);

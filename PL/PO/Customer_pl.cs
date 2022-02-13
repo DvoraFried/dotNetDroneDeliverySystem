@@ -25,8 +25,6 @@ namespace PO
         }
         public void UpdatePlCustomer(Customer customerBl)
         {
-            name = customerBl.NameBL;
-            phone = customerBl.PhoneBL;
             ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
             ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();
         }
