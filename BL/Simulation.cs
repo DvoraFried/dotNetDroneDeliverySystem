@@ -40,7 +40,7 @@ namespace BL
                             }
                             break;
                         case BO.Enum.DroneStatusesBL.maintenance:
-                            while (drone.BatteryStatus <= 100 && !needToStop()) 
+                            while (drone.BatteryStatus < 100 && !needToStop()) 
                             {
                                 drone.BatteryStatus += SPEED;
                                 dronedroneSimulation(drone);
