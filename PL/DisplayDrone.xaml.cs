@@ -173,6 +173,10 @@ namespace PL
             {
                 dronePO.UpdatePlDrone(droneBO);
                 BL.ActionDronesAdded(true);
+                if(ParcelInDrone != null)
+                {
+                    ParcelInDrone.UpdatePlParcel(updateParcel);
+                }
             };
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
