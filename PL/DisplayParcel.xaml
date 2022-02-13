@@ -79,7 +79,7 @@
                 <TextBox Text="{Binding Path=WeightParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="WeightTextBox" IsReadOnly="True" Margin="45,158,205,-110"/>
                 <TextBox Text="{Binding Path=PriorityParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PriorityTextBox" IsReadOnly="True" Margin="200,158,50,-110"/>
                 <Label Margin="136,192,140,-146">PARCEL IN DRONE:</Label>
-                <TextBox Name="ParcelInDroneTextBox" IsReadOnly="True" Margin="45,216,50,-221"/>
+                <TextBox Text="{Binding Path=DroneInParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="ParcelInDroneTextBox" IsReadOnly="True" Margin="45,216,50,-221"/>
                 <Label Margin="20,299,256,-252">REQUESTED TIME:</Label>
                 <TextBox Text="{Binding Path=RequestedParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="RequestedTimeTextBox" IsReadOnly="True" Margin="200,300,50,-251"/>
                 <Label Margin="20,332,200,-291">ASSIGN TO A DRONE TIME:</Label>

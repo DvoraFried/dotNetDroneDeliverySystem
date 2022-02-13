@@ -1,107 +1,107 @@
 <?xml version="1.0"?>
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
-    <Id>724394923</Id>
+    <Id>638595995</Id>
     <Name>customer 0</Name>
-    <Phone>10390085</Phone>
-    <Longitude>15</Longitude>
-    <Latitude>130</Latitude>
+    <Phone>36788001</Phone>
+    <Longitude>23</Longitude>
+    <Latitude>73</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>422023795</Id>
+    <Id>985670469</Id>
     <Name>customer 1</Name>
-    <Phone>56405108</Phone>
-    <Longitude>13</Longitude>
-    <Latitude>7</Latitude>
+    <Phone>6581913</Phone>
+    <Longitude>6</Longitude>
+    <Latitude>141</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>159708528</Id>
+    <Id>541391841</Id>
     <Name>customer 2</Name>
-    <Phone>52567927</Phone>
-    <Longitude>0</Longitude>
-    <Latitude>122</Latitude>
+    <Phone>45165320</Phone>
+    <Longitude>13</Longitude>
+    <Latitude>87</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>913284189</Id>
+    <Id>837710144</Id>
     <Name>customer 3</Name>
-    <Phone>25350645</Phone>
-    <Longitude>21</Longitude>
-    <Latitude>91</Latitude>
+    <Phone>44316134</Phone>
+    <Longitude>15</Longitude>
+    <Latitude>105</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>224739615</Id>
+    <Id>113358894</Id>
     <Name>customer 4</Name>
-    <Phone>7449388</Phone>
-    <Longitude>8</Longitude>
-    <Latitude>165</Latitude>
+    <Phone>33203288</Phone>
+    <Longitude>3</Longitude>
+    <Latitude>126</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>175411733</Id>
+    <Id>513918032</Id>
     <Name>customer 5</Name>
-    <Phone>46443417</Phone>
-    <Longitude>2</Longitude>
-    <Latitude>28</Latitude>
+    <Phone>17322388</Phone>
+    <Longitude>23</Longitude>
+    <Latitude>14</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>600932806</Id>
+    <Id>915201580</Id>
     <Name>customer 6</Name>
-    <Phone>28799603</Phone>
-    <Longitude>5</Longitude>
-    <Latitude>71</Latitude>
+    <Phone>51665596</Phone>
+    <Longitude>9</Longitude>
+    <Latitude>163</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>996150696</Id>
+    <Id>383672118</Id>
     <Name>customer 7</Name>
-    <Phone>46023170</Phone>
-    <Longitude>13</Longitude>
-    <Latitude>151</Latitude>
+    <Phone>38104450</Phone>
+    <Longitude>6</Longitude>
+    <Latitude>14</Latitude>
     <isActive>true</isActive>
   </Customer>
   <Customer>
-    <Id>468009944</Id>
+    <Id>740004459</Id>
     <Name>customer 8</Name>
-    <Phone>40450577</Phone>
-    <Longitude>1</Longitude>
-    <Latitude>146</Latitude>
-    <isActive>true</isActive>
-  </Customer>
-  <Customer>
-    <Id>305697796</Id>
-    <Name>customer 9</Name>
-    <Phone>42630549</Phone>
-    <Longitude>13</Longitude>
-    <Latitude>28</Latitude>
-    <isActive>true</isActive>
-  </Customer>
-  <Customer>
-    <Id>462967904</Id>
-    <Name>customer 10</Name>
-    <Phone>53986232</Phone>
-    <Longitude>21</Longitude>
-    <Latitude>25</Latitude>
-    <isActive>true</isActive>
-  </Customer>
-  <Customer>
-    <Id>195669006</Id>
-    <Name>customer 11</Name>
-    <Phone>6617510</Phone>
-    <Longitude>17</Longitude>
-    <Latitude>86</Latitude>
-    <isActive>true</isActive>
-  </Customer>
-  <Customer>
-    <Id>185579573</Id>
-    <Name>customer 12</Name>
-    <Phone>28887724</Phone>
-    <Longitude>7</Longitude>
+    <Phone>30758318</Phone>
+    <Longitude>16</Longitude>
     <Latitude>65</Latitude>
+    <isActive>true</isActive>
+  </Customer>
+  <Customer>
+    <Id>281671363</Id>
+    <Name>customer 9</Name>
+    <Phone>38585072</Phone>
+    <Longitude>19</Longitude>
+    <Latitude>166</Latitude>
+    <isActive>true</isActive>
+  </Customer>
+  <Customer>
+    <Id>839904709</Id>
+    <Name>customer 10</Name>
+    <Phone>30695231</Phone>
+    <Longitude>18</Longitude>
+    <Latitude>174</Latitude>
+    <isActive>true</isActive>
+  </Customer>
+  <Customer>
+    <Id>637906901</Id>
+    <Name>customer 11</Name>
+    <Phone>6026513</Phone>
+    <Longitude>7</Longitude>
+    <Latitude>18</Latitude>
+    <isActive>true</isActive>
+  </Customer>
+  <Customer>
+    <Id>141349549</Id>
+    <Name>customer 12</Name>
+    <Phone>28133147</Phone>
+    <Longitude>15</Longitude>
+    <Latitude>9</Latitude>
     <isActive>true</isActive>
   </Customer>
 </ArrayOfCustomer>
