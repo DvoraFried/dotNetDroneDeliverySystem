@@ -40,7 +40,7 @@ namespace BL
                             }
                             break;
                         case BO.Enum.DroneStatusesBL.maintenance:
-                            while (drone.BatteryStatus <= 100) 
+                            while (drone.BatteryStatus <= 100 && !needToStop()) 
                             {
                                 drone.BatteryStatus += SPEED;
                                 dronedroneSimulation(drone);
@@ -58,8 +58,7 @@ namespace BL
                             break;
                     }
                 }
-                catch (ThereIsNotEnoughBatteryException e)
-                {
+                catch (ThereIsNotEnoughBatteryException e) {
                     BL.SendDroneToCharge(droneID, true);
                 }
                 drone = DronesListBL.First(d => d.getIdBL() == droneID);
