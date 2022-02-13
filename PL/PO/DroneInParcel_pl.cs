@@ -9,8 +9,10 @@ namespace PO
 {
     public class DroneInParcel_pl
     {
+        DroneInParcel droneBL;
         public DroneInParcel_pl(DroneInParcel drone)
         {
+            droneBL = drone;
             if (drone != null)
             {
                 Id = drone.Id;
@@ -20,6 +22,10 @@ namespace PO
         }
         public override string ToString()
         {
+            if(droneBL == null)
+            {
+                return "non drone assign yet";
+            }
             return $"----------------\nID: {Id}\nBattery Status: {BatteryStatus}\nPosition - {CurrentPosition.ToString()}";
         }
         public int Id { get; set; }
