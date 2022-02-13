@@ -154,7 +154,7 @@ namespace Dal
         [MethodImpl(MethodImplOptions.Synchronized)]
         public int GetNewParcelId()
         {
-            return DataSource.Config.idParcel;
+            return DataSource.Config.idParcels++;
         }
         public double[] powerRequest()
         {

@@ -14,7 +14,6 @@ namespace BO
         public Parcel( DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null, int droneID = -1 )
         {
             DalObj = dalOB;
-           // parcelId++;
             IdBL = id > 0 ? id : DalObj.GetNewParcelId();
             Weight = (WeightCategoriesBL)weight;
             Priority = (PrioritiesBL)priority;
@@ -38,17 +37,15 @@ namespace BO
             return "";
         }
 
-        //private static int parcelId = 0;
-      //  public int GetParcelId() { return parcelId; }
-        //public void SetParcelId(int pId) {  parcelId=pId; }
+      
         public int IdBL { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }
         public DroneInParcel DroneIdBL { get; set; }
-        public DateTime? RequestedBL { get; set; }//יצירת חבילה למשלוח
-        public DateTime? ScheduledBL { get; set; }//שיוך חבילה לרחפן
-        public DateTime? PickUpBL { get; set; }//איסוף חבילה מלקוח
-        public DateTime? DeliveredBL { get; set; }//זמן הגעת חבילה למקבל
+        public DateTime? RequestedBL { get; set; }
+        public DateTime? ScheduledBL { get; set; }
+        public DateTime? PickUpBL { get; set; }
+        public DateTime? DeliveredBL { get; set; }
         public CustomerOnDelivery Sender { get; set; }
         public CustomerOnDelivery Target { get; set; }
         public bool isActive { get; set; }
