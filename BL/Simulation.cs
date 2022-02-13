@@ -63,6 +63,7 @@ namespace BL
                 }
                 drone = DronesListBL.First(d => d.getIdBL() == droneID);
                 dronedroneSimulation(drone);
+                if(parcel != null) parcelSimulation(BL.returnParcel(parcel.IdBL));
                 Thread.Sleep(DELAY);
             }
         }

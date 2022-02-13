@@ -79,9 +79,9 @@ namespace BL
                              parcel.Weight == WeightCategoriesBL.medium ? mediumWeightPowerConsumption :
                              heavyWeightPowerConsumption;
 
-            double power = (DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, sender.Position) * nonWeightPowerConsumption);
-            power += DistanceBetweenCoordinates.CalculateDistance(sender.Position, target.Position) * weightPower;
-            power += DistanceBetweenCoordinates.CalculateDistance(target.Position, findClosestStation(target.Position).Position) * nonWeightPowerConsumption;
+            double power = CalculateDistance(drone.CurrentPosition, sender.Position) * nonWeightPowerConsumption;
+            power += CalculateDistance(sender.Position, target.Position) * weightPower;
+            power += CalculateDistance(target.Position, findClosestStation(target.Position).Position) * nonWeightPowerConsumption;
 
             return power < drone.BatteryStatus;
         }
