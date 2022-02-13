@@ -73,7 +73,7 @@ namespace PL
                 try
                 {
                     BL.AddDrone(int.Parse(IDTextBox.Text), ModelTextBox.Text, (BO.Enum.WeightCategoriesBL)maxWeight, int.Parse(StationIdTextBox.Text));
-                    //this.Close();
+                    this.Close();
                 }
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }

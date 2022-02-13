@@ -29,14 +29,14 @@ namespace PL
             parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
 
         }
-        public DisplayParcelList(BlApi.IBL bl, Customer customer)
+        public DisplayParcelList(BlApi.IBL bl, Customer customer, bool toMe = false)
         {
             currentCustomer = customer;
             InitializeComponent();
             BLobj = bl;
             IEnumerable<ParcelToList> parcels = BLobj.ReturnParcelList();
             parcelDisplay.ItemsSource = from parcel in parcels
-                                        where parcel.SenderId == customer.getIdBL()
+                                        where toMe ? parcel.TargetId == customer.getIdBL() : parcel.SenderId == customer.getIdBL()
                                         select parcel;
             groupBy.Visibility = clear.Visibility = Visibility.Hidden;
         }

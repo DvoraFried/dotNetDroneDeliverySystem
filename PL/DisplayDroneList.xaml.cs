@@ -37,6 +37,7 @@ namespace PL
             }
             OrderByStatus.ItemsSource = itemList;
             itemList = new List<ComboBoxItem>();
+
             for (int i = 0; i < 3; i++)
             {
                 ComboBoxItem newItem = new ComboBoxItem();
@@ -44,6 +45,7 @@ namespace PL
                 itemList.Add(newItem);
             }
             OrderByMaxWeight.ItemsSource = itemList;
+            
         }
 
         private void AddPlDrone(Drone arg1, bool arg2)
@@ -92,6 +94,7 @@ namespace PL
         {
             dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusOrder();
         }
+
     }
 }
 

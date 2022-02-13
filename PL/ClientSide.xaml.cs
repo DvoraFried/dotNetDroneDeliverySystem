@@ -28,16 +28,12 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
-            //exIsent.Visibility = exSENDme.Visibility = Visibility.Visible;
-            //foreach (DeliveryAtCustomer parcel in customer.ImTheSender) { Isent.Items.Add(parcel); }
-            //foreach (DeliveryAtCustomer parcel in customer.ImTheTarget) { Isent.Items.Add(parcel); }
             IDTebtBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeTextBox.IsEnabled = false;
             IDTebtBox.Text = customer.getIdBL().ToString();
             NameTextBox.Text = customer.NameBL;
             PhoneTextBox.Text = customer.PhoneBL;
             LongitudeTextBox.Text = customer.Position.Longitude.ToString();
             LatitudeTextBox.Text = customer.Position.Latitude.ToString();
-            //ADD_BUTTON.Visibility = Visibility.Hidden;
             currentCustomer = customer;
         }
 
@@ -47,17 +43,12 @@ namespace PL
         }
         private void customerParcels_Click(object sender, RoutedEventArgs e)
         {
-            app.SelectedIndex = 1;
             new DisplayParcelList(Bl, currentCustomer).ShowDialog();
         }
-        private void ConfirmParcelReceipt_Click(object sender, RoutedEventArgs e)
-        {
-            app.SelectedIndex = 2;
-        }
+
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try {
                 Bl.UpDateCustomerData(Int32.Parse(IDTebtBox.Text), NameTextBox.Text, PhoneTextBox.Text);
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -79,10 +70,10 @@ namespace PL
                 new DisplayParcel(Bl, Bl.returnParcel(parcel.Id)).ShowDialog();
             }
         }
-        private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)
-        {
-            new DisplayParcel(Bl, currentCustomer).ShowDialog();
-        }
 
+        private void toCustomerParcels_Click(object sender, RoutedEventArgs e)
+        {
+            new DisplayParcelList(Bl, currentCustomer, true).ShowDialog();
+        }
     }
 }

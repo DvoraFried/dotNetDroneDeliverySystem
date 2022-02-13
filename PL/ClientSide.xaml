@@ -14,9 +14,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="personal"             Content="personal infro"    Grid.Column="0" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="personal_Click" />
-            <Button Name="customerParcels"      Content="parcels you sent"      Grid.Column="1" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="customerParcels_Click" />
-            <Button Name="ConfirmParcelReceipt" Content="receipt of parcel" Grid.Column="2" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="ConfirmParcelReceipt_Click" />
+            <Button Name="customerParcels"      Content="parcels you sent" HorizontalAlignment="Left" Height="52" VerticalAlignment="Top" Width="180" Click="customerParcels_Click" Margin="0,13,0,0" Grid.Column="1" />
+            <Button x:Name="toCustomerParcels"      Content="parcels sent to you" HorizontalAlignment="Left" Height="52" VerticalAlignment="Top" Width="180" Click="toCustomerParcels_Click" Margin="0,13,0,0" Grid.Column="2" />
         </Grid>
         <TabControl Name="app" HorizontalAlignment="Center" Height="332" Margin="0,72,0,0" VerticalAlignment="Top" Width="780">
             <TabControl.Resources>
@@ -31,7 +30,7 @@
             </TabControl.Resources>
             <TabItem Header="infor">
                 <Grid Background="Gray">
-                    <Grid HorizontalAlignment="Center" Height="260" VerticalAlignment="Center" Width="397" Background="AliceBlue">
+                    <Grid HorizontalAlignment="Center" Height="260" VerticalAlignment="Center" Width="398" Background="AliceBlue">
                         <Label Content="ID:" HorizontalAlignment="Left" Margin="54,25,0,0" VerticalAlignment="Top" Width="80"/>
                         <Label Content="NAME:" HorizontalAlignment="Left" Margin="54,72,0,0" VerticalAlignment="Top" Width="80"/>
                         <Label Content="PHONE:" HorizontalAlignment="Left" Margin="54,0,0,0" VerticalAlignment="Center" Width="80"/>

@@ -14,6 +14,7 @@ namespace BO
             SenderName = dalOBG.returnCustomerArray().ToList().Any(customer => customer.Id == parcel.Sender.Id) ? dalOBG.returnCustomer(parcel.Sender.Id).Name : null;
             SenderId = parcel.Sender.Id;
             UstomerReceivesName = dalOBG.returnCustomerArray().ToList().Any(customer => customer.Id == parcel.Target.Id) ? dalOBG.returnCustomer(parcel.Target.Id).Name : null;
+            TargetId = parcel.Target.Id;
             weight = parcel.Weight;
             priority = parcel.Priority;
             PackageStatus = parcel.DeliveredBL != null ? Enum.DeliveryStatus.provided :
@@ -28,6 +29,7 @@ namespace BO
         public int Id { get; set; }
         public string SenderName { get; set; }
         public int SenderId { get; set; }
+        public int TargetId { get; set; }
         public string UstomerReceivesName { get; set; }
         Enum.WeightCategoriesBL weight { get; set; }
         Enum.PrioritiesBL priority { get; set; }
