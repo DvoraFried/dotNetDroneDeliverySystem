@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Dal
         public static List<Customer> MyCustomers = new List<Customer>();
         public static List<Employee> MyEmployees = new List<Employee>();
         public static List<Parcel> MyParcels = new List<Parcel>();
-        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge> ();
+        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
 
         //satandart drone speed per hour is 120 kilometers
         public class Config {
@@ -34,7 +35,7 @@ namespace Dal
             }
             for (int i = 1; i < 8; i++)
             {
-                Drone droneDAL = new Drone() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100) };
+                Drone droneDAL = new Drone() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100), isActive = true };
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {
@@ -75,6 +76,7 @@ namespace Dal
                 }
                 MyParcels.Add(parcel);
             }
+
             Employee manager1 = new Employee() { Id = 213570302, Name = "hadas", Manager = true };
             MyEmployees.Add(manager1);
             Employee manager2 = new Employee() { Id = 212628721, Name = "dvora", Manager = true };

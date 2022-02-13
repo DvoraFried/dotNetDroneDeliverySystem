@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ArrayOfEmployee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Employee>
+    <Id>213570302</Id>
+    <Name>hadas</Name>
+    <Manager>true</Manager>
+  </Employee>
+  <Employee>
+    <Id>212628721</Id>
+    <Name>dvora</Name>
+    <Manager>true</Manager>
+  </Employee>
+</ArrayOfEmployee>

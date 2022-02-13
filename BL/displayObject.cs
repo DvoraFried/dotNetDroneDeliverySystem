@@ -1,4 +1,5 @@
-﻿using DalObject;
+﻿//using DalObject;
+using System.Runtime.CompilerServices;
 using BO;
 using DO;
 using System;
@@ -12,70 +13,114 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayStatoin(int idS)
         {
-            if (!DalObj.returnStationArray().ToList().Any(station => station.Id == idS)) { throw new ObjectDoesntExistsInListException("station"); }
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ station data ~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine(ConvertToBL.ConvertToStationBL(DalObj.returnStation(idS)).ToString());
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            lock (DalObj)
+            {
+                if (!DalObj.returnStationArray().ToList().Any(station => station.Id == idS)) { throw new ObjectDoesntExistsInListException("station"); }
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ station data ~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine(ConvertToBL.ConvertToStationBL(DalObj.returnStation(idS)).ToString());
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            }
 
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayDrone(int idD)
         {
-            if (!DronesListBL.Any(drone => drone.getIdBL() == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            lock (DalObj)
+            {
+                if (!DronesListBL.Any(drone => drone.getIdBL() == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayCustomer(int idC)
         {
-            if (!DalObj.returnCustomerArray().ToList().Any(customer => customer.Id == idC)) { throw new ObjectDoesntExistsInListException("customer"); }
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            lock (DalObj)
+            {
+                if (!DalObj.returnCustomerArray().ToList().Any(customer => customer.Id == idC)) { throw new ObjectDoesntExistsInListException("customer"); }
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayParcel(int idP)
         {
-            if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.Id == idP)) { throw new ObjectDoesntExistsInListException("parcel"); }
-            ParcelBL parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine(parcel.ToString());
-            if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: "+parcel.DroneIdBL.ToString()); }
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            lock (DalObj)
+            {
+                if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.Id == idP)) { throw new ObjectDoesntExistsInListException("parcel"); }
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine(parcel.ToString());
+                if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: " + parcel.DroneIdBL.ToString()); }
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayStatoinList()
         {
-            foreach (Station station in DalObj.returnStationArray())
+            lock (DalObj)
             {
-                Console.WriteLine(new StationToList(ConvertToBL.ConvertToStationBL(station)).ToString());
+                foreach (DO.Station station in DalObj.returnStationArray())
+                {
+                    Console.WriteLine(new StationToList(ConvertToBL.ConvertToStationBL(station)).ToString());
+                }
             }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayDroneList()
         {
-            foreach(DroneBL drone in DronesListBL)
+            lock (DalObj)
             {
-                Console.WriteLine(new DroneToList(DalObj, drone).ToString());
+                foreach (BO.Drone drone in DronesListBL)
+                {
+                    Console.WriteLine(new DroneToList(DalObj, drone).ToString());
+                }
             }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayCustomerList()
         {
-            foreach (Customer customer in DalObj.returnCustomerArray())
+            lock (DalObj)
             {
-                Console.WriteLine(new CustomerToList(DalObj,ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
+                foreach (DO.Customer customer in DalObj.returnCustomerArray())
+                {
+                    Console.WriteLine(new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
+                }
             }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayParcelList()
         {
-            foreach (Parcel parcel in DalObj.returnParcelArray())
+            lock (DalObj)
             {
-                Console.WriteLine(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                foreach (DO.Parcel parcel in DalObj.returnParcelArray())
+                {
+                    Console.WriteLine(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)).ToString());
+                }
             }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone()
         {
-            foreach (ParcelBL parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
+            lock (DalObj)
             {
-                if (parcel.DroneIdBL == null) { Console.WriteLine(new ParcelToList(DalObj, parcel).ToString()); }
+                foreach (BO.Parcel parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
+                {
+                    if (parcel.DroneIdBL == null) { Console.WriteLine(new ParcelToList(DalObj, parcel).ToString()); }
+                }
             }
         }
 

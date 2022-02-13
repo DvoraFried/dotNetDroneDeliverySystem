@@ -1,9 +1,13 @@
 ﻿using BO;
+using PO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,41 +25,34 @@ namespace PL
     /// </summary>
     public partial class DisplayDrone : Window
     {
-        BlApi.IBL Bl;
-
+        BlApi.IBL BL;
+        drone_pl dronePO;
+        Drone droneBO;
         int maxWeight = 1;
-        public DisplayDrone(BlApi.IBL bl,DroneBL drone)
+        public DisplayDrone(BlApi.IBL BL,Drone drone)
         {
-            Bl = bl;
+            droneBO = drone;
+            dronePO = new drone_pl(BL,drone);
+            this.BL = BL;
             InitializeComponent();
-            ADD_BUTTON.Visibility = Visibility.Hidden;
-            UPDATE_MENU.Visibility = Visibility.Visible;
-            hidddenInfroUpDate.Visibility = Visibility.Visible;
-            IDTextBox.Text = drone.getIdBL().ToString();
-            IDTextBox.IsEnabled = false;
-            ModelTextBox.Text = drone.ModelBL;
-            parcelInDrone.Items.Add(drone.delivery == null ? "No Parcel in Drone" : drone.delivery);
-            light.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.light ? true : false;
-            medium.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.medium ? true : false;
-            heavy.IsChecked = drone.MaxWeight == EnumBL.WeightCategoriesBL.heavy ? true : false;
+            DataContext = dronePO;
+            light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
+            medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
+            heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
-            batteryStatus.Value = drone.BatteryStatus;
-            DroneStatusTextBox.Text = drone.DroneStatus.ToString();
-            statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
+            UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = DELETE_BUTTON.Visibility = Simulation.Visibility = Visibility.Visible;
+            ADD_BUTTON.Visibility = statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
         }
         public DisplayDrone(BlApi.IBL bl)
         {
-            Bl = bl;
+            BL = bl;
             InitializeComponent();
         }
         private void showParcel(object sender, RoutedEventArgs e)
         {
-            
-            BO.ParcelByTransfer parcel = (sender as ListView).SelectedValue as BO.ParcelByTransfer;
-            if (parcel != null)
+            if (dronePO.Delivery.Id != 0)
             {
-                this.Close();
-                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(BL, BL.returnParcel(dronePO.Delivery.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -73,7 +70,7 @@ namespace PL
             {
                 try
                 {
-                    Bl.AddDrone(Int32.Parse(IDTextBox.Text), ModelTextBox.Text, (EnumBL.WeightCategoriesBL)maxWeight, Int32.Parse(StationIdTextBox.Text));
+                    BL.AddDrone(int.Parse(IDTextBox.Text), ModelTextBox.Text, (BO.Enum.WeightCategoriesBL)maxWeight, int.Parse(StationIdTextBox.Text));
                     this.Close();
                 }
                 catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -81,17 +78,21 @@ namespace PL
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
+
+        private void DELETE_Button_Click(object sender, RoutedEventArgs e)
+        {
+            BL.DeleteDrone(int.Parse(IDTextBox.Text));
+        }
+
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
-            Bl.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
-            this.Close();
+            BL.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
+
         }
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Bl.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
-                this.Close();
+            try {
+                BL.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -99,10 +100,8 @@ namespace PL
         }
         private void ReleaseDroneFromChargingClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Bl.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text));
-                this.Close();
+            try {
+                BL.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -110,10 +109,8 @@ namespace PL
         }
         public void AssigningPackageToDroneClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Bl.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
-                this.Close();
+            try {
+                BL.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -122,10 +119,8 @@ namespace PL
         
         public void CollectionOfAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Bl.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
-                this.Close();
+            try {
+                BL.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -134,43 +129,42 @@ namespace PL
         }
         public void DeliveryAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Bl.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
-                this.Close();
+            try {
+                BL.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
             catch (FormatException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-
-        private void expanderHasExpanded(object sender, RoutedEventArgs args)
-        {
-            parcelInDrone.Background = Brushes.DimGray;
-        }
-        private void expanderHasClose(object sender, RoutedEventArgs args)
-        {
-            parcelInDrone.Background = null;
-        }
         
-        private void light_Checked(object sender, RoutedEventArgs e)
-        {
-            maxWeight = 0;
-        }
+        private void light_Checked(object sender, RoutedEventArgs e) { maxWeight = 0; }
 
-        private void medium_Checked(object sender, RoutedEventArgs e)
-        {
-            maxWeight = 1;
-        }
+        private void medium_Checked(object sender, RoutedEventArgs e) { maxWeight = 1; }
 
-        private void heavy_Checked(object sender, RoutedEventArgs e)
-        {
-            maxWeight = 2;
-        }
+        private void heavy_Checked(object sender, RoutedEventArgs e) { maxWeight = 2; }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e) { this.Close(); }
+
+
+        BackgroundWorker worker = new BackgroundWorker();
+        private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Drone updateDrone = null;
+            worker.DoWork += (object? sender, DoWorkEventArgs e) =>
+            {
+                 BL.StartSimulation(
+                   BL,
+                   droneBO.getIdBL(),
+                   (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0); },
+                   () => worker.CancellationPending);
+            };
+            worker.WorkerReportsProgress = true;
+            worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
+            {
+                dronePO.UpdatePlDrone(droneBO);
+            };
+            worker.WorkerSupportsCancellation = true;
+            worker.RunWorkerAsync();
         }
     }
 }

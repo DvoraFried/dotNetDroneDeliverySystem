@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using System.Runtime.CompilerServices;
+using BO;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -10,132 +11,173 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        public List<DroneBL> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
-            List<DroneBL> droneUpdateList = new List<DroneBL>();
-            if (droneStatus != -1 && droneMaxWeight != -1)
-            {
-                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus && (int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
-            }
-            else if (droneStatus != -1)
-            {
-                foreach (DroneBL element in DronesListBL) { if ((int)element.DroneStatus == droneStatus) { droneUpdateList.Add(element); } }
-            }
-            else if (droneMaxWeight != -1)
-            {
-                foreach (DroneBL element in DronesListBL) { if ((int)element.MaxWeight == droneMaxWeight) { droneUpdateList.Add(element); } }
-            }
-            else {
-                return DronesListBL;
-            }
-            return droneUpdateList;
-        }
-        public CustomerBL ReturnCustomer(int id)
-        {
-            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(id));
-        }
-        public IEnumerable<DroneBL> ReturnDronesByStatusOrder()
-        {
-            IEnumerable<DroneBL> dList = DronesListBL.OrderBy(d => d.DroneStatus);
-            foreach (DroneBL element in dList)
-            {
-                yield return element;
-            }
-        }
-        public List<ParcelToList> ReturnParcelList()
-        {
-            List<ParcelToList> parcelsUpdateList = new List<ParcelToList>();
-            foreach (Parcel parcel in DalObj.returnParcelArray().ToList())
-            {
-                if (parcel.isActive)
-                {
-                    parcelsUpdateList.Add(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)));
+            List<BO.Drone> drones = (from d in DronesListBL where d.isActive || d.delivery != null select d).ToList();
+            if (droneStatus != -1) {
+                if (droneMaxWeight != -1) {
+                    return from D in drones where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D;
+                }
+                else {
+                    return from D in drones where ((int)D.DroneStatus == droneStatus) select D;
                 }
             }
-            return parcelsUpdateList;
+            else if (droneMaxWeight != -1) {
+                return  (from D in drones where ((int)D.MaxWeight == droneMaxWeight) select D);
+            }
+            return drones;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<BO.Drone> ReturnDronesByStatusOrder()
+        {
+            lock (DalObj)
+            {
+                return from d in DronesListBL.OrderBy(d => d.DroneStatus)
+                       where d.isActive || d.delivery != null
+                       select d;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<ParcelToList> ReturnParcelList()
+        {
+            lock (DalObj)
+            {
+                return (from P in DalObj.returnParcelArray()
+                        where P.isActive
+                        select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P)));
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<BO.Drone> ReturnDroneListWithoutDeletedDrones()
+        {
+            lock (DalObj)
+            {
+                return (from D in DronesListBL
+                        where D.isActive
+                        select D);
+            }
+        }
+
+            [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
         {
-            IEnumerable<ParcelToList> pList = ReturnParcelList().OrderBy(s => s.SenderId);
+            return from parcel in ReturnParcelList()
+                   orderby parcel.SenderId
+                   select parcel;        
+        }
 
-            foreach (ParcelToList element in pList)
-            {
-                yield return element;
-            }
-        }
-        public List<CustomerToList> ReturnCustomerList()
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<CustomerToList> ReturnCustomerList()
         {
-            List<CustomerToList> customersToReturn = new List<CustomerToList>();
-            foreach (Customer customer in DalObj.returnCustomerArray())
+            lock (DalObj)
             {
-                if (customer.isActive)
-                {
-                    customersToReturn.Add(new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(customer)));
-                }
+                return (from C in DalObj.returnCustomerArray()
+                        where C.isActive
+                        select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C)));
             }
-            return customersToReturn;
         }
-        public List<StationToList> ReturnStationList()
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<StationToList> ReturnStationList()
         {
-            List<StationToList> stationsToReturn = new List<StationToList>();
-            foreach (Station station in DalObj.returnStationArray())
+            lock (DalObj)
             {
-                stationsToReturn.Add(new StationToList(ConvertToBL.ConvertToStationBL(station)));
+                return (from S in DalObj.returnStationArray()
+                        select new StationToList(ConvertToBL.ConvertToStationBL(S)));
             }
-            return stationsToReturn;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots()
         {
-            IEnumerable<StationToList> sList = ReturnStationList().OrderBy(s => s.AvailableChargingStations);
-            
-            foreach (StationToList element in sList)
-            {
-                yield return element;
-            }
+            return (from station in ReturnStationList()
+                    orderby station.AvailableChargingStations 
+                    select station);
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public EmpolyeeBL returnEmployee(int idE)
         {
             return ConvertToBL.convertToEmployee(idE);
         }
-        public CustomerBL convertCustomerToCustomerBl(int customerID)
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public BO.Customer convertCustomerToCustomerBl(int customerID)
         {
-            return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
+            lock (DalObj)
+            {
+                return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
+            }
         }
-        public StationBL convertStationToStationBl(int stationID)
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public BO.Station convertStationToStationBl(int stationID)
         {
-            return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationID));
+            lock (DalObj)
+            {
+                return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationID));
+            }
         }
-        public ParcelBL convertParcelToParcelBl(int parcelID)
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public BO.Parcel returnParcel(int parcelID)
         {
-            return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelID));
+            lock (DalObj)
+            {
+                return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelID));
+            }
         }
-        public DroneBL convertDroneInChargeBLToDroneBl(DroneInChargeBL chargeBL)
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public BO.Drone convertDroneInChargeBLToDroneBl(DroneInCharge chargeBL)
         {
-            return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+            lock (DalObj)
+            {
+                return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+            }
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public bool userIsCustomer(string name, int id)
         {
-            if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
+            lock (DalObj)
             {
-                return true;
+                if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public bool userIsEmployee(string name,int id)
         {
-            if (DalObj.returnEmployeeArray().Any(c => c.Id == id&&c.Name==name&& !c.Manager))
+            lock (DalObj)
             {
-                return true;
+                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && !c.Manager))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public bool userIsManager(string name, int id)
         {
-            if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name&&c.Manager))
+            lock (DalObj)
             {
-                return true;
+                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && c.Manager))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
     }
 }

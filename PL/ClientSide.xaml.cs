@@ -23,8 +23,8 @@ namespace PL
     {
 
         BlApi.IBL Bl;
-        CustomerBL currentCustomer;
-        public ClientSide(BlApi.IBL bl, CustomerBL customer)
+        Customer currentCustomer;
+        public ClientSide(BlApi.IBL bl, Customer customer)
         {
             Bl = bl;
             InitializeComponent();
@@ -76,7 +76,7 @@ namespace PL
             if (parcel != null)
             {
                 this.Close();
-                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(Bl, Bl.returnParcel(parcel.Id)).ShowDialog();
             }
         }
         private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)

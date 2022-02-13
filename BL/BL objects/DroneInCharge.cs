@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class DroneInChargeBL
+    public class DroneInCharge
     {
-        public DroneInChargeBL(DroneBL drone)
+        public DroneInCharge(Drone drone)
         {
             Id = drone.getIdBL();
             BatteryStatus = drone.BatteryStatus;
             enterTime = DateTime.Now;
         }
-        public DroneInChargeBL(int id, DateTime enteredTime)
+        public DroneInCharge(int id, DateTime enteredTime)
         {
             Id = id;
             enterTime = enteredTime;

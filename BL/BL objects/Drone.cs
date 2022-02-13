@@ -1,4 +1,4 @@
-﻿using DalObject;
+﻿//using DalObject;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BL.BL;
-using static BO.EnumBL;
+using static BO.Enum;
 using static BO.Exceptions;
 
 namespace BO
 {
-    public class DroneBL
+    public class Drone
     {
 
-        public DroneBL(DalApi.IDAL dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId)
+        public Drone(DalApi.IDal dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId, bool active = true)
         {
             Random rnd = new Random();
             setIdBL(id);
@@ -23,8 +23,9 @@ namespace BO
             CurrentPosition = p;
             BatteryStatus = rnd.Next(20, 41);
             DroneStatus = status;
-            delivery = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idBL)?
-                       new ParcelByTransfer(dalOB, ConvertToBL.ConvertToParcelBL(dalOB.returnParcelArray().ToList().First(parcel => parcel.DroneId == idBL)))
+            isActive = active;
+            delivery = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idBL) ?
+                       new ParcelByTransfer(dalOB,  idBL)
                        : null;
             if (delivery != null) { DroneStatus = DroneStatusesBL.Shipping; }
         }
@@ -49,6 +50,7 @@ namespace BO
         public DroneStatusesBL DroneStatus { get; set; }
         public ParcelByTransfer delivery { get; set; }
         public Position CurrentPosition { get; set; }
+        public bool isActive { get; set; }
 
     }
 }

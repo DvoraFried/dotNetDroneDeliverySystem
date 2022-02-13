@@ -60,7 +60,7 @@
                     <ColumnDefinition Width="14*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
-            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD Customer" HorizontalAlignment="Left" Height="44" Grid.Row="1" VerticalAlignment="Top" Width="140" Click="Button_Click" Margin="54,201,0,0"/>
+            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD Customer" HorizontalAlignment="Center" Height="44" Grid.Row="1" VerticalAlignment="Top" Width="140" Click="Button_Click" Margin="0,201,0,0"/>
             <Label Content="ID:" HorizontalAlignment="Left" Margin="54,4,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
             <Label Content="NAME:" HorizontalAlignment="Left" Margin="54,34,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
             <Label Content="PHONE:" HorizontalAlignment="Left" Margin="54,62,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
@@ -71,13 +71,13 @@
             <Expander Name="exSENDme" Visibility="Hidden" Header="PARCELS  SENT TO YOU:" HorizontalAlignment="Left" Height="404" Margin="223,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Grid.RowSpan="2">
                 <ListView Name="SENDme" MouseDoubleClick="showParcel" />
             </Expander>
-            <TextBox Name="IDTebtBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="158,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19" Grid.Row="1"/>
-            <TextBox Name="NameTextBox" HorizontalAlignment="Left" Margin="158,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19" Grid.Row="1"/>
-            <TextBox Name="PhoneTextBox" HorizontalAlignment="Left" Margin="158,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19" Grid.Row="1"/>
+            <TextBox Name="IDTebtBox" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="158,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19" Grid.Row="1"/>
+            <TextBox Name="NameTextBox" Text="{Binding Path=name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="158,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19" Grid.Row="1"/>
+            <TextBox Name="PhoneTextBox" Text="{Binding Path=phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="158,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19" Grid.Row="1"/>
             <TextBox Name="LongitudeTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="158,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81" Height="19" Grid.Row="1" Text="longitude"/>
             <TextBox Name="LatitudeTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="251,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Grid.Row="1" Height="19" Text="Latitude"/>
             <Button Cursor="Hand" x:Name="UPDATE_BUTTON" Visibility="Hidden" Content="UPDATE CUSTOMER" HorizontalAlignment="Left" Height="44" Grid.Row="1" VerticalAlignment="Top" Width="140" Click="updateButton_Click" Margin="54,201,0,0"/>
-            <Button Cursor="Hand" x:Name="DELETE_BUTTON" Content="delete Customer" HorizontalAlignment="Left" Height="44" Grid.Row="1" VerticalAlignment="Top" Width="128" Click="removeButton_Click" Margin="206,201,0,0"/>
+            <!--            <Button Cursor="Hand" x:Name="DELETE_BUTTON" Content="delete Customer" HorizontalAlignment="Left" Height="44" Grid.Row="1" VerticalAlignment="Top" Width="128" Click="removeButton_Click" Margin="206,201,0,0"/> -->
         </Grid>
     </Grid>
 </Window>

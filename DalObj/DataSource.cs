@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,14 @@ using DO;
 
 namespace Dal
 {
-    public class DataSource
+    static class DataSource
     {
         public static List<Station> MyBaseStations = new List<Station>();
         public static List<Drone> MyDrones = new List<Drone>();
         public static List<Customer> MyCustomers = new List<Customer>();
         public static List<Employee> MyEmployees = new List<Employee>();
         public static List<Parcel> MyParcels = new List<Parcel>();
-        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge> ();
+        public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
 
         //satandart drone speed per hour is 120 kilometers
         public class Config {
@@ -24,7 +25,7 @@ namespace Dal
             public static double carryHeavyWeight=0.0015;
             public static double DroneLoadingRate=43.3;
         }
-        public static void Initialize()
+        internal static void Initialize()
         {
             Random rnd = new Random();
             for (int i = 1; i < 11; i++)
@@ -34,7 +35,7 @@ namespace Dal
             }
             for (int i = 1; i < 8; i++)
             {
-                Drone droneDAL = new Drone() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100) };
+                Drone droneDAL = new Drone() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100), isActive = true };
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {

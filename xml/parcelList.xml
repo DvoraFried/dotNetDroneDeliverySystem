@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<ArrayOfParcel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Parcel>
+    <Id>1</Id>
+    <SenderId>408563513</SenderId>
+    <TargetId>508184338</TargetId>
+    <Weight>heavy</Weight>
+    <Priority>emergency</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.2993444+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>2</Id>
+    <SenderId>408563513</SenderId>
+    <TargetId>197887682</TargetId>
+    <Weight>heavy</Weight>
+    <Priority>usual</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050822+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>3</Id>
+    <SenderId>711888504</SenderId>
+    <TargetId>603918216</TargetId>
+    <Weight>light</Weight>
+    <Priority>rapid</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050885+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>4</Id>
+    <SenderId>913754041</SenderId>
+    <TargetId>989883630</TargetId>
+    <Weight>light</Weight>
+    <Priority>rapid</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050891+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>5</Id>
+    <SenderId>197887682</SenderId>
+    <TargetId>711888504</TargetId>
+    <Weight>heavy</Weight>
+    <Priority>emergency</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050895+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>6</Id>
+    <SenderId>408563513</SenderId>
+    <TargetId>989883630</TargetId>
+    <Weight>light</Weight>
+    <Priority>usual</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050903+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>7</Id>
+    <SenderId>981211321</SenderId>
+    <TargetId>913754041</TargetId>
+    <Weight>heavy</Weight>
+    <Priority>rapid</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050907+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>8</Id>
+    <SenderId>319727827</SenderId>
+    <TargetId>408563513</TargetId>
+    <Weight>heavy</Weight>
+    <Priority>emergency</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.305091+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>9</Id>
+    <SenderId>408563513</SenderId>
+    <TargetId>541036100</TargetId>
+    <Weight>light</Weight>
+    <Priority>usual</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050914+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>10</Id>
+    <SenderId>508184338</SenderId>
+    <TargetId>515699880</TargetId>
+    <Weight>heavy</Weight>
+    <Priority>usual</Priority>
+    <DroneId>-1</DroneId>
+    <isActive>true</isActive>
+    <Requested>2022-02-11T01:58:35.3050918+02:00</Requested>
+    <Scheduled xsi:nil="true" />
+    <PickUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+</ArrayOfParcel>

@@ -1,4 +1,4 @@
-﻿using DalObject;
+﻿using System.Runtime.CompilerServices;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -11,11 +11,11 @@ using BO;
 
 namespace BL
 {
-    sealed partial  class BL : BlApi.IBL
+    sealed partial class BL : BlApi.IBL
     {
         Random rnd = new Random();
-        public static List<DroneBL> DronesListBL;
-        static DalApi.IDAL DalObj;
+        public static List<BO.Drone> DronesListBL;
+        internal static DalApi.IDal DalObj;
         static double nonWeightPowerConsumption;
         static double lightWeightPowerConsumption;
         static double mediumWeightPowerConsumption;
@@ -24,34 +24,33 @@ namespace BL
 
         BL()
         {
-            DalObj = DALFactory.factory();
-            
+            DalObj = DalApi.DalFactory.GetDal();
             double[] electricityUse = DalObj.powerRequest();
             nonWeightPowerConsumption = electricityUse[0];
             lightWeightPowerConsumption = electricityUse[1];
             mediumWeightPowerConsumption = electricityUse[2];
             heavyWeightPowerConsumption = electricityUse[3];
             DroneLoadingRate = electricityUse[4];
-            
+
             DronesListBL = ConvertToBL.ConvertToDroneArrayBL(DalObj.returnDroneArray().ToList());
-            
-            foreach(DroneBL drone in DronesListBL)
+
+            foreach (BO.Drone drone in DronesListBL)
             {
-                List<Parcel> arr = DalObj.returnParcelArray().ToList();
+                List<DO.Parcel> arr = DalObj.returnParcelArray().ToList();
                 if (!arr.Any(parcel => parcel.DroneId == drone.getIdBL()))
                 {
                     if (rnd.Next(0, 2) == 0)
                     {
-                        drone.DroneStatus = EnumBL.DroneStatusesBL.empty;
-                        if(DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != null))
+                        drone.DroneStatus = BO.Enum.DroneStatusesBL.empty;
+                        if (DalObj.returnParcelArray().ToList().Any(parcel => parcel.Delivered != null))
                         {
-                            List<Parcel> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != null);
-                            Customer randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
+                            List<DO.Parcel> parcelsThatDelivered = DalObj.returnParcelArray().ToList().FindAll(parcel => parcel.Delivered != null);
+                            DO.Customer randomCustomer = DalObj.returnCustomer(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
                             drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
                         }
-                        else 
+                        else
                         {
-                            List<Station> stations = DalObj.returnStationArray().ToList();
+                            List<DO.Station> stations = DalObj.returnStationArray().ToList();
                             int randomIndex = rnd.Next(0, stations.Count);
                             drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
                         }
@@ -59,29 +58,30 @@ namespace BL
                     }
                     else
                     {
-                        drone.DroneStatus = EnumBL.DroneStatusesBL.maintenance;
+                        drone.DroneStatus = BO.Enum.DroneStatusesBL.maintenance;
                         drone.BatteryStatus = rnd.Next(0, 21);
-                        List<Station> stations = DalObj.returnStationArray().ToList();
+                        List<DO.Station> stations = DalObj.returnStationArray().ToList();
                         int randomIndex = rnd.Next(0, stations.Count);
                         drone.CurrentPosition = new Position(stations[randomIndex].Longitude, stations[randomIndex].Latitude);
-                        DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new DroneInChargeBL(drone), stations[randomIndex].Id));
+                        DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new DroneInCharge(drone), stations[randomIndex].Id));
                     }
                 }
                 else
                 {
-                    drone.DroneStatus = EnumBL.DroneStatusesBL.Shipping;
-                    Parcel parcel = DalObj.returnParcelByDroneId(drone.getIdBL());
+                    drone.DroneStatus = BO.Enum.DroneStatusesBL.Shipping;
+                    DO.Parcel parcel = DalObj.returnParcelByDroneId(drone.getIdBL());
                     Position senderPos = new Position(DalObj.returnCustomer(parcel.SenderId).Longitude, DalObj.returnCustomer(parcel.SenderId).Latitude);
                     Position targetPos = new Position(DalObj.returnCustomer(parcel.TargetId).Longitude, DalObj.returnCustomer(parcel.TargetId).Latitude);
                     drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos) : senderPos;
-                    double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition,targetPos);
-                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos))*nonWeightPowerConsumption;
-                    drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget*lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
+                    double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, targetPos);
+                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos)) * nonWeightPowerConsumption;
+                    drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget * lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           (int)parcel.Weight == 2 ? rnd.Next((int)(distanceToTarget * mediumWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           rnd.Next((int)(distanceToTarget * heavyWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100);
                 }
             }
         }
+
         internal static BL instance = null;
         private static readonly object padLock = new object();
 
@@ -102,12 +102,13 @@ namespace BL
                 return instance;
             }
         }
-        public static double updateButteryStatus(DroneBL drone, Position position, int weight)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        internal static double updateButteryStatus(BO.Drone drone, Position position, int weight)
         {
             double distance = CalculateDistance(drone.CurrentPosition, position);
-            double lessPower = drone.DroneStatus == EnumBL.DroneStatusesBL.empty ? distance* nonWeightPowerConsumption :
-                               weight == (int)EnumBL.WeightCategoriesBL.light ? distance * lightWeightPowerConsumption :
-                               weight == (int)EnumBL.WeightCategoriesBL.medium ? distance*mediumWeightPowerConsumption :
+            double lessPower = drone.DroneStatus == BO.Enum.DroneStatusesBL.empty ? distance * nonWeightPowerConsumption :
+                               weight == (int)BO.Enum.WeightCategoriesBL.light ? distance * lightWeightPowerConsumption :
+                               weight == (int)BO.Enum.WeightCategoriesBL.medium ? distance * mediumWeightPowerConsumption :
                                distance * heavyWeightPowerConsumption;
             if (lessPower > drone.BatteryStatus)
             {
@@ -115,22 +116,24 @@ namespace BL
             }
             return (drone.BatteryStatus - lessPower);
         }
-
-        public static Position findClosestStation(Position current)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        internal static Position findClosestStation(Position current)
         {
             Position stationPos = null, closeP = current;
-            double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DataSource.MyBaseStations[0].Longitude, DataSource.MyBaseStations[0].Latitude)); 
-            foreach (Station element in DataSource.MyBaseStations)
+            double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DalObj.returnStationArray().ToList()[0].Longitude, DalObj.returnStationArray().ToList()[0].Latitude));
+            foreach (DO.Station element in DalObj.returnStationArray())
             {
                 stationPos = new Position(element.Longitude, element.Latitude);
-                if (distance > DistanceBetweenCoordinates.CalculateDistance(current, stationPos)){
+                if (distance > DistanceBetweenCoordinates.CalculateDistance(current, stationPos))
+                {
                     distance = DistanceBetweenCoordinates.CalculateDistance(current, stationPos);
                     closeP = stationPos;
                 }
             }
             return stationPos;
         }
-        public static String getFormattedLocationInDegree(double latitude, double longitude)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        internal static String getFormattedLocationInDegree(double latitude, double longitude)
         {
             try
             {

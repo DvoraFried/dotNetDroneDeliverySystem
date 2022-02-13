@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class DisplayParcelList : Window
     {
-        public CustomerBL currentCustomer = null;
+        public Customer currentCustomer = null;
         BlApi.IBL BLobj;
         public DisplayParcelList(BlApi.IBL bl)
         {
@@ -29,31 +29,31 @@ namespace PL
             parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
 
         }
-        public DisplayParcelList(BlApi.IBL bl, CustomerBL customer)
+        public DisplayParcelList(BlApi.IBL bl, Customer customer)
         {
             currentCustomer = customer;
             InitializeComponent();
             BLobj = bl;
-            List<ParcelToList> parcels = BLobj.ReturnParcelList();
-            parcelDisplay.ItemsSource = parcels.FindAll(parcel => parcel.SenderId == customer.getIdBL());
+            IEnumerable<ParcelToList> parcels = BLobj.ReturnParcelList();
+            parcelDisplay.ItemsSource = from parcel in parcels
+                                        where parcel.SenderId == customer.getIdBL()
+                                        select parcel;
             groupBy.Visibility = clear.Visibility = Visibility.Hidden;
         }
         private void ButtonAddParcel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             if (currentCustomer != null)
             {
-                new DisplayParcel(BLobj, currentCustomer).ShowDialog();
+                new DisplayParcel(BLobj, currentCustomer).Show();
             }
-            else { new DisplayParcel(BLobj).ShowDialog(); }
+            else { new DisplayParcel(BLobj).Show(); }
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             BO.ParcelToList parcel = (sender as ListView).SelectedValue as BO.ParcelToList;
             if (parcel != null)
             {
-                this.Close();
-                new DisplayParcel(BLobj, BLobj.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(BLobj, BLobj.returnParcel(parcel.Id)).Show();
             }
         }
         private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)

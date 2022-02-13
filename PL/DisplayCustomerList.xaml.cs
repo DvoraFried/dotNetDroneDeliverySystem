@@ -32,13 +32,11 @@ namespace PL
             BO.CustomerToList customer = (sender as ListView).SelectedValue as BO.CustomerToList;
             if (customer != null)
             {
-                this.Close();
-                new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).ShowDialog();
+                new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).Show();
             }
         }
         private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             new DisplayCustomer(Bl).ShowDialog();
             
         }

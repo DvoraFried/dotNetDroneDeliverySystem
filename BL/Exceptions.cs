@@ -5,72 +5,63 @@ using System.Text;
 using System.Threading.Tasks;
 namespace BO
 {
-    public partial class Exceptions : Exception
+    internal partial class Exceptions : Exception
     {
-        public class UnValidIdException: Exception
-       {
-            public UnValidIdException(int id,string type):base(string.Format($"the{id} is not valid to this {type}")){}
-        }
-        public class UnValidLongitudeException : Exception
+        internal class UnValidIdException: Exception
         {
-            public UnValidLongitudeException(double lnd) : base(string.Format($"the longitude {lnd} is not valide")) { }
+            internal UnValidIdException(int id,string type):base(string.Format($"the {id} is not valid to this {type}")){}
         }
-        public class UnValidLatitudeException : Exception
+        internal class UnValidPositionException : Exception
         {
-            public UnValidLatitudeException(double ltd) :base(string.Format($"the Latitude {ltd} is not valide")) { }
+            internal UnValidPositionException(double value, string type ) : base(string.Format($"the {type} {value} is not valide")) { }
         }
-        public class ObjectExistsInListException : Exception
+        internal class ObjectExistsInListException : Exception
         {
-            public ObjectExistsInListException(string type) : base(string.Format($"the {type} is alreadt exists in the {type}list")) { }
+            internal ObjectExistsInListException(string type) : base(string.Format($"the {type} is alreadt exists in the {type}'s list")) { }
         }
-        public class ObjectDoesntExistsInListException : Exception
+        internal class ObjectDoesntExistsInListException : Exception
         {
-            public ObjectDoesntExistsInListException(string type) : base(string.Format($"the {type} does not exsist")) { }
+            internal ObjectDoesntExistsInListException(string type) : base(string.Format($"the {type} does not exsist")) { }
         }
-        public class DroneIsNotInMaintenanceException : Exception
+        internal class DroneIsNotInMaintenanceException : Exception
         {
-            public DroneIsNotInMaintenanceException(int id):base(string.Format($"the drone {id} is not in maintenance")) { }
+            internal DroneIsNotInMaintenanceException(int id):base(string.Format($"the drone {id} is not in maintenance")) { }
         }
-        public class NoPlaceToChargeException : Exception
+        internal class NoPlaceToChargeException : Exception
         {
-            public NoPlaceToChargeException() : base(string.Format($"no place to charge the drone")) { }
+            internal NoPlaceToChargeException() : base(string.Format($"no place to charge the drone")) { }
         }
-        public class DroneIsNotEmptyException : Exception
+        internal class DroneIsNotEmptyException : Exception
         {
-            public DroneIsNotEmptyException() : base(string.Format("the drone is not vacant")) { }
+            internal DroneIsNotEmptyException() : base(string.Format("the drone is not vacant")) { }
         }
-        public class NoParcelFoundException : Exception
+        internal class NoParcelFoundException : Exception
         {
-            public NoParcelFoundException() : base(string.Format("there is no parcel to collect for this drone")) { }
+            internal NoParcelFoundException() : base(string.Format("There is no delivery in transfer at this drone")) { }
         }
-        public class NoDeliveryInTransferExcepyion : Exception
+        internal class NoSuitableParcelException : Exception
         {
-            public NoDeliveryInTransferExcepyion() : base(string.Format("There is no delivery in transfer to this drone")) { }
+            internal NoSuitableParcelException(int droneIdx): base(string.Format($"There is no Suitable parcel to the the drone {droneIdx} in parcels list")) { }
         }
-        public class NoSuitableParcelException : Exception
+        internal class ThereIsNotEnoughBatteryException : Exception
         {
-            public NoSuitableParcelException(int droneIdx): base(string.Format($"There is no Suitable parcel to the the drone {droneIdx} in parcels list")) { }
+            internal ThereIsNotEnoughBatteryException(): base(string.Format("There is not enough battery to reach the destination")) { }
         }
-        public class ThereIsNotEnoughBatteryException : Exception
+        internal class ThePackageHasNotYetBeenCollectedException : Exception
         {
-            public ThereIsNotEnoughBatteryException(): base(string.Format("There is not enough battery to reach the destination")) { }
+            internal ThePackageHasNotYetBeenCollectedException() : base(string.Format("The package has not yet been collected")) { }
         }
-        public class ThePackageHasNotYetBeenCollectedException : Exception
+        internal class TheDroneHasAlreadyPickedUpTheParcel : Exception
         {
-            public ThePackageHasNotYetBeenCollectedException() : base(string.Format("The package has not yet been collected")) { }
+            internal TheDroneHasAlreadyPickedUpTheParcel() : base(string.Format("The drone has already picked up the parcel")) { }
         }
-        public class TheDroneHasAlreadyPickedUpTheParcel : Exception
+        internal class ThereAreParcelForTheCustomer : Exception
         {
-            public TheDroneHasAlreadyPickedUpTheParcel() : base(string.Format("The drone has already picked up the parcel")) { }
+            internal ThereAreParcelForTheCustomer(int idParcel) : base(string.Format($"The parcel {idParcel} was assaighned to this Customer")) { }
         }
-        
-        public class ThereAreParcelForTheCustomer : Exception
+        internal class ParcelAlreadyScheduled : Exception
         {
-            public ThereAreParcelForTheCustomer(int idParcel) : base(string.Format($"The parcel {idParcel} was assaighned to this Customer")) { }
-        }
-        public class ParcelAlreadyScheduled : Exception
-        {
-            public ParcelAlreadyScheduled(): base(string.Format("Sorry, the parcel already scheduled to drone")) { }
+            internal ParcelAlreadyScheduled(): base(string.Format("Sorry, the parcel already scheduled to drone")) { }
         }
     }
 }

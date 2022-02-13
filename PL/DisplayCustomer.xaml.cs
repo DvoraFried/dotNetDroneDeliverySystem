@@ -1,4 +1,5 @@
 ﻿using BO;
+using PO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,29 +23,30 @@ namespace PL
     public partial class DisplayCustomer : Window
     {
         BlApi.IBL Bl;
-        public DisplayCustomer(BlApi.IBL bl, CustomerBL customer)
+        Customer_pl CustomerPO;
+        public DisplayCustomer(BlApi.IBL bl, Customer customer)
         {
             Bl = bl;
+
+            CustomerPO = new Customer_pl(Bl, customer);
             InitializeComponent();
-            exIsent.Visibility = exSENDme.Visibility = Visibility.Visible;
-            foreach(DeliveryAtCustomer parcel in customer.ImTheSender) { Isent.Items.Add(parcel);}
-            foreach (DeliveryAtCustomer parcel in customer.ImTheTarget) { SENDme.Items.Add(parcel); }
+            DataContext = CustomerPO;
+
+            exIsent.Visibility = exSENDme.Visibility = UPDATE_BUTTON.Visibility = Visibility.Visible;
+            ADD_BUTTON.Visibility = Visibility.Hidden;
             IDTebtBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeTextBox.IsEnabled = false;
-            IDTebtBox.Text = customer.getIdBL().ToString();
-            NameTextBox.Text = customer.NameBL;
-            PhoneTextBox.Text = customer.PhoneBL;
+
+            foreach (DeliveryAtCustomer parcel in customer.ImTheSender) { Isent.Items.Add(parcel);}
+            foreach (DeliveryAtCustomer parcel in customer.ImTheTarget) { SENDme.Items.Add(parcel); }
             LongitudeTextBox.Text = customer.Position.Longitude.ToString();
             LatitudeTextBox.Text = customer.Position.Latitude.ToString();
-            ADD_BUTTON.Visibility = Visibility.Hidden;
-            UPDATE_BUTTON.Visibility = Visibility.Visible;
         }
         private void showParcel(object sender, RoutedEventArgs e)
         {
             BO.DeliveryAtCustomer parcel = (sender as ListView).SelectedValue as BO.DeliveryAtCustomer;
             if (parcel != null)
             {
-                this.Close();
-                new DisplayParcel(Bl, Bl.convertParcelToParcelBl(parcel.Id)).ShowDialog();
+                new DisplayParcel(Bl, Bl.returnParcel(parcel.Id)).Show();
             }
         }
         public DisplayCustomer(BlApi.IBL bl)

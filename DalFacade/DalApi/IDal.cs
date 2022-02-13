@@ -10,36 +10,40 @@ namespace DalApi
 {
     public interface IDal
     {
+        #region STATION'S FUNCTION
         public void AddStationDAL(Station DALS);
-        public void AddDroneDAL(Drone DALD);
-        public void AddCustomerDAL(Customer DALC);
-        public void AddParcelDAL(Parcel DALP);
-       /* 
-        public void Scheduled(int parcelIdS);
-        public void PickUp(int parcelIdS);
-        public void Delivered(int parcelIdS);
-        public void Charge(DroneCharge DALDC);
-        public void releaseCharge(DroneCharge DALDC);*/
-
         public Station returnStation(int StationIdS);
-        public Drone returnDrone(int DroneIdS);
+        public IEnumerable<Station> returnStationArray();
+        public void ReplaceStationById(Station DALS);
+        #endregion
+
+        #region DRONE'S FUNCTION
+        public void AddDroneDAL(Drone DALD);
+        public void Charge(DroneCharge DALDC);
+        public DroneCharge returnDroneInCharge(int idDC);
+        public IEnumerable<Drone> returnDroneArray();
+        public void ReplaceDroneById(Drone DALD);
+        #endregion
+
+        #region CUSTOMER'S FUNCTION
+        public void AddCustomerDAL(Customer DALC);
         public Customer returnCustomer(int CustomerIdS);
-        public Employee returnEmployee(int idE);
+        public IEnumerable<Customer> returnCustomerArray();
+        public void ReplaceCustomerById(Customer DALC);
+        #endregion
+
+        #region PARCEL'S FUNCTION
+        public void AddParcelDAL(Parcel DALP);
         public Parcel returnParcel(int ParcelIdS);
         public Parcel returnParcelByDroneId(int DroneIdS);
-       // public DroneCharge returnDroneInCharge(int idDC);
-        public IEnumerable<Station> returnStationArray();
-        public IEnumerable<Drone> returnDroneArray();
-        public IEnumerable<Customer> returnCustomerArray();
-        public IEnumerable<Employee> returnEmployeeArray();
         public IEnumerable<Parcel> returnParcelArray();
+        public void ReplaceParcelById(Parcel DALP);
+        #endregion
+
+        public Employee returnEmployee(int idE);
+        public IEnumerable<Employee> returnEmployeeArray();
+
         public double[] powerRequest();
 
-        public void ReplaceStationById(Station DALS);
-        public void ReplaceDroneById(Drone DALD);
-        public void ReplaceCustomerById(Customer DALC);
-        public void ReplaceParcelById(Parcel DALP);
-        public void DeleteObjFromDroneCharges(int id);
-        public void RemoveParcelById(Parcel DALP);
     }
 }

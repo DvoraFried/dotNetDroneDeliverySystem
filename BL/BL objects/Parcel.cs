@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BL.BL;
-using static BO.EnumBL;
+using static BO.Enum;
 
 namespace BO
 {
-    public class ParcelBL
+    public class Parcel
     {
-        DalApi.IDAL DalObj;
-        public ParcelBL(DalApi.IDAL dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null )
+        DalApi.IDal DalObj;
+        public Parcel( DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool IsActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null, int droneID = -1 )
         {
             DalObj = dalOB;
             parcelId++;
@@ -22,8 +22,7 @@ namespace BO
             PickUpBL = pickUp;
             DeliveredBL = delivered;
             RequestedBL = requested == null? DateTime.Now : requested;
-            int droneId = id != -1 ? dalOB.returnParcelArray().ToList().First(parcel => parcel.Id == id).DroneId : id;
-            DroneIdBL = droneId != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneId)) : null;
+            DroneIdBL = droneID != -1 ? new DroneInParcel(DronesListBL.First(drone => drone.getIdBL() == droneID)) : null;
             DO.Customer customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idSender);
             Sender = customer.isActive ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery(customer.Id, customer.Name,false);
             customer = DalObj.returnCustomerArray().ToList().First(customer => customer.Id == idTarget);
