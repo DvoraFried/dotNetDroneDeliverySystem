@@ -19,6 +19,7 @@ namespace BO
             if (flag) { return $"ID: {Id}\nName: {CustomerName}"; }
             return "no data";
         }
+
         private bool flag;
         public int Id { get; set; }
         public string CustomerName { get; set; }

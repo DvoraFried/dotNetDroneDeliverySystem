@@ -18,28 +18,36 @@ namespace BL
         {
             lock (DalObj)
             {
-                foreach (DO.Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)BO.Enum.PrioritiesBL.emergency) yield return element; }
+                return from P in DalObj.returnParcelArray() 
+                       where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.emergency) 
+                       select P;
             }
         }
         IEnumerable<DO.Parcel> returnParcelWithUsualParcelsPriority()
         {
             lock (DalObj)
             {
-                foreach (DO.Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)BO.Enum.PrioritiesBL.usual) yield return element; }
+                return from P in DalObj.returnParcelArray()
+                       where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.usual)
+                       select P;
             }
         }
         IEnumerable<DO.Parcel> returnParcelWithRapidlParcelsPriority()
         {
             lock (DalObj)
             {
-                foreach (DO.Parcel element in DalObj.returnParcelArray()) { if (element.Scheduled == null && (int)element.Priority == (int)BO.Enum.PrioritiesBL.rapid) yield return element; }
+                return from P in DalObj.returnParcelArray()
+                       where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.rapid)
+                       select P;
             }
         }
         IEnumerable<DO.Parcel> returnPacelWitSuitWeight(IEnumerable<DO.Parcel> parcelArr,int droneMaxW)
         {
             lock (DalObj)
             {
-                foreach (DO.Parcel element in parcelArr) { if ((int)element.Weight <= droneMaxW) yield return element; }
+                return from P in parcelArr
+                       where ((int)P.Weight <= droneMaxW)
+                       select P;
             }
         }
 

@@ -14,39 +14,34 @@ namespace BL
         internal class ConvertToBL
         {
             [MethodImpl(MethodImplOptions.Synchronized)]
-            internal static List<BO.Drone> ConvertToDroneArrayBL(List<DO.Drone> droneDalArray)
+            internal static IEnumerable<BO.Drone> ConvertToDroneArrayBL(IEnumerable<DO.Drone> droneDalArray)
             {
                 lock (DalObj)
                 {
-                    List<BO.Drone> droneArrayBl = new List<BO.Drone>();
-                    foreach (DO.Drone drone in droneDalArray)
-                    {
-                        droneArrayBl.Add((BO.Drone)new BO.Drone(DalObj, drone.Id, drone.Model, (BO.Enum.WeightCategoriesBL)(int)drone.MaxWeight, 0, null, 0, drone.isActive));
-                    };
-                    return droneArrayBl;
+                    return (from d in droneDalArray
+                            select new BO.Drone(DalObj, d.Id, d.Model, (BO.Enum.WeightCategoriesBL)(int)d.MaxWeight, 0, null, 0, d.isActive));
                 }
             }
+
             [MethodImpl(MethodImplOptions.Synchronized)]
             internal static BO.Customer ConvertToCustomrtBL(DO.Customer customerDal)
             {
                 lock (DalObj)
                 {
-                    BO.Customer customerBL = new BO.Customer(DalObj, customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()), customerDal.isActive);
-                    return customerBL;
+                    return new BO.Customer(DalObj, customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()), customerDal.isActive);
                 }
             }
+
             [MethodImpl(MethodImplOptions.Synchronized)]
- 
             internal static BO.Parcel ConvertToParcelBL(DO.Parcel parcelDal)
             {
                 lock (DalObj)
                 {
-                    BO.Parcel parcelBL = new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority, parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered, parcelDal.DroneId);
-                    return parcelBL;
+                    return new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority, parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered, parcelDal.DroneId);
                 }
             }
-            [MethodImpl(MethodImplOptions.Synchronized)]
 
+            [MethodImpl(MethodImplOptions.Synchronized)]
             internal static IEnumerable<BO.Parcel> ConvertToParcelArrayBL(IEnumerable<DO.Parcel> parcelsDal)
             {
                 lock (DalObj)
@@ -55,12 +50,13 @@ namespace BL
                                  select ConvertToBL.ConvertToParcelBL(parcel));
                 }
             }
+
             [MethodImpl(MethodImplOptions.Synchronized)]
             internal static BO.Station ConvertToStationBL(DO.Station stationDAL)
             {
-                BO.Station stationBL = new BO.Station(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);
-                return stationBL;
+                return new BO.Station(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);
             }
+
             [MethodImpl(MethodImplOptions.Synchronized)]
             internal static EmpolyeeBL convertToEmployee(int idE)
             {
@@ -69,11 +65,6 @@ namespace BL
                     Employee employeeDAL = DalObj.returnEmployee(idE);
                     return new EmpolyeeBL(idE, employeeDAL.Name, employeeDAL.Manager);
                 }
-            }
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            internal static DroneInCharge convertToDroneInChargeBL(DO.DroneCharge droneChargeDAL)
-            {
-                return new DroneInCharge(droneChargeDAL.DroneId, droneChargeDAL.enterTime);
             }
         }
     }

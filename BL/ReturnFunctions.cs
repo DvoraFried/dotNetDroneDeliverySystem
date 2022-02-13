@@ -146,11 +146,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
-                {
-                    return true;
-                }
-                return false;
+                return DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name);
             }
         }
 
@@ -159,11 +155,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && !c.Manager))
-                {
-                    return true;
-                }
-                return false;
+                return DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && !c.Manager);
             }
         }
 
@@ -172,11 +164,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && c.Manager))
-                {
-                    return true;
-                }
-                return false;
+                return DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && c.Manager);
             }
         }
     }

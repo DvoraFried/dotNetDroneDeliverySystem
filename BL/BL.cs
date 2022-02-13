@@ -22,6 +22,7 @@ namespace BL
         static double heavyWeightPowerConsumption;
         static double DroneLoadingRate;
 
+        #region BL CTOR
         BL()
         {
             DalObj = DalApi.DalFactory.GetDal();
@@ -32,7 +33,7 @@ namespace BL
             heavyWeightPowerConsumption = electricityUse[3];
             DroneLoadingRate = electricityUse[4];
 
-            DronesListBL = ConvertToBL.ConvertToDroneArrayBL(DalObj.returnDroneArray().ToList());
+            DronesListBL = ConvertToBL.ConvertToDroneArrayBL(DalObj.returnDroneArray()).ToList();
 
             foreach (BO.Drone drone in DronesListBL)
             {
@@ -81,6 +82,7 @@ namespace BL
                 }
             }
         }
+        #endregion
 
         internal static BL instance = null;
         private static readonly object padLock = new object();
@@ -102,6 +104,7 @@ namespace BL
                 return instance;
             }
         }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static double updateButteryStatus(BO.Drone drone, Position position, int weight, Position targetP = null)
         {
@@ -110,12 +113,12 @@ namespace BL
                                weight == (int)BO.Enum.WeightCategoriesBL.light ? distance * lightWeightPowerConsumption :
                                weight == (int)BO.Enum.WeightCategoriesBL.medium ? distance * mediumWeightPowerConsumption :
                                distance * heavyWeightPowerConsumption;
-            if (lessPower > drone.BatteryStatus)
-            {
+            if (lessPower > drone.BatteryStatus) {
                 throw new ThereIsNotEnoughBatteryException();
             }
             return drone.BatteryStatus - lessPower;
         }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static BO.Station findClosestStation(Position current)
         {
@@ -139,19 +142,9 @@ namespace BL
             }
             if (station.Name == null) throw new NoPlaceToChargeException();
             return ConvertToBL.ConvertToStationBL(station);
-            /* Position stationPos = null, closeP = current;
-             double distance = DistanceBetweenCoordinates.CalculateDistance(current, new Position(DalObj.returnStationArray().ToList()[0].Longitude, DalObj.returnStationArray().ToList()[0].Latitude));
-             foreach (DO.Station element in DalObj.returnStationArray())
-             {
-                 stationPos = new Position(element.Longitude, element.Latitude);
-                 if (distance > DistanceBetweenCoordinates.CalculateDistance(current, stationPos))
-                 {
-                     distance = DistanceBetweenCoordinates.CalculateDistance(current, stationPos);
-                     closeP = stationPos;
-                 }
-             }
-             return stationPos;*/
         }
+
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static String getFormattedLocationInDegree(double latitude, double longitude)
         {

@@ -18,13 +18,16 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer)) { throw new ObjectDoesntExistsInListException("customer"); }
-                foreach (DO.Parcel parcel in DalObj.returnParcelArray().ToList())
+                if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer)) {
+                    throw new ObjectDoesntExistsInListException("customer"); }
+
+                foreach (DO.Parcel parcel in DalObj.returnParcelArray())
                 {
                     if ((parcel.TargetId == idCustomer || parcel.SenderId == idCustomer) && (parcel.Delivered == null))
                     { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
                 }
-                DO.Customer customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
+
+                DO.Customer customer = DalObj.returnCustomerArray().First(c => c.Id == idCustomer);
                 customer.isActive = false;
                 DalObj.ReplaceCustomerById(customer);
             }
@@ -40,7 +43,8 @@ namespace BL
                     parcel.isActive = false;
                     DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
                 }
-                else { throw new ParcelAlreadyScheduled(); }
+                else {
+                    throw new ParcelAlreadyScheduled(); }
             }
         }
 
