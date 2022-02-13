@@ -15,7 +15,7 @@ namespace PO
         public Customer_pl(BlApi.IBL blObj, Customer customerBl)
         {
             dalOB = blObj;
-            id = customerBl.getIdBL();
+            Id = customerBl.getIdBL();
             name = customerBl.NameBL;
             phone = customerBl.PhoneBL;
             position = new Position_pl(customerBl.Position);
@@ -34,14 +34,14 @@ namespace PO
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));
-        private int id
+        public int Id
         {
             get { return (int)GetValue(idProperty); }
             set { SetValue(idProperty, value); }
         }
 
         public static readonly DependencyProperty nameProperty =
-        DependencyProperty.Register("name",
+        DependencyProperty.Register("Name",
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));
@@ -52,7 +52,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty phoneProperty =
-        DependencyProperty.Register("phone",
+        DependencyProperty.Register("Phone",
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));
@@ -63,7 +63,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty PositionProperty =
-        DependencyProperty.Register("position",
+        DependencyProperty.Register("Position",
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));

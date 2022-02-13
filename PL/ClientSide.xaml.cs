@@ -1,4 +1,5 @@
 ﻿using BO;
+using PO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,29 +24,26 @@ namespace PL
     {
 
         BlApi.IBL Bl;
-        Customer currentCustomer;
+        Customer_pl currentCustomer;
         public ClientSide(BlApi.IBL bl, Customer customer)
         {
             Bl = bl;
+            currentCustomer = new Customer_pl(Bl,customer);
             InitializeComponent();
+            DataContext = currentCustomer;
             IDTebtBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeTextBox.IsEnabled = false;
-            IDTebtBox.Text = customer.getIdBL().ToString();
-            NameTextBox.Text = customer.NameBL;
-            PhoneTextBox.Text = customer.PhoneBL;
             LongitudeTextBox.Text = customer.Position.Longitude.ToString();
             LatitudeTextBox.Text = customer.Position.Latitude.ToString();
-            currentCustomer = customer;
         }
 
-        private void personal_Click(object sender, RoutedEventArgs e)
-        {
-            app.SelectedIndex = 0;
-        }
         private void customerParcels_Click(object sender, RoutedEventArgs e)
         {
-            new DisplayParcelList(Bl, currentCustomer).ShowDialog();
+            new DisplayParcelList(Bl, Bl.convertCustomerToCustomerBl(currentCustomer.Id)).Show();
         }
-
+        private void toCustomerParcels_Click(object sender, RoutedEventArgs e)
+        {
+            new DisplayParcelList(Bl, Bl.convertCustomerToCustomerBl(currentCustomer.Id), true).Show();
+        }
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             try {
@@ -60,20 +58,6 @@ namespace PL
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
-        }
-        private void showParcel(object sender, RoutedEventArgs e)
-        {
-            BO.DeliveryAtCustomer parcel = (sender as ListView).SelectedValue as BO.DeliveryAtCustomer;
-            if (parcel != null)
-            {
-                this.Close();
-                new DisplayParcel(Bl, Bl.returnParcel(parcel.Id)).ShowDialog();
-            }
-        }
-
-        private void toCustomerParcels_Click(object sender, RoutedEventArgs e)
-        {
-            new DisplayParcelList(Bl, currentCustomer, true).ShowDialog();
         }
     }
 }

@@ -53,7 +53,7 @@ namespace PL
             BO.ParcelToList parcel = (sender as ListView).SelectedValue as BO.ParcelToList;
             if (parcel != null)
             {
-                new DisplayParcel(BLobj, BLobj.returnParcel(parcel.Id)).Show();
+                new DisplayParcel(BLobj, BLobj.returnParcel(parcel.Id), true).Show();
             }
         }
         private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)
