@@ -28,6 +28,7 @@ namespace PL
         BlApi.IBL BL;
         drone_pl dronePO;
         Drone droneBO;
+        Parcel_pl ParcelInDrone = null;
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL BL,Drone drone)
         {
@@ -157,12 +158,14 @@ namespace PL
             StopSimulation.IsEnabled = true;
 
             Drone updateDrone = null;
+            Parcel updateParcel = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {
                  BL.StartSimulation(
                    BL,
                    droneBO.getIdBL(),
                    (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0); },
+                   (parcelBO) => { updateParcel = parcelBO; worker.ReportProgress(0); },
                    () => worker.CancellationPending);
             };
             worker.WorkerReportsProgress = true;

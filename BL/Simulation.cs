@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BlApi;
 using BO;
+using DalApi;
 using static BL.BL;
 using static BO.Exceptions;
 
@@ -14,11 +15,12 @@ namespace BL
     class Simulation
     {
         IBL BL;
-        public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Func<bool> needToStop)
+        public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Action<Parcel> parcelSimulation, Func<bool> needToStop)
         {
             int DELAY = 500;
             double SPEED = 1;
             Drone drone = DronesListBL.First(d => d.getIdBL() == droneID);
+            Parcel parcel = null;
             this.BL = BL;
             while (!needToStop())
             {
@@ -29,6 +31,8 @@ namespace BL
                         case BO.Enum.DroneStatusesBL.empty:
                             try {
                                 BL.AssigningPackageToDrone(droneID, true);
+                                parcel = BL.returnParcel(DronesListBL.First(d => d.getIdBL() == droneID).delivery.Id);
+                                parcelSimulation(BL.returnParcel(parcel.IdBL));
                             }
                             catch {
                                 if (drone.BatteryStatus < 100)
@@ -50,6 +54,7 @@ namespace BL
                                 BL.DeliveryOfAParcelByDrone(droneID, true);
                             else
                                 BL.CollectionOfAParcelByDrone(droneID, true);
+                            parcelSimulation(BL.returnParcel(parcel.IdBL));
                             break;
                     }
                 }

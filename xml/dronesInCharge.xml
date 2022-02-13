@@ -1,38 +1,48 @@
 <?xml version="1.0"?>
 <ArrayOfDroneCharge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneCharge>
-    <DroneId>2</DroneId>
-    <StationId>2</StationId>
-    <enterTime>2022-02-14T00:13:17.5736829+02:00</enterTime>
-  </DroneCharge>
-  <DroneCharge>
     <DroneId>3</DroneId>
-    <StationId>3</StationId>
-    <enterTime>2022-02-14T00:13:17.5795462+02:00</enterTime>
-  </DroneCharge>
-  <DroneCharge>
-    <DroneId>4</DroneId>
-    <StationId>6</StationId>
-    <enterTime>2022-02-14T00:13:17.5849581+02:00</enterTime>
+    <StationId>1</StationId>
+    <enterTime>2022-02-14T00:29:24.8849315+02:00</enterTime>
   </DroneCharge>
   <DroneCharge>
     <DroneId>5</DroneId>
-    <StationId>8</StationId>
-    <enterTime>2022-02-14T00:13:17.5871981+02:00</enterTime>
+    <StationId>3</StationId>
+    <enterTime>2022-02-14T00:29:24.9129324+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>6</DroneId>
+    <StationId>5</StationId>
+    <enterTime>2022-02-14T00:29:24.9177555+02:00</enterTime>
   </DroneCharge>
   <DroneCharge>
     <DroneId>7</DroneId>
-    <StationId>9</StationId>
-    <enterTime>2022-02-14T00:13:17.5916394+02:00</enterTime>
+    <StationId>2</StationId>
+    <enterTime>2022-02-14T00:29:24.919695+02:00</enterTime>
   </DroneCharge>
   <DroneCharge>
     <DroneId>1</DroneId>
     <StationId>6</StationId>
-    <enterTime>2022-02-14T00:13:57.6446253+02:00</enterTime>
+    <enterTime>2022-02-14T00:30:48.4331303+02:00</enterTime>
   </DroneCharge>
   <DroneCharge>
-    <DroneId>3</DroneId>
+    <DroneId>1</DroneId>
+    <StationId>4</StationId>
+    <enterTime>2022-02-14T00:31:32.8308956+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>2</DroneId>
+    <StationId>4</StationId>
+    <enterTime>2022-02-14T00:31:51.5292506+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>4</DroneId>
     <StationId>7</StationId>
-    <enterTime>2022-02-14T00:14:37.7877818+02:00</enterTime>
+    <enterTime>2022-02-14T00:31:58.1624671+02:00</enterTime>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>6</DroneId>
+    <StationId>3</StationId>
+    <enterTime>2022-02-14T00:34:22.1448517+02:00</enterTime>
   </DroneCharge>
 </ArrayOfDroneCharge>

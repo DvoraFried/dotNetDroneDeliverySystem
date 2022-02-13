@@ -64,7 +64,7 @@ namespace BlApi
         public Action<bool> ActionDronesAdded { get; set; }
         #endregion
 
-        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
+        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Action<Parcel> parcelSimulation, Func<bool> needToStop);
         public EmpolyeeBL returnEmployee(int idE);
        
         public bool userIsCustomer(string name, int id);
