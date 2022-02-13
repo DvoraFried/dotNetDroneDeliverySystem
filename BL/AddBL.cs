@@ -16,7 +16,7 @@ namespace BL
    
     partial class BL : BlApi.IBL
     {
-        public Action<BO.Drone, bool> ActionDronesAdded { get; set; }
+        public Action< bool> ActionDronesAdded { get; set; }
 
         #region ADD FUNCTIONS
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
@@ -47,8 +47,8 @@ namespace BL
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL.Add(drone);
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new BO.DroneInCharge(drone), s.Id));
-                
-                ActionDronesAdded?.Invoke(drone, true);
+
+                ActionDronesAdded?.Invoke(true);
             }
         }
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude)

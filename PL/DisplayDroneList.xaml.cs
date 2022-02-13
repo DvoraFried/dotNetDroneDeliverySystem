@@ -48,7 +48,7 @@ namespace PL
             
         }
 
-        private void AddPlDrone(Drone arg1, bool arg2)
+        private void AddPlDrone( bool arg2)
         {
             dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }

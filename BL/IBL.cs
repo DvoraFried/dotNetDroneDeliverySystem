@@ -61,7 +61,7 @@ namespace BlApi
         public Action<Parcel> ActionParcelChanged { get; set; }
         public Action<Drone> ActionDroneChanged { get; set; }
         public Action<Customer> ActionCustomerChanged { get; set; }
-        public Action<BO.Drone, bool> ActionDronesAdded { get; set; }
+        public Action<bool> ActionDronesAdded { get; set; }
         #endregion
 
         public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
