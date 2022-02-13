@@ -71,8 +71,12 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnCustomerArray().Any(c => c.Id == idSender)) { throw new ObjectDoesntExistsInListException("sender customer"); }
-                if (!DalObj.returnCustomerArray().Any(c => c.Id == idTarget)) { throw new ObjectDoesntExistsInListException("target customer"); }
+                if (!DalObj.returnCustomerArray().Any(c => c.Id == idSender)) {
+                    throw new ObjectDoesntExistsInListException("sender customer"); }
+                
+                if (!DalObj.returnCustomerArray().Any(c => c.Id == idTarget)) {
+                    throw new ObjectDoesntExistsInListException("target customer"); }
+                
                 BO.Parcel parcel = new BO.Parcel(DalObj, idSender, idTarget, (int)weight, (int)priority);
                 DalObj.AddParcelDAL(ConvertToDal.ConvertToParcelDal(parcel));
             }
