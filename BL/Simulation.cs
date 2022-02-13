@@ -29,10 +29,10 @@ namespace BL
                         case BO.Enum.DroneStatusesBL.empty:
                             try {
                                 BL.AssigningPackageToDrone(droneID, true);
-                            } 
+                            }
                             catch {
-                                if (drone.BatteryStatus != 100)
-                                BL.SendDroneToCharge(droneID, true);
+                                if (drone.BatteryStatus < 100)
+                                    BL.SendDroneToCharge(droneID, true);
                             }
                             break;
                         case BO.Enum.DroneStatusesBL.maintenance:
@@ -55,12 +55,7 @@ namespace BL
                 }
                 catch (ThereIsNotEnoughBatteryException e)
                 {
-                    try {
-                        BL.SendDroneToCharge(droneID, true);
-                    } 
-                    catch {
-                        ///???
-                    }
+                    BL.SendDroneToCharge(droneID, true);
                 }
                 drone = DronesListBL.First(d => d.getIdBL() == droneID);
                 dronedroneSimulation(drone);

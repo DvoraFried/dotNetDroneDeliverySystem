@@ -32,15 +32,22 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (DalObj.returnDroneArray().Any(d => d.Id == id)) { throw new ObjectExistsInListException("drone"); };
-                if (!DalObj.returnStationArray().Any(s => s.Id == stationId)) { throw new ObjectDoesntExistsInListException("station"); };
+                if (DalObj.returnDroneArray().Any(d => d.Id == id)) {
+                    throw new ObjectExistsInListException("drone"); };
+
+                if (!DalObj.returnStationArray().Any(s => s.Id == stationId)) {
+                    throw new ObjectDoesntExistsInListException("station"); };
+
                 DO.Station s = DalObj.returnStationArray().ToList().Find(d => d.Id == stationId);
                 s.DronesInCharging += 1;
                 s.EmptyChargeSlots -= 1;
+                
                 DalObj.ReplaceStationById(s);
                 BO.Drone drone = new BO.Drone(DalObj, id, model, maxWeight, DroneStatusesBL.maintenance, new Position(s.Longitude, s.Latitude), stationId);
                 DalObj.AddDroneDAL(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL.Add(drone);
+                DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new BO.DroneInCharge(drone), s.Id));
+                
                 ActionDronesAdded?.Invoke(drone, true);
             }
         }
