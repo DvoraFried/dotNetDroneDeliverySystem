@@ -151,6 +151,11 @@ namespace PL
         BackgroundWorker worker = new BackgroundWorker();
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
+            Simulation.Visibility = Visibility.Hidden;
+            Simulation.IsEnabled = false;
+            StopSimulation.Visibility = Visibility.Visible;
+            StopSimulation.IsEnabled = true;
+
             Drone updateDrone = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {
@@ -167,6 +172,14 @@ namespace PL
             };
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
+        }
+        private void stop_simulationButton_Click(object sender, RoutedEventArgs e)
+        {
+            worker.CancelAsync();
+            Simulation.Visibility = Visibility.Visible;
+            Simulation.IsEnabled = true;
+            StopSimulation.Visibility = Visibility.Hidden;
+            StopSimulation.IsEnabled = false;
         }
     }
 }

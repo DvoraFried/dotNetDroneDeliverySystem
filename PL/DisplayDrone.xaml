@@ -134,9 +134,10 @@
             </Grid>
 
         </Grid>
-        <Button Visibility="Hidden" Cursor="Hand" Name="DELETE_BUTTON" Content="DELETE DRONE" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="98" Click="DELETE_Button_Click" Grid.Column="2" Margin="80,135,0,0"/>
+        <Button Visibility="Hidden" Cursor="Hand" Name="DELETE_BUTTON" Content="DELETE DRONE" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="98" Click="DELETE_Button_Click" Grid.Column="2" Margin="80,75,0,0"/>
         <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="37" Margin="0,465,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click" Grid.Column="1"/>
-        <Button Visibility="Hidden" Name="Simulation" Content="simulation" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="80,88,0,0" VerticalAlignment="Top" Width="98" Click="simulationButton_Click" />
+        <Button Visibility="Hidden" Name="Simulation" Content="simulation" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="80,113,0,0" VerticalAlignment="Top" Width="98" Click="simulationButton_Click" />
+        <Button Visibility="Hidden" Name="StopSimulation" IsEnabled="False" Content="Stop" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="80,113,0,0" VerticalAlignment="Top" Width="98" Click="stop_simulationButton_Click" />
 
     </Grid>
 </Window>
