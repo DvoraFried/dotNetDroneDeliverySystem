@@ -56,6 +56,7 @@ namespace PL
                 if(currentCustomer != null)
                 new DisplayParcel(BLobj, BLobj.GetParcel(parcel.Id), true).Show();
                 else new DisplayParcel(BLobj, BLobj.GetParcel(parcel.Id)).Show();
+                this.Close();
             }
         }
         private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)

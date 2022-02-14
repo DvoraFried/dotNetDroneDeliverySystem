@@ -38,6 +38,7 @@ namespace PL
         private void ButtonAddStation_Click(object sender, RoutedEventArgs e)
         {
             new DisplayStation(Bl).Show();
+            this.Close();
         }
 
         private void ButtonSortByEmptySlots_Click(object sender, RoutedEventArgs e)
