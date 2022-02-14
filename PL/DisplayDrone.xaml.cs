@@ -30,11 +30,11 @@ namespace PL
         Drone droneBO;
         Parcel_pl ParcelInDrone = null;
         int maxWeight = 1;
-        public DisplayDrone(BlApi.IBL BL,Drone_pl drone)
+        public DisplayDrone(BlApi.IBL BL,Drone drone)
         {
             WindowStyle = WindowStyle.None;
             droneBO = drone;
-            dronePO = new drone_pl(BL,drone);
+            dronePO = new Drone_pl(BL,drone);
             this.BL = BL;
             InitializeComponent();
             DataContext = dronePO;

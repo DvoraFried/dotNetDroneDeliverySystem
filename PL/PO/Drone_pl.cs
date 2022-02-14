@@ -1,4 +1,5 @@
 ﻿using BO;
+using PO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,30 +11,9 @@ using System.Windows;
 
 namespace PO
 {
-    public class Drones_pl : DependencyObject
-    {
-        public List<Drone_pl> Drones = new List<Drone_pl>();
-        BlApi.IBL blObj;
-        public Drones_pl(BlApi.IBL blObj, List<BO.Drone> dronesBl)
-        {
-            blObj.ActionDronesAdded += AddPlDrone;
-            this.blObj = blObj;
-            foreach(Drone drone in dronesBl)
-            {
-                Drones.Add(new Drone_pl(blObj, drone));
-            }
-        }
-        public void AddPlDrone(Drone droneBl,bool b=true )
-        {
-            if (b)
-            {
-                Drones.Add(new Drone_pl(blObj, droneBl));
-            }
-        }
-    }
     public class Drone_pl: DependencyObject
     {
-        public drone_pl(BlApi.IBL blObj,Drone droneBl) {
+        public Drone_pl(BlApi.IBL blObj,Drone droneBl) {
             Id = droneBl.Id;
             this.Model = droneBl.ModelBL;
             this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
