@@ -68,10 +68,10 @@
             <Label Content="NAME:" HorizontalAlignment="Left" Margin="54,34,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
             <Label Content="PHONE:" HorizontalAlignment="Left" Margin="54,62,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
             <Label Content="POSITION:" HorizontalAlignment="Left" Margin="54,92,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
-            <Expander Name="exIsent" Visibility="Hidden" Header="PARSELS YOU SENT:" HorizontalAlignment="Left" Height="404" Margin="33,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Grid.RowSpan="2">
+            <Expander Name="exIsent" Visibility="Visible" Header="PARSELS YOU SENT:" HorizontalAlignment="Left" Height="207" Margin="33,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Grid.RowSpan="2">
                 <ListView Name="Isent" MouseDoubleClick="showParcel" />
             </Expander>
-            <Expander Name="exSENDme" Visibility="Hidden" Header="PARCELS  SENT TO YOU:" HorizontalAlignment="Left" Height="404" Margin="223,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Grid.RowSpan="2">
+            <Expander Name="exSENDme" Visibility="Hidden" Header="PARCELS  SENT TO YOU:" HorizontalAlignment="Left" Height="202" Margin="223,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Grid.RowSpan="2">
                 <ListView Name="SENDme" MouseDoubleClick="showParcel" />
             </Expander>
             <TextBox Name="IDTebtBox" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="158,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19" Grid.Row="1"/>

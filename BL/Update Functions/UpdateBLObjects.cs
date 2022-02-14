@@ -43,9 +43,12 @@ namespace BL
             lock (DalObj)
             {
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-                
-                if(!simulation)
+
+                if (!simulation)
+                {
                     ActionDroneChanged?.Invoke(drone);
+                    ActionUpdateList?.Invoke(true);
+                }
             }
         }
         /// <summary>

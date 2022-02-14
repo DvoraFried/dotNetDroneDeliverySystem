@@ -36,7 +36,6 @@ namespace Dal
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
                     //throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
                 }
             }

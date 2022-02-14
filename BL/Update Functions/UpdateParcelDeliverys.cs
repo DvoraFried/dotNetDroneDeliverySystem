@@ -140,6 +140,7 @@ namespace BL
                 {
                     ActionDroneChanged?.Invoke(drone);
                     ActionParcelChanged?.Invoke(theclosetParcel,true);
+                    ActionUpdateList?.Invoke(true);
                 }
             }
         }
@@ -180,6 +181,7 @@ namespace BL
                 {
                     ActionDroneChanged?.Invoke(drone);
                     ActionParcelChanged?.Invoke(parcel,true);
+                    ActionUpdateList?.Invoke(true);
                 }
             }
         }
@@ -219,6 +221,7 @@ namespace BL
                 {
                     ActionDroneChanged?.Invoke(drone);
                     ActionParcelChanged?.Invoke(parcel,true);
+                    ActionUpdateList?.Invoke(true);
                 }
             }
         }
