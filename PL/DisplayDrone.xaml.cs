@@ -157,7 +157,7 @@ namespace PL
             Simulation.IsEnabled = false;
             StopSimulation.Visibility = Visibility.Visible;
             StopSimulation.IsEnabled = true;
-
+            bool t = true;
             Drone updateDrone = null;
             Parcel updateParcel = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
@@ -165,8 +165,8 @@ namespace PL
                  BL.StartSimulation(
                    BL,
                    droneBO.Id,
-                   (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0); },
-                   (parcelBO) => { updateParcel = parcelBO; worker.ReportProgress(0); },
+                   (droneBO) => { updateDrone = droneBO; worker.ReportProgress(1); },
+                   (parcelBO,t) => { updateParcel = parcelBO; worker.ReportProgress(0); },
                    () => worker.CancellationPending);
             };
             worker.WorkerReportsProgress = true;
@@ -176,8 +176,8 @@ namespace PL
                 BL.ActionDronesAdded(true);
                 if(droneBO.delivery != null)
                 {
-                    ParcelInDrone = new Parcel_pl(BL, BL.GetParcel(droneBO.delivery.Id));
-                    ParcelInDrone.UpdatePlParcel(updateParcel);
+                    Parcel ParcelInDrone = BL.GetParcel(droneBO.delivery.Id);
+                    BL.ActionParcelChanged(ParcelInDrone, true);
                 }
             };
             worker.WorkerSupportsCancellation = true;

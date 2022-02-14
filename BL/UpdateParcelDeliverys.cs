@@ -133,7 +133,7 @@ namespace BL
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);
-                    ActionParcelChanged?.Invoke(theclosetParcel);
+                    ActionParcelChanged?.Invoke(theclosetParcel,true);
                 }
             }
         }
@@ -168,7 +168,7 @@ namespace BL
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);
-                    ActionParcelChanged?.Invoke(parcel);
+                    ActionParcelChanged?.Invoke(parcel,true);
                 }
             }
         }
@@ -203,7 +203,7 @@ namespace BL
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);
-                    ActionParcelChanged?.Invoke(parcel);
+                    ActionParcelChanged?.Invoke(parcel,true);
                 }
             }
         }

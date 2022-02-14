@@ -16,7 +16,7 @@ namespace BL
     {
         IBL BL;
         IDal Dal;
-        public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Action<Parcel> parcelSimulation, Func<bool> needToStop)
+        public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Action<Parcel,bool> parcelSimulation, Func<bool> needToStop)
         {
             int DELAY = 500;
             double SPEED = 1;
@@ -34,7 +34,7 @@ namespace BL
                             {
                                 BL.AssigningPackageToDrone(droneID, true);
                                 parcel = BL.GetParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id);
-                                parcelSimulation(BL.GetParcel(parcel.Id));
+                                parcelSimulation(BL.GetParcel(parcel.Id),true);
                             }
                             catch
                             {
@@ -69,7 +69,7 @@ namespace BL
                                 BL.DeliveryOfAParcelByDrone(droneID, true);
                             else
                                 BL.CollectionOfAParcelByDrone(droneID, true);
-                            parcelSimulation(BL.GetParcel(parcel.Id));
+                            parcelSimulation(BL.GetParcel(parcel.Id),true);
                             break;
                     }
                 }
@@ -78,7 +78,7 @@ namespace BL
                 }
                 drone = DronesListBL.First(d => d.Id == droneID);
                 dronedroneSimulation(drone);
-                if(parcel != null) parcelSimulation(BL.GetParcel(parcel.Id));
+                if(parcel != null) parcelSimulation(BL.GetParcel(parcel.Id),true);
                 Thread.Sleep(DELAY);
             }
         }

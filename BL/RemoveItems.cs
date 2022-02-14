@@ -60,7 +60,7 @@ namespace BL
             }
         }
 
-        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Action<BO.Parcel> parcelSimulation, Func<bool> needToStop)
+        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Action<BO.Parcel,bool> parcelSimulation, Func<bool> needToStop)
         {
             var simulator = new Simulation(BL, droneID, droneSimulation, parcelSimulation, needToStop);
         }

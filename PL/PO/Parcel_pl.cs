@@ -26,7 +26,7 @@ namespace PO
             blObj.ActionParcelChanged += UpdatePlParcel;
         }
 
-        public void UpdatePlParcel(BO.Parcel parcelBL)
+        public void UpdatePlParcel(BO.Parcel parcelBL,bool b=true)
         {
             if (parcelBL.Id == Id)
             {

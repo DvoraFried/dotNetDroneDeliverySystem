@@ -13,7 +13,7 @@ namespace BL
     public partial class BL : BlApi.IBL
     {
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
-        public Action<BO.Parcel> ActionParcelChanged { get; set; }
+        public Action<BO.Parcel,bool> ActionParcelChanged { get; set; }
         public Action <BO.Customer> ActionCustomerChanged { get; set; }
 
         [MethodImpl(MethodImplOptions.Synchronized)]

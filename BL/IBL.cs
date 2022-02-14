@@ -58,13 +58,13 @@ namespace BlApi
         #endregion
 
         #region ACTIONS 
-        public Action<Parcel> ActionParcelChanged { get; set; }
+        public Action<Parcel,bool> ActionParcelChanged { get; set; }
         public Action<Drone> ActionDroneChanged { get; set; }
         public Action<Customer> ActionCustomerChanged { get; set; }
         public Action<bool> ActionDronesAdded { get; set; }
         #endregion
 
-        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Action<Parcel> parcelSimulation, Func<bool> needToStop);
+        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Action<Parcel,bool> parcelSimulation, Func<bool> needToStop);
         public EmpolyeeBL GetEmployee(int idE);
        
         public bool UserIsCustomer(string name, int id);

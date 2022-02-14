@@ -4,102 +4,73 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="DisplayParcel" Height="450" Width="800">
+        Title="DisplayParcel" Height="300" Width="480">
     <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" >
-        <Grid.Background>
-            <ImageBrush Opacity="0.18" ImageSource="/images/background.jpg"/>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions >
-        <Button Cursor="Hand" Grid.Column="2"   Margin="94,10,10,370" Click="Button_Click_1" >close</Button>
-        <Grid Grid.Column="1" Name="FormGrid" Background="#a8cacd">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50*"/>
-                <RowDefinition Height="200*"/>
-                <RowDefinition Height="50*"/>
-            </Grid.RowDefinitions>
-            <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-        VerticalAlignment="Stretch" Width="auto">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions >
+        <Grid>
+            <Grid HorizontalAlignment="Left" Margin="30,50,0,30" Width="326">
+                <Grid  Name="FormGrid" Visibility="Hidden" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label   Name="senderIdlbel"  Content="SENDER ID:" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="82" Margin="10,0,0,0"/>
+                    <TextBox Name="IDSenderTextBox" HorizontalAlignment="Left" Height="25" Margin="10,26,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" PreviewTextInput="NumberValidationTextBox"/>
+                    <Label   Name="targetIdLabel" Content="TARGET ID:" HorizontalAlignment="Left" Height="26" Margin="10,51,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="82"/>
+                    <TextBox Name="weightLabel" HorizontalAlignment="Left" Height="25" Margin="10,26,0,0" Grid.Row="1" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"/>
+                    <Label  Name="PRIORITYlabel" Content="PRIORITY:" HorizontalAlignment="Left" Height="28" Margin="10,51,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="109" Grid.Row="1"/>
+                    <StackPanel Name="WeightCheckBox" HorizontalAlignment="Left" Height="72" Margin="10,26,0,0" Grid.RowSpan="2" Grid.Row="2" VerticalAlignment="Top" Width="109">
+                        <RadioButton x:Name="usual" Content="usual" IsChecked="True" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="usual_Checked"/>
+                        <RadioButton x:Name="rapid" Content="rapid" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="rapid_Checked"/>
+                        <RadioButton x:Name="emergency" Content="emergency"  Margin="0,6,0,0" Checked="emergency_Checked"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid  Name="displayParcel" Visibility="Visible" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label  Margin="10,0,0,0" Content="SENDER:"/>
+                    <ListView Name="senderTextBox" MouseDoubleClick="showCustomer" HorizontalAlignment="Left" Height="25" Margin="10,26,0,0" VerticalAlignment="Top" Width="118">
+                    </ListView>
+                    <Label Grid.Row="1" Margin="10,0,0,0" Content="TARGET:"/>
+                    <ListView Grid.Row="1" Name="targetTextBox" MouseDoubleClick="showCustomer" HorizontalAlignment="Left" Height="25" Margin="10,26,0,0" VerticalAlignment="Top" Width="118">
+                    </ListView>
+                    <Label Grid.Row="2" Margin="10,0,0,0" Content="WEIGHT:"/>
+                    <TextBox Grid.Row="2" Text="{Binding Path=WeightParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="WeightTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="10,26,0,0" VerticalAlignment="Top" Width="118"/>
+                    <Label Grid.Row="3" Margin="10,0,0,0" Content="PRIORITY:"/>
+                    <TextBox Grid.Row="3" Text="{Binding Path=PriorityParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PriorityTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="10,26,0,0" VerticalAlignment="Top" Width="118"/>
+                    <Label Grid.Column="1" Grid.Row="0" >PARCEL IN DRONE:</Label>
+                    <TextBox Grid.Column="1" Grid.Row="0"  Text="{Binding Path=DroneInParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="ParcelInDroneTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="5,26,0,0" VerticalAlignment="Top" Width="118"/>
+                    <Label Grid.Column="1" Grid.Row="1">REQUESTED TIME:</Label>
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=RequestedParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="RequestedTimeTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="5,26,0,0" VerticalAlignment="Top" Width="118"/>
+                    <Label Grid.Column="1" Grid.Row="2" >ASSIGN TO A DRONE:</Label>
+                    <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=ScheduledParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="AssignToDroneTimeTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="5,26,0,0" VerticalAlignment="Top" Width="118"/>
+                    <Label Grid.Column="1" Grid.Row="3"  >PICK-UP ON:</Label>
+                    <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=PickUpParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PickupTimeTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="5,26,0,0" VerticalAlignment="Top" Width="71"/>
+                    <Label Grid.Column="1" Grid.Row="3" Margin="85,0,0,0">DELIVERED:</Label>
+                    <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Path=DeliveredParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="DeliveredTimeTextBox" IsReadOnly="True" HorizontalAlignment="Left" Height="25" Margin="88,26,0,0" VerticalAlignment="Top" Width="71"/>
+
+
+
+                </Grid>
             </Grid>
-            <Grid Name="MiddleGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="1"
-        VerticalAlignment="Stretch" Width="auto">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="43*"/>
-                    <RowDefinition Height="43*"/>
-                    <RowDefinition Height="87*"/>
-                    <RowDefinition Height="43*"/>
-                    <RowDefinition Height="43*"/>
-                    <RowDefinition Height="43*"/>
-                    <RowDefinition Height="43*"/>
-                    <RowDefinition Height="43.262"/>
-                </Grid.RowDefinitions>
-               
-                <Label Name="senderIdlbel" Grid.Row="0" Grid.ColumnSpan="2" Margin="23,-13,70,13">SENDER ID:</Label>
-                <TextBox Name="IDSenderTextBox" PreviewTextInput="NumberValidationTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="" Margin="59,-13,0,0"/>
-                <Label Name="targetIdLabel" Grid.ColumnSpan="2" Margin="23,16,70,19" Grid.RowSpan="2">TARGET ID:</Label>
-                <TextBox Name="TargetIDTextBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Margin="59,20,0,0" Grid.RowSpan="2"/>
-                <Label Name="weightLabel" Grid.Row="1" Margin="23,21,9,36" Grid.RowSpan="2">WEIGHT :</Label>
-                
-                <StackPanel Name="WeightCheckBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,23,35,9" Grid.RowSpan="2" >
-                    <RadioButton x:Name="light" Content="light" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="light_Checked"/>
-                    <RadioButton x:Name="medium" Content="medium" IsChecked="True" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="medium_Checked"/>
-                    <RadioButton x:Name="heavy" Content="heavy" Checked="heavy_Checked"/>
-                </StackPanel>
-                
-                <Label Name="PRIORITYlabel" Grid.Row="3" Grid.ColumnSpan="2" Margin="23,1,70,24" Grid.RowSpan="2">PRIORITY:</Label>
-                
-                <StackPanel Name="priorityCheckBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="59,61,35,28" Grid.RowSpan="4" >
-                    <RadioButton x:Name="usual" Content="usual" IsChecked="True" Grid.Column="1" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="usual_Checked"/>
-                    <RadioButton x:Name="rapid" Content="rapid" Grid.Column="2" HorizontalAlignment="Left" Margin="0,6,0,0" Grid.Row="2" VerticalAlignment="Top" Checked="rapid_Checked"/>
-                    <RadioButton x:Name="emergency" Content="emergency" Checked="emergency_Checked"/>
-                </StackPanel>
+            <Grid HorizontalAlignment="Left" Height="76" Margin="361,178,0,0" VerticalAlignment="Top" Width="109">
+                <Button Name="ADD_BUTTON" Content="ADD PARCEL"  Click="Button_Click"  Margin="5,48,5,0" />
+                <Button Name="DELETE_BUTTON" Content="DELETE PARCEL" Click="Delete_Click" Visibility="Hidden" Margin="5,10,5,38"/>
             </Grid>
-            <Grid Name="displayParcel" Visibility="Hidden">
-                <Label Grid.Row="0" Margin="80,36,260,9">SENDER:</Label>
-                <ListView Name="senderTextBox" MouseDoubleClick="showCustomer" Margin="45,59,205,-49"/>
-                <ListView Name="targetTextBox" MouseDoubleClick="showCustomer" Margin="200,59,50,-49"/>
-                <Label Margin="245,36,95,12">TARGET:</Label>
-                <Label Margin="89,133,249,-86">WEIGHT :</Label>
-                <Label Margin="245,133,-152,-84">PRIORITY:</Label>
-                <TextBox Text="{Binding Path=WeightParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="WeightTextBox" IsReadOnly="True" Margin="45,158,205,-110"/>
-                <TextBox Text="{Binding Path=PriorityParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PriorityTextBox" IsReadOnly="True" Margin="200,158,50,-110"/>
-                <Label Margin="136,192,140,-146">PARCEL IN DRONE:</Label>
-                <TextBox Text="{Binding Path=DroneInParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="ParcelInDroneTextBox" IsReadOnly="True" Margin="45,216,50,-221"/>
-                <Label Margin="20,299,256,-252">REQUESTED TIME:</Label>
-                <TextBox Text="{Binding Path=RequestedParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="RequestedTimeTextBox" IsReadOnly="True" Margin="200,300,50,-251"/>
-                <Label Margin="20,332,200,-291">ASSIGN TO A DRONE TIME:</Label>
-                <TextBox Text="{Binding Path=ScheduledParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="AssignToDroneTimeTextBox" IsReadOnly="True" Margin="200,331,50,-283"/>
-                <Label Margin="20,364,272,-324">PICK-UP TIME:</Label>
-                <TextBox Text="{Binding Path=PickUpParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PickupTimeTextBox" IsReadOnly="True" Margin="200,363,50,-315"/>
-                <Label Margin="20,395,272,-348">DELIVERED TIME:</Label>
-                <TextBox Text="{Binding Path=DeliveredParcel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="DeliveredTimeTextBox" IsReadOnly="True" Margin="200,395,50,-344"/>
-            </Grid>
-            <Grid Name="BottomGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
-        VerticalAlignment="Stretch" Width="auto">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="19*"/>
-                    <ColumnDefinition Width="19*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="14*"/>
-                </Grid.ColumnDefinitions >
-            </Grid>
-            <Button Cursor="Hand" Visibility="Hidden" Name="DELETE_BUTTON" Content="DELETE PARCEL" Click="Delete_Click" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Margin="0,270,0,0" Grid.RowSpan="2"/>
-            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,270,0,0" Grid.RowSpan="2"/>
         </Grid>
     </Grid>
 </Window>

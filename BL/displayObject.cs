@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BO.Exceptions;
+using BlApi;
 
 namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayStatoin(int idS)
         {
