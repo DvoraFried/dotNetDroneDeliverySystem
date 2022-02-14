@@ -8,6 +8,7 @@ namespace BO
 {
     public class ParcelToList
     {
+        #region CTOR
         public ParcelToList(DalApi.IDal dalOBG, Parcel parcel)
         {
             Id = parcel.Id;
@@ -22,10 +23,15 @@ namespace BO
                             parcel.ScheduledBL != null ? Enum.DeliveryStatus.associated :
                             Enum.DeliveryStatus.created;
         }
+        #endregion
+
+        #region TOSTRING
         public override string ToString()
         {
             return $"============================\nID: {Id}\nSender Name: {SenderName}\nCustomer Receives Name: {UstomerReceivesName}\nWeight: {weight}\nPriority: {priority}\nParcel Status: {packageStatus}\n============================";
         }
+        #endregion
+
         public int Id { get; set; }
         public string SenderName { get; set; }
         public int SenderId { get; set; }

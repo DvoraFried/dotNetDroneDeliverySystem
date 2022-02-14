@@ -13,7 +13,7 @@ namespace BO
 {
     public class Drone
     {
-
+        #region CTOR
         public Drone(DalApi.IDal dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId, bool active = true)
         {
             Random rnd = new Random();
@@ -29,6 +29,9 @@ namespace BO
                        : null;
             if (delivery != null) { DroneStatus = DroneStatusesBL.Shipping; }
         }
+        #endregion
+
+        #region TOSTRING
         public override string ToString()
         {
             if (delivery != null)
@@ -37,7 +40,10 @@ namespace BO
             }
             return $"ID: {Id}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude,CurrentPosition.Longitude)}";
         }
+        #endregion
+
         private int id;
+        #region SET-GET_ID
         public int Id 
         {
             get { return id; }
@@ -46,6 +52,8 @@ namespace BO
                 id = value;
             }
         }
+        #endregion
+
         public string ModelBL { get; set; }
         public WeightCategoriesBL MaxWeight { get; set; }
         public double BatteryStatus { get; set; }

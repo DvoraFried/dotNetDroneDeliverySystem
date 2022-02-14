@@ -8,6 +8,7 @@ namespace BO
 {
     public class StationToList
     {
+        #region CTOR
         public StationToList(Station station)
         {
             Id = station.Id;
@@ -15,10 +16,15 @@ namespace BO
             ChargingStationsAreOccupied = station.DronesInCharging.Count;
             AvailableChargingStations = station.ChargeSlotsBL - ChargingStationsAreOccupied;
         }
+        #endregion
+
+        #region TOSRING
         public override string ToString()
         {
             return $"---------------\nID: {Id}\nName: {Name}\nAvailable Charging Stations: {AvailableChargingStations}\nCharging Stations Are Occupied: {ChargingStationsAreOccupied}\n---------------";
         }
+        #endregion
+
         public int Id { get; set; }
         public string  Name { get; set; }
         public int AvailableChargingStations { get; set; }
