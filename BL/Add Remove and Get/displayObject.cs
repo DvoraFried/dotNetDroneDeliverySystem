@@ -17,7 +17,7 @@ namespace BL
     /// </summary>
     public partial class BL : BlApi.IBL
     {
-
+        #region DISPLAY OBJECT
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayStatoin(int idS)
         {
@@ -68,7 +68,9 @@ namespace BL
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
         }
+        #endregion
 
+        #region DISPLAY LIST
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayStatoinList()
         {
@@ -129,6 +131,6 @@ namespace BL
                 }
             }
         }
-
+        #endregion
     }
 }

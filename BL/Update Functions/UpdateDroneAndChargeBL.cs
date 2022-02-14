@@ -50,6 +50,7 @@ namespace BL
                     ActionDroneChanged?.Invoke(drone);
             }
         }
+
         /// <summary>
         /// the function releae drone from charge by calculatin ghow much battery to and change the station slots to be suitable 
         /// </summary>

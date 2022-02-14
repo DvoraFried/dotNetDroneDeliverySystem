@@ -37,6 +37,7 @@ namespace BL
                 DalObj.ReplaceCustomerById(customer);
             }
         }
+
         /// <summary>
         /// function delete parcel by changing its "isactive" field
         /// exception will be thrown if the parcel was already Scheduled
@@ -56,6 +57,7 @@ namespace BL
                     throw new ParcelAlreadyScheduled(); }
             }
         }
+
         /// <summary>
         /// function delete drone by id by changing its isactive field
         /// </summary>

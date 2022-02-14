@@ -14,6 +14,7 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+
         #region Internal auxiliary methods
         IEnumerable<DO.Parcel> returnParcelWithEmergencyParcelsPriority()
         {
@@ -98,6 +99,7 @@ namespace BL
             return myParcelsSuitWeightArr;
         }
         #endregion
+
         /// <summary>
         /// function Assigning Package To Drone by srone id 
         /// </summary>
@@ -141,6 +143,7 @@ namespace BL
                 }
             }
         }
+
         /// <summary>
         /// function collect parcel frome charge by the drone id
         /// </summary>

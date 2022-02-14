@@ -27,6 +27,7 @@ namespace BL
                             select new BO.Drone(DalObj, d.Id, d.Model, (BO.Enum.WeightCategoriesBL)(int)d.MaxWeight, 0, null, 0, d.IsActive));
                 }
             }
+
             /// <summary>
             /// function create bo custoner obj frome do customer obj
             /// </summary>
@@ -40,6 +41,7 @@ namespace BL
                     return new BO.Customer(DalObj, customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.GetParcelList().ToList()), customerDal.IsActive);
                 }
             }
+
             /// <summary>
             /// function create bo parcel obj frome do parcel obj
             /// </summary>
@@ -53,6 +55,7 @@ namespace BL
                     return new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority, parcelDal.IsActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered, parcelDal.DroneId);
                 }
             }
+
             /// <summary>
             /// function create bo custoners array  frome do customers array
             /// </summary>
@@ -67,6 +70,7 @@ namespace BL
                                  select ConvertToBL.ConvertToParcelBL(parcel));
                 }
             }
+
             /// <summary>
             /// function create bo station obj frome do station obj
             /// </summary>

@@ -7,6 +7,7 @@ using static BO.Exceptions;
 
 namespace BO
 {
+    
     public class Customer
     {
         DalApi.IDal dalOB;

@@ -15,10 +15,13 @@ namespace BL
         /// <summary>
         /// delegates that are used to active function in pl
         /// </summary>
+
+        #region ACTIONS
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
         public Action<BO.Parcel,bool> ActionParcelChanged { get; set; }
         public Action <BO.Customer> ActionCustomerChanged { get; set; }
         public Action<bool> ActionUpdateList { get; set; }
+        #endregion
 
         #region UPDATE FUNCTIONS
         /// <summary>

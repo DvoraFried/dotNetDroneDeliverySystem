@@ -26,6 +26,7 @@ namespace BO
             stationDal.Latitude = stationBl.Position.Latitude;
             return stationDal;           
         }
+
         /// <summary>
         /// function convert bo drone obj to do drone obj
         /// </summary>
@@ -40,6 +41,7 @@ namespace BO
             droneDal.MaxWeight = (WeightCategories)(int)droneBl.MaxWeight;
             return droneDal;
         }
+
         /// <summary>
         /// function convert bo customer obj to do customer obj
         /// </summary>
@@ -57,6 +59,7 @@ namespace BO
             customerDal.IsActive = customerBl.isActive;
             return customerDal;
         }
+
         /// <summary>
         /// function convert bo parcel obj to do parcel obj
         /// </summary>
@@ -79,6 +82,7 @@ namespace BO
             parcelDal.IsActive = parcelBl.IsActive;
             return parcelDal;
         }
+
         /// <summary>
         /// function convert bo drone in charge obj to do drone in charge obj
         /// </summary>

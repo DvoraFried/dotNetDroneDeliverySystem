@@ -35,6 +35,7 @@ namespace BL
                 {
                     switch (drone.DroneStatus)
                     {
+                        #region case BO.Enum.DroneStatusesBL.empty
                         case BO.Enum.DroneStatusesBL.empty:
                             try
                             {
@@ -52,6 +53,9 @@ namespace BL
                                 }
                             }
                             break;
+                        #endregion
+
+                        # region case BO.Enum.DroneStatusesBL.maintenance
                         case BO.Enum.DroneStatusesBL.maintenance:
                             while (drone.BatteryStatus < 100 && !needToStop())
                             {
@@ -61,6 +65,9 @@ namespace BL
                             }
                             BL.ReleaseDroneFromCharging(droneID, true);
                             break;
+                        #endregion
+
+                        # region case BO.Enum.DroneStatusesBL.Shipping
                         case BO.Enum.DroneStatusesBL.Shipping:
                             Parcel parcelInDrone = BL.GetParcel(drone.delivery.Id);
                             DO.Customer target;
@@ -77,7 +84,7 @@ namespace BL
                                 BL.CollectionOfAParcelByDrone(droneID, true);
                             }
                             break;
-
+                            #endregion
                     }
                 }
                 catch (ThereIsNotEnoughBatteryException e)
@@ -91,7 +98,20 @@ namespace BL
                 Thread.Sleep(DELAY);
             }
         }
-        internal void makeProsses(Drone drone, double Latitude, double Longitude, int DELAY, Action<Drone> droneSimulation, Func<bool> needToStop)
+
+
+        /// <summary>
+        /// The function simulates the glider's journey -
+        /// takes care of changing the battery values ​​and location
+        /// so that they are displayed in real time 
+        /// </summary>
+        /// <param name="drone"></param>
+        /// <param name="targetLatitude"></param>
+        /// <param name="targetLongitude"></param>
+        /// <param name="DELAY"></param>
+        /// <param name="droneSimulation"></param>
+        /// <param name="needToStop"></param>
+        internal void makeProsses(Drone drone, double targetLatitude, double targetLongitude, int DELAY, Action<Drone> droneSimulation, Func<bool> needToStop)
         {
             while (drone.CurrentPosition.Latitude != Latitude && drone.CurrentPosition.Longitude != Longitude && !needToStop())
             {
