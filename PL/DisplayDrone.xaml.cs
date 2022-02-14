@@ -165,8 +165,8 @@ namespace PL
                    BL,
                    droneBO.Id,
                    (droneBO) => { updateDrone = droneBO; worker.ReportProgress(1); },
-                   (parcelBO,t) => { updateParcel = parcelBO; worker.ReportProgress(0); },
-                   () => worker.CancellationPending);
+/*                   (parcelBO,t) => { updateParcel = parcelBO; worker.ReportProgress(0); },
+*/                   () => worker.CancellationPending);
             };
             worker.WorkerReportsProgress = true;
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
@@ -176,7 +176,7 @@ namespace PL
                 if(droneBO.delivery != null)
                 {
                     Parcel ParcelInDrone = BL.GetParcel(droneBO.delivery.Id);
-                    BL.ActionParcelChanged(ParcelInDrone, true);
+                  //  BL.ActionParcelChanged(ParcelInDrone, true);
                 }
             };
             worker.WorkerSupportsCancellation = true;

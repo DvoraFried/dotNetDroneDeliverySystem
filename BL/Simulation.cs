@@ -21,8 +21,8 @@ namespace BL
         /// by 
         /// </summary>
         IBL BL;
-        IDal Dal;
-        public Simulation(IBL BL,int droneID,Action<Drone> droneSimulation, Action<Parcel,bool> parcelSimulation, Func<bool> needToStop)
+        IDal Dal = DalApi.DalFactory.GetDal();
+        public Simulation(IBL BL,int droneID,Action<Drone> droneSimulation,/* Action<Parcel,bool> parcelSimulation,*/ Func<bool> needToStop)
         {
             int DELAY = 500;
             double SPEED = 1;
@@ -40,7 +40,7 @@ namespace BL
                             {
                                 BL.AssigningPackageToDrone(droneID, true);
                                 parcel = BL.GetParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id);
-                                parcelSimulation(BL.GetParcel(parcel.Id), true);
+                                //parcelSimulation(BL.GetParcel(parcel.Id), true);
                             }
                             catch
                             {
@@ -75,7 +75,7 @@ namespace BL
                             {
                                 BL.CollectionOfAParcelByDrone(droneID, true);
                             }
-                            parcelSimulation(BL.GetParcel(parcel.Id), true);
+                           // parcelSimulation(BL.GetParcel(parcel.Id), true);
                             break;
 
                     }
@@ -87,7 +87,7 @@ namespace BL
                 }
                 drone = DronesListBL.First(d => d.Id == droneID);
                 droneSimulation(drone);
-                if(parcel != null) parcelSimulation(BL.GetParcel(parcel.Id),true);
+               // if(parcel != null) parcelSimulation(BL.GetParcel(parcel.Id),true);
                 Thread.Sleep(DELAY);
             }
         }
