@@ -28,7 +28,6 @@ namespace PL
         BlApi.IBL BL;
         Drone_pl dronePO;
         Drone droneBO;
-        Parcel_pl ParcelInDrone = null;
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL BL,Drone drone)
         {
@@ -37,9 +36,6 @@ namespace PL
             this.BL = BL;
             InitializeComponent();
             DataContext = dronePO;
-            /*light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
-            medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
-            heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;*/
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
             UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = DELETE_BUTTON.Visibility = Simulation.Visibility = Visibility.Visible;
             ADD_BUTTON.Visibility = statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
@@ -156,17 +152,14 @@ namespace PL
             Simulation.IsEnabled = false;
             StopSimulation.Visibility = Visibility.Visible;
             StopSimulation.IsEnabled = true;
-            bool t = true;
             Drone updateDrone = null;
-            Parcel updateParcel = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {
                  BL.StartSimulation(
                    BL,
                    droneBO.Id,
                    (droneBO) => { updateDrone = droneBO; worker.ReportProgress(1); },
-/*                   (parcelBO,t) => { updateParcel = parcelBO; worker.ReportProgress(0); },
-*/                   () => worker.CancellationPending);
+                   () => worker.CancellationPending);
             };
             worker.WorkerReportsProgress = true;
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
@@ -176,7 +169,6 @@ namespace PL
                 if(droneBO.delivery != null)
                 {
                     Parcel ParcelInDrone = BL.GetParcel(droneBO.delivery.Id);
-                  //  BL.ActionParcelChanged(ParcelInDrone, true);
                 }
             };
             worker.WorkerSupportsCancellation = true;

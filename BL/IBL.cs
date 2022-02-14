@@ -64,7 +64,7 @@ namespace BlApi
         public Action<bool> ActionUpdateList { get; set; }
         #endregion
 
-        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation,/* Action<Parcel,bool> parcelSimulation,*/ Func<bool> needToStop);
+        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
         public EmpolyeeBL GetEmployee(int idE);
        
         public bool UserIsCustomer(string name, int id);
