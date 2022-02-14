@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using static DalFacade.DalApi.Exeptions.Exceptions;
+
 
 namespace Dal
 {
@@ -49,7 +51,7 @@ namespace Dal
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);  // DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
+                    throw new XMLFileLoadCreateException(filePath);
                 }
                 throw new Exception();
             }
