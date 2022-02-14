@@ -16,8 +16,8 @@ namespace BO
             BatteryStatus = drone.BatteryStatus;
             DroneStatus = drone.DroneStatus;
             CurrentPosition = drone.CurrentPosition;
-            ParcelNun = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == Id) ?
-                        dalOB.returnParcelArray().First(parcel => parcel.DroneId == Id).Id : 0;
+            ParcelNun = dalOB.GetParcelList().ToList().Any(parcel => parcel.DroneId == Id) ?
+                        dalOB.GetParcelList().First(parcel => parcel.DroneId == Id).Id : 0;
         }
         public override string ToString()
         {

@@ -41,7 +41,7 @@ namespace BO
             customerDal.Phone = customerBl.Phone;
             customerDal.Longitude = customerBl.Position.Longitude;
             customerDal.Latitude = customerBl.Position.Latitude;
-            customerDal.isActive = customerBl.isActive;
+            customerDal.IsActive = customerBl.isActive;
             return customerDal;
         }
 
@@ -59,7 +59,7 @@ namespace BO
             parcelDal.Scheduled = parcelBl.ScheduledBL;
             parcelDal.PickUp = parcelBl.PickUpBL;
             parcelDal.Delivered = parcelBl.DeliveredBL;
-            parcelDal.isActive = parcelBl.IsActive;
+            parcelDal.IsActive = parcelBl.IsActive;
             return parcelDal;
         }
 
@@ -69,7 +69,7 @@ namespace BO
             DO.DroneCharge droneChargeDal = new DO.DroneCharge();
             droneChargeDal.DroneId = droneBl.Id;
             droneChargeDal.StationId = stationIdS;
-            droneChargeDal.enterTime = droneBl.EnterTime;
+            droneChargeDal.EnterTime = droneBl.EnterTime;
             return droneChargeDal;
         }
     }

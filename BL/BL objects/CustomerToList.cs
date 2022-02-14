@@ -13,10 +13,10 @@ namespace BO
             Id = customer.Id;
             Name = customer.Name;
             Phone = customer.Phone;
-            NumOfPackagesSentAndDelivered = (from P in dALOB.returnParcelArray() where (P.SenderId == Id && P.Delivered != null) select P).ToList().Count;
-            NumOfPackagesSentButNotYetDelivered = (from P in dALOB.returnParcelArray() where (P.SenderId == Id && P.Delivered == null) select P).ToList().Count;
-            NumOfPackagesHeReceived = (from P in dALOB.returnParcelArray() where (P.TargetId == Id && P.Delivered != null) select P).ToList().Count;
-            NumOfPackagesOnTheWay = (from P in dALOB.returnParcelArray() where (P.TargetId == Id && P.Delivered == null) select P).ToList().Count;
+            NumOfPackagesSentAndDelivered = (from P in dALOB.GetParcelList() where (P.SenderId == Id && P.Delivered != null) select P).ToList().Count;
+            NumOfPackagesSentButNotYetDelivered = (from P in dALOB.GetParcelList() where (P.SenderId == Id && P.Delivered == null) select P).ToList().Count;
+            NumOfPackagesHeReceived = (from P in dALOB.GetParcelList() where (P.TargetId == Id && P.Delivered != null) select P).ToList().Count;
+            NumOfPackagesOnTheWay = (from P in dALOB.GetParcelList() where (P.TargetId == Id && P.Delivered == null) select P).ToList().Count;
         }
         public override string ToString()
         {

@@ -46,7 +46,7 @@ namespace PL
             catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(newId.Text))).Show();
+            new ClientSide(bl, bl.GetCustomerByID(Int32.Parse(newId.Text))).Show();
             Close();
         }
         private void ButtonLogIn_Click(object sender, RoutedEventArgs e)
@@ -77,18 +77,18 @@ namespace PL
 }
      */     try
             {
-                if (bl.userIsCustomer(name.Text, Int32.Parse(id.Password)))
+                if (bl.UserIsCustomer(name.Text, Int32.Parse(id.Password)))
                 {
-                    new ClientSide(bl, bl.convertCustomerToCustomerBl(Int32.Parse(id.Password))).ShowDialog();
+                    new ClientSide(bl, bl.GetCustomerByID(Int32.Parse(id.Password))).ShowDialog();
                     Close();
                 }
-                else if (bl.userIsEmployee(name.Text, Int32.Parse(id.Password)))
+                else if (bl.UserIsEmployee(name.Text, Int32.Parse(id.Password)))
                 {
-                    new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
+                    new MainWindow(bl, bl.GetEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
                 }
-                else if (bl.userIsManager(name.Text, Int32.Parse(id.Password)))
+                else if (bl.UserIsManager(name.Text, Int32.Parse(id.Password)))
                 {
-                    new MainWindow(bl, bl.returnEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
+                    new MainWindow(bl, bl.GetEmployee(Int32.Parse(id.Password))).ShowDialog(); ;
                 }
                 else
                 {

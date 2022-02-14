@@ -10,7 +10,7 @@ namespace DO
     {
         public int DroneId { get; set; }
         public int StationId { get; set; }
-        public DateTime enterTime { get; set; }
+        public DateTime EnterTime { get; set; }
     }
 }
 

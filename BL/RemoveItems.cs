@@ -18,17 +18,17 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer)) {
+                if (!DalObj.GetCustomerList().ToList().Any(c => c.Id == idCustomer)) {
                     throw new ObjectDoesntExistsInListException("customer"); }
 
-                foreach (DO.Parcel parcel in DalObj.returnParcelArray())
+                foreach (DO.Parcel parcel in DalObj.GetParcelList())
                 {
                     if ((parcel.TargetId == idCustomer || parcel.SenderId == idCustomer) && (parcel.Delivered == null))
                     { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
                 }
 
-                DO.Customer customer = DalObj.returnCustomerArray().First(c => c.Id == idCustomer);
-                customer.isActive = false;
+                DO.Customer customer = DalObj.GetCustomerList().First(c => c.Id == idCustomer);
+                customer.IsActive = false;
                 DalObj.ReplaceCustomerById(customer);
             }
         }

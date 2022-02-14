@@ -56,13 +56,13 @@ namespace BL
                 if (drone.DroneStatus != DroneStatusesBL.maintenance) {
                     throw new DroneIsNotInMaintenanceException(id); }
                 
-                double timeInCharge = (DateTime.Now - DalObj.returnDroneInCharge(id).enterTime).Minutes;
+                double timeInCharge = (DateTime.Now - DalObj.GetDroneInChargeByID(id).EnterTime).Minutes;
                 drone.BatteryStatus = Math.Min(drone.BatteryStatus + (timeInCharge / 60) * DalApi.Config.DroneLoadingRate, 100);
                 drone.DroneStatus = DroneStatusesBL.empty;
                 DronesListBL[DronesListBL.FindIndex(d => (d.Id == id))] = drone;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                
-                DO.Station station = DalObj.returnStationArray().ToList().First(station => station.Latitude == drone.CurrentPosition.Latitude && station.Longitude == drone.CurrentPosition.Longitude);
+                DO.Station station = DalObj.GetStationList().ToList().First(station => station.Latitude == drone.CurrentPosition.Latitude && station.Longitude == drone.CurrentPosition.Longitude);
                 station.DronesInCharging -= 1;
                 station.EmptyChargeSlots += 1;
                 DalObj.ReplaceStationById(station);

@@ -19,7 +19,7 @@ namespace BL
                 lock (DalObj)
                 {
                     return (from d in droneDalArray
-                            select new BO.Drone(DalObj, d.Id, d.Model, (BO.Enum.WeightCategoriesBL)(int)d.MaxWeight, 0, null, 0, d.isActive));
+                            select new BO.Drone(DalObj, d.Id, d.Model, (BO.Enum.WeightCategoriesBL)(int)d.MaxWeight, 0, null, 0, d.IsActive));
                 }
             }
 
@@ -28,7 +28,7 @@ namespace BL
             {
                 lock (DalObj)
                 {
-                    return new BO.Customer(DalObj, customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()), customerDal.isActive);
+                    return new BO.Customer(DalObj, customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.GetParcelList().ToList()), customerDal.IsActive);
                 }
             }
 
@@ -37,7 +37,7 @@ namespace BL
             {
                 lock (DalObj)
                 {
-                    return new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority, parcelDal.isActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered, parcelDal.DroneId);
+                    return new BO.Parcel(DalObj, parcelDal.SenderId, parcelDal.TargetId, (int)parcelDal.Weight, (int)parcelDal.Priority, parcelDal.IsActive, parcelDal.Id, parcelDal.Requested, parcelDal.Scheduled, parcelDal.PickUp, parcelDal.Delivered, parcelDal.DroneId);
                 }
             }
 
@@ -62,7 +62,7 @@ namespace BL
             {
                 lock (DalObj)
                 {
-                    Employee employeeDAL = DalObj.returnEmployee(idE);
+                    Employee employeeDAL = DalObj.GetEmployee(idE);
                     return new EmpolyeeBL(idE, employeeDAL.Name, employeeDAL.Manager);
                 }
             }

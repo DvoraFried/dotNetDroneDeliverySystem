@@ -12,39 +12,39 @@ namespace DalApi
     {
         #region STATION'S FUNCTION
         public void AddStationDAL(Station DALS);
-        public Station returnStation(int StationIdS);
-        public IEnumerable<Station> returnStationArray();
+        public Station GetStation(int StationIdS);
+        public IEnumerable<Station> GetStationList();
         public void ReplaceStationById(Station DALS);
         #endregion
 
         #region DRONE'S FUNCTION
         public void AddDroneDAL(Drone DALD);
         public void Charge(DroneCharge DALDC);
-        public DroneCharge returnDroneInCharge(int idDC);
-        public IEnumerable<Drone> returnDroneArray();
+        public DroneCharge GetDroneInChargeByID(int idDC);
+        public IEnumerable<Drone> GetDroneList();
         public void ReplaceDroneById(Drone DALD);
         #endregion
 
         #region CUSTOMER'S FUNCTION
         public void AddCustomerDAL(Customer DALC);
-        public Customer returnCustomer(int CustomerIdS);
-        public IEnumerable<Customer> returnCustomerArray();
+        public Customer GetCustomerByID(int CustomerIdS);
+        public IEnumerable<Customer> GetCustomerList();
         public void ReplaceCustomerById(Customer DALC);
         #endregion
 
         #region PARCEL'S FUNCTION
         public void AddParcelDAL(Parcel DALP);
-        public Parcel returnParcel(int ParcelIdS);
-        public Parcel returnParcelByDroneId(int DroneIdS);
-        public IEnumerable<Parcel> returnParcelArray();
+        public Parcel GetParcel(int ParcelIdS);
+        public Parcel GetParcelByDroneId(int DroneIdS);
+        public IEnumerable<Parcel> GetParcelList();
         public void ReplaceParcelById(Parcel DALP);
         public int GetNewParcelId();
         #endregion
 
-        public Employee returnEmployee(int idE);
-        public IEnumerable<Employee> returnEmployeeArray();
+        public Employee GetEmployee(int idE);
+        public IEnumerable<Employee> GetEmployeeList();
 
-        public double[] powerRequest();
+        public double[] PowerRequest();
 
     }
 }

@@ -38,11 +38,11 @@ namespace PL
 
         private void customerParcels_Click(object sender, RoutedEventArgs e)
         {
-            new DisplayParcelList(Bl, Bl.convertCustomerToCustomerBl(currentCustomer.Id)).Show();
+            new DisplayParcelList(Bl, Bl.GetCustomerByID(currentCustomer.Id)).Show();
         }
         private void toCustomerParcels_Click(object sender, RoutedEventArgs e)
         {
-            new DisplayParcelList(Bl, Bl.convertCustomerToCustomerBl(currentCustomer.Id), true).Show();
+            new DisplayParcelList(Bl, Bl.GetCustomerByID(currentCustomer.Id), true).Show();
         }
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {

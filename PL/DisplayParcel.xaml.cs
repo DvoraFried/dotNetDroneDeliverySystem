@@ -59,7 +59,7 @@ namespace PL
             BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
             if (customer != null && !isClient)
             {
-                new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).ShowDialog();
+                new DisplayCustomer(Bl, Bl.GetCustomerByID(customer.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

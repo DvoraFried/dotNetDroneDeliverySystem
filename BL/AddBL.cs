@@ -23,7 +23,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (DalObj.returnStationArray().Any(s => s.Id == id)) { throw new ObjectExistsInListException("Station"); };
+                if (DalObj.GetStationList().Any(s => s.Id == id)) { throw new ObjectExistsInListException("Station"); };
                 BO.Station station = new BO.Station(id, name, new Position(longitude, latitude), chargeSlots, DronesListBL);
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
@@ -32,13 +32,13 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (DalObj.returnDroneArray().Any(d => d.Id == id)) {
+                if (DalObj.GetDroneList().Any(d => d.Id == id)) {
                     throw new ObjectExistsInListException("drone"); };
 
-                if (!DalObj.returnStationArray().Any(s => s.Id == stationId)) {
+                if (!DalObj.GetStationList().Any(s => s.Id == stationId)) {
                     throw new ObjectDoesntExistsInListException("station"); };
 
-                DO.Station s = DalObj.returnStationArray().ToList().Find(d => d.Id == stationId);
+                DO.Station s = DalObj.GetStationList().ToList().Find(d => d.Id == stationId);
                 s.DronesInCharging += 1;
                 s.EmptyChargeSlots -= 1;
                 
@@ -55,10 +55,10 @@ namespace BL
         {
             lock (DalObj)
             {
-                BO.Customer customer = customer = new BO.Customer(DalObj, id, name, phone, new Position(longitude, latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray()));
-                if (DalObj.returnCustomerArray().Any(c => c.Id == id))
+                BO.Customer customer = customer = new BO.Customer(DalObj, id, name, phone, new Position(longitude, latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.GetParcelList()));
+                if (DalObj.GetCustomerList().Any(c => c.Id == id))
                 {
-                    if (DalObj.returnCustomer(id).isActive) { throw new ObjectExistsInListException("customer"); }
+                    if (DalObj.GetCustomerByID(id).IsActive) { throw new ObjectExistsInListException("customer"); }
                     DalObj.ReplaceCustomerById(ConvertToDal.ConvertToCustomerDal(customer));
                 }
                 else
@@ -71,10 +71,10 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnCustomerArray().Any(c => c.Id == idSender)) {
+                if (!DalObj.GetCustomerList().Any(c => c.Id == idSender)) {
                     throw new ObjectDoesntExistsInListException("sender customer"); }
                 
-                if (!DalObj.returnCustomerArray().Any(c => c.Id == idTarget)) {
+                if (!DalObj.GetCustomerList().Any(c => c.Id == idTarget)) {
                     throw new ObjectDoesntExistsInListException("target customer"); }
                 
                 BO.Parcel parcel = new BO.Parcel(DalObj, idSender, idTarget, (int)weight, (int)priority);

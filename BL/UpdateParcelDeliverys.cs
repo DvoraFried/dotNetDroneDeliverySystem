@@ -14,11 +14,12 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        #region Internal auxiliary methods
         IEnumerable<DO.Parcel> returnParcelWithEmergencyParcelsPriority()
         {
             lock (DalObj)
             {
-                return from P in DalObj.returnParcelArray() 
+                return from P in DalObj.GetParcelList() 
                        where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.emergency) 
                        select P;
             }
@@ -27,7 +28,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                return from P in DalObj.returnParcelArray()
+                return from P in DalObj.GetParcelList()
                        where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.usual)
                        select P;
             }
@@ -36,7 +37,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                return from P in DalObj.returnParcelArray()
+                return from P in DalObj.GetParcelList()
                        where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.rapid)
                        select P;
             }
@@ -59,8 +60,8 @@ namespace BL
                 DO.Parcel currentParcel = parcelArr.ToArray()[0];
                 foreach (DO.Parcel element in parcelArr)
                 {
-                    DO.Customer currentParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == currentParcel.SenderId));
-                    DO.Customer compairParcelSender = DalObj.returnCustomerArray().First(d => (d.Id == element.SenderId));
+                    DO.Customer currentParcelSender = DalObj.GetCustomerList().First(d => (d.Id == currentParcel.SenderId));
+                    DO.Customer compairParcelSender = DalObj.GetCustomerList().First(d => (d.Id == element.SenderId));
                     if (CalculateDistance(dronePosition, new Position(currentParcelSender.Longitude, currentParcelSender.Latitude)) > CalculateDistance(dronePosition, new Position(compairParcelSender.Longitude, compairParcelSender.Latitude)))
                     {
                         currentParcel = element;
@@ -72,8 +73,8 @@ namespace BL
 
         internal bool thereIsBattery(BO.Drone drone, BO.Parcel parcel)
         {
-            BO.Customer sender = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Sender.Id));
-            BO.Customer target = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id));
+            BO.Customer sender = ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(parcel.Sender.Id));
+            BO.Customer target = ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(parcel.Target.Id));
 
             double weightPower =  parcel.Weight == WeightCategoriesBL.light ? lightWeightPowerConsumption :
                              parcel.Weight == WeightCategoriesBL.medium ? mediumWeightPowerConsumption :
@@ -96,6 +97,7 @@ namespace BL
             }
             return myParcelsSuitWeightArr;
         }
+        #endregion
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AssigningPackageToDrone(int idD, bool simulation = false)
@@ -144,15 +146,15 @@ namespace BL
                 if (!DronesListBL.Any(d => (d.Id == idD))) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
-                if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idD)) {
+                if (!DalObj.GetParcelList().ToList().Any(parcel => parcel.DroneId == idD)) {
                     throw new NoParcelFoundException(); }
 
                 BO.Drone drone = DronesListBL.First(drone => drone.Id == idD);
                 if (drone.delivery.IsDelivery) {
                     throw new TheDroneHasAlreadyPickedUpTheParcel(); }
 
-                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
-                Position senderPosition = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Sender.Id)).Position;
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(drone.delivery.Id));
+                Position senderPosition = ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(parcel.Sender.Id)).Position;
                 
                 parcel.PickUpBL = DateTime.Now;
                 drone.BatteryStatus = updateButteryStatus(drone, senderPosition, 0);
@@ -176,18 +178,18 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) {
+                if (!DalObj.GetDroneList().ToList().Any(drone => drone.Id == idD)) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
                 BO.Drone drone = DronesListBL.First(drone => drone.Id == idD);
                 if (drone.DroneStatus != DroneStatusesBL.Shipping) {
                     throw new NoParcelFoundException(); }
 
-                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(drone.delivery.Id));
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(drone.delivery.Id));
                 if (parcel.PickUpBL == null) { 
                     throw new ThePackageHasNotYetBeenCollectedException(); }
                 
-                Position targetPos_ = ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(parcel.Target.Id)).Position;
+                Position targetPos_ = ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(parcel.Target.Id)).Position;
                 parcel.DeliveredBL = DateTime.Now;
                 parcel.DroneIdBL = null;
                 drone.BatteryStatus = updateButteryStatus(drone, targetPos_, (int)parcel.Weight);

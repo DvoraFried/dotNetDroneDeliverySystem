@@ -24,7 +24,7 @@ namespace BO
             BatteryStatus = rnd.Next(20, 41);
             DroneStatus = status;
             isActive = active;
-            delivery = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == this.id) ?
+            delivery = dalOB.GetParcelList().ToList().Any(parcel => parcel.DroneId == this.id) ?
                        new ParcelByTransfer(dalOB,  this.id)
                        : null;
             if (delivery != null) { DroneStatus = DroneStatusesBL.Shipping; }

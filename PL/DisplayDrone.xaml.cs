@@ -55,7 +55,7 @@ namespace PL
         {
             if (dronePO.Delivery.Id != 0)
             {
-                new DisplayParcel(BL, BL.returnParcel(dronePO.Delivery.Id)).ShowDialog();
+                new DisplayParcel(BL, BL.GetParcel(dronePO.Delivery.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -175,7 +175,7 @@ namespace PL
                 BL.ActionDronesAdded(true);
                 if(droneBO.delivery != null)
                 {
-                    ParcelInDrone = new Parcel_pl(BL, BL.returnParcel(droneBO.delivery.Id));
+                    ParcelInDrone = new Parcel_pl(BL, BL.GetParcel(droneBO.delivery.Id));
                     ParcelInDrone.UpdatePlParcel(updateParcel);
                 }
             };

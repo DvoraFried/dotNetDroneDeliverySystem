@@ -27,7 +27,7 @@ namespace PL
             InitializeComponent();
             Bl = bl;
             Bl.ActionDronesAdded += AddPlDrone;
-            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             
             for (int i = 0; i < 3; i++) {
@@ -50,7 +50,7 @@ namespace PL
 
         private void AddPlDrone( bool arg2)
         {
-            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
 
         private void comboBoxOByStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,14 +58,14 @@ namespace PL
 
             ComboBox senderCB = sender as ComboBox;
             droneStatus = senderCB.SelectedIndex;
-            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
 
         }
         private void comboBoxOByMaxW_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox senderCB = sender as ComboBox;
             droneMaxWeight = senderCB.SelectedIndex;
-            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
 
         private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
@@ -73,7 +73,7 @@ namespace PL
             OrderByStatus.Text = string.Empty;
             OrderByMaxWeight.Text = string.Empty;
             droneStatus = -1; droneMaxWeight = -1;
-            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
+            dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -92,7 +92,7 @@ namespace PL
 
         private void ButtonStatusSortFilter_Click(object sender, RoutedEventArgs e)
         {
-            dronesDisplay.ItemsSource = Bl.ReturnDronesByStatusOrder();
+            dronesDisplay.ItemsSource = Bl.GetDronesByStatusOrder();
         }
 
     }
