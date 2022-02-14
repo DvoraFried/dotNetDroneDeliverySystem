@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static BO.Enum;
 using static BO.Exceptions;
-
+using Drone = DO.Drone;
 
 namespace BL
 {

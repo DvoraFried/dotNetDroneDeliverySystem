@@ -1,4 +1,5 @@
 ﻿using BO;
+using PO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,10 @@ namespace PL
     public partial class DroneList : Window
     {
         BlApi.IBL Bl;
+        internal static Drones_pl Drones;
         int droneStatus = -1;
         int droneMaxWeight = -1;
+
         public DroneList(BlApi.IBL bl)
         {
             InitializeComponent();
@@ -77,7 +80,7 @@ namespace PL
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            BO.Drone drone = (sender as ListView).SelectedValue as BO.Drone;
+            PO.Drone_pl drone = (sender as ListView).SelectedValue as PO.Drone_pl;
             if (drone != null)
             {
                 new DisplayDrone(Bl, drone).Show();
