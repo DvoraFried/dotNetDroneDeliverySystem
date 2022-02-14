@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="DisplayParcel" Height="450" Width="800">
+        Title="DisplayParcel" Height="472" Width="800">
     <Grid Name="PageGrid" HorizontalAlignment="Stretch" Height="auto" VerticalAlignment="Stretch" Width="auto" >
         <Grid.Background>
             <ImageBrush Opacity="0.18" ImageSource="/images/background.jpg"/>
@@ -70,7 +70,7 @@
                     <RadioButton x:Name="emergency" Content="emergency" Checked="emergency_Checked"/>
                 </StackPanel>
             </Grid>
-            <Grid Name="displayParcel" Visibility="Hidden">
+            <Grid Name="displayParcel" Visibility="Visible">
                 <Label Grid.Row="0" Margin="80,36,260,9">SENDER:</Label>
                 <ListView Name="senderTextBox" MouseDoubleClick="showCustomer" Margin="45,59,205,-49"/>
                 <ListView Name="targetTextBox" MouseDoubleClick="showCustomer" Margin="200,59,50,-49"/>
@@ -99,7 +99,7 @@
                     <ColumnDefinition Width="14*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
-            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,270,0,0" Grid.RowSpan="2"/>
+            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,274,0,0"/>
         </Grid>
     </Grid>
 </Window>

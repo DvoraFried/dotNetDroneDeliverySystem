@@ -39,7 +39,7 @@ namespace PL
             InitializeComponent();
             DataContext = CustomerPO;
 
-            exIsent.Visibility = exSENDme.Visibility = UPDATE_BUTTON.Visibility = Visibility.Visible;
+            exIsent.Visibility = exSENDme.Visibility = DELETE_BUTTON.Visibility = UPDATE_BUTTON.Visibility = Visibility.Visible;
             ADD_BUTTON.Visibility = Visibility.Hidden;
             IDTebtBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeTextBox.IsEnabled = false;
 
