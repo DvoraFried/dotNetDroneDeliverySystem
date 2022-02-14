@@ -23,7 +23,10 @@ namespace PL
         BlApi.IBL Bl;   
         int droneStatus = -1;
         int droneMaxWeight = -1;
-
+        /// <summary>
+        /// the constructor render cmobo box and listview
+        /// </summary>
+        /// <param name="bl"></param>
         public DroneList(BlApi.IBL bl)
         {
             InitializeComponent();
@@ -49,12 +52,19 @@ namespace PL
             OrderByMaxWeight.ItemsSource = itemList;
             
         }
-
+        /// <summary>
+        /// the function update the drone list after update and add drone
+        /// </summary>
+        /// <param name="arg2"></param>
         private void AddPlDrone( bool arg2)
         {
             dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
-
+        /// <summary>
+        /// function returns and refresh the drone list according to th econdition
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxOByStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -63,13 +73,22 @@ namespace PL
             dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
 
         }
+        /// <summary>
+        /// kana"l
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxOByMaxW_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox senderCB = sender as ComboBox;
             droneMaxWeight = senderCB.SelectedIndex;
             dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
-
+        /// <summary>
+        /// function clear the conditions to display drone list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
         {
             OrderByStatus.Text = string.Empty;
@@ -77,6 +96,11 @@ namespace PL
             droneStatus = -1; droneMaxWeight = -1;
             dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
         }
+        /// <summary>
+        /// function send the customer to a drone womdow after double clicking on dron
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Drone drone = (sender as ListView).SelectedValue as Drone;
@@ -85,13 +109,21 @@ namespace PL
                 new DisplayDrone(Bl, drone).Show();
             }
         }
-
+        /// <summary>
+        /// function send customer to add drone window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAddDrone_Click(object sender, RoutedEventArgs e)
         {
             DisplayDrone addDrone = new DisplayDrone(Bl);
             addDrone.Show();
         }
-
+        /// <summary>
+        /// function update the drone list to be sorted by drone status
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonStatusSortFilter_Click(object sender, RoutedEventArgs e)
         {
             dronesDisplay.ItemsSource = Bl.GetDronesByStatusOrder();

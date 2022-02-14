@@ -54,6 +54,11 @@ namespace PL
             Bl = bl;
             InitializeComponent();
         }
+        /// <summary>
+        /// the function open a customer window with the customer that is related to the parcl
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void showCustomer(object sender, RoutedEventArgs e)
         {
             BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
@@ -62,11 +67,17 @@ namespace PL
                 new DisplayCustomer(Bl, Bl.GetCustomerByID(customer.Id)).ShowDialog();
             }
         }
+        ///
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+        /// <summary>
+        /// the function add parcel to drone list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(IDSenderTextBox.Text) || string.IsNullOrWhiteSpace(TargetIDTextBox.Text))
@@ -80,12 +91,14 @@ namespace PL
                     Bl.AddParcel(int.Parse(IDSenderTextBox.Text), int.Parse(TargetIDTextBox.Text), (BO.Enum.WeightCategoriesBL)weight, (BO.Enum.PrioritiesBL)priority);
                     this.Close();
                 }
-                catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-                catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
-
+        /// <summary>
+        /// function delete the customer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -93,8 +106,6 @@ namespace PL
                 Bl.DeleteParcel(currentParcel);
                 Close();
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
@@ -127,7 +138,11 @@ namespace PL
         {
             priority = 2;
         }
-
+        /// <summary>
+        /// function closes the window. dah!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
