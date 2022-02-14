@@ -41,7 +41,7 @@ namespace PO
         public static readonly DependencyProperty idPProperty =
         DependencyProperty.Register("IdParcel",
                      typeof(object),
-                     typeof(drone_pl),
+                     typeof(Drone_pl),
                      new UIPropertyMetadata(0));
         private int Id
         {
