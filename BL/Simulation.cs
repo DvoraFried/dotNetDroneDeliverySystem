@@ -113,13 +113,13 @@ namespace BL
         /// <param name="needToStop"></param>
         internal void makeProsses(Drone drone, double targetLatitude, double targetLongitude, int DELAY, Action<Drone> droneSimulation, Func<bool> needToStop)
         {
-            while (drone.CurrentPosition.Latitude != Latitude && drone.CurrentPosition.Longitude != Longitude && !needToStop())
+            while (drone.CurrentPosition.Latitude != targetLatitude && drone.CurrentPosition.Longitude != targetLongitude && !needToStop())
             {
-                drone.CurrentPosition.Longitude += drone.CurrentPosition.Longitude > Longitude ? -1 : 1;
-                drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > Latitude ? -1 : 1;
+                drone.CurrentPosition.Longitude += drone.CurrentPosition.Longitude > targetLongitude ? -1 : 1;
+                drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > targetLatitude ? -1 : 1;
                 drone.BatteryStatus -= 0.4;
                 if(drone.DroneStatus == BO.Enum.DroneStatusesBL.Shipping) {
-                    drone.delivery.Distance = BO.DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, new Position(Longitude, Latitude));
+                    drone.delivery.Distance = BO.DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, new Position(targetLongitude, targetLatitude));
                 }
                 droneSimulation(drone);
                 Thread.Sleep(DELAY);
