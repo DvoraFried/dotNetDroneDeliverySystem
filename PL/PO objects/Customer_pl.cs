@@ -12,6 +12,8 @@ namespace PO
 
     {
         BlApi.IBL dalOB;
+
+        #region CTOR
         public Customer_pl(BlApi.IBL blObj, Customer customerBl)
         {
             dalOB = blObj;
@@ -23,12 +25,16 @@ namespace PO
             ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();
             blObj.ActionCustomerChanged += UpdatePlCustomer;
         }
+        #endregion
+
+        #region TOSTRING
         public void UpdatePlCustomer(Customer customerBl)
         {
             ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
             ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();
         }
-        
+        #endregion
+
         public static readonly DependencyProperty idProperty =
         DependencyProperty.Register("Id",
                      typeof(object),

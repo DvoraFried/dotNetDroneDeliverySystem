@@ -24,6 +24,13 @@ namespace PL
     {
         BlApi.IBL Bl;
         Customer_pl CustomerPO;
+
+        /// <summary>
+        /// CTOR to open a specific cusomer data 
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="customer"></param>
+
         public DisplayCustomer(BlApi.IBL bl, Customer customer)
         {
             Bl = bl;
