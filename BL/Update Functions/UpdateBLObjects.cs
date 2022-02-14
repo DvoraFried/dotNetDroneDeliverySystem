@@ -92,6 +92,5 @@ namespace BL
         }
         #endregion
     }
-    #endregion
 
 }
