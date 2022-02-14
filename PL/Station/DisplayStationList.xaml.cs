@@ -50,7 +50,6 @@ namespace PL
             this.Close();
         }
 
-
         /// <summary>
         /// Sorted station list view
         /// </summary>
