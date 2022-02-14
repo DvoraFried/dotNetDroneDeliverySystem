@@ -38,7 +38,7 @@ namespace PL
         private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)
         {
             new DisplayCustomer(Bl).ShowDialog();
-            
+            this.Close();
         }
     }
 }

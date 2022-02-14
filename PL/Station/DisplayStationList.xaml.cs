@@ -47,6 +47,7 @@ namespace PL
         private void ButtonAddStation_Click(object sender, RoutedEventArgs e)
         {
             new DisplayStation(Bl).Show();
+            this.Close();
         }
 
 

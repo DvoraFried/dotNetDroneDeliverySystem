@@ -59,7 +59,11 @@ namespace PL
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
+        /// <summary>
+        /// the function adds drone to dal list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(IDTextBox.Text) || string.IsNullOrWhiteSpace(ModelTextBox.Text) || string.IsNullOrWhiteSpace(StationIdTextBox.Text)){
@@ -72,22 +76,33 @@ namespace PL
                     BL.AddDrone(int.Parse(IDTextBox.Text), ModelTextBox.Text, (BO.Enum.WeightCategoriesBL)maxWeight, int.Parse(StationIdTextBox.Text));
                     this.Close();
                 }
-                catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-                catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
-
+        /// <summary>
+        /// function delet drone drom dal list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DELETE_Button_Click(object sender, RoutedEventArgs e)
         {
             BL.DeleteDrone(int.Parse(IDTextBox.Text));
         }
-
+        /// <summary>
+        /// the function update drone in dal list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
             BL.UpDateDroneName(Int32.Parse(IDTextBox.Text), ModelTextBox.Text);
 
         }
+        /// <summary>
+        /// the function send drone to charge
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SendDroneToChargeClick(object sender, RoutedEventArgs e)
         {
             try {
@@ -97,6 +112,11 @@ namespace PL
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
+        /// <summary>
+        /// the function release drone frome charge
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReleaseDroneFromChargingClick(object sender, RoutedEventArgs e)
         {
             try {
@@ -106,6 +126,11 @@ namespace PL
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
+        /// <summary>
+        /// the function assin packeg to drone
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void AssigningPackageToDroneClick(object sender, RoutedEventArgs e)
         {
             try {
@@ -115,7 +140,11 @@ namespace PL
             catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-        
+        /// <summary>
+        /// the function collet parcel with the drone
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void CollectionOfAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
             try {
@@ -126,6 +155,11 @@ namespace PL
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
 
         }
+        /// <summary>
+        /// the tunction send drone to deliver a package
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void DeliveryAParcelByDroneClick(object sender, RoutedEventArgs e)
         {
             try {
