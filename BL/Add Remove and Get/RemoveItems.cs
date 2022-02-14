@@ -68,9 +68,12 @@ namespace BL
             lock (DalObj)
             {
                 BO.Drone drone = DronesListBL.First(d => d.Id == droneId);
+                if (drone.DroneStatus == BO.Enum.DroneStatusesBL.maintenance) 
+                    ReleaseDroneFromCharging(droneId);
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL[DronesListBL.FindIndex(d => d.Id == droneId)] = drone;
+                ActionUpdateList?.Invoke(true);
             }
         }
 
