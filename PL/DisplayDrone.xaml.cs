@@ -173,7 +173,7 @@ namespace PL
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
             {
                 dronePO.UpdatePlDrone(droneBO);
-                BL.ActionDronesAdded(true);
+                BL.ActionUpdateList(true);
                 if(droneBO.delivery != null)
                 {
                     Parcel ParcelInDrone = BL.GetParcel(droneBO.delivery.Id);

@@ -17,6 +17,12 @@ namespace Dal
         public class XMLTools
         {
             #region SaveLoadWithXMLSerializer
+            /// <summary>
+            /// generic function to add list to an xml file by its path
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="list"></param>
+            /// <param name="filePath"></param>
             public static void SaveListToXMLSerializer<T>(IEnumerable<T> list, string filePath)
             {
                 try
@@ -32,6 +38,12 @@ namespace Dal
                     //throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
                 }
             }
+            /// <summary>
+            /// generic function to get object lists from xml file using the path
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="filePath"></param>
+            /// <returns></returns>
             public static IEnumerable<T> LoadListFromXMLSerializer<T>(string filePath)
             {
                 try
@@ -54,7 +66,13 @@ namespace Dal
                 throw new Exception();
             }
             #endregion
+
             #region SaveLoadWithLinqToXml
+            /// <summary>
+            /// function add drones list to the xml file; using linq to xml
+            /// </summary>
+            /// <param name="list"></param>
+            /// <param name="filePath"></param>
             public static void SaveDronesWithXElement(IEnumerable<Drone> list, string filePath)
             {
                 XElement root = new XElement("drones", 
@@ -71,6 +89,11 @@ namespace Dal
                         new XElement("Model", e.Model)
                     );
             }
+            /// <summary>
+            /// funcction returns drones list from a xml flie using the path and 
+            /// </summary>
+            /// <param name="filePath"></param>
+            /// <returns></returns>
             public static IEnumerable<Drone> LoadListWithXElement(string filePath)
             {
                if (File.Exists(filePath))

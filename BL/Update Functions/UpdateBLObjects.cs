@@ -12,10 +12,22 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        /// <summary>
+        /// delegates that are used to active function in pl
+        /// </summary>
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
         public Action<BO.Parcel,bool> ActionParcelChanged { get; set; }
         public Action <BO.Customer> ActionCustomerChanged { get; set; }
+        public Action<bool> ActionUpdateList { get; set; }
 
+        #region UPDATE FUNCTIONS
+        /// <summary>
+        /// function updates the dron name in dal 
+        /// excaption will b thrown if there is no drone in dal list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newModelName"></param>
+        /// <param name="simulation"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpDateDroneName(int id, string newModelName, bool simulation = false)
         {
@@ -33,7 +45,12 @@ namespace BL
                     ActionDroneChanged?.Invoke(drone);
             }
         }
-
+        /// <summary>
+        /// function updates station data in dal 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="chargeslots"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpDateStationData(int id, string name = null, int chargeslots = -1)
         {
@@ -50,7 +67,12 @@ namespace BL
                 DalObj.ReplaceStationById(ConvertToDal.ConvertToStationDal(replaceStation));
             }
         }
-
+        /// <summary>
+        /// function updates customer data in dal 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="newPhone"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpDateCustomerData(int id, string name = null, string newPhone = null)
         {
@@ -68,5 +90,6 @@ namespace BL
                 ActionCustomerChanged?.Invoke(replaceCustomer);
             }
         }
+        #endregion
     }
 }

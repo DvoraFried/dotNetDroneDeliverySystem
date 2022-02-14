@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// function calculateDistance distance between to position 
+    /// </summary>
     internal class DistanceBetweenCoordinates
     {
         internal static double CalculateDistance(Position c1,Position c2)  

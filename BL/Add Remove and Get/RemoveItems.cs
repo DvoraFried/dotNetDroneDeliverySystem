@@ -13,6 +13,11 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        /// <summary>
+        /// function remove customer from dal, by id by changing the "isActiv field, 
+        /// excaption will be thrown if ther customer doesnt exist or if there are parcel he didnt get/parcels he sent
+        /// </summary>
+        /// <param name="idCustomer"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void RemoveCustomerById(int idCustomer)
         {
@@ -32,7 +37,11 @@ namespace BL
                 DalObj.ReplaceCustomerById(customer);
             }
         }
-
+        /// <summary>
+        /// function delete parcel by changing its "isactive" field
+        /// exception will be thrown if the parcel was already Scheduled
+        /// </summary>
+        /// <param name="parcel"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(BO.Parcel parcel)
         {
@@ -47,16 +56,19 @@ namespace BL
                     throw new ParcelAlreadyScheduled(); }
             }
         }
-
+        /// <summary>
+        /// function delete drone by id by changing its isactive field
+        /// </summary>
+        /// <param name="droneId"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void DeleteDrone(int id)
+        public void DeleteDrone(int droneId)
         {
             lock (DalObj)
             {
-                BO.Drone drone = DronesListBL.First(d => d.Id == id);
+                BO.Drone drone = DronesListBL.First(d => d.Id == droneId);
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-                DronesListBL[DronesListBL.FindIndex(d => d.Id == id)] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => d.Id == droneId)] = drone;
             }
         }
 

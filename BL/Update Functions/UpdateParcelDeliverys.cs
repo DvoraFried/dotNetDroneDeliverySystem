@@ -98,7 +98,11 @@ namespace BL
             return myParcelsSuitWeightArr;
         }
         #endregion
-
+        /// <summary>
+        /// function Assigning Package To Drone by srone id 
+        /// </summary>
+        /// <param name="idD"></param>
+        /// <param name="simulation"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AssigningPackageToDrone(int idD, bool simulation = false)
         {
@@ -137,7 +141,11 @@ namespace BL
                 }
             }
         }
-
+        /// <summary>
+        /// function collect parcel frome charge by the drone id
+        /// </summary>
+        /// <param name="idD"></param>
+        /// <param name="simulation"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void CollectionOfAParcelByDrone(int idD, bool simulation = false)
         {
@@ -172,7 +180,11 @@ namespace BL
                 }
             }
         }
-
+        /// <summary>
+        /// the function celiver a parcel to a drone and update the relevent dields
+        /// </summary>
+        /// <param name="idD"></param>
+        /// <param name="simulation"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeliveryOfAParcelByDrone(int idD, bool simulation = false)
         {

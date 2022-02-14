@@ -38,25 +38,39 @@ namespace Dal
         static Random rnd = new Random();
 
         //=====================================================================
+
         #region add function
+        /// <summary>
+        /// function gets dal station and add it to the list
+        /// </summary>
+        /// <param name="DALS"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStationDAL(Station DALS)
         {
             DataSource.MyBaseStations.Add(DALS);
         }
-
+        /// <summary>
+        /// function gets dal drone and add it to the list
+        /// </summary>
+        /// <param name="DALD"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddDroneDAL(Drone DALD)
         {
             DataSource.MyDrones.Add(DALD);
         }
-
+        /// <summary>
+        /// function gets dal customer and add it to the list
+        /// </summary>
+        /// <param name="DALC"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddCustomerDAL(Customer DALC)
         {
             DataSource.MyCustomers.Add(DALC);
         }
-
+        /// <summary>
+        /// function gets dal parcel and add it to the list
+        /// </summary>
+        /// <param name="DALP"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddParcelDAL(Parcel DALP)
         {
@@ -65,7 +79,14 @@ namespace Dal
         #endregion
 
         //=====================================================================
-        #region update functions 
+        #region update functions
+        /// <summary>
+        /// /// <summary>
+        /// function gets dal dronechareg obj and add it to the list
+        /// </summary>
+        /// <param name="DALS"></param>
+        /// </summary>
+        /// <param name="DALDC"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void Charge(DroneCharge DALDC)
         {
@@ -75,36 +96,61 @@ namespace Dal
 
         //=====================================================================
         #region return functions 
+        /// <summary>
+        /// function returns station by given id
+        /// </summary>
+        /// <param name="StationIdS"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Station GetStation(int StationIdS)
         {
             return DataSource.MyBaseStations.First(station => station.Id == StationIdS);
         }
-
+        /// <summary>
+        /// function returns cutomer by given id
+        /// </summary>
+        /// <param name="CustomerIdS"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer GetCustomerByID(int CustomerIdS)
         {
             return DataSource.MyCustomers.First(customer => customer.Id == CustomerIdS);
         }
-
+        /// <summary>
+        /// function returns employee by given id
+        /// </summary>
+        /// <param name="idE"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Employee GetEmployee(int idE)
         {
             return DataSource.MyEmployees.First(employee => employee.Id == idE);
         }
-
+        /// <summary>
+        /// function returns parcel by given id
+        /// </summary>
+        /// <param name="ParcelIdS"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Parcel GetParcel(int ParcelIdS)
         {
             return DataSource.MyParcels.First(parcel => parcel.Id == ParcelIdS);
         }
-
+        /// <summary>
+        /// function returns parcel by given drone id
+        /// </summary>
+        /// <param name="DroneIdS"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Parcel GetParcelByDroneId(int DroneIdS)
         {
             return DataSource.MyParcels.First(parcel => parcel.DroneId == DroneIdS);
         }
-
+        /// <summary>
+        /// function returns station by given drone in charge id
+        /// </summary>
+        /// <param name="idDC"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public DroneCharge GetDroneInChargeByID(int idDC)
         {
@@ -114,36 +160,55 @@ namespace Dal
 
         //=====================================================================
         #region return array
+        /// <summary>
+        /// functions return stations list frome the list in data
+        /// </summary>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> GetStationList()
         {
-            foreach (Station element in DataSource.MyBaseStations) { yield return element; }
+            return from element in DataSource.MyBaseStations select element;
         }
-
+        /// <summary>
+        /// functions return drone list frome the list in data
+        /// </summary>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Drone> GetDroneList()
         {
-            foreach (Drone element in DataSource.MyDrones) { yield return element; }
+            return from element in DataSource.MyDrones select element;
         }
-
+        /// <summary>
+        /// functions return customer list frome the list in data
+        /// </summary>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Customer> GetCustomerList()
         {
-            foreach (Customer element in DataSource.MyCustomers) { yield return element; }
+            return from element in DataSource.MyCustomers select element;
         }
-
+        /// <summary>
+        /// functions return employees list frome the list in data
+        /// </summary>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Employee> GetEmployeeList()
         {
-            foreach (Employee element in DataSource.MyEmployees) { yield return element; }
+            return from element in DataSource.MyEmployees select element; 
         }
-
+        /// <summary>
+        /// functions return parcels list frome the list in data
+        /// </summary>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetParcelList()
         {
-            foreach (Parcel element in DataSource.MyParcels) { if (element.IsActive) { yield return element; } }
+            return from element in DataSource.MyParcels select element;
         }
-
+        /// <summary>
+        /// functions return id for a parcel
+        /// </summary>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public int GetNewParcelId()
         {
@@ -163,24 +228,37 @@ namespace Dal
 
         //=====================================================================
         #region replace object by id
+        /// <summary>
+        ///  function replace station by id from the id of the station arg
+        /// </summary>
+        /// <param name="DALS"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReplaceStationById(Station DALS)
         {
             DataSource.MyBaseStations[DataSource.MyBaseStations.IndexOf(DataSource.MyBaseStations.First(s => s.Id == DALS.Id))] = DALS;
         }
-
+        /// <summary>
+        /// function replace drone by id from the id of the drone arg
+        /// </summary>
+        /// <param name="DALD"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReplaceDroneById(Drone DALD)
         {
             DataSource.MyDrones[DataSource.MyDrones.IndexOf(DataSource.MyDrones.First(d => d.Id == DALD.Id))] = DALD;
         }
-
+        /// <summary>
+        ///  function replace customer by id from the id of the customer arg
+        /// </summary>
+        /// <param name="DALC"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReplaceCustomerById(Customer DALC)
         {
             DataSource.MyCustomers[DataSource.MyCustomers.IndexOf(DataSource.MyCustomers.First(c => c.Id == DALC.Id))] = DALC;
         }
-
+        /// <summary>
+        ///  function replace parcel by id from the id of the parcel arg
+        /// </summary>
+        /// <param name="DALP"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReplaceParcelById(Parcel DALP)
         {

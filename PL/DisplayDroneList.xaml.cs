@@ -28,7 +28,7 @@ namespace PL
         {
             InitializeComponent();
             Bl = bl;
-            Bl.ActionDronesAdded += AddPlDrone;
+            Bl.ActionUpdateList += AddPlDrone;
             dronesDisplay.ItemsSource = Bl.GetDronesByStatusAndMaxW(droneStatus, droneMaxWeight);
             List<ComboBoxItem> itemList = new List<ComboBoxItem>(); 
             

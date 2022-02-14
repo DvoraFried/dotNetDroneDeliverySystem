@@ -5,6 +5,10 @@ namespace DalApi
 {
     public class DalFactory
     {
+        /// <summary>
+        /// returns an IDAL object 
+        /// </summary>
+        /// <returns></returns>
         public static IDal GetDal()
         {
             string dalType = DalConfig.DalName;

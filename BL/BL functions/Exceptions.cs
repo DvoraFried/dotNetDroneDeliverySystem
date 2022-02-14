@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace BO
 {
+    /// <summary>
+    /// class for exceptions of all kinds!
+    /// </summary>
     internal partial class Exceptions : Exception
     {
         internal class UnValidIdException: Exception

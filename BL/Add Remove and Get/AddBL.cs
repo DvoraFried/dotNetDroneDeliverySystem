@@ -16,9 +16,17 @@ namespace BL
    
     partial class BL : BlApi.IBL
     {
-        public Action< bool> ActionDronesAdded { get; set; }
-
         #region ADD FUNCTIONS
+        /// <summary>
+        /// the function gets pararmeters acording to the station constructor
+        /// create an bl obj and add is to the station list in dal. exception will be thrown in case of a station with the same id in 
+        /// station list.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="longitude"></param>
+        /// <param name="latitude"></param>
+        /// <param name="chargeSlots"></param>
         public void AddStation(int id, string name, double longitude, double latitude, int chargeSlots)
         {
             lock (DalObj)
@@ -28,6 +36,16 @@ namespace BL
                 DalObj.AddStationDAL(ConvertToDal.ConvertToStationDal(station));
             }
         }
+        /// <summary>
+        /// the function gets pararmeters acording to the station constructor+id station
+        /// create an bl obj and add is to the drone list in dal, and add an intance of dronecharg
+        /// exception will be thrown in case of a station with the same drone id
+        /// drone list/ there is no station with the given id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <param name="maxWeight"></param>
+        /// <param name="stationId"></param>
         public void AddDrone(int id, string model, BO.Enum.WeightCategoriesBL maxWeight, int stationId)
         {
             lock (DalObj)
@@ -48,9 +66,18 @@ namespace BL
                 DronesListBL.Add(drone);
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new BO.DroneInCharge(drone), s.Id));
 
-                ActionDronesAdded?.Invoke(true);
+                ActionUpdateList?.Invoke(true);
             }
         }
+        /// <summary>
+        /// function gets param according to the customer -ctor .if the customer is not active he will turn to be active with the uptades info
+        /// if there is no customer with the id- function add customer to customer list,exception will be thrown in case of a active customer ation with the same id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="longitude"></param>
+        /// <param name="latitude"></param>
         public void AddCustomer(int id, string name, string phone, double longitude, double latitude)
         {
             lock (DalObj)
@@ -67,6 +94,14 @@ namespace BL
                 }
             }
         }
+        /// <summary>
+        /// function create an bl obj with the give, params ,create an bl obj and ad it to parcel list
+        /// exception will be thrown in case of a parcel with the same  id
+        /// </summary>
+        /// <param name="idSender"></param>
+        /// <param name="idTarget"></param>
+        /// <param name="weight"></param>
+        /// <param name="priority"></param>
         public void AddParcel(int idSender, int idTarget, BO.Enum.WeightCategoriesBL weight, BO.Enum.PrioritiesBL priority)
         {
             lock (DalObj)

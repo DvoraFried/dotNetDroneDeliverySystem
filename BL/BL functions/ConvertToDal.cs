@@ -10,6 +10,11 @@ namespace BO
 {
     internal class ConvertToDal
     {
+        /// <summary>
+        /// function convert bo station obj to do station obj
+        /// </summary>
+        /// <param name="stationBl"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static DO.Station ConvertToStationDal(Station stationBl)
         {
@@ -21,7 +26,11 @@ namespace BO
             stationDal.Latitude = stationBl.Position.Latitude;
             return stationDal;           
         }
-
+        /// <summary>
+        /// function convert bo drone obj to do drone obj
+        /// </summary>
+        /// <param name="droneBl"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static DO.Drone ConvertToDroneDal(Drone droneBl)
         {
@@ -31,7 +40,11 @@ namespace BO
             droneDal.MaxWeight = (WeightCategories)(int)droneBl.MaxWeight;
             return droneDal;
         }
-
+        /// <summary>
+        /// function convert bo customer obj to do customer obj
+        /// </summary>
+        /// <param name="customerBl"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static DO.Customer ConvertToCustomerDal(Customer customerBl)
         {
@@ -44,7 +57,11 @@ namespace BO
             customerDal.IsActive = customerBl.isActive;
             return customerDal;
         }
-
+        /// <summary>
+        /// function convert bo parcel obj to do parcel obj
+        /// </summary>
+        /// <param name="parcelBl"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static DO.Parcel ConvertToParcelDal(Parcel parcelBl)
         {
@@ -62,7 +79,12 @@ namespace BO
             parcelDal.IsActive = parcelBl.IsActive;
             return parcelDal;
         }
-
+        /// <summary>
+        /// function convert bo drone in charge obj to do drone in charge obj
+        /// </summary>
+        /// <param name="droneBl"></param>
+        /// <param name="stationIdS"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static DO.DroneCharge ConvertToDroneChargeDal(DroneInCharge droneBl,int stationIdS)
         {

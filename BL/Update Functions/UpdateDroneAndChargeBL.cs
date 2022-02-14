@@ -15,6 +15,12 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        /// <summary>
+        /// function fincd the closest station to the drone, update the drone position and battery 
+        /// than replace it and create an droneincharge intance.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="simulation"></param>
         public void SendDroneToCharge(int id, bool simulation = false)
         {
             lock (DalObj)
@@ -44,7 +50,11 @@ namespace BL
                     ActionDroneChanged?.Invoke(drone);
             }
         }
-
+        /// <summary>
+        /// the function releae drone from charge by calculatin ghow much battery to and change the station slots to be suitable 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="simulation"></param>
         public void ReleaseDroneFromCharging(int id, bool simulation = false)
         {
             lock (DalObj)

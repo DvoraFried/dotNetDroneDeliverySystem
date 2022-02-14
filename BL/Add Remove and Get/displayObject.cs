@@ -12,6 +12,9 @@ using BlApi;
 
 namespace BL
 {
+    /// <summary>
+    /// this class print object and list as string
+    /// </summary>
     public partial class BL : BlApi.IBL
     {
 
@@ -75,6 +78,7 @@ namespace BL
                 {
                     Console.WriteLine(new StationToList(ConvertToBL.ConvertToStationBL(station)).ToString());
                 }
+
             }
         }
 

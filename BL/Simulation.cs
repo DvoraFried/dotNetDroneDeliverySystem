@@ -14,6 +14,12 @@ namespace BL
 {
     class Simulation
     {
+        /// <summary>
+        /// the class sinulation gat drone id and relevent actions and a bool function to stop the simulation
+        /// while the need to stop condition is fales it updates the drone repeatedly by collecting parcels and sending 
+        /// to charg and calls to the updat functions by the action functions
+        /// by 
+        /// </summary>
         IBL BL;
         IDal Dal;
         public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Action<Parcel,bool> parcelSimulation, Func<bool> needToStop)

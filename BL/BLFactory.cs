@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// factory creates BL object
+    /// </summary>
     public static class BLFactory
     {
         public static IBL factory()
