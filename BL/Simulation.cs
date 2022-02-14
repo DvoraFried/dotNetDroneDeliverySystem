@@ -40,7 +40,7 @@ namespace BL
                             {
                                 BL.AssigningPackageToDrone(droneID, true);
                                 parcel = BL.GetParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id);
-                                parcelSimulation(BL.GetParcel(parcel.Id),true);
+                                parcelSimulation(BL.GetParcel(parcel.Id), true);
                             }
                             catch
                             {
@@ -54,7 +54,7 @@ namespace BL
                             }
                             break;
                         case BO.Enum.DroneStatusesBL.maintenance:
-                            while (drone.BatteryStatus < 100 && !needToStop()) 
+                            while (drone.BatteryStatus < 100 && !needToStop())
                             {
                                 drone.BatteryStatus += SPEED;
                                 droneSimulation(drone);
@@ -64,7 +64,7 @@ namespace BL
                             break;
                         case BO.Enum.DroneStatusesBL.Shipping:
                             Parcel parcelInDrone = BL.GetParcel(drone.delivery.Id);
-                            DO.Customer target; 
+                            DO.Customer target;
                             if (parcelInDrone.PickUpBL != null)
                             {
                                 BL.DeliveryOfAParcelByDrone(droneID, true);
@@ -74,16 +74,19 @@ namespace BL
                             else
                             {
                                 BL.CollectionOfAParcelByDrone(droneID, true);
-                            parcelSimulation(BL.GetParcel(parcel.Id),true);
+                            }
+                            parcelSimulation(BL.GetParcel(parcel.Id), true);
                             break;
+
                     }
                 }
-                catch (ThereIsNotEnoughBatteryException e) {
-                    if(drone.DroneStatus == BO.Enum.DroneStatusesBL.empty)
-                    BL.SendDroneToCharge(droneID, true);
+                catch (ThereIsNotEnoughBatteryException e)
+                {
+                    if (drone.DroneStatus == BO.Enum.DroneStatusesBL.empty)
+                        BL.SendDroneToCharge(droneID, true);
                 }
                 drone = DronesListBL.First(d => d.Id == droneID);
-                dronedroneSimulation(drone);
+                droneSimulation(drone);
                 if(parcel != null) parcelSimulation(BL.GetParcel(parcel.Id),true);
                 Thread.Sleep(DELAY);
             }

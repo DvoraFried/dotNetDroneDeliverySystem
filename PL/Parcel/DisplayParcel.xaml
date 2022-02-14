@@ -100,7 +100,6 @@
                 </Grid.ColumnDefinitions >
             </Grid>
             <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,270,0,0" Grid.RowSpan="2"/>
-            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,270,0,0" Grid.RowSpan="2"/>
         </Grid>
     </Grid>
 </Window>
