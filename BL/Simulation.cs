@@ -22,7 +22,7 @@ namespace BL
         /// </summary>
         IBL BL;
         IDal Dal;
-        public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Action<Parcel,bool> parcelSimulation, Func<bool> needToStop)
+        public Simulation(IBL BL,int droneID,Action<Drone> droneSimulation, Action<Parcel,bool> parcelSimulation, Func<bool> needToStop)
         {
             int DELAY = 500;
             double SPEED = 1;
