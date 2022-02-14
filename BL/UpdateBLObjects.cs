@@ -12,10 +12,13 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        #region ACTIONS
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
         public Action<BO.Parcel> ActionParcelChanged { get; set; }
         public Action <BO.Customer> ActionCustomerChanged { get; set; }
+        #endregion
 
+        #region UPDATE OBJECTS
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpDateDroneName(int id, string newModelName, bool simulation = false)
         {
@@ -69,4 +72,6 @@ namespace BL
             }
         }
     }
+    #endregion
+
 }
