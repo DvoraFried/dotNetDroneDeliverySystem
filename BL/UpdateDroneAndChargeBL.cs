@@ -39,9 +39,9 @@ namespace BL
                 station.DronesInCharging += 1;
                 station.EmptyChargeSlots -= 1;
                 DalObj.ReplaceStationById(station);
-                
-                if(!simulation)
-                ActionDroneChanged?.Invoke(drone);
+
+                if (!simulation)
+                    ActionDroneChanged?.Invoke(drone);
             }
         }
 

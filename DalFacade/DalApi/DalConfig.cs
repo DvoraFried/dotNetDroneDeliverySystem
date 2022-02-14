@@ -10,6 +10,7 @@ namespace DalApi
     //this is a big no no - the class config shouldnt be here, it is just a temperery solution to check if the xml works
     public class Config
     {
+
         public static double available = 0.0003;
         public static double carryLightWeight = 0.0005;
         public static double carrymediumWeight = 0.001;

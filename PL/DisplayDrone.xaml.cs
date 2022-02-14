@@ -32,6 +32,7 @@ namespace PL
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL BL,Drone drone)
         {
+            WindowStyle = WindowStyle.None;
             droneBO = drone;
             dronePO = new drone_pl(BL,drone);
             this.BL = BL;
@@ -146,7 +147,7 @@ namespace PL
 
         private void heavy_Checked(object sender, RoutedEventArgs e) { maxWeight = 2; }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) { this.Close(); }
+        private void Button_Click_1(object sender, RoutedEventArgs e) { if(worker.IsBusy) stop_simulationButton_Click(); this.Close(); }
 
 
         BackgroundWorker worker = new BackgroundWorker();
@@ -182,7 +183,7 @@ namespace PL
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
         }
-        private void stop_simulationButton_Click(object sender, RoutedEventArgs e)
+        private void stop_simulationButton_Click(object sender = null, RoutedEventArgs e = null)
         {
             worker.CancelAsync();
             Simulation.Visibility = Visibility.Visible;
