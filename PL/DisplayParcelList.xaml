@@ -7,19 +7,19 @@
         mc:Ignorable="d"
         Title="DisplayParcelList" Height="450" Width="800">
     <Grid Name="MainGrid" Background="#a8cacd">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50*"/>
-                    <RowDefinition Height="400*"/>
-                    <RowDefinition Height="50*"/>
-                </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
         <Grid Name="UpGrid" Background="#FFABF1E1" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,474" Grid.RowSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions >
-                </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+        </Grid>
         <Button Name="groupBy" Margin="10,5,599,5" Click="ButtonGroupBySender_Click" Content=" group by sender"/>
         <Button Name="clear" Cursor="Hand" Click="buttonClearFilter_Click" Content="clear" Margin="216,5,523,5">
             <Button.Resources>
@@ -28,22 +28,22 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <ListView Cursor="Hand" MouseDoubleClick="listView_MouseDoubleClick" Name="parcelDisplay" Grid.Row="1" />
+        <ListView Cursor="Hand" MouseDoubleClick="listView_MouseDoubleClick" Name="parcelDisplay" Margin="10,10,10,43" Grid.RowSpan="2" Grid.Row="1" />
         <Grid Name="BottomGrid" Background="#a8cacd" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions >
-                    <Button Cursor="Hand" Content="ADD PARCEL" Grid.Column="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddParcel_Click" Margin="10,0,0,0">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
-                  </Button>
-           </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <Button Cursor="Hand" Content="ADD PARCEL" Grid.Column="3" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="100" Click="ButtonAddParcel_Click" Margin="10,0,0,0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
     </Grid>
 </Window>

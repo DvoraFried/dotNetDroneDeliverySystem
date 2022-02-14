@@ -92,6 +92,9 @@ namespace BL
                 drone.CurrentPosition.Longitude += drone.CurrentPosition.Longitude > Longitude ? -1 : 1;
                 drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > Latitude ? -1 : 1;
                 drone.BatteryStatus -= 0.5;
+                if(drone.DroneStatus == BO.Enum.DroneStatusesBL.Shipping) {
+                    drone.delivery.Distance = BO.DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, new Position(Longitude, Latitude));
+                }
                 droneSimulation(drone);
                 Thread.Sleep(DELAY);
             }

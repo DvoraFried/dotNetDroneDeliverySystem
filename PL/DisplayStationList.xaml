@@ -28,7 +28,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <ListView Cursor="Hand" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="stationDisplay" Grid.Row="1" />
+        <ListView Cursor="Hand" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" Name="stationDisplay" Margin="10,10,10,43" Grid.RowSpan="2" Grid.Row="1" />
         <Grid Name="BottomGrid" Background="#a8cacd" HorizontalAlignment="Stretch" Height="auto" Grid.Row="2"
         VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
