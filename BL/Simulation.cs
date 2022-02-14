@@ -84,6 +84,7 @@ namespace BL
                 {
                     if (drone.DroneStatus == BO.Enum.DroneStatusesBL.empty)
                         BL.SendDroneToCharge(droneID, true);
+                    else drone.BatteryStatus += 5;
                 }
                 drone = DronesListBL.First(d => d.Id == droneID);
                 droneSimulation(drone);
