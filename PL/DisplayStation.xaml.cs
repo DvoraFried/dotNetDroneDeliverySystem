@@ -77,7 +77,7 @@ namespace PL
             BO.DroneInCharge drone = (sender as ListView).SelectedValue as BO.DroneInCharge;
             if (drone != null)
             {
-                new DisplayDrone(Bl, Bl.convertDroneInChargeBLToDroneBl(drone)).Show();
+               //new DisplayDrone(Bl, Bl.convertDroneInChargeBLToDroneBl(drone)).Show();
             }
         }
         private void updateButton_Click(object sender, RoutedEventArgs e)

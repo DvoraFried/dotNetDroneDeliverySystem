@@ -41,6 +41,16 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<BO.Drone> ReturnDrones()
+        {
+            lock (DalObj)
+            {
+                return from d in DronesListBL
+                       select d;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<ParcelToList> ReturnParcelList()
         {
             lock (DalObj)

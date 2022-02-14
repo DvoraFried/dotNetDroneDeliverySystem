@@ -1,6 +1,7 @@
 ﻿using BO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,30 @@ using System.Windows;
 
 namespace PO
 {
-    public class drone_pl: DependencyObject
+    public class Drones_pl : DependencyObject
     {
-        public drone_pl(BlApi.IBL blObj,Drone droneBl) {
+        public List<Drone_pl> Drones = new List<Drone_pl>();
+        BlApi.IBL blObj;
+        public Drones_pl(BlApi.IBL blObj, List<BO.Drone> dronesBl)
+        {
+            blObj.ActionDronesAdded += AddPlDrone;
+            this.blObj = blObj;
+            foreach(Drone drone in dronesBl)
+            {
+                Drones.Add(new Drone_pl(blObj, drone));
+            }
+        }
+        public void AddPlDrone(Drone droneBl,bool b=true )
+        {
+            if (b)
+            {
+                Drones.Add(new Drone_pl(blObj, droneBl));
+            }
+        }
+    }
+    public class Drone_pl: DependencyObject
+    {
+        public Drone_pl(BlApi.IBL blObj,Drone droneBl) {
             Id = droneBl.getIdBL();
             this.Model = droneBl.ModelBL;
             this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
@@ -32,11 +54,15 @@ namespace PO
             this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
             BatteryStatus = droneBl.BatteryStatus;
         }
+        public override string ToString()
+        {
+            return $"ID:{Id} Model:{Model} Max Weight:{MaxWeight}  Battery Status: {BatteryStatus + "%"} Drone Status: {DroneStatus} Delivery by Transfer: Non Deliveries by Transfer Position {CurrentPosition}";
+        }
 
         public static readonly DependencyProperty idProperty =
         DependencyProperty.Register("Id",
                      typeof(object),
-                     typeof(drone_pl),
+                     typeof(Drone_pl),
                      new UIPropertyMetadata(0));
         public int Id
         {
@@ -47,7 +73,7 @@ namespace PO
         public static readonly DependencyProperty modelProperty =
         DependencyProperty.Register("Model",
                typeof(object),
-               typeof(drone_pl),
+               typeof(Drone_pl),
                new UIPropertyMetadata(0));
         public string Model
         {
@@ -58,7 +84,7 @@ namespace PO
         public static readonly DependencyProperty DroneStatusProperty =
         DependencyProperty.Register("DroneStatus",
                typeof(object),
-               typeof(drone_pl),
+               typeof(Drone_pl),
                new UIPropertyMetadata(0));
         public Enum_pl.DroneStatuses DroneStatus
         {
@@ -69,7 +95,7 @@ namespace PO
         public static readonly DependencyProperty DeliveryProperty =
         DependencyProperty.Register("Delivery",
                typeof(object),
-               typeof(drone_pl),
+               typeof(Drone_pl),
                new UIPropertyMetadata(0));
         public ParcelByTransfer_pl Delivery
         {
@@ -80,7 +106,7 @@ namespace PO
         private static readonly DependencyProperty BatteryStatusProperty =
         DependencyProperty.Register("BatteryStatus",
             typeof(object),
-            typeof(drone_pl),
+            typeof(Drone_pl),
             new UIPropertyMetadata(0));
         public double BatteryStatus
         {
@@ -91,7 +117,7 @@ namespace PO
         public static readonly DependencyProperty MaxWeightProperty =
         DependencyProperty.Register("MaxWeight",
             typeof(object),
-            typeof(drone_pl),
+            typeof(Drone_pl),
             new UIPropertyMetadata(0));
         public Enum_pl.WeightCategories MaxWeight
         {
@@ -102,7 +128,7 @@ namespace PO
         private static readonly DependencyProperty CurrentPositionProperty =
         DependencyProperty.Register("CurrentPosition",
           typeof(object),
-          typeof(drone_pl),
+          typeof(Drone_pl),
           new UIPropertyMetadata(0));
         public Position_pl CurrentPosition
         {

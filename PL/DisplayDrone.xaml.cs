@@ -26,19 +26,19 @@ namespace PL
     public partial class DisplayDrone : Window
     {
         BlApi.IBL BL;
-        drone_pl dronePO;
+        Drone_pl dronePO;
         Drone droneBO;
         int maxWeight = 1;
-        public DisplayDrone(BlApi.IBL BL,Drone drone)
+        public DisplayDrone(BlApi.IBL BL,Drone_pl drone)
         {
-            droneBO = drone;
-            dronePO = new drone_pl(BL,drone);
+            //droneBO = drone;
+            dronePO = drone;
             this.BL = BL;
             InitializeComponent();
             DataContext = dronePO;
-            light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
+            /*light.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.light ? true : false;
             medium.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.medium ? true : false;
-            heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;
+            heavy.IsChecked = drone.MaxWeight == BO.Enum.WeightCategoriesBL.heavy ? true : false;*/
             light.IsEnabled = medium.IsEnabled = heavy.IsEnabled = false;
             UPDATE_MENU.Visibility = hidddenInfroUpDate.Visibility = DELETE_BUTTON.Visibility = Simulation.Visibility = Visibility.Visible;
             ADD_BUTTON.Visibility = statioIdLabel.Visibility = StationIdTextBox.Visibility = Visibility.Hidden;
@@ -149,6 +149,7 @@ namespace PL
         BackgroundWorker worker = new BackgroundWorker();
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
+            droneBO = BL.ReturnDrones().ToList().First(drone => drone.getIdBL() == dronePO.Id);
             Drone updateDrone = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {

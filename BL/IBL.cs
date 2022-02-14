@@ -31,6 +31,7 @@ namespace BlApi
         public void DisplayDroneList();
         public IEnumerable<Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
         public IEnumerable<Drone> ReturnDronesByStatusOrder();
+        public IEnumerable<Drone> ReturnDrones();
         public Drone convertDroneInChargeBLToDroneBl(DroneInCharge chargeBL);
         #endregion
 
@@ -57,9 +58,12 @@ namespace BlApi
         public Parcel returnParcel(int parcelID);
         #endregion
 
+        #region DELEGATES & ACTIONS' FUNCTIONS 
         public Action<Parcel> ActionParcelChanged { get; set; }
         public Action<Drone> ActionDroneChanged { get; set; }
         public Action<Customer> ActionCustomerChanged { get; set; }
+        public Action<BO.Drone,bool> ActionDronesAdded { get; set; }
+        #endregion
 
         public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
         public EmpolyeeBL returnEmployee(int idE);
