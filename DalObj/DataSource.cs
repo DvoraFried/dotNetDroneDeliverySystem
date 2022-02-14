@@ -26,6 +26,8 @@ namespace Dal
             public static double carryHeavyWeight=0.0015;
             public static double DroneLoadingRate=43.3;
         }
+
+        #region INITIALIZE
         internal static void Initialize()
         {
             Random rnd = new Random();
@@ -82,6 +84,7 @@ namespace Dal
             Employee manager2 = new Employee() { Id = 212628721, Name = "dvora", Manager = true };
             MyEmployees.Add(manager2);
         }
+        #endregion
     }
 
 }

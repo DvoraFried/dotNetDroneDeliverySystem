@@ -37,8 +37,7 @@ namespace Dal
 
         static Random rnd = new Random();
 
-        //=====================================================================
-        #region add function
+        #region ADD OBJECTS
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStationDAL(Station DALS)
         {
@@ -64,8 +63,7 @@ namespace Dal
         }
         #endregion
 
-        //=====================================================================
-        #region update functions 
+        #region UPDATE OBJECTS 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void Charge(DroneCharge DALDC)
         {
@@ -73,8 +71,7 @@ namespace Dal
         }
         #endregion
 
-        //=====================================================================
-        #region return functions 
+        #region GET OBJECT  
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Station GetStation(int StationIdS)
         {
@@ -112,8 +109,7 @@ namespace Dal
         }
         #endregion
 
-        //=====================================================================
-        #region return array
+        #region GET LISTS
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> GetStationList()
         {
@@ -161,8 +157,7 @@ namespace Dal
         }
         #endregion
 
-        //=====================================================================
-        #region replace object by id
+        #region REPLACR OBJECT BY ID
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReplaceStationById(Station DALS)
         {
