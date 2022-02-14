@@ -18,14 +18,17 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnCustomerArray().ToList().Any(c => c.Id == idCustomer)) { throw new ObjectDoesntExistsInListException("customer"); }
-                foreach (DO.Parcel parcel in DalObj.returnParcelArray().ToList())
+                if (!DalObj.GetCustomerList().ToList().Any(c => c.Id == idCustomer)) {
+                    throw new ObjectDoesntExistsInListException("customer"); }
+
+                foreach (DO.Parcel parcel in DalObj.GetParcelList())
                 {
                     if ((parcel.TargetId == idCustomer || parcel.SenderId == idCustomer) && (parcel.Delivered == null))
                     { throw new ThereAreParcelForTheCustomer(parcel.TargetId); }
                 }
-                DO.Customer customer = DalObj.returnCustomerArray().ToList().First(c => c.Id == idCustomer);
-                customer.isActive = false;
+
+                DO.Customer customer = DalObj.GetCustomerList().First(c => c.Id == idCustomer);
+                customer.IsActive = false;
                 DalObj.ReplaceCustomerById(customer);
             }
         }
@@ -37,10 +40,11 @@ namespace BL
             {
                 if (parcel.ScheduledBL == null)
                 {
-                    parcel.isActive = false;
+                    parcel.IsActive = false;
                     DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
                 }
-                else { throw new ParcelAlreadyScheduled(); }
+                else {
+                    throw new ParcelAlreadyScheduled(); }
             }
         }
 
@@ -49,16 +53,16 @@ namespace BL
         {
             lock (DalObj)
             {
-                BO.Drone drone = DronesListBL.First(d => d.getIdBL() == id);
+                BO.Drone drone = DronesListBL.First(d => d.Id == id);
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-                DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == id)] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => d.Id == id)] = drone;
             }
         }
 
-        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Func<bool> needToStop)
+        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Action<BO.Parcel> parcelSimulation, Func<bool> needToStop)
         {
-            var simulator = new Simulation(BL, droneID, droneSimulation, needToStop);
+            var simulator = new Simulation(BL, droneID, droneSimulation, parcelSimulation, needToStop);
         }
     }
 }

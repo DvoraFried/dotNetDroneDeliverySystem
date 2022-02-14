@@ -95,14 +95,15 @@
                 <Grid  x:Name="hidddenInfroUpDate" Visibility="Visible" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="133*"/>
-                        <ColumnDefinition Width="223*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="214*"/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="DroneStatusLabel" Margin="22,0,152,30" Content="DRONE STATUS:" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="DroneStatusTextBox" Text="{Binding Path=DroneStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="2"/>
-                    <Label x:Name="batteryStatusLabel" Margin="22,49,152,0" Content="BATTERY:" Grid.ColumnSpan="2"/>
-                    <ProgressBar Value="{Binding Path=BatteryStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="batteryStatus" HorizontalAlignment="Left" Height="25" Margin="119,50,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
-                    <TextBlock Text="{Binding ElementName=batteryStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="59,54,0,0" />
-                    <Expander Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-86,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="2">
+                    <Label x:Name="DroneStatusLabel" Margin="22,0,152,30" Content="DRONE STATUS:" Grid.ColumnSpan="3"/>
+                    <TextBox x:Name="DroneStatusTextBox" Text="{Binding Path=DroneStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Left" Height="30"  TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Margin="119,0,0,0" Grid.ColumnSpan="3"/>
+                    <Label x:Name="batteryStatusLabel" Margin="22,49,152,0" Content="BATTERY:" Grid.ColumnSpan="3"/>
+                    <ProgressBar Value="{Binding Path=BatteryStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="batteryStatus" HorizontalAlignment="Left" Height="25" Margin="119,50,0,0" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="3"/>
+                    <TextBlock Text="{Binding ElementName=batteryStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="51,54,0,0" />
+                    <Expander Header="PARCEL IN DRONE:" HorizontalAlignment="Left" Height="157" Margin="22,-56,0,0" VerticalAlignment="Top" Width="275" Grid.ColumnSpan="3">
                         <ScrollViewer>
                             <ListView  MouseDoubleClick="showParcel">
                                 <TextBlock Text="{Binding Path=Delivery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="parcelInDrone"></TextBlock>
@@ -124,7 +125,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource myButtonGroup1}" Grid.Column="0" Name="SendDroneToCharge" Content="SEND TO CHARGE" Click="SendDroneToChargeClick"/>
+                <Button IsEnabled="{Binding Path=DroneStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource myButtonGroup1}" Grid.Column="0" Name="SendDroneToCharge" Content="SEND TO CHARGE" Click="SendDroneToChargeClick"/>
                 <Button Style="{StaticResource myButtonGroup2}" Grid.Column="1" Name="ReleaseDroneFromCharging" Content="RELEASE FROM CHARGE" Click="ReleaseDroneFromChargingClick"/>
                 <Button Style="{StaticResource myButtonGroup2}" Grid.Row="1" FontSize="11.7" Name="AssigningPackageToDrone" Content="ASSIGNING DRONE TO PARCEL"  Click="AssigningPackageToDroneClick"/>
                 <Button Style="{StaticResource myButtonGroup1}" Grid.Row="1" Grid.Column="1" Name="CollectionOfAParcelByDrone" Content="COLLECTION OF A PARCEL"  Click="CollectionOfAParcelByDroneClick"/>
@@ -133,9 +134,10 @@
             </Grid>
 
         </Grid>
-        <Button Visibility="Hidden" Cursor="Hand" Name="DELETE_BUTTON" Content="DELETE DRONE" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="98" Click="DELETE_Button_Click" Grid.Column="2" Margin="80,135,0,0"/>
+        <Button Visibility="Hidden" Cursor="Hand" Name="DELETE_BUTTON" Content="DELETE DRONE" HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="98" Click="DELETE_Button_Click" Grid.Column="2" Margin="80,75,0,0"/>
         <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD DRONE" HorizontalAlignment="Center" Height="37" Margin="0,465,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click" Grid.Column="1"/>
-        <Button Visibility="Hidden" Name="Simulation" Content="simulation" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="80,88,0,0" VerticalAlignment="Top" Width="98" Click="simulationButton_Click" />
+        <Button Visibility="Hidden" Name="Simulation" Content="simulation" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="80,113,0,0" VerticalAlignment="Top" Width="98" Click="simulationButton_Click" />
+        <Button Visibility="Hidden" Name="StopSimulation" IsEnabled="False" Content="Stop" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="80,113,0,0" VerticalAlignment="Top" Width="98" Click="stop_simulationButton_Click" />
 
     </Grid>
 </Window>

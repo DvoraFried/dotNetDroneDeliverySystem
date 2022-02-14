@@ -25,10 +25,12 @@ namespace PL
         public static BlApi.IBL Bl;
         int weight = 0;
         int priority = 0;
+        bool isClient = false;
         Parcel currentParcel;
         Parcel_pl parcelPO;
-        public DisplayParcel(BlApi.IBL bl, Parcel parcel)
+        public DisplayParcel(BlApi.IBL bl, Parcel parcel, bool client = false)
         {
+            isClient = client;
             parcelPO = new Parcel_pl(bl,parcel);
             Bl = bl;
             DataContext = parcelPO;
@@ -44,7 +46,7 @@ namespace PL
         {
             Bl = bl;
             InitializeComponent();
-            IDSenderTextBox.Text = customer.getIdBL().ToString();
+            IDSenderTextBox.Text = customer.Id.ToString();
             IDSenderTextBox.IsEnabled = false;
         }
         public DisplayParcel(BlApi.IBL bl)
@@ -55,9 +57,9 @@ namespace PL
         private void showCustomer(object sender, RoutedEventArgs e)
         {
             BO.CustomerOnDelivery customer = (sender as ListView).SelectedValue as BO.CustomerOnDelivery;
-            if (customer != null && currentParcel == null)
+            if (customer != null && !isClient)
             {
-                new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).ShowDialog();
+                new DisplayCustomer(Bl, Bl.GetCustomerByID(customer.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

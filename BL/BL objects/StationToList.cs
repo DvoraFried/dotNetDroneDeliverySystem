@@ -10,7 +10,7 @@ namespace BO
     {
         public StationToList(Station station)
         {
-            Id = station.GetIdBL();
+            Id = station.Id;
             Name = station.NameBL;
             ChargingStationsAreOccupied = station.DronesInCharging.Count;
             AvailableChargingStations = station.ChargeSlotsBL - ChargingStationsAreOccupied;

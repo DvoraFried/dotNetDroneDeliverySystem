@@ -15,9 +15,9 @@ namespace PO
         public Customer_pl(BlApi.IBL blObj, Customer customerBl)
         {
             dalOB = blObj;
-            id = customerBl.getIdBL();
-            name = customerBl.NameBL;
-            phone = customerBl.PhoneBL;
+            Id = customerBl.Id;
+            name = customerBl.Name;
+            phone = customerBl.Phone;
             position = new Position_pl(customerBl.Position);
             ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
             ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();
@@ -25,8 +25,6 @@ namespace PO
         }
         public void UpdatePlCustomer(Customer customerBl)
         {
-            name = customerBl.NameBL;
-            phone = customerBl.PhoneBL;
             ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
             ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();
         }
@@ -36,14 +34,14 @@ namespace PO
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));
-        private int id
+        public int Id
         {
             get { return (int)GetValue(idProperty); }
             set { SetValue(idProperty, value); }
         }
 
         public static readonly DependencyProperty nameProperty =
-        DependencyProperty.Register("name",
+        DependencyProperty.Register("Name",
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));
@@ -54,7 +52,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty phoneProperty =
-        DependencyProperty.Register("phone",
+        DependencyProperty.Register("Phone",
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));
@@ -65,7 +63,7 @@ namespace PO
         }
 
         public static readonly DependencyProperty PositionProperty =
-        DependencyProperty.Register("position",
+        DependencyProperty.Register("Position",
                      typeof(object),
                      typeof(Customer_pl),
                      new UIPropertyMetadata(0));

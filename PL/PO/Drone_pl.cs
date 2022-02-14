@@ -33,26 +33,23 @@ namespace PO
     }
     public class Drone_pl: DependencyObject
     {
-        public Drone_pl(BlApi.IBL blObj,Drone droneBl) {
-            Id = droneBl.getIdBL();
+        public drone_pl(BlApi.IBL blObj,Drone droneBl) {
+            Id = droneBl.Id;
             this.Model = droneBl.ModelBL;
             this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
             this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;
-            this.Delivery =  new ParcelByTransfer_pl(droneBl.delivery);//לבנות קונסטרקטור
-            this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
+            this.Delivery =  new ParcelByTransfer_pl(droneBl.delivery);
+            this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);
             BatteryStatus = droneBl.BatteryStatus;
             blObj.ActionDroneChanged += UpdatePlDrone;
         }
 
         public void UpdatePlDrone(BO.Drone droneBl)
         {
-            Id = droneBl.getIdBL();
-            this.Model = droneBl.ModelBL;
-            this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
             this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;
-            this.Delivery = new ParcelByTransfer_pl(droneBl.delivery);//לבנות קונסטרקטור
-            this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);//לבנות קונסטרקטור
-            BatteryStatus = droneBl.BatteryStatus;
+            this.Delivery = new ParcelByTransfer_pl(droneBl.delivery);
+            this.CurrentPosition = new Position_pl(droneBl.CurrentPosition);
+            this.BatteryStatus = droneBl.BatteryStatus;
         }
         public override string ToString()
         {

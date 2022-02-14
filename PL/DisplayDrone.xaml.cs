@@ -28,6 +28,7 @@ namespace PL
         BlApi.IBL BL;
         Drone_pl dronePO;
         Drone droneBO;
+        Parcel_pl ParcelInDrone = null;
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL BL,Drone_pl drone)
         {
@@ -47,12 +48,14 @@ namespace PL
         {
             BL = bl;
             InitializeComponent();
+            hidddenInfroUpDate.Visibility = Visibility.Hidden;
+            IDTextBox.IsEnabled = true;
         }
         private void showParcel(object sender, RoutedEventArgs e)
         {
             if (dronePO.Delivery.Id != 0)
             {
-                new DisplayParcel(BL, BL.returnParcel(dronePO.Delivery.Id)).ShowDialog();
+                new DisplayParcel(BL, BL.GetParcel(dronePO.Delivery.Id)).ShowDialog();
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -149,23 +152,43 @@ namespace PL
         BackgroundWorker worker = new BackgroundWorker();
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
-            droneBO = BL.ReturnDrones().ToList().First(drone => drone.getIdBL() == dronePO.Id);
+            Simulation.Visibility = Visibility.Hidden;
+            Simulation.IsEnabled = false;
+            StopSimulation.Visibility = Visibility.Visible;
+            StopSimulation.IsEnabled = true;
+
             Drone updateDrone = null;
+            Parcel updateParcel = null;
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {
                  BL.StartSimulation(
                    BL,
-                   droneBO.getIdBL(),
+                   droneBO.Id,
                    (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0); },
+                   (parcelBO) => { updateParcel = parcelBO; worker.ReportProgress(0); },
                    () => worker.CancellationPending);
             };
             worker.WorkerReportsProgress = true;
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
             {
                 dronePO.UpdatePlDrone(droneBO);
+                BL.ActionDronesAdded(true);
+                if(droneBO.delivery != null)
+                {
+                    ParcelInDrone = new Parcel_pl(BL, BL.GetParcel(droneBO.delivery.Id));
+                    ParcelInDrone.UpdatePlParcel(updateParcel);
+                }
             };
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
+        }
+        private void stop_simulationButton_Click(object sender, RoutedEventArgs e)
+        {
+            worker.CancelAsync();
+            Simulation.Visibility = Visibility.Visible;
+            Simulation.IsEnabled = true;
+            StopSimulation.Visibility = Visibility.Hidden;
+            StopSimulation.IsEnabled = false;
         }
     }
 }

@@ -15,9 +15,9 @@ namespace BlApi
         public void UpDateStationData(int id, string name = null, int chargeslots = -1);
         public void DisplayStatoin(int idS);
         public void DisplayStatoinList();
-        public IEnumerable<StationToList> ReturnStationList();
-        public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots();
-        public Station convertStationToStationBl(int stationID);
+        public IEnumerable<StationToList> GetStationList();
+        public IEnumerable<StationToList> GetStationListSortedByEmptySlots();
+        public Station GetToStationByID(int stationID);
         #endregion
 
         #region DRONE'S FUNCRIONS
@@ -29,10 +29,9 @@ namespace BlApi
         public void AssigningPackageToDrone(int idD, bool simulation = false);
         public void DisplayDrone(int idD);
         public void DisplayDroneList();
-        public IEnumerable<Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
-        public IEnumerable<Drone> ReturnDronesByStatusOrder();
-        public IEnumerable<Drone> ReturnDrones();
-        public Drone convertDroneInChargeBLToDroneBl(DroneInCharge chargeBL);
+        public IEnumerable<Drone> GetDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
+        public IEnumerable<Drone> GetDronesByStatusOrder();
+        public Drone ConvertDroneInChargeToDrone(DroneInCharge chargeBL);
         #endregion
 
         #region CUSTOMER'S FUNCTIONS
@@ -41,8 +40,8 @@ namespace BlApi
         public void RemoveCustomerById(int idCustomer);
         public void DisplayCustomer(int idC);
         public void DisplayCustomerList();
-        public IEnumerable<CustomerToList> ReturnCustomerList();
-        public Customer convertCustomerToCustomerBl(int customerID);
+        public IEnumerable<CustomerToList> GetCustomerList();
+        public Customer GetCustomerByID(int customerID);
         #endregion
 
         #region PARCEL'S FUNCTIONS
@@ -53,22 +52,23 @@ namespace BlApi
         public void DisplayParcel(int idP);
         public void DisplayParcelList();
         public void DisplayParcelsThatHaveNotYetBeenAssociatedWithADrone();
-        public IEnumerable<ParcelToList> ReturnParcelList();
-        public IEnumerable<ParcelToList> ReturnPacelListGroupBySender();
-        public Parcel returnParcel(int parcelID);
+        public IEnumerable<ParcelToList> GetParcelList();
+        public IEnumerable<ParcelToList> GetPacelListGroupBySender();
+        public Parcel GetParcel(int parcelID);
         #endregion
 
-        #region DELEGATES & ACTIONS' FUNCTIONS 
+        #region ACTIONS 
         public Action<Parcel> ActionParcelChanged { get; set; }
         public Action<Drone> ActionDroneChanged { get; set; }
         public Action<Customer> ActionCustomerChanged { get; set; }
-        public Action<BO.Drone,bool> ActionDronesAdded { get; set; }
+        public Action<bool> ActionDronesAdded { get; set; }
         #endregion
 
-        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Func<bool> needToStop);
-        public EmpolyeeBL returnEmployee(int idE);
-        public bool userIsCustomer(string name, int id);
-        public bool userIsEmployee(string name, int id);
-        public bool userIsManager(string name, int id);
+        public void StartSimulation(IBL BL, int droneID, Action<Drone> droneSimulation, Action<Parcel> parcelSimulation, Func<bool> needToStop);
+        public EmpolyeeBL GetEmployee(int idE);
+       
+        public bool UserIsCustomer(string name, int id);
+        public bool UserIsEmployee(string name, int id);
+        public bool UserIsManager(string name, int id);
     }
 }

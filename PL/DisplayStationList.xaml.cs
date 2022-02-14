@@ -24,14 +24,14 @@ namespace PL
         {
             InitializeComponent();
             Bl = bl;
-            stationDisplay.ItemsSource = Bl.ReturnStationList();
+            stationDisplay.ItemsSource = Bl.GetStationList();
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             BO.StationToList station = (sender as ListView).SelectedValue as BO.StationToList;
             if (station != null)
             {
-                new DisplayStation(Bl, Bl.convertStationToStationBl(station.Id)).Show();
+                new DisplayStation(Bl, Bl.GetToStationByID(station.Id)).Show();
             }
         }
 
@@ -42,13 +42,13 @@ namespace PL
 
         private void ButtonSortByEmptySlots_Click(object sender, RoutedEventArgs e)
         {
-            stationDisplay.ItemsSource = Bl.ReturnStationListSortedByEmptySlots();
+            stationDisplay.ItemsSource = Bl.GetStationListSortedByEmptySlots();
 
         }
 
         private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
         {
-            stationDisplay.ItemsSource = Bl.ReturnStationList();
+            stationDisplay.ItemsSource = Bl.GetStationList();
         }
     }
 }

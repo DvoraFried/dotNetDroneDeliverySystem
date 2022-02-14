@@ -14,9 +14,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="personal"             Content="personal infro"    Grid.Column="0" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="personal_Click" />
-            <Button Name="customerParcels"      Content="parcels you sent"      Grid.Column="1" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="customerParcels_Click" />
-            <Button Name="ConfirmParcelReceipt" Content="receipt of parcel" Grid.Column="2" HorizontalAlignment="Center" Height="52" VerticalAlignment="Center" Width="180" Click="ConfirmParcelReceipt_Click" />
+            <Button Name="customerParcels"      Content="parcels you sent" HorizontalAlignment="Left" Height="52" VerticalAlignment="Top" Width="180" Click="customerParcels_Click" Margin="0,13,0,0" Grid.Column="1" />
+            <Button x:Name="toCustomerParcels"      Content="parcels sent to you" HorizontalAlignment="Left" Height="52" VerticalAlignment="Top" Width="180" Click="toCustomerParcels_Click" Margin="0,13,0,0" Grid.Column="2" />
         </Grid>
         <TabControl Name="app" HorizontalAlignment="Center" Height="332" Margin="0,72,0,0" VerticalAlignment="Top" Width="780">
             <TabControl.Resources>
@@ -31,45 +30,20 @@
             </TabControl.Resources>
             <TabItem Header="infor">
                 <Grid Background="Gray">
-                    <Grid HorizontalAlignment="Center" Height="260" VerticalAlignment="Center" Width="397" Background="AliceBlue">
+                    <Grid HorizontalAlignment="Center" Height="260" VerticalAlignment="Center" Width="398" Background="AliceBlue">
                         <Label Content="ID:" HorizontalAlignment="Left" Margin="54,25,0,0" VerticalAlignment="Top" Width="80"/>
                         <Label Content="NAME:" HorizontalAlignment="Left" Margin="54,72,0,0" VerticalAlignment="Top" Width="80"/>
                         <Label Content="PHONE:" HorizontalAlignment="Left" Margin="54,0,0,0" VerticalAlignment="Center" Width="80"/>
                         <Label Content="POSITION:" HorizontalAlignment="Left" Margin="54,163,0,0" VerticalAlignment="Top" Width="80"/>
-                        <!--<Expander Name="exIsent"  Header="PARSELS YOU SENT:" HorizontalAlignment="Left" Height="404" Margin="33,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Grid.RowSpan="2">
-                            <ListView Name="Isent" MouseDoubleClick="showParcel" />
-                        </Expander>
-                        <Expander Name="exSENDme"  Header="PARCELS  SENT TO YOU:" HorizontalAlignment="Left" Height="404" Margin="223,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Grid.RowSpan="2">
-                            <ListView Name="SENDme" MouseDoubleClick="showParcel" />
-                        </Expander>-->
-                        <TextBox Name="IDTebtBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="158,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19"/>
-                        <TextBox Name="NameTextBox" HorizontalAlignment="Left" Margin="158,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19"/>
-                        <TextBox Name="PhoneTextBox" HorizontalAlignment="Left" Margin="158,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Height="20"/>
+                        <TextBox Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="IDTebtBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="158,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19"/>
+                        <TextBox Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="NameTextBox" HorizontalAlignment="Left" Margin="158,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="19"/>
+                        <TextBox Text="{Binding Path=Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="PhoneTextBox" HorizontalAlignment="Left" Margin="158,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="175" Height="20"/>
                         <TextBox Name="LongitudeTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="158,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="19" Text="longitude"/>
                         <TextBox Name="LatitudeTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="250,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Height="19" Text="Latitude"/>
                         <Button Cursor="Hand" x:Name="UPDATE_BUTTON"  Content="UPDATE " HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="63" Click="updateButton_Click" Margin="270,220,0,0"/>
                     </Grid>
-
                 </Grid>
             </TabItem>
-            <TabItem Header="ParcelList">
-                <Grid Background="Blue">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="200*"/>
-                        <RowDefinition Height="50*"/>
-                    </Grid.RowDefinitions>
-                    <!--<ListView Cursor="Hand" MouseDoubleClick="listView_MouseDoubleClick" Name="parcelDisplay"  />-->
-                    <Expander Name="exIsent" Visibility="Hidden" Header="PARSELS YOU SENT:" HorizontalAlignment="Left" Height="404" Margin="33,145,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Grid.RowSpan="2">
-                        <ListView Name="Isent" MouseDoubleClick="showParcel" />
-                    </Expander>
-                </Grid>
-            </TabItem>
-            <TabItem Header="receipParcel">
-                <Grid Background="LightCoral"/>
-            </TabItem>
-            <!--<TabItem Header="addParcel">
-                <Grid Background="Green"/>
-            </TabItem>-->
         </TabControl>
 
     </Grid>

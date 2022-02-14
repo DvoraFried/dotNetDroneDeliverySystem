@@ -14,7 +14,7 @@ namespace BO
         internal static DO.Station ConvertToStationDal(Station stationBl)
         {
             DO.Station stationDal = new DO.Station();
-            stationDal.Id = stationBl.GetIdBL();
+            stationDal.Id = stationBl.Id;
             stationDal.Name = stationBl.NameBL;
             stationDal.EmptyChargeSlots = stationBl.ChargeSlotsBL;
             stationDal.Longitude = stationBl.Position.Longitude;
@@ -26,7 +26,7 @@ namespace BO
         internal static DO.Drone ConvertToDroneDal(Drone droneBl)
         {
             DO.Drone droneDal = new DO.Drone();
-            droneDal.Id = droneBl.getIdBL();
+            droneDal.Id = droneBl.Id;
             droneDal.Model = droneBl.ModelBL;
             droneDal.MaxWeight = (WeightCategories)(int)droneBl.MaxWeight;
             return droneDal;
@@ -36,12 +36,12 @@ namespace BO
         internal static DO.Customer ConvertToCustomerDal(Customer customerBl)
         {
             DO.Customer customerDal = new DO.Customer();
-            customerDal.Id = customerBl.getIdBL();
-            customerDal.Name = customerBl.NameBL;
-            customerDal.Phone = customerBl.PhoneBL;
+            customerDal.Id = customerBl.Id;
+            customerDal.Name = customerBl.Name;
+            customerDal.Phone = customerBl.Phone;
             customerDal.Longitude = customerBl.Position.Longitude;
             customerDal.Latitude = customerBl.Position.Latitude;
-            customerDal.isActive = customerBl.isActive;
+            customerDal.IsActive = customerBl.isActive;
             return customerDal;
         }
 
@@ -49,7 +49,7 @@ namespace BO
         internal static DO.Parcel ConvertToParcelDal(Parcel parcelBl)
         {
             DO.Parcel parcelDal = new DO.Parcel();
-            parcelDal.Id = parcelBl.IdBL;
+            parcelDal.Id = parcelBl.Id;
             parcelDal.SenderId = parcelBl.Sender.Id;
             parcelDal.TargetId = parcelBl.Target.Id;
             parcelDal.Weight= (WeightCategories)(int)parcelBl.Weight;
@@ -59,7 +59,7 @@ namespace BO
             parcelDal.Scheduled = parcelBl.ScheduledBL;
             parcelDal.PickUp = parcelBl.PickUpBL;
             parcelDal.Delivered = parcelBl.DeliveredBL;
-            parcelDal.isActive = parcelBl.isActive;
+            parcelDal.IsActive = parcelBl.IsActive;
             return parcelDal;
         }
 
@@ -69,7 +69,7 @@ namespace BO
             DO.DroneCharge droneChargeDal = new DO.DroneCharge();
             droneChargeDal.DroneId = droneBl.Id;
             droneChargeDal.StationId = stationIdS;
-            droneChargeDal.enterTime = droneBl.enterTime;
+            droneChargeDal.EnterTime = droneBl.EnterTime;
             return droneChargeDal;
         }
     }

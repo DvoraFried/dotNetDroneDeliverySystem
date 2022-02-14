@@ -11,22 +11,21 @@ namespace BO
     {
         public EmpolyeeBL(int id, string name, bool manager)
         {
-            setId(id);
+            Id = id;
             Name = name;
             Manager = manager;
         }
-        private int Id;
-        public void setId(int idE)
+        private int id;
+        public int Id
         {
-            if (idE < 99999999 || idE > 999999999)
-            {
-                throw new UnValidIdException(idE, "Employee");
+            get { return id; }
+            set {
+                if (value < 99999999 || value > 999999999)
+                {
+                    throw new UnValidIdException(value, "Employee");
+                }
+                id = value;
             }
-            Id = idE;
-        }
-        public int getId()
-        {
-            return Id;
         }
         public string Name { get; set; }
         public bool Manager { get; set; }

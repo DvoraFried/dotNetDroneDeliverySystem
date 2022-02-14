@@ -12,16 +12,16 @@ namespace BO
     {
         public ParcelByTransfer(DalApi.IDal dalOB, int parcelId)
         {
-            Parcel parcel =ConvertToBL.ConvertToParcelBL(dalOB.returnParcel(parcelId));
-            Id = parcel.IdBL;
+            Parcel parcel =ConvertToBL.ConvertToParcelBL(dalOB.GetParcel(parcelId));
+            Id = parcel.Id;
             IsDelivery = parcel.PickUpBL != null;
             Priority = parcel.Priority;
             Weight = parcel.Weight;
             Sender = parcel.Sender;
             Target = parcel.Target;
-            DO.Customer dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Sender.Id);
+            DO.Customer dalobj = dalOB.GetCustomerList().ToList().First(customer => customer.Id == parcel.Sender.Id);
             CollectionLocation = new Position(dalobj.Longitude, dalobj.Latitude);
-            dalobj = dalOB.returnCustomerArray().ToList().First(customer => customer.Id == parcel.Target.Id);
+            dalobj = dalOB.GetCustomerList().ToList().First(customer => customer.Id == parcel.Target.Id);
             DeliveryDestinationLocation = new Position(dalobj.Longitude, dalobj.Latitude);
             Distance = DistanceBetweenCoordinates.CalculateDistance(CollectionLocation, DeliveryDestinationLocation);
         }

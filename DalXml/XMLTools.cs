@@ -65,7 +65,7 @@ namespace Dal
             {
                 return new XElement("drone",
                         new XElement("Id", e.Id),
-                        new XElement("isActive", e.isActive),
+                        new XElement("isActive", e.IsActive),
                         new XElement("Battery", e.Battery), 
                         new XElement("MaxWeight", e.MaxWeight), 
                         new XElement("Model", e.Model)
@@ -78,7 +78,7 @@ namespace Dal
                            select new Drone() {
                                Battery = Convert.ToDouble(e.Element("Battery").Value),
                                Id = Convert.ToInt32(e.Element("Id").Value),
-                               isActive = Convert.ToBoolean(e.Element("isActive").Value), 
+                               IsActive = Convert.ToBoolean(e.Element("isActive").Value), 
                                MaxWeight = (WeightCategories)Enum.Parse(typeof(WeightCategories), e.Element("MaxWeight").Value),
                                Model = e.Element("Model").Value
                            });

@@ -25,14 +25,14 @@ namespace PL
         {
             InitializeComponent();
             Bl = bl;
-            customersDisplay.ItemsSource = Bl.ReturnCustomerList();      
+            customersDisplay.ItemsSource = Bl.GetCustomerList();      
         }
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             BO.CustomerToList customer = (sender as ListView).SelectedValue as BO.CustomerToList;
             if (customer != null)
             {
-                new DisplayCustomer(Bl, Bl.convertCustomerToCustomerBl(customer.Id)).Show();
+                new DisplayCustomer(Bl, Bl.GetCustomerByID(customer.Id)).Show();
             }
         }
         private void ButtonAddCustomer_Click(object sender, RoutedEventArgs e)

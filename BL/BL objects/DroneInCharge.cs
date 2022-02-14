@@ -10,20 +10,20 @@ namespace BO
     {
         public DroneInCharge(Drone drone)
         {
-            Id = drone.getIdBL();
+            Id = drone.Id;
             BatteryStatus = drone.BatteryStatus;
-            enterTime = DateTime.Now;
+            EnterTime = DateTime.Now;
         }
         public DroneInCharge(int id, DateTime enteredTime)
         {
             Id = id;
-            enterTime = enteredTime;
+            EnterTime = enteredTime;
         }
         public override string ToString()
         {
             return $"-----------\nID: {Id}\nBattery Status: {BatteryStatus}\n-----------";
         }
-        public DateTime enterTime;
+        public DateTime EnterTime;
         public int Id { get; set; }
         public double BatteryStatus { get; set; }
     }

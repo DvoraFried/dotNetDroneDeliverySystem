@@ -12,7 +12,7 @@ namespace BO
     { 
         public DeliveryAtCustomer(DalApi.IDal dalOBG,Parcel parcel, int myId)
         {
-            Id = parcel.IdBL;
+            Id = parcel.Id;
             Weight = parcel.Weight;
             Priority = parcel.Priority;
             Status = parcel.DeliveredBL != null ? Enum.DeliveryStatus.provided :
@@ -20,8 +20,8 @@ namespace BO
                      parcel.ScheduledBL != null ? Enum.DeliveryStatus.associated :
                      Enum.DeliveryStatus.created;
             int idSecondCustomer = parcel.Sender.Id == myId ? parcel.Target.Id : parcel.Sender.Id;
-            DO.Customer customer = idSecondCustomer!=0 ?  dalOBG.returnCustomerArray().ToList().First(customer => customer.Id == idSecondCustomer) : new DO.Customer();
-            Customer = customer .isActive ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery(customer.Id, customer.Name, false);
+            DO.Customer customer = idSecondCustomer!=0 ?  dalOBG.GetCustomerList().ToList().First(customer => customer.Id == idSecondCustomer) : new DO.Customer();
+            Customer = customer .IsActive ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery(customer.Id, customer.Name, false);
         }
         public override string ToString()
         {

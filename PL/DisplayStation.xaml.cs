@@ -31,7 +31,7 @@ namespace PL
             Bl = bl;
             InitializeComponent();
             IDTextBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeText.IsEnabled = false;
-            IDTextBox.Text = station.GetIdBL().ToString();
+            IDTextBox.Text = station.Id.ToString();
             NameTextBox.Text = station.NameBL;
             expender.Visibility = Visibility.Visible;
             ChargesLotsTextBox.Text = station.ChargeSlotsBL.ToString();
@@ -77,7 +77,7 @@ namespace PL
             BO.DroneInCharge drone = (sender as ListView).SelectedValue as BO.DroneInCharge;
             if (drone != null)
             {
-               //new DisplayDrone(Bl, Bl.convertDroneInChargeBLToDroneBl(drone)).Show();
+                new DisplayDrone(Bl, Bl.ConvertDroneInChargeToDrone(drone)).Show();
             }
         }
         private void updateButton_Click(object sender, RoutedEventArgs e)

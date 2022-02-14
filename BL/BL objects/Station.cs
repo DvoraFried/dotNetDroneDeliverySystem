@@ -11,7 +11,7 @@ namespace BO
     {
         public Station(int id, string name, Position p, int chargS, List<Drone> drones)
         {
-            SetId(id);
+            Id = id;
             NameBL = name;
             Position = p;
             ChargeSlotsBL = chargS;
@@ -23,14 +23,18 @@ namespace BO
                 }
             }
         }
-        private int idBL;
-        public void SetId(int idS)
+        private int id;
+        public int Id
         {
-            if (idS <= 0)
+            get { return id; }
+            set
             {
-                throw new UnValidIdException(idS, "station");
+                if (value <= 0)
+                {
+                    throw new UnValidIdException(value, "station");
+                }
+                id = value;
             }
-            idBL = idS;
         }
         public override string ToString()
         {
@@ -41,12 +45,11 @@ namespace BO
                 {
                     Console.WriteLine(drone.ToString());
                 }
-                return $"ID: {GetIdBL()}\nName: {NameBL}\nPosition - {Position.ToString()}";
+                return $"ID: {Id}\nName: {NameBL}\nPosition - {Position.ToString()}";
             }
-            return $"ID: {GetIdBL()}\nName: {NameBL}\nPosition - {Position.ToString()}\nDrones in Charging: No Drones";
+            return $"ID: {Id}\nName: {NameBL}\nPosition - {Position.ToString()}\nDrones in Charging: No Drones";
         }
 
-        public int GetIdBL() { return idBL; }
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }
         public Position Position { get; set; }

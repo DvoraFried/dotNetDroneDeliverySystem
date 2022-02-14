@@ -10,13 +10,13 @@ namespace BO
     {
         public CustomerToList(DalApi.IDal dALOB,Customer customer)
         {
-            Id = customer.getIdBL();
-            Name = customer.NameBL;
-            Phone = customer.PhoneBL;
-            NumOfPackagesSentAndDelivered = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered != null).Count;
-            NumOfPackagesSentButNotYetDelivered = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.SenderId == Id && parcel.Delivered == null).Count;
-            NumOfPackagesHeReceived = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered != null).Count;
-            NumOfPackagesOnTheWay = dALOB.returnParcelArray().ToList().FindAll(parcel => parcel.TargetId == Id && parcel.Delivered == null).Count;
+            Id = customer.Id;
+            Name = customer.Name;
+            Phone = customer.Phone;
+            NumOfPackagesSentAndDelivered = (from P in dALOB.GetParcelList() where (P.SenderId == Id && P.Delivered != null) select P).ToList().Count;
+            NumOfPackagesSentButNotYetDelivered = (from P in dALOB.GetParcelList() where (P.SenderId == Id && P.Delivered == null) select P).ToList().Count;
+            NumOfPackagesHeReceived = (from P in dALOB.GetParcelList() where (P.TargetId == Id && P.Delivered != null) select P).ToList().Count;
+            NumOfPackagesOnTheWay = (from P in dALOB.GetParcelList() where (P.TargetId == Id && P.Delivered == null) select P).ToList().Count;
         }
         public override string ToString()
         {

@@ -18,9 +18,9 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnStationArray().ToList().Any(station => station.Id == idS)) { throw new ObjectDoesntExistsInListException("station"); }
+                if (!DalObj.GetStationList().ToList().Any(station => station.Id == idS)) { throw new ObjectDoesntExistsInListException("station"); }
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ station data ~~~~~~~~~~~~~~~~~~~~~~~");
-                Console.WriteLine(ConvertToBL.ConvertToStationBL(DalObj.returnStation(idS)).ToString());
+                Console.WriteLine(ConvertToBL.ConvertToStationBL(DalObj.GetStation(idS)).ToString());
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
 
@@ -31,9 +31,9 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DronesListBL.Any(drone => drone.getIdBL() == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
+                if (!DronesListBL.Any(drone => drone.Id == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
-                Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
+                Console.WriteLine(DronesListBL.First(drone => drone.Id == idD).ToString());
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
         }
@@ -43,9 +43,9 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnCustomerArray().ToList().Any(customer => customer.Id == idC)) { throw new ObjectDoesntExistsInListException("customer"); }
+                if (!DalObj.GetCustomerList().ToList().Any(customer => customer.Id == idC)) { throw new ObjectDoesntExistsInListException("customer"); }
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ customer data ~~~~~~~~~~~~~~~~~~~~~~~");
-                Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(idC)).ToString());
+                Console.WriteLine(ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(idC)).ToString());
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
         }
@@ -55,8 +55,8 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.Id == idP)) { throw new ObjectDoesntExistsInListException("parcel"); }
-                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(idP));
+                if (!DalObj.GetParcelList().ToList().Any(parcel => parcel.Id == idP)) { throw new ObjectDoesntExistsInListException("parcel"); }
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(idP));
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
                 Console.WriteLine(parcel.ToString());
                 if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: " + parcel.DroneIdBL.ToString()); }
@@ -69,7 +69,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                foreach (DO.Station station in DalObj.returnStationArray())
+                foreach (DO.Station station in DalObj.GetStationList())
                 {
                     Console.WriteLine(new StationToList(ConvertToBL.ConvertToStationBL(station)).ToString());
                 }
@@ -93,7 +93,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                foreach (DO.Customer customer in DalObj.returnCustomerArray())
+                foreach (DO.Customer customer in DalObj.GetCustomerList())
                 {
                     Console.WriteLine(new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(customer)).ToString());
                 }
@@ -105,7 +105,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                foreach (DO.Parcel parcel in DalObj.returnParcelArray())
+                foreach (DO.Parcel parcel in DalObj.GetParcelList())
                 {
                     Console.WriteLine(new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(parcel)).ToString());
                 }
@@ -117,7 +117,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                foreach (BO.Parcel parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.returnParcelArray().ToList()))
+                foreach (BO.Parcel parcel in ConvertToBL.ConvertToParcelArrayBL(DalObj.GetParcelList().ToList()))
                 {
                     if (parcel.DroneIdBL == null) { Console.WriteLine(new ParcelToList(DalObj, parcel).ToString()); }
                 }

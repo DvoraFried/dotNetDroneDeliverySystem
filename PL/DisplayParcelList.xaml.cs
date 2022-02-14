@@ -26,17 +26,17 @@ namespace PL
         {
             InitializeComponent();
             BLobj = bl;
-            parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
+            parcelDisplay.ItemsSource = BLobj.GetParcelList();
 
         }
-        public DisplayParcelList(BlApi.IBL bl, Customer customer)
+        public DisplayParcelList(BlApi.IBL bl, Customer customer, bool toMe = false)
         {
             currentCustomer = customer;
             InitializeComponent();
             BLobj = bl;
-            IEnumerable<ParcelToList> parcels = BLobj.ReturnParcelList();
+            IEnumerable<ParcelToList> parcels = BLobj.GetParcelList();
             parcelDisplay.ItemsSource = from parcel in parcels
-                                        where parcel.SenderId == customer.getIdBL()
+                                        where toMe ? parcel.TargetId == customer.Id : parcel.SenderId == customer.Id
                                         select parcel;
             groupBy.Visibility = clear.Visibility = Visibility.Hidden;
         }
@@ -53,16 +53,16 @@ namespace PL
             BO.ParcelToList parcel = (sender as ListView).SelectedValue as BO.ParcelToList;
             if (parcel != null)
             {
-                new DisplayParcel(BLobj, BLobj.returnParcel(parcel.Id)).Show();
+                new DisplayParcel(BLobj, BLobj.GetParcel(parcel.Id), true).Show();
             }
         }
         private void ButtonGroupBySender_Click(object sender, RoutedEventArgs e)
         {
-            parcelDisplay.ItemsSource = BLobj.ReturnPacelListGroupBySender();
+            parcelDisplay.ItemsSource = BLobj.GetPacelListGroupBySender();
         }
         private void buttonClearFilter_Click(object sender, RoutedEventArgs e)
         {
-            parcelDisplay.ItemsSource = BLobj.ReturnParcelList();
+            parcelDisplay.ItemsSource = BLobj.GetParcelList();
         }
     }
 }

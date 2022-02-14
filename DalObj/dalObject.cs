@@ -38,9 +38,7 @@ namespace Dal
         static Random rnd = new Random();
 
         //=====================================================================
-        //                     1. class add - add function
-        //=====================================================================
-
+        #region add function
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStationDAL(Station DALS)
         {
@@ -64,93 +62,94 @@ namespace Dal
         {
             DataSource.MyParcels.Add(DALP);
         }
+        #endregion
 
         //=====================================================================
-        //                     2. class update - update functions 
-        //=====================================================================
-
+        #region update functions 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void Charge(DroneCharge DALDC)
         {
-
             DataSource.MyDroneCharges.Add(DALDC);
         }
-        //=====================================================================
-        //                     3. class returnObject - return functions 
-        //=====================================================================
+        #endregion
 
-
+        //=====================================================================
+        #region return functions 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Station returnStation(int StationIdS)
+        public Station GetStation(int StationIdS)
         {
             return DataSource.MyBaseStations.First(station => station.Id == StationIdS);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Customer returnCustomer(int CustomerIdS)
+        public Customer GetCustomerByID(int CustomerIdS)
         {
             return DataSource.MyCustomers.First(customer => customer.Id == CustomerIdS);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Employee returnEmployee(int idE)
+        public Employee GetEmployee(int idE)
         {
             return DataSource.MyEmployees.First(employee => employee.Id == idE);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Parcel returnParcel(int ParcelIdS)
+        public Parcel GetParcel(int ParcelIdS)
         {
             return DataSource.MyParcels.First(parcel => parcel.Id == ParcelIdS);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public Parcel returnParcelByDroneId(int DroneIdS)
+        public Parcel GetParcelByDroneId(int DroneIdS)
         {
             return DataSource.MyParcels.First(parcel => parcel.DroneId == DroneIdS);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public DroneCharge returnDroneInCharge(int idDC)
+        public DroneCharge GetDroneInChargeByID(int idDC)
         {
             return DataSource.MyDroneCharges.First(drone => drone.DroneId == idDC);
         }
+        #endregion
 
         //=====================================================================
-        //             4. class returnArrayObject - return array
-        //=====================================================================
-
-
+        #region return array
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<Station> returnStationArray()
+        public IEnumerable<Station> GetStationList()
         {
             foreach (Station element in DataSource.MyBaseStations) { yield return element; }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<Drone> returnDroneArray()
+        public IEnumerable<Drone> GetDroneList()
         {
             foreach (Drone element in DataSource.MyDrones) { yield return element; }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<Customer> returnCustomerArray()
+        public IEnumerable<Customer> GetCustomerList()
         {
             foreach (Customer element in DataSource.MyCustomers) { yield return element; }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<Employee> returnEmployeeArray()
+        public IEnumerable<Employee> GetEmployeeList()
         {
             foreach (Employee element in DataSource.MyEmployees) { yield return element; }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<Parcel> returnParcelArray()
+        public IEnumerable<Parcel> GetParcelList()
         {
-            foreach (Parcel element in DataSource.MyParcels) { if (element.isActive) { yield return element; } }
+            foreach (Parcel element in DataSource.MyParcels) { if (element.IsActive) { yield return element; } }
         }
-        public double[] powerRequest()
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public int GetNewParcelId()
+        {
+            return DataSource.Config.idParcels++;
+        }
+        public double[] PowerRequest()
         {
             double[] arr = new double[5];
             arr[0] = DataSource.Config.available;
@@ -160,10 +159,10 @@ namespace Dal
             arr[4] = DataSource.Config.DroneLoadingRate;
             return arr;
         }
-        //=====================================================================
-        //replace object in id
-        //=====================================================================
+        #endregion
 
+        //=====================================================================
+        #region replace object by id
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReplaceStationById(Station DALS)
         {
@@ -187,6 +186,7 @@ namespace Dal
         {
             DataSource.MyParcels[DataSource.MyParcels.IndexOf(DataSource.MyParcels.First(p => p.Id == DALP.Id))] = DALP;
         }
-    } 
+        #endregion
+    }
 
 }

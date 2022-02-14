@@ -12,7 +12,7 @@ namespace BL
     public partial class BL : BlApi.IBL
     {
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<BO.Drone> ReturnDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
+        public IEnumerable<BO.Drone> GetDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
             List<BO.Drone> drones = (from d in DronesListBL where d.isActive || d.delivery != null select d).ToList();
             if (droneStatus != -1) {
@@ -30,7 +30,7 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<BO.Drone> ReturnDronesByStatusOrder()
+        public IEnumerable<BO.Drone> GetDronesByStatusOrder()
         {
             lock (DalObj)
             {
@@ -41,22 +41,12 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<BO.Drone> ReturnDrones()
+        public IEnumerable<ParcelToList> GetParcelList()
         {
             lock (DalObj)
             {
-                return from d in DronesListBL
-                       select d;
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<ParcelToList> ReturnParcelList()
-        {
-            lock (DalObj)
-            {
-                return (from P in DalObj.returnParcelArray()
-                        where P.isActive
+                return (from P in DalObj.GetParcelList()
+                        where P.IsActive
                         select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P)));
             }
         }
@@ -73,120 +63,108 @@ namespace BL
         }
 
             [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<ParcelToList> ReturnPacelListGroupBySender()
+        public IEnumerable<ParcelToList> GetPacelListGroupBySender()
         {
-            return from parcel in ReturnParcelList()
+            return from parcel in GetParcelList()
                    orderby parcel.SenderId
                    select parcel;        
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<CustomerToList> ReturnCustomerList()
+        public IEnumerable<CustomerToList> GetCustomerList()
         {
             lock (DalObj)
             {
-                return (from C in DalObj.returnCustomerArray()
-                        where C.isActive
+                return (from C in DalObj.GetCustomerList()
+                        where C.IsActive
                         select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C)));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<StationToList> ReturnStationList()
+        public IEnumerable<StationToList> GetStationList()
         {
             lock (DalObj)
             {
-                return (from S in DalObj.returnStationArray()
+                return (from S in DalObj.GetStationList()
                         select new StationToList(ConvertToBL.ConvertToStationBL(S)));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<StationToList> ReturnStationListSortedByEmptySlots()
+        public IEnumerable<StationToList> GetStationListSortedByEmptySlots()
         {
-            return (from station in ReturnStationList()
+            return (from station in GetStationList()
                     orderby station.AvailableChargingStations 
                     select station);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public EmpolyeeBL returnEmployee(int idE)
+        public EmpolyeeBL GetEmployee(int idE)
         {
             return ConvertToBL.convertToEmployee(idE);
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public BO.Customer convertCustomerToCustomerBl(int customerID)
+        public BO.Customer GetCustomerByID(int customerID)
         {
             lock (DalObj)
             {
-                return ConvertToBL.ConvertToCustomrtBL(DalObj.returnCustomer(customerID));
+                return ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(customerID));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public BO.Station convertStationToStationBl(int stationID)
+        public BO.Station GetToStationByID(int stationID)
         {
             lock (DalObj)
             {
-                return ConvertToBL.ConvertToStationBL(DalObj.returnStation(stationID));
+                return ConvertToBL.ConvertToStationBL(DalObj.GetStation(stationID));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public BO.Parcel returnParcel(int parcelID)
+        public BO.Parcel GetParcel(int parcelID)
         {
             lock (DalObj)
             {
-                return ConvertToBL.ConvertToParcelBL(DalObj.returnParcel(parcelID));
+                return ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(parcelID));
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public BO.Drone convertDroneInChargeBLToDroneBl(DroneInCharge chargeBL)
+        public BO.Drone ConvertDroneInChargeToDrone(DroneInCharge chargeBL)
         {
             lock (DalObj)
             {
-                return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+                return DronesListBL.First(drone => drone.Id == chargeBL.Id);
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public bool userIsCustomer(string name, int id)
+        public bool UserIsCustomer(string name, int id)
         {
             lock (DalObj)
             {
-                if (DalObj.returnCustomerArray().Any(c => c.Id == id && c.Name == name))
-                {
-                    return true;
-                }
-                return false;
+                return DalObj.GetCustomerList().Any(c => c.Id == id && c.Name == name);
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public bool userIsEmployee(string name,int id)
+        public bool UserIsEmployee(string name,int id)
         {
             lock (DalObj)
             {
-                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && !c.Manager))
-                {
-                    return true;
-                }
-                return false;
+                return DalObj.GetEmployeeList().Any(c => c.Id == id && c.Name == name && !c.Manager);
             }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public bool userIsManager(string name, int id)
+        public bool UserIsManager(string name, int id)
         {
             lock (DalObj)
             {
-                if (DalObj.returnEmployeeArray().Any(c => c.Id == id && c.Name == name && c.Manager))
-                {
-                    return true;
-                }
-                return false;
+                return DalObj.GetEmployeeList().Any(c => c.Id == id && c.Name == name && c.Manager);
             }
         }
     }

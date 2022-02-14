@@ -13,7 +13,7 @@ namespace PO
     {
         public Parcel_pl(BlApi.IBL blObj, Parcel parcelBL)
         {
-            Id = parcelBL.GetParcelId();
+            Id = parcelBL.Id;
             Weight = (Enum_pl.WeightCategories)parcelBL.Weight;
             Priority = (Enum_pl.Priorities)parcelBL.Priority;
             DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
@@ -25,15 +25,20 @@ namespace PO
             Target = new CustomerOnDelivery_pl(parcelBL.Target);
             blObj.ActionParcelChanged += UpdatePlParcel;
         }
+
         public void UpdatePlParcel(BO.Parcel parcelBL)
         {
-            DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
-            Scheduled = parcelBL.ScheduledBL;
-            PickUp = parcelBL.PickUpBL;
-            Delivered = parcelBL.DeliveredBL;
+            if (parcelBL.Id == Id)
+            {
+                DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
+                Scheduled = parcelBL.ScheduledBL;
+                PickUp = parcelBL.PickUpBL;
+                Delivered = parcelBL.DeliveredBL;
+                DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
+            }
         }
 
-    public static readonly DependencyProperty idPProperty =
+        public static readonly DependencyProperty idPProperty =
         DependencyProperty.Register("IdParcel",
                      typeof(object),
                      typeof(Drone_pl),
@@ -135,9 +140,9 @@ namespace PO
 
         public static readonly DependencyProperty TargetProperty =
         DependencyProperty.Register("Target",
-       typeof(object),
-       typeof(Parcel_pl),
-       new UIPropertyMetadata(0));
+        typeof(object),
+        typeof(Parcel_pl),
+        new UIPropertyMetadata(0));
         private CustomerOnDelivery_pl Target
         {
             get { return (CustomerOnDelivery_pl)GetValue(TargetProperty); }

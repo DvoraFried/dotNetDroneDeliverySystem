@@ -17,15 +17,15 @@ namespace BO
         public Drone(DalApi.IDal dalOB, int id,string model,WeightCategoriesBL maxW, DroneStatusesBL status,Position p,int stationId, bool active = true)
         {
             Random rnd = new Random();
-            setIdBL(id);
+            Id = id;
             ModelBL = model;
             MaxWeight = maxW;
             CurrentPosition = p;
             BatteryStatus = rnd.Next(20, 41);
             DroneStatus = status;
             isActive = active;
-            delivery = dalOB.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idBL) ?
-                       new ParcelByTransfer(dalOB,  idBL)
+            delivery = dalOB.GetParcelList().ToList().Any(parcel => parcel.DroneId == this.id) ?
+                       new ParcelByTransfer(dalOB,  this.id)
                        : null;
             if (delivery != null) { DroneStatus = DroneStatusesBL.Shipping; }
         }
@@ -33,17 +33,19 @@ namespace BO
         {
             if (delivery != null)
             {
-                return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus+"%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.ToString()}\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
+                return $"ID: {Id}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus+"%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.Id}\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
             }
-            return $"ID: {getIdBL()}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude,CurrentPosition.Longitude)}";
+            return $"ID: {Id}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude,CurrentPosition.Longitude)}";
         }
-        private int idBL;
-        public void setIdBL(int idD) 
+        private int id;
+        public int Id 
         {
-            if (idD <=0) {throw new UnValidIdException(idD, "drone");}
-            idBL = idD;
+            get { return id; }
+            set {
+                if (value <= 0) { throw new UnValidIdException(value, "drone"); }
+                id = value;
+            }
         }
-        public int getIdBL() { return idBL; }
         public string ModelBL { get; set; }
         public WeightCategoriesBL MaxWeight { get; set; }
         public double BatteryStatus { get; set; }

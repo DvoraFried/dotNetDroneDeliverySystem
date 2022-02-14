@@ -17,8 +17,8 @@ namespace Dal
         public static List<Parcel> MyParcels = new List<Parcel>();
         public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
 
-        //satandart drone speed per hour is 120 kilometers
         public class Config {
+            public static int idParcels = 0;
             public static double available=0.0003;
             public static double carryLightWeight=0.0005;
             public static double carrymediumWeight=0.001;
@@ -35,7 +35,7 @@ namespace Dal
             }
             for (int i = 1; i < 8; i++)
             {
-                Drone droneDAL = new Drone() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100), isActive = true };
+                Drone droneDAL = new Drone() { Id = i, Model = "Model" + i.ToString(), MaxWeight = WeightCategories.light, Battery = rnd.Next(60, 100), IsActive = true };
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {
@@ -51,7 +51,7 @@ namespace Dal
 
             for (int i = 0; i < 13; i++)
             {
-                Customer customerDAL = new Customer() { Id = rnd.Next(100000000, 1000000000), Name = "customer " + i.ToString(), Phone = rnd.Next(5830000, 60000000).ToString(), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), isActive = true };
+                Customer customerDAL = new Customer() { Id = rnd.Next(100000000, 1000000000), Name = "customer " + i.ToString(), Phone = rnd.Next(5830000, 60000000).ToString(), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), IsActive = true };
                 MyCustomers.Add(customerDAL);
             }
 
@@ -63,7 +63,7 @@ namespace Dal
                     targetId = MyCustomers[rnd.Next(0, 13)].Id;
                 } while (targetId == senderId);
 
-                Parcel parcel = new Parcel() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, isActive = true, Requested = DateTime.Now, Delivered = null, PickUp = null, Scheduled = null };
+                Parcel parcel = new Parcel() { Id = i, SenderId = senderId, TargetId = targetId, Weight = WeightCategories.light, Priority = (Priorities)rnd.Next(0, 3), DroneId = -1, IsActive = true, Requested = DateTime.Now, Delivered = null, PickUp = null, Scheduled = null };
                 int num = rnd.Next(0, 3);
                 switch (num)
                 {
