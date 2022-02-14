@@ -32,7 +32,6 @@ namespace PL
         int maxWeight = 1;
         public DisplayDrone(BlApi.IBL BL,Drone drone)
         {
-            WindowStyle = WindowStyle.None;
             droneBO = drone;
             dronePO = new Drone_pl(BL,drone);
             this.BL = BL;

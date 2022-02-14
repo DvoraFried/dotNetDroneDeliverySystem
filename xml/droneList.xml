@@ -2,23 +2,23 @@
 <drones>
   <drone>
     <Id>1</Id>
-    <isActive>true</isActive>
-    <Battery>91</Battery>
-    <MaxWeight>heavy</MaxWeight>
+    <isActive>false</isActive>
+    <Battery>0</Battery>
+    <MaxWeight>light</MaxWeight>
     <Model>Model1</Model>
   </drone>
   <drone>
     <Id>2</Id>
     <isActive>true</isActive>
-    <Battery>88</Battery>
-    <MaxWeight>light</MaxWeight>
+    <Battery>62</Battery>
+    <MaxWeight>heavy</MaxWeight>
     <Model>Model2</Model>
   </drone>
   <drone>
     <Id>3</Id>
     <isActive>true</isActive>
-    <Battery>72</Battery>
-    <MaxWeight>light</MaxWeight>
+    <Battery>91</Battery>
+    <MaxWeight>medium</MaxWeight>
     <Model>Model3</Model>
   </drone>
   <drone>
@@ -31,22 +31,22 @@
   <drone>
     <Id>5</Id>
     <isActive>true</isActive>
-    <Battery>98</Battery>
-    <MaxWeight>medium</MaxWeight>
+    <Battery>77</Battery>
+    <MaxWeight>light</MaxWeight>
     <Model>Model5</Model>
   </drone>
   <drone>
     <Id>6</Id>
     <isActive>true</isActive>
-    <Battery>63</Battery>
-    <MaxWeight>light</MaxWeight>
+    <Battery>80</Battery>
+    <MaxWeight>medium</MaxWeight>
     <Model>Model6</Model>
   </drone>
   <drone>
     <Id>7</Id>
     <isActive>true</isActive>
-    <Battery>63</Battery>
-    <MaxWeight>medium</MaxWeight>
+    <Battery>86</Battery>
+    <MaxWeight>heavy</MaxWeight>
     <Model>Model7</Model>
   </drone>
 </drones>

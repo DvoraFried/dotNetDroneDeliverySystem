@@ -15,13 +15,13 @@ namespace BL
     class Simulation
     {
         IBL BL;
-        IDal Dal;
+        IDal Dal = DalApi.DalFactory.GetDal();
         public Simulation(IBL BL,int droneID,Action<Drone> dronedroneSimulation, Action<Parcel> parcelSimulation, Func<bool> needToStop)
         {
             int DELAY = 500;
             double SPEED = 1;
             Drone drone = DronesListBL.First(d => d.Id == droneID);
-            Parcel parcel = drone.DroneStatus != BO.Enum.DroneStatusesBL.empty ? BL.GetParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id) : null;
+            Parcel parcel = drone.DroneStatus == BO.Enum.DroneStatusesBL.Shipping ? BL.GetParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id) : null;
             this.BL = BL;
             while (!needToStop())
             {
@@ -35,6 +35,7 @@ namespace BL
                                 BL.AssigningPackageToDrone(droneID, true);
                                 parcel = BL.GetParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id);
                                 parcelSimulation(BL.GetParcel(parcel.Id));
+                                BL.ActionParcelChanged?.Invoke(parcel);
                             }
                             catch
                             {
@@ -49,7 +50,7 @@ namespace BL
                                         drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > station.Position.Latitude ? -1 : 1;
                                         drone.BatteryStatus -= 0.5;
                                         dronedroneSimulation(drone);
-                                        Thread.Sleep(DELAY - 100);
+                                        Thread.Sleep(DELAY);
                                     }
                                 }
                             }
@@ -66,9 +67,31 @@ namespace BL
                         case BO.Enum.DroneStatusesBL.Shipping:
                             Parcel parcelInDrone = BL.GetParcel(drone.delivery.Id);
                             if (parcelInDrone.PickUpBL != null)
+                            {
                                 BL.DeliveryOfAParcelByDrone(droneID, true);
+                                DO.Customer target = Dal.GetCustomerByID(parcel.Target.Id);
+                                while (drone.CurrentPosition.Longitude != target.Longitude && drone.CurrentPosition.Latitude != target.Latitude && !needToStop())
+                                {
+                                    drone.CurrentPosition.Longitude += drone.CurrentPosition.Longitude > target.Longitude ? -1 : 1;
+                                    drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > target.Latitude ? -1 : 1;
+                                    drone.BatteryStatus -= 0.5;
+                                    dronedroneSimulation(drone);
+                                    Thread.Sleep(DELAY);
+                                }
+                            }
                             else
+                            {
                                 BL.CollectionOfAParcelByDrone(droneID, true);
+                                DO.Customer sender = Dal.GetCustomerByID(parcel.Target.Id);
+                                while (drone.CurrentPosition.Longitude != sender.Longitude && drone.CurrentPosition.Latitude != sender.Latitude && !needToStop())
+                                {
+                                    drone.CurrentPosition.Longitude += drone.CurrentPosition.Longitude > sender.Longitude ? -1 : 1;
+                                    drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > sender.Latitude ? -1 : 1;
+                                    drone.BatteryStatus -= 0.5;
+                                    dronedroneSimulation(drone);
+                                    Thread.Sleep(DELAY);
+                                }
+                            }
                             parcelSimulation(BL.GetParcel(parcel.Id));
                             break;
                     }
