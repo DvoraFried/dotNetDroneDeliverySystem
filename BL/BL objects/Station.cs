@@ -9,6 +9,7 @@ namespace BO
 {
     public class Station
     {
+        #region CTOR
         public Station(int id, string name, Position p, int chargS, List<Drone> drones)
         {
             Id = id;
@@ -23,7 +24,10 @@ namespace BO
                 }
             }
         }
+        #endregion
+
         private int id;
+        #region SET-GET_ID
         public int Id
         {
             get { return id; }
@@ -36,6 +40,9 @@ namespace BO
                 id = value;
             }
         }
+        #endregion
+
+        #region TOSTRING
         public override string ToString()
         {
             if (DronesInCharging != null)
@@ -49,6 +56,7 @@ namespace BO
             }
             return $"ID: {Id}\nName: {NameBL}\nPosition - {Position.ToString()}\nDrones in Charging: No Drones";
         }
+        #endregion
 
         public string NameBL { get; set; }
         public int ChargeSlotsBL { get; set; }

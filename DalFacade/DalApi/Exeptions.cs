@@ -14,6 +14,12 @@ namespace DalFacade.DalApi
             {
                 public ObjectExistsInListException(string type) : base(string.Format($"the {type} is alreadt exists in the {type}list")) { }
             }
+        
+            public class XMLFileLoadCreateException : Exception
+            {
+                public XMLFileLoadCreateException(string filePath) : base(string.Format($"the {filePath} is alreadt exists in the {filePath}list")) { }
+            }
         }
+             
     }
 }

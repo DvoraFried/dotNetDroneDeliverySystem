@@ -9,7 +9,8 @@ using static BO.Enum;
 namespace BO
 {
     public class DeliveryAtCustomer
-    { 
+    {
+        #region CTOR
         public DeliveryAtCustomer(DalApi.IDal dalOBG,Parcel parcel, int myId)
         {
             Id = parcel.Id;
@@ -23,10 +24,15 @@ namespace BO
             DO.Customer customer = idSecondCustomer!=0 ?  dalOBG.GetCustomerList().ToList().First(customer => customer.Id == idSecondCustomer) : new DO.Customer();
             Customer = customer .IsActive ? new CustomerOnDelivery(customer.Id, customer.Name) : new CustomerOnDelivery(customer.Id, customer.Name, false);
         }
+        #endregion
+
+        #region TOSTRING
         public override string ToString()
         {
             return $"----------------\nID: {Id}\nWeight: {Weight}\nPriotity: {Priority}\nStatus: {Status}\nAnother Customer in Parcel: {Customer.ToString()}\n----------------";
         }
+        #endregion
+
         public int Id { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }

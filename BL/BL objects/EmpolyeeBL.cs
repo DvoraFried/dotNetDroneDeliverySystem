@@ -9,13 +9,17 @@ namespace BO
 {
     public class EmpolyeeBL
     {
+        #region CTOR
         public EmpolyeeBL(int id, string name, bool manager)
         {
             Id = id;
             Name = name;
             Manager = manager;
         }
+        #endregion
+
         private int id;
+        #region SET-GET_ID
         public int Id
         {
             get { return id; }
@@ -27,6 +31,8 @@ namespace BO
                 id = value;
             }
         }
+        #endregion
+
         public string Name { get; set; }
         public bool Manager { get; set; }
     }

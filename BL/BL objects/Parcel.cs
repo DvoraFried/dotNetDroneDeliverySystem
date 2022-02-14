@@ -11,6 +11,7 @@ namespace BO
     public class Parcel
     {
         DalApi.IDal DalObj;
+        #region CTOR
         public Parcel( DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool isActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null, int droneID = -1 )
         {
             DalObj = dalOB;
@@ -28,6 +29,9 @@ namespace BO
             Target = customer.IsActive ? new CustomerOnDelivery(customer.Id, customer.Name): new CustomerOnDelivery(customer.Id, customer.Name,false);
             this.IsActive = isActive;
         }
+        #endregion
+
+        #region TOSTRING
         public override string ToString()
         {
             Console.WriteLine($"ID: {Id}\nSender: {Sender.ToString()}\nTarget: {Target.ToString()}\nWeight: {Weight}\nPriority: {Priority}\nRequested Time: {RequestedBL}");
@@ -36,8 +40,8 @@ namespace BO
             if (DeliveredBL != null) { Console.WriteLine($"Delivered Time: {DeliveredBL}"); }
             return "";
         }
+        #endregion
 
-      
         public int Id { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }

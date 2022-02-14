@@ -10,6 +10,7 @@ namespace BO
     public class Customer
     {
         DalApi.IDal dalOB;
+        #region CTOR
         public Customer(DalApi.IDal dalOBG,int id, string name, string phone, Position p, IEnumerable<Parcel>parcels, bool active = true)
         {
             dalOB = dalOBG;
@@ -21,8 +22,10 @@ namespace BO
             ImTheSender = (from P in parcels where P.Sender.Id == id select new DeliveryAtCustomer(dalOB,P,id)).ToList();
             ImTheTarget = (from P in parcels where P.Target.Id == id select new DeliveryAtCustomer(dalOB, P, id)).ToList();
         }
+        #endregion
 
         private int id;
+        #region GET-SET_ID
         public int Id
         {
             get { return id; }
@@ -34,7 +37,8 @@ namespace BO
                 id = value;
             }
         }
-             
+        #endregion
+
         public string Name { get; set; }
         public string Phone { get; set; }
         public Position Position { get; set; }
@@ -42,9 +46,11 @@ namespace BO
         public List<DeliveryAtCustomer> ImTheTarget { get; set; }
         public bool isActive { get; set; }
 
+        #region TOSTRING
         public override string ToString()
         {
             return $"ID: {Id}\nName: {Name}\nPhone: {Phone}\nPosition - {Position.ToString()}\nParcels sent by this customer: {ImTheSender.ToString()}\nParcels that this customer receives: {ImTheTarget.ToString()}";
         }
+        #endregion
     }
 }

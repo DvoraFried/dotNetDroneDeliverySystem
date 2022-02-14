@@ -85,6 +85,7 @@ namespace Dal
             Employee manager2 = new Employee() { Id = 212628721, Name = "dvora", Manager = true };
             MyEmployees.Add(manager2);
         }
+        #endregion
     }
 
 }

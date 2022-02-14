@@ -31,7 +31,7 @@
     <SenderId>570363131</SenderId>
     <TargetId>883268002</TargetId>
     <Weight>light</Weight>
-    <Priority>rapid</Priority>
+    <Priority>usual</Priority>
     <DroneId>-1</DroneId>
     <IsActive>true</IsActive>
     <Requested>2022-02-14T16:26:48.0252647+02:00</Requested>

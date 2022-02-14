@@ -8,21 +8,22 @@ namespace BO
 {
     public class DroneInCharge
     {
+        #region CTOR
         public DroneInCharge(Drone drone)
         {
             Id = drone.Id;
             BatteryStatus = drone.BatteryStatus;
             EnterTime = DateTime.Now;
         }
-        public DroneInCharge(int id, DateTime enteredTime)
-        {
-            Id = id;
-            EnterTime = enteredTime;
-        }
+        #endregion
+
+        #region TOSTRING
         public override string ToString()
         {
             return $"-----------\nID: {Id}\nBattery Status: {BatteryStatus}\n-----------";
         }
+        #endregion
+
         public DateTime EnterTime;
         public int Id { get; set; }
         public double BatteryStatus { get; set; }
