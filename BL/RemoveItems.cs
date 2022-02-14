@@ -40,7 +40,7 @@ namespace BL
             {
                 if (parcel.ScheduledBL == null)
                 {
-                    parcel.isActive = false;
+                    parcel.IsActive = false;
                     DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
                 }
                 else {
@@ -53,10 +53,10 @@ namespace BL
         {
             lock (DalObj)
             {
-                BO.Drone drone = DronesListBL.First(d => d.getIdBL() == id);
+                BO.Drone drone = DronesListBL.First(d => d.Id == id);
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
-                DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == id)] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => d.Id == id)] = drone;
             }
         }
 

@@ -19,10 +19,10 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.getIdBL() == id))) {
+                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.Id == id))) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
-                BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == id));
+                BO.Drone drone = DronesListBL.First(d => (d.Id == id));
                 if (drone.DroneStatus != DroneStatusesBL.empty) {
                     throw new DroneIsNotEmptyException(); }
 
@@ -32,7 +32,7 @@ namespace BL
                 drone.CurrentPosition = new Position(station.Longitude, station.Latitude);
                 drone.DroneStatus = DroneStatusesBL.maintenance;
                
-                DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == id)] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => d.Id == id)] = drone;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new DroneInCharge(drone), station.Id));
                 
@@ -49,17 +49,17 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DronesListBL.Any(d => (d.getIdBL() == id))) { 
+                if (!DronesListBL.Any(d => (d.Id == id))) { 
                     throw new ObjectDoesntExistsInListException("drone"); }
                 
-                BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == id));
+                BO.Drone drone = DronesListBL.First(d => (d.Id == id));
                 if (drone.DroneStatus != DroneStatusesBL.maintenance) {
                     throw new DroneIsNotInMaintenanceException(id); }
                 
                 double timeInCharge = (DateTime.Now - DalObj.returnDroneInCharge(id).enterTime).Minutes;
                 drone.BatteryStatus = Math.Min(drone.BatteryStatus + (timeInCharge / 60) * DalApi.Config.DroneLoadingRate, 100);
                 drone.DroneStatus = DroneStatusesBL.empty;
-                DronesListBL[DronesListBL.FindIndex(d => (d.getIdBL() == id))] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => (d.Id == id))] = drone;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                
                 DO.Station station = DalObj.returnStationArray().ToList().First(station => station.Latitude == drone.CurrentPosition.Latitude && station.Longitude == drone.CurrentPosition.Longitude);

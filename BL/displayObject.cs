@@ -31,9 +31,9 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DronesListBL.Any(drone => drone.getIdBL() == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
+                if (!DronesListBL.Any(drone => drone.Id == idD)) { throw new ObjectDoesntExistsInListException("drone"); }
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~ drone data ~~~~~~~~~~~~~~~~~~~~~~~~");
-                Console.WriteLine(DronesListBL.First(drone => drone.getIdBL() == idD).ToString());
+                Console.WriteLine(DronesListBL.First(drone => drone.Id == idD).ToString());
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             }
         }

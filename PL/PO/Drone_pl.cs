@@ -12,7 +12,7 @@ namespace PO
     public class drone_pl: DependencyObject
     {
         public drone_pl(BlApi.IBL blObj,Drone droneBl) {
-            Id = droneBl.getIdBL();
+            Id = droneBl.Id;
             this.Model = droneBl.ModelBL;
             this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
             this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;

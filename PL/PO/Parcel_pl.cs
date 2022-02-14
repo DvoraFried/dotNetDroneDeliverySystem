@@ -13,7 +13,7 @@ namespace PO
     {
         public Parcel_pl(BlApi.IBL blObj, Parcel parcelBL)
         {
-            Id = parcelBL.IdBL;
+            Id = parcelBL.Id;
             Weight = (Enum_pl.WeightCategories)parcelBL.Weight;
             Priority = (Enum_pl.Priorities)parcelBL.Priority;
             DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
@@ -28,7 +28,7 @@ namespace PO
 
         public void UpdatePlParcel(BO.Parcel parcelBL)
         {
-            if (parcelBL.IdBL == Id)
+            if (parcelBL.Id == Id)
             {
                 DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
                 Scheduled = parcelBL.ScheduledBL;

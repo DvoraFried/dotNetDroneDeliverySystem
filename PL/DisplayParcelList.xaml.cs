@@ -36,7 +36,7 @@ namespace PL
             BLobj = bl;
             IEnumerable<ParcelToList> parcels = BLobj.ReturnParcelList();
             parcelDisplay.ItemsSource = from parcel in parcels
-                                        where toMe ? parcel.TargetId == customer.getIdBL() : parcel.SenderId == customer.getIdBL()
+                                        where toMe ? parcel.TargetId == customer.Id : parcel.SenderId == customer.Id
                                         select parcel;
             groupBy.Visibility = clear.Visibility = Visibility.Hidden;
         }

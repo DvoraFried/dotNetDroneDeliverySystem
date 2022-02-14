@@ -13,7 +13,7 @@ namespace BO
         public ParcelByTransfer(DalApi.IDal dalOB, int parcelId)
         {
             Parcel parcel =ConvertToBL.ConvertToParcelBL(dalOB.returnParcel(parcelId));
-            Id = parcel.IdBL;
+            Id = parcel.Id;
             IsDelivery = parcel.PickUpBL != null;
             Priority = parcel.Priority;
             Weight = parcel.Weight;

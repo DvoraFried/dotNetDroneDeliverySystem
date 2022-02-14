@@ -102,10 +102,10 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.getIdBL() == idD))) {
+                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.Id == idD))) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
-                BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == idD));
+                BO.Drone drone = DronesListBL.First(d => (d.Id == idD));
                 if (drone.DroneStatus != DroneStatusesBL.empty) {
                     throw new DroneIsNotEmptyException(); }
 
@@ -122,11 +122,11 @@ namespace BL
                 drone.DroneStatus = DroneStatusesBL.Shipping;
                 theclosetParcel.ScheduledBL = DateTime.Now;
                 theclosetParcel.DroneIdBL = new DroneInParcel(drone);
-                drone.delivery = new ParcelByTransfer(DalObj, theclosetParcel.IdBL);
+                drone.delivery = new ParcelByTransfer(DalObj, theclosetParcel.Id);
                 
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(theclosetParcel));
-                DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => d.Id == idD)] = drone;
                 
                 if (!simulation)
                 {
@@ -141,13 +141,13 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!DronesListBL.Any(d => (d.getIdBL() == idD))) {
+                if (!DronesListBL.Any(d => (d.Id == idD))) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
                 if (!DalObj.returnParcelArray().ToList().Any(parcel => parcel.DroneId == idD)) {
                     throw new NoParcelFoundException(); }
 
-                BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
+                BO.Drone drone = DronesListBL.First(drone => drone.Id == idD);
                 if (drone.delivery.IsDelivery) {
                     throw new TheDroneHasAlreadyPickedUpTheParcel(); }
 
@@ -157,11 +157,11 @@ namespace BL
                 parcel.PickUpBL = DateTime.Now;
                 drone.BatteryStatus = updateButteryStatus(drone, senderPosition, 0);
                 drone.CurrentPosition = senderPosition;
-                drone.delivery = new ParcelByTransfer(DalObj, parcel.IdBL);
+                drone.delivery = new ParcelByTransfer(DalObj, parcel.Id);
                 
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.ReplaceParcelById(ConvertToDal.ConvertToParcelDal(parcel));
-                DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == idD)] = drone;
+                DronesListBL[DronesListBL.FindIndex(d => d.Id == idD)] = drone;
                 
                 if (!simulation)
                 {
@@ -179,7 +179,7 @@ namespace BL
                 if (!DalObj.returnDroneArray().ToList().Any(drone => drone.Id == idD)) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
-                BO.Drone drone = DronesListBL.First(drone => drone.getIdBL() == idD);
+                BO.Drone drone = DronesListBL.First(drone => drone.Id == idD);
                 if (drone.DroneStatus != DroneStatusesBL.Shipping) {
                     throw new NoParcelFoundException(); }
 

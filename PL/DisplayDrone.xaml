@@ -125,7 +125,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource myButtonGroup1}" Grid.Column="0" Name="SendDroneToCharge" Content="SEND TO CHARGE" Click="SendDroneToChargeClick"/>
+                <Button IsEnabled="{Binding Path=DroneStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource myButtonGroup1}" Grid.Column="0" Name="SendDroneToCharge" Content="SEND TO CHARGE" Click="SendDroneToChargeClick"/>
                 <Button Style="{StaticResource myButtonGroup2}" Grid.Column="1" Name="ReleaseDroneFromCharging" Content="RELEASE FROM CHARGE" Click="ReleaseDroneFromChargingClick"/>
                 <Button Style="{StaticResource myButtonGroup2}" Grid.Row="1" FontSize="11.7" Name="AssigningPackageToDrone" Content="ASSIGNING DRONE TO PARCEL"  Click="AssigningPackageToDroneClick"/>
                 <Button Style="{StaticResource myButtonGroup1}" Grid.Row="1" Grid.Column="1" Name="CollectionOfAParcelByDrone" Content="COLLECTION OF A PARCEL"  Click="CollectionOfAParcelByDroneClick"/>

@@ -19,12 +19,12 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpDateDroneName(int id, string newModelName, bool simulation = false)
         {
-            if (!DronesListBL.Any(d => (d.getIdBL() == id))) {
+            if (!DronesListBL.Any(d => (d.Id == id))) {
                 throw new ObjectDoesntExistsInListException("drone"); }
 
-            BO.Drone drone = DronesListBL.First(d => (d.getIdBL() == id));
+            BO.Drone drone = DronesListBL.First(d => (d.Id == id));
             drone.ModelBL = newModelName;
-            DronesListBL[DronesListBL.FindIndex(d => d.getIdBL() == id)] = drone;
+            DronesListBL[DronesListBL.FindIndex(d => d.Id == id)] = drone;
             lock (DalObj)
             {
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));

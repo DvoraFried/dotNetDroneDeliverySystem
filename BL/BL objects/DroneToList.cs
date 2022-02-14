@@ -10,7 +10,7 @@ namespace BO
     {
         public DroneToList(DalApi.IDal dalOB, Drone drone)
         {
-            Id = drone.getIdBL();
+            Id = drone.Id;
             Model = drone.ModelBL;
             Weight = drone.MaxWeight;
             BatteryStatus = drone.BatteryStatus;

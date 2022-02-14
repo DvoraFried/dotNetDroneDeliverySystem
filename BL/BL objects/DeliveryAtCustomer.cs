@@ -12,7 +12,7 @@ namespace BO
     { 
         public DeliveryAtCustomer(DalApi.IDal dalOBG,Parcel parcel, int myId)
         {
-            Id = parcel.IdBL;
+            Id = parcel.Id;
             Weight = parcel.Weight;
             Priority = parcel.Priority;
             Status = parcel.DeliveredBL != null ? Enum.DeliveryStatus.provided :

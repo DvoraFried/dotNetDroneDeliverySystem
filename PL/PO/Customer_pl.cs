@@ -15,9 +15,9 @@ namespace PO
         public Customer_pl(BlApi.IBL blObj, Customer customerBl)
         {
             dalOB = blObj;
-            Id = customerBl.getIdBL();
-            name = customerBl.NameBL;
-            phone = customerBl.PhoneBL;
+            Id = customerBl.Id;
+            name = customerBl.Name;
+            phone = customerBl.Phone;
             position = new Position_pl(customerBl.Position);
             ImTheSender = (from C in customerBl.ImTheSender select new DeliveryAlCustomer_pl(C)).ToList();
             ImTheTarget = (from C in customerBl.ImTheTarget select new DeliveryAlCustomer_pl(C)).ToList();

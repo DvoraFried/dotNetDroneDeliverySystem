@@ -11,8 +11,9 @@ namespace BO
     {
         public Position(double lnd, double ltd)
         {
-            if (lnd > 24 || lnd < 0) { throw new UnValidPositionException(lnd, "Longitude"); }
             Longitude = lnd;
+            Latitude = ltd;
+            
             if (ltd > 180 || ltd < 0) { throw new UnValidPositionException(ltd, "Latitude"); }
             Latitude = ltd;
         }
@@ -20,8 +21,23 @@ namespace BO
         {
             return $"Longitude : {Longitude}, Latitude: {Latitude}";
         }
-        public double Longitude { get; set; }
-        
-        public double Latitude { get; set; }
+        private double longitude;
+        public double Longitude { get { return longitude; }
+            set {
+                if (value > 24 || value < 0) { throw new UnValidPositionException(value, "Longitude"); }
+                longitude = value;
+            }
+        }
+
+        private double latitude;
+        public double Latitude
+        {
+            get { return latitude; }
+            set
+            {
+                if (value > 180 || value < 0) { throw new UnValidPositionException(value, "Latitude"); }
+                latitude = value;
+            }
+        }
     }
 }

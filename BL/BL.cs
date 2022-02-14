@@ -38,7 +38,7 @@ namespace BL
             foreach (BO.Drone drone in DronesListBL)
             {
                 List<DO.Parcel> arr = DalObj.returnParcelArray().ToList();
-                if (!arr.Any(parcel => parcel.DroneId == drone.getIdBL()))
+                if (!arr.Any(parcel => parcel.DroneId == drone.Id))
                 {
                     if (rnd.Next(0, 2) == 0)
                     {
@@ -70,7 +70,7 @@ namespace BL
                 else
                 {
                     drone.DroneStatus = BO.Enum.DroneStatusesBL.Shipping;
-                    DO.Parcel parcel = DalObj.returnParcelByDroneId(drone.getIdBL());
+                    DO.Parcel parcel = DalObj.returnParcelByDroneId(drone.Id);
                     Position senderPos = new Position(DalObj.returnCustomer(parcel.SenderId).Longitude, DalObj.returnCustomer(parcel.SenderId).Latitude);
                     Position targetPos = new Position(DalObj.returnCustomer(parcel.TargetId).Longitude, DalObj.returnCustomer(parcel.TargetId).Latitude);
                     drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos).Position : senderPos;

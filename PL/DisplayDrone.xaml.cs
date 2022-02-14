@@ -163,7 +163,7 @@ namespace PL
             {
                  BL.StartSimulation(
                    BL,
-                   droneBO.getIdBL(),
+                   droneBO.Id,
                    (droneBO) => { updateDrone = droneBO; worker.ReportProgress(0); },
                    (parcelBO) => { updateParcel = parcelBO; worker.ReportProgress(0); },
                    () => worker.CancellationPending);

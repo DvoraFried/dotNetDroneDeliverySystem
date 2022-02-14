@@ -10,7 +10,7 @@ namespace BO
     {
         public DroneInParcel(Drone drone)
         {
-            Id = drone.getIdBL();
+            Id = drone.Id;
             BatteryStatus = drone.BatteryStatus;
             CurrentPosition = drone.CurrentPosition;
         }

@@ -137,7 +137,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                return DronesListBL.First(drone => drone.getIdBL() == chargeBL.Id);
+                return DronesListBL.First(drone => drone.Id == chargeBL.Id);
             }
         }
 

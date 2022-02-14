@@ -19,8 +19,8 @@ namespace BL
         {
             int DELAY = 500;
             double SPEED = 1;
-            Drone drone = DronesListBL.First(d => d.getIdBL() == droneID);
-            Parcel parcel = drone.DroneStatus != BO.Enum.DroneStatusesBL.empty ? BL.returnParcel(DronesListBL.First(d => d.getIdBL() == droneID).delivery.Id) : null;
+            Drone drone = DronesListBL.First(d => d.Id == droneID);
+            Parcel parcel = drone.DroneStatus != BO.Enum.DroneStatusesBL.empty ? BL.returnParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id) : null;
             ;
             this.BL = BL;
             while (!needToStop())
@@ -32,8 +32,8 @@ namespace BL
                         case BO.Enum.DroneStatusesBL.empty:
                             try {
                                 BL.AssigningPackageToDrone(droneID, true);
-                                parcel = BL.returnParcel(DronesListBL.First(d => d.getIdBL() == droneID).delivery.Id);
-                                parcelSimulation(BL.returnParcel(parcel.IdBL));
+                                parcel = BL.returnParcel(DronesListBL.First(d => d.Id == droneID).delivery.Id);
+                                parcelSimulation(BL.returnParcel(parcel.Id));
                             }
                             catch {
                                 if (drone.BatteryStatus < 100)
@@ -55,16 +55,16 @@ namespace BL
                                 BL.DeliveryOfAParcelByDrone(droneID, true);
                             else
                                 BL.CollectionOfAParcelByDrone(droneID, true);
-                            parcelSimulation(BL.returnParcel(parcel.IdBL));
+                            parcelSimulation(BL.returnParcel(parcel.Id));
                             break;
                     }
                 }
                 catch (ThereIsNotEnoughBatteryException e) {
                     BL.SendDroneToCharge(droneID, true);
                 }
-                drone = DronesListBL.First(d => d.getIdBL() == droneID);
+                drone = DronesListBL.First(d => d.Id == droneID);
                 dronedroneSimulation(drone);
-                if(parcel != null) parcelSimulation(BL.returnParcel(parcel.IdBL));
+                if(parcel != null) parcelSimulation(BL.returnParcel(parcel.Id));
                 Thread.Sleep(DELAY);
             }
         }
