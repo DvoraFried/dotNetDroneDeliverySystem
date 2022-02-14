@@ -28,7 +28,7 @@ namespace PO
 
         public void UpdatePlParcel(BO.Parcel parcelBL)
         {
-            if (parcelBL.Id == Id)
+            if (parcelBL!= null && parcelBL.Id == Id)
             {
                 DroneInParcel = new DroneInParcel_pl(parcelBL.DroneIdBL);
                 Scheduled = parcelBL.ScheduledBL;
