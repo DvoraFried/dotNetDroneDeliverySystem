@@ -17,15 +17,13 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for DisplayStation.xaml
+    /// The class is responsible for displaying a specific base stations -
+    /// and display options (add, overview)
     /// </summary>
     public partial class DisplayStation : Window
     {
-        public DisplayStation()
-        {
-            InitializeComponent();
-        }
         BlApi.IBL Bl;
+
         public DisplayStation(BlApi.IBL bl, Station station)
         {
             Bl = bl;
@@ -49,11 +47,18 @@ namespace PL
             Bl = bl;
             InitializeComponent();
         }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        /// <summary>
+        /// AddStation by IBL interface calling
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(IDTextBox.Text) || string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LongitudeTextBox.Text)||string.IsNullOrWhiteSpace(LatitudeText.Text) || string.IsNullOrWhiteSpace(ChargesLotsTextBox.Text))
@@ -67,8 +72,6 @@ namespace PL
                     Bl.AddStation(Int32.Parse(IDTextBox.Text), NameTextBox.Text, double.Parse(LongitudeTextBox.Text), double.Parse(LatitudeText.Text), Int32.Parse(ChargesLotsTextBox.Text));
                     this.Close();
                 }
-                catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-                catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
@@ -87,18 +90,29 @@ namespace PL
                 Bl.UpDateStationData(Int32.Parse(IDTextBox.Text), NameTextBox.Text,Int32.Parse(ChargesLotsTextBox.Text));
                 this.Close();
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
+
+
         private void expanderHasExpanded(object sender, RoutedEventArgs args)
         {
             dronesInCharge.Background = Brushes.DimGray;
         }
+
+        /// <summary>
+        /// set style of background of dronesInCharge to null,
+        /// so it wont hide anything
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void expanderHasClose(object sender, RoutedEventArgs args)
         {
             dronesInCharge.Background = null;
         }
+
+        /// <summary>
+        /// close window
+        /// </summary>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
