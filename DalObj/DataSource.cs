@@ -24,7 +24,8 @@ namespace Dal
             public static double carryLightWeight=0.0005;
             public static double carrymediumWeight=0.001;
             public static double carryHeavyWeight=0.0015;
-            public static double DroneLoadingRate=43.3;
+            public static double DroneLoadingRate=100;
+
         }
         /// <summary>
         /// random random object for the list and data

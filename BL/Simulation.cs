@@ -67,12 +67,14 @@ namespace BL
                             DO.Customer target;
                             if (parcelInDrone.PickUpBL != null)
                             {
-                                BL.DeliveryOfAParcelByDrone(droneID, true);
                                 target = Dal.GetCustomerByID(parcel.Target.Id);
                                 makeProsses(drone, target.Latitude, target.Longitude, DELAY, droneSimulation, needToStop);
+                                BL.DeliveryOfAParcelByDrone(droneID, true);
                             }
                             else
                             {
+                                target = Dal.GetCustomerByID(parcel.Sender.Id);
+                                makeProsses(drone, target.Latitude, target.Longitude, DELAY, droneSimulation, needToStop);
                                 BL.CollectionOfAParcelByDrone(droneID, true);
                             }
                            // parcelSimulation(BL.GetParcel(parcel.Id), true);
@@ -98,7 +100,7 @@ namespace BL
             {
                 drone.CurrentPosition.Longitude += drone.CurrentPosition.Longitude > Longitude ? -1 : 1;
                 drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > Latitude ? -1 : 1;
-                drone.BatteryStatus -= 0.5;
+                drone.BatteryStatus -= 0.4;
                 if(drone.DroneStatus == BO.Enum.DroneStatusesBL.Shipping) {
                     drone.delivery.Distance = BO.DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, new Position(Longitude, Latitude));
                 }
