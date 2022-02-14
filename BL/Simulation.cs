@@ -20,7 +20,8 @@ namespace BL
             int DELAY = 500;
             double SPEED = 1;
             Drone drone = DronesListBL.First(d => d.getIdBL() == droneID);
-            Parcel parcel = null;
+            Parcel parcel = drone.DroneStatus != BO.Enum.DroneStatusesBL.empty ? BL.returnParcel(DronesListBL.First(d => d.getIdBL() == droneID).delivery.Id) : null;
+            ;
             this.BL = BL;
             while (!needToStop())
             {

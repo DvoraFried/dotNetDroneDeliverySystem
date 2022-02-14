@@ -173,8 +173,9 @@ namespace PL
             {
                 dronePO.UpdatePlDrone(droneBO);
                 BL.ActionDronesAdded(true);
-                if(ParcelInDrone != null)
+                if(droneBO.delivery != null)
                 {
+                    ParcelInDrone = new Parcel_pl(BL, BL.returnParcel(droneBO.delivery.Id));
                     ParcelInDrone.UpdatePlParcel(updateParcel);
                 }
             };
