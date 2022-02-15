@@ -108,7 +108,7 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static double updateButteryStatus(BO.Drone drone, Position position, int weight, Position targetP = null)
         {
-            double distance = targetP == null ? CalculateDistance(drone.CurrentPosition, position) : CalculateDistance(position, targetP);
+            double distance = targetP == null ? drone.CurrentPosition.CalculateDistanceFor(position) : position.CalculateDistanceFor(targetP);
             double lessPower = drone.DroneStatus == BO.Enum.DroneStatusesBL.empty ? distance * nonWeightPowerConsumption :
                                weight == (int)BO.Enum.WeightCategoriesBL.light ? distance * lightWeightPowerConsumption :
                                weight == (int)BO.Enum.WeightCategoriesBL.medium ? distance * mediumWeightPowerConsumption :

@@ -70,7 +70,7 @@
                     <RadioButton x:Name="emergency" Content="emergency" Checked="emergency_Checked"/>
                 </StackPanel>
             </Grid>
-            <Grid Name="displayParcel" Visibility="Visible">
+            <Grid Name="displayParcel" Visibility="Hidden">
                 <Label Grid.Row="0" Margin="80,36,260,9">SENDER:</Label>
                 <ListView Name="senderTextBox" MouseDoubleClick="showCustomer" Margin="45,59,205,-49"/>
                 <ListView Name="targetTextBox" MouseDoubleClick="showCustomer" Margin="200,59,50,-49"/>
@@ -99,7 +99,7 @@
                     <ColumnDefinition Width="14*"/>
                 </Grid.ColumnDefinitions >
             </Grid>
-            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,274,0,0"/>
+            <Button Cursor="Hand" Name="ADD_BUTTON" Content="ADD PARCEL" HorizontalAlignment="Center" Height="30" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Button_Click" Margin="0,256,0,0"/>
         </Grid>
     </Grid>
 </Window>

@@ -56,6 +56,7 @@ namespace BL
                 if (!DalObj.GetStationList().Any(s => s.Id == stationId)) {
                     throw new ObjectDoesntExistsInListException("station"); };
 
+                DO.Station s = DalObj.GetStationList().ToList().Find(d => d.Id == stationId);
                 BO.Drone drone = new BO.Drone(DalObj, id, model, maxWeight, DroneStatusesBL.maintenance, new Position(s.Longitude, s.Latitude), stationId);
 
                 if (DronesListBL.Any(d => d.Id == id)) {
@@ -72,7 +73,6 @@ namespace BL
                     DronesListBL.Add(drone);
                 }
 
-                DO.Station s = DalObj.GetStationList().ToList().Find(d => d.Id == stationId);
                 s.DronesInCharging += 1;
                 s.EmptyChargeSlots -= 1;
                 
