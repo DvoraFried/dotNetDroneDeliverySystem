@@ -74,7 +74,7 @@ namespace BL
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL[DronesListBL.FindIndex(d => d.Id == droneId)] = drone;
-                ActionUpdateList?.Invoke(true);
+                if(ActionUpdateList != null) ActionUpdateList?.Invoke(true);
             }
         }
     }

@@ -81,7 +81,7 @@ namespace BL
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new BO.DroneInCharge(drone), s.Id));
                 
                 // dalegate to update the drones list in PL:
-                ActionUpdateList?.Invoke(true);
+                if(ActionUpdateList != null) ActionUpdateList?.Invoke(true);
             }
         }
 

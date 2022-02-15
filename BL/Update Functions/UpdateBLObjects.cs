@@ -48,7 +48,7 @@ namespace BL
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);
-                    ActionUpdateList?.Invoke(true);
+                    if(ActionUpdateList != null) ActionUpdateList?.Invoke(true);
                 }
             }
         }
