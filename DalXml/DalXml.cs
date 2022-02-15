@@ -129,7 +129,7 @@ namespace Dal
         }
         #endregion
 
-        #region GET OBJECT BY ID FUNCTIONS
+        #region GET OBJECT BY CONDITION FUNCTIONS
         /// <summary>
         /// function returns station by id arg
         /// </summary>
@@ -139,7 +139,7 @@ namespace Dal
         public Station GetStation(int StationIdS)
         {
             IEnumerable<Station> stations = DL.XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + stationFilePath);
-            return stations.ToList().First(station => station.Id == StationIdS);
+            return stations.First(station => station.Id == StationIdS);
         }
         /// <summary>
         /// function returns customer by id arg
@@ -150,8 +150,20 @@ namespace Dal
         public Customer GetCustomerByID(int CustomerIdS)
         {
             IEnumerable<Customer> customers = DL.XMLTools.LoadListFromXMLSerializer<DO.Customer>(dir + customerFilePath);
-            return customers.ToList().First(customer => customer.Id == CustomerIdS);
+            return customers.First(customer => customer.Id == CustomerIdS);
         }
+
+        /// <summary>
+        /// function returns parcel by given condition
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public Parcel GetParcelByCondition(Predicate<Parcel> condition)
+        {
+            IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
+            return DataSource.MyParcels.First(p => condition(p));
+        }
+
         /// <summary>
         /// function returns employee by id arg
         /// </summary>
@@ -161,29 +173,7 @@ namespace Dal
         public Employee GetEmployee(int employeeId)
         {
             IEnumerable<Employee> employees = DL.XMLTools.LoadListFromXMLSerializer<DO.Employee>(dir + employeeFilePath);
-            return employees.ToList().First(employee => employee.Id == employeeId);
-        }
-        /// <summary>
-        /// function returns parcel by id arg
-        /// </summary>
-        /// <param name="ParcelIdS"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public Parcel GetParcel(int ParcelIdS)
-        {
-            IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
-            return parcels.ToList().First(parcel => parcel.Id == ParcelIdS);
-        }
-        /// <summary>
-        /// function returns parcel by drone id arg
-        /// </summary>
-        /// <param name="DroneIdS"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public Parcel GetParcelByDroneId(int DroneIdS)
-        {
-            IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
-            return parcels.ToList().First(parcel => parcel.DroneId == DroneIdS);
+            return employees.First(employee => employee.Id == employeeId);
         }
         #endregion
 

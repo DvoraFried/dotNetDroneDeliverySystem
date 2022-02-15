@@ -126,7 +126,7 @@ namespace PL
         /// <param name="e"></param>
         private void ButtonStatusSortFilter_Click(object sender, RoutedEventArgs e)
         {
-            dronesDisplay.ItemsSource = Bl.GetDronesByStatusOrder();
+            dronesDisplay.ItemsSource = Bl.GetDronesSortrdByStatusOrder();
         }
 
     }

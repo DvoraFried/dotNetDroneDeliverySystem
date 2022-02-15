@@ -44,7 +44,7 @@ namespace BL
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<BO.Drone> GetDronesByStatusOrder()
+        public IEnumerable<BO.Drone> GetDronesSortrdByStatusOrder()
         {
             lock (DalObj)
             {
@@ -189,7 +189,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                return ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(parcelID));
+                return ConvertToBL.ConvertToParcelBL(DalObj.GetParcelByCondition(p => p.Id == parcelID));
             }
         }
 

@@ -70,7 +70,7 @@ namespace BL
                 else
                 {
                     drone.DroneStatus = BO.Enum.DroneStatusesBL.Shipping;
-                    DO.Parcel parcel = DalObj.GetParcelByDroneId(drone.Id);
+                    DO.Parcel parcel = DalObj.GetParcelByCondition((p)=> p.DroneId == drone.Id);
                     Position senderPos = new Position(DalObj.GetCustomerByID(parcel.SenderId).Longitude, DalObj.GetCustomerByID(parcel.SenderId).Latitude);
                     Position targetPos = new Position(DalObj.GetCustomerByID(parcel.TargetId).Longitude, DalObj.GetCustomerByID(parcel.TargetId).Latitude);
                     drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos).Position : senderPos;
@@ -143,7 +143,6 @@ namespace BL
             if (station.Name == null) throw new NoPlaceToChargeException();
             return ConvertToBL.ConvertToStationBL(station);
         }
-
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         internal static String getFormattedLocationInDegree(double latitude, double longitude)

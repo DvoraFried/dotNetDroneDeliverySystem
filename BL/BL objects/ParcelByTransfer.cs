@@ -13,7 +13,7 @@ namespace BO
         #region CTOR
         public ParcelByTransfer(DalApi.IDal dalOB, int parcelId)
         {
-            Parcel parcel =ConvertToBL.ConvertToParcelBL(dalOB.GetParcel(parcelId));
+            Parcel parcel =ConvertToBL.ConvertToParcelBL(dalOB.GetParcelByCondition(p => p.Id == parcelId));
             Id = parcel.Id;
             IsDelivery = parcel.PickUpBL != null;
             Priority = parcel.Priority;

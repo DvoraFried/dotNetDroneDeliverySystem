@@ -34,8 +34,7 @@ namespace DalApi
 
         #region PARCEL'S FUNCTION
         public void AddParcelDAL(Parcel DALP);
-        public Parcel GetParcel(int ParcelIdS);
-        public Parcel GetParcelByDroneId(int DroneIdS);
+        public Parcel GetParcelByCondition(Predicate<Parcel> condition);
         public IEnumerable<Parcel> GetParcelList();
         public void ReplaceParcelById(Parcel DALP);
         public int GetNewParcelId();

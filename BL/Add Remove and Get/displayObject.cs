@@ -60,7 +60,7 @@ namespace BL
             lock (DalObj)
             {
                 if (!DalObj.GetParcelList().ToList().Any(parcel => parcel.Id == idP)) { throw new ObjectDoesntExistsInListException("parcel"); }
-                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(idP));
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcelByCondition((p) => p.Id == idP));
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~ parcel data ~~~~~~~~~~~~~~~~~~~~~~~");
                 Console.WriteLine(parcel.ToString());
                 if (parcel.DroneIdBL != null) { Console.WriteLine("In Drone: " + parcel.DroneIdBL.ToString()); }

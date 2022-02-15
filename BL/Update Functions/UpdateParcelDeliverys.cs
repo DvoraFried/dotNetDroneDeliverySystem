@@ -12,43 +12,19 @@ using BO;
 namespace BL
 {
     public partial class BL : BlApi.IBL
-    {
-
+    { 
         #region Internal auxiliary methods
-        IEnumerable<DO.Parcel> returnParcelWithEmergencyParcelsPriority()
+        IEnumerable <DO.Parcel> returnParcelByCondition(Predicate<DO.Parcel> condition)
         {
-            lock (DalObj)
-            {
-                return from P in DalObj.GetParcelList() 
-                       where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.emergency) 
-                       select P;
+            lock (DalObj) {
+                return from P in DalObj.GetParcelList() where (condition(P) && P.Scheduled == null) select P;
             }
         }
-        IEnumerable<DO.Parcel> returnParcelWithUsualParcelsPriority()
+
+        IEnumerable<DO.Parcel> returnPacelsWitSuitWeight(IEnumerable<DO.Parcel> parcelArr, int droneMaxW)
         {
-            lock (DalObj)
-            {
-                return from P in DalObj.GetParcelList()
-                       where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.usual)
-                       select P;
-            }
-        }
-        IEnumerable<DO.Parcel> returnParcelWithRapidlParcelsPriority()
-        {
-            lock (DalObj)
-            {
-                return from P in DalObj.GetParcelList()
-                       where (P.Scheduled == null && (int)P.Priority == (int)BO.Enum.PrioritiesBL.rapid)
-                       select P;
-            }
-        }
-        IEnumerable<DO.Parcel> returnPacelWitSuitWeight(IEnumerable<DO.Parcel> parcelArr,int droneMaxW)
-        {
-            lock (DalObj)
-            {
-                return from P in parcelArr
-                       where ((int)P.Weight <= droneMaxW)
-                       select P;
+            lock (DalObj) {
+                return from P in parcelArr where ((int)P.Weight <= droneMaxW) select P;
             }
         }
 
@@ -86,13 +62,14 @@ namespace BL
 
             return power < drone.BatteryStatus;
         }
+
         internal List<DO.Parcel> getSuitWeightArr(BO.Drone drone)
         {
-            List<DO.Parcel> myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithEmergencyParcelsPriority(), (int)drone.MaxWeight).ToList();
+            List<DO.Parcel> myParcelsSuitWeightArr = returnPacelsWitSuitWeight(returnParcelByCondition(P => (int)P.Priority == (int)BO.Enum.PrioritiesBL.emergency), (int)drone.MaxWeight).ToList();
             if (myParcelsSuitWeightArr.Count == 0) {
-                myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithRapidlParcelsPriority(), (int)drone.MaxWeight).ToList();
+                myParcelsSuitWeightArr = returnPacelsWitSuitWeight(returnParcelByCondition(P => (int)P.Priority == (int)BO.Enum.PrioritiesBL.rapid), (int)drone.MaxWeight).ToList();
                 if (myParcelsSuitWeightArr.Count == 0) {
-                    myParcelsSuitWeightArr = returnPacelWitSuitWeight(returnParcelWithUsualParcelsPriority(), (int)drone.MaxWeight).ToList();
+                    myParcelsSuitWeightArr = returnPacelsWitSuitWeight(returnParcelByCondition(P => (int)P.Priority == (int)BO.Enum.PrioritiesBL.usual), (int)drone.MaxWeight).ToList();
                 }
             }
             return myParcelsSuitWeightArr;
@@ -164,7 +141,7 @@ namespace BL
                 if (drone.delivery.IsDelivery) {
                     throw new TheDroneHasAlreadyPickedUpTheParcel(); }
 
-                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(drone.delivery.Id));
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcelByCondition(p => p.Id == drone.delivery.Id));
                 Position senderPosition = ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(parcel.Sender.Id)).Position;
                 
                 parcel.PickUpBL = DateTime.Now;
@@ -201,7 +178,7 @@ namespace BL
                 if (drone.DroneStatus != DroneStatusesBL.Shipping) {
                     throw new NoParcelFoundException(); }
 
-                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(drone.delivery.Id));
+                BO.Parcel parcel = ConvertToBL.ConvertToParcelBL(DalObj.GetParcelByCondition(p => p.Id == drone.delivery.Id));
                 if (parcel.PickUpBL == null) { 
                     throw new ThePackageHasNotYetBeenCollectedException(); }
                 

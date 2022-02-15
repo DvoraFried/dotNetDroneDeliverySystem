@@ -120,26 +120,17 @@ namespace Dal
         {
             return DataSource.MyEmployees.First(employee => employee.Id == idE);
         }
+
         /// <summary>
-        /// function returns parcel by given id
+        /// function returns parcel by given condition
         /// </summary>
-        /// <param name="ParcelIdS"></param>
+        /// <param name="condition"></param>
         /// <returns></returns>
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public Parcel GetParcel(int ParcelIdS)
+        public Parcel GetParcelByCondition(Predicate<Parcel> condition)
         {
-            return DataSource.MyParcels.First(parcel => parcel.Id == ParcelIdS);
+            return DataSource.MyParcels.First(p => condition(p));
         }
-        /// <summary>
-        /// function returns parcel by given drone id
-        /// </summary>
-        /// <param name="DroneIdS"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public Parcel GetParcelByDroneId(int DroneIdS)
-        {
-            return DataSource.MyParcels.First(parcel => parcel.DroneId == DroneIdS);
-        }
+
         /// <summary>
         /// function returns station by given drone in charge id
         /// </summary>

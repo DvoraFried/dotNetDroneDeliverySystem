@@ -30,7 +30,7 @@ namespace BlApi
         public void DisplayDrone(int idD);
         public void DisplayDroneList();
         public IEnumerable<Drone> GetDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight);
-        public IEnumerable<Drone> GetDronesByStatusOrder();
+        public IEnumerable<Drone> GetDronesSortrdByStatusOrder();
         public Drone ConvertDroneInChargeToDrone(DroneInCharge chargeBL);
         #endregion
 
