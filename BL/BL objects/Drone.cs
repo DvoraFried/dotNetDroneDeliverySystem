@@ -18,7 +18,7 @@ namespace BO
         {
             Random rnd = new Random();
             Id = id;
-            ModelBL = model;
+            Model = model;
             MaxWeight = maxW;
             CurrentPosition = p;
             BatteryStatus = rnd.Next(20, 41);
@@ -36,9 +36,9 @@ namespace BO
         {
             if (delivery != null)
             {
-                return $"ID: {Id}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus+"%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.Id}\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
+                return $"ID: {Id}\nModel: {Model}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus+"%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer: {delivery.Id}\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude, CurrentPosition.Longitude)}";
             }
-            return $"ID: {Id}\nModel: {ModelBL}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude,CurrentPosition.Longitude)}";
+            return $"ID: {Id}\nModel: {Model}\nMax Weight: {MaxWeight}\nBattery Status: {BatteryStatus + "%"}\nDrone Status: {DroneStatus}\nDelivery by Transfer:  Non Deliveries by Transfer\nPosition {getFormattedLocationInDegree(CurrentPosition.Latitude,CurrentPosition.Longitude)}";
         }
         #endregion
 
@@ -54,7 +54,7 @@ namespace BO
         }
         #endregion
 
-        public string ModelBL { get; set; }
+        public string Model { get; set; }
         public WeightCategoriesBL MaxWeight { get; set; }
         public double BatteryStatus { get; set; }
         public DroneStatusesBL DroneStatus { get; set; }

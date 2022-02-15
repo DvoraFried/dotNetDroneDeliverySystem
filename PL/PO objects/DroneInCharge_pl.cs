@@ -14,14 +14,15 @@ namespace PO
             BatteryStatus = drone.BatteryStatus;
             enterTime = DateTime.Now;
         }
-        public DroneInCharge_pl(int id, DateTime enteredTime)
+        public DroneInCharge_pl(BO.DroneInCharge drone)
         {
-            Id = id;
-            enterTime = enteredTime;
+            Id = drone.Id;
+            BatteryStatus = drone.BatteryStatus;
+            enterTime = drone.EnterTime;
         }
         public override string ToString()
         {
-            return $"-----------\nID: {Id}\nBattery Status: {BatteryStatus}\n-----------";
+            return $"\nID: {Id}\nBattery Status: {BatteryStatus}\n";
         }
         public DateTime enterTime;
         public int Id { get; set; }

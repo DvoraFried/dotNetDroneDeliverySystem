@@ -20,7 +20,7 @@ namespace BO
         {
             DO.Station stationDal = new DO.Station();
             stationDal.Id = stationBl.Id;
-            stationDal.Name = stationBl.NameBL;
+            stationDal.Name = stationBl.Name;
             stationDal.EmptyChargeSlots = stationBl.ChargeSlotsBL;
             stationDal.Longitude = stationBl.Position.Longitude;
             stationDal.Latitude = stationBl.Position.Latitude;
@@ -37,7 +37,7 @@ namespace BO
         {
             DO.Drone droneDal = new DO.Drone();
             droneDal.Id = droneBl.Id;
-            droneDal.Model = droneBl.ModelBL;
+            droneDal.Model = droneBl.Model;
             droneDal.MaxWeight = (WeightCategories)(int)droneBl.MaxWeight;
             return droneDal;
         }

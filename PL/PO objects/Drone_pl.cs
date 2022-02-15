@@ -15,7 +15,7 @@ namespace PO
     {
         public Drone_pl(BlApi.IBL blObj,Drone droneBl) {
             Id = droneBl.Id;
-            this.Model = droneBl.ModelBL;
+            this.Model = droneBl.Model;
             this.MaxWeight = (Enum_pl.WeightCategories)droneBl.MaxWeight;
             this.DroneStatus = (Enum_pl.DroneStatuses)droneBl.DroneStatus;
             this.Delivery =  new ParcelByTransfer_pl(droneBl.delivery);

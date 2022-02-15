@@ -13,7 +13,7 @@ namespace BO
         public Station(int id, string name, Position p, int chargS, List<Drone> drones)
         {
             Id = id;
-            NameBL = name;
+            Name = name;
             Position = p;
             ChargeSlotsBL = chargS;
             DronesInCharging = new List<DroneInCharge>();
@@ -52,13 +52,13 @@ namespace BO
                 {
                     Console.WriteLine(drone.ToString());
                 }
-                return $"ID: {Id}\nName: {NameBL}\nPosition - {Position.ToString()}";
+                return $"ID: {Id}\nName: {Name}\nPosition - {Position.ToString()}";
             }
-            return $"ID: {Id}\nName: {NameBL}\nPosition - {Position.ToString()}\nDrones in Charging: No Drones";
+            return $"ID: {Id}\nName: {Name}\nPosition - {Position.ToString()}\nDrones in Charging: No Drones";
         }
         #endregion
 
-        public string NameBL { get; set; }
+        public string Name { get; set; }
         public int ChargeSlotsBL { get; set; }
         public Position Position { get; set; }
         public List<DroneInCharge> DronesInCharging;

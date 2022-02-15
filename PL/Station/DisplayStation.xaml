@@ -64,11 +64,11 @@
                     <ListView Name="dronesInCharge" MouseDoubleClick="showDrone"/>
                 </ScrollViewer>
             </Expander>
-            <TextBox Name="IDTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="172,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="NameTextBox" HorizontalAlignment="Left" Margin="172,51,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="ChargesLotsTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="200,111,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"/>
-            <TextBox Name="LongitudeTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="172,81,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Text="lnd"/>
-            <TextBox Name="LatitudeText" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="238,81,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Text="ltd"/>
+            <TextBox Name="IDTextBox" Text="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="172,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="NameTextBox" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="172,51,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="ChargesLotsTextBox" Text="{Binding Path=ChargeSlots, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="200,111,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"/>
+            <TextBox Name="LongitudeTextBox" Text="{Binding Path=Longitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="172,81,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="53"/>
+            <TextBox Name="LatitudeText" Text="{Binding Path=Latitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="238,81,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" />
         </Grid>
         <Label Content="ID:" Grid.Column="1" HorizontalAlignment="Left" Margin="88,87,0,0" VerticalAlignment="Top"/>
         <Label Content="NAME:" Grid.Column="1" HorizontalAlignment="Left" Margin="88,118,0,0" VerticalAlignment="Top" Width="50"/>

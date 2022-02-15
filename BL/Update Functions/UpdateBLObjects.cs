@@ -39,7 +39,7 @@ namespace BL
                 throw new ObjectDoesntExistsInListException("drone"); }
 
             BO.Drone drone = DronesListBL.First(d => (d.Id == id));
-            drone.ModelBL = newModelName;
+            drone.Model = newModelName;
             DronesListBL[DronesListBL.FindIndex(d => d.Id == id)] = drone;
             lock (DalObj)
             {

@@ -1,4 +1,5 @@
 ﻿using BO;
+using PO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,24 +24,20 @@ namespace PL
     public partial class DisplayStation : Window
     {
         BlApi.IBL Bl;
+        BO.Station stationBO;
+        Station_pl stationPO;
 
         public DisplayStation(BlApi.IBL bl, Station station)
         {
-            Bl = bl;
+            stationBO = station;
+            stationPO = new Station_pl(station);
+            this.Bl = bl;
             InitializeComponent();
+            DataContext = stationPO;
             IDTextBox.IsEnabled = LongitudeTextBox.IsEnabled = LatitudeText.IsEnabled = false;
-            IDTextBox.Text = station.Id.ToString();
-            NameTextBox.Text = station.NameBL;
-            expender.Visibility = Visibility.Visible;
-            ChargesLotsTextBox.Text = station.ChargeSlotsBL.ToString();
-            LongitudeTextBox.Text = station.Position.Longitude.ToString();
-            LatitudeText.Text = station.Position.Latitude.ToString();
-            foreach (DroneInCharge drone in station.DronesInCharging)
-            {
-                dronesInCharge.Items.Add(drone);
-            }
+            UPDATE_STATION.Visibility = dronesInCharge.Visibility = expender.Visibility = Visibility.Visible;
+            foreach (DroneInCharge drone in station.DronesInCharging) {dronesInCharge.Items.Add(drone);}
             ADD_BUTTON.Visibility = Visibility.Hidden;
-            UPDATE_STATION.Visibility = dronesInCharge.Visibility = Visibility.Visible;
         }
         public DisplayStation(BlApi.IBL bl)
         {
