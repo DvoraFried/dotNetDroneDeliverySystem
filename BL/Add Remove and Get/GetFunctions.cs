@@ -11,17 +11,20 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        #region GET DAL LISTS FUNCTIONS
+        #region GET LISTS FUNCTIONS
         /// <summary>
-        /// the function returns  drones list (from dal) according to the parameters 
+        /// the function gets from PL two filters,
+        /// and returns drones list filter by the parameters:
         /// </summary>
-        /// <param name="droneStatus"></param>
-        /// <param name="droneMaxWeight"></param>
+        /// <param name="droneStatus">by default: -1 (Defined in PL)</param>
+        /// <param name="droneMaxWeight">by default: -1 (Defined in PL)</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<BO.Drone> GetDronesByStatusAndMaxW(int droneStatus, int droneMaxWeight)
         {
+            // Pulls out all active drones or in shipping:
             List<BO.Drone> drones = (from d in DronesListBL where d.isActive || d.delivery != null select d).ToList();
+            
             if (droneStatus != -1) {
                 if (droneMaxWeight != -1) {
                     return from D in drones where ((int)D.DroneStatus == droneStatus && (int)D.MaxWeight == droneMaxWeight) select D;
@@ -35,8 +38,9 @@ namespace BL
             }
             return drones;
         }
+
         /// <summary>
-        /// the function returns the dronse list (from dal) grouped by status order 
+        /// the function returns the drones list grouped by status order.
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -49,8 +53,9 @@ namespace BL
                        select d;
             }
         }
+
         /// <summary>
-        /// function returns the list of parcel (from dal)
+        /// the function returns the list of parcel:
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -63,12 +68,14 @@ namespace BL
                         select new ParcelToList(DalObj, ConvertToBL.ConvertToParcelBL(P)));
             }
         }
+
         /// <summary>
-        /// function returns drones list (without deleted drones) (from dal)
+        /// internal function that returns drones list (without deleted drones) - 
+        /// Auxiliary function only, not in IBL interface.
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<BO.Drone> ReturnDroneListWithoutDeletedDrones()
+        internal IEnumerable<BO.Drone> getDroneListWithoutDeletedDrones()
         {
             lock (DalObj)
             {
@@ -77,8 +84,9 @@ namespace BL
                         select D);
             }
         }
+
         /// <summary>
-        /// function returns the list of parcel as a list of parcel to list (from dal)
+        /// the function returns the list of parcel as a list of 'parcel to list' grouped by sender.
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -88,8 +96,9 @@ namespace BL
                    orderby parcel.SenderId
                    select parcel;        
         }
+
         /// <summary>
-        /// function returns customer list (without deleted customers) (from dal)
+        /// the function returns customer list (without deleted customers).
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -102,8 +111,9 @@ namespace BL
                         select new CustomerToList(DalObj, ConvertToBL.ConvertToCustomrtBL(C)));
             }
         }
+
         /// <summary>
-        /// function returns stations list (from dal)
+        /// the function returns stations list.
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -115,8 +125,9 @@ namespace BL
                         select new StationToList(ConvertToBL.ConvertToStationBL(S)));
             }
         }
+
         /// <summary>
-        /// the functions returns stations list sorted by stations list
+        /// the functions returns stations list sorted by available charging lots.
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -128,7 +139,7 @@ namespace BL
         }
         #endregion
 
-        #region GET DAL OBJ BY ID FUNCTIONS
+        #region GET OBJ BY ID FUNCTIONS
         /// <summary>
         /// the function returns employee by id
         /// </summary>
@@ -139,6 +150,7 @@ namespace BL
         {
             return ConvertToBL.convertToEmployee(emplyeeId);
         }
+
         /// <summary>
         /// the function returns customer by id
         /// </summary>
@@ -152,6 +164,7 @@ namespace BL
                 return ConvertToBL.ConvertToCustomrtBL(DalObj.GetCustomerByID(customerID));
             }
         }
+
         /// <summary>
         /// funstione returns station by id
         /// </summary>
@@ -165,6 +178,7 @@ namespace BL
                 return ConvertToBL.ConvertToStationBL(DalObj.GetStation(stationID));
             }
         }
+
         /// <summary>
         /// function returns parcel by id
         /// </summary>
@@ -178,8 +192,9 @@ namespace BL
                 return ConvertToBL.ConvertToParcelBL(DalObj.GetParcel(parcelID));
             }
         }
+
         /// <summary>
-        /// function returns drone  obj frome drone in charge 
+        /// function gets drone in charge and returns this drone as BO.Drone (by id)
         /// </summary>
         /// <param name="droneInCharge"></param>
         /// <returns></returns>
@@ -195,7 +210,7 @@ namespace BL
 
         #region GET TRUE/FALSE FOR USER STATUS
         /// <summary>
-        /// function checks if the user is a customer
+        /// function checks if the user is a customer:
         /// </summary>
         /// <param name="name"></param>
         /// <param name="id"></param>
@@ -208,6 +223,7 @@ namespace BL
                 return DalObj.GetCustomerList().Any(c => c.Id == id && c.Name == name);
             }
         }
+
         /// <summary>
         /// function checks if user is employee
         /// </summary>
@@ -222,6 +238,7 @@ namespace BL
                 return DalObj.GetEmployeeList().Any(c => c.Id == id && c.Name == name && !c.Manager);
             }
         }
+
         /// <summary>
         /// function chacks if user is manager
         /// </summary>

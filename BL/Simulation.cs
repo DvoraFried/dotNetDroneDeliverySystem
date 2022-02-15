@@ -91,7 +91,7 @@ namespace BL
                 {
                     if (drone.DroneStatus == BO.Enum.DroneStatusesBL.empty)
                         BL.SendDroneToCharge(droneID, true);
-                    else drone.BatteryStatus += 5;
+                    else drone.BatteryStatus += 5; 
                 }
                 drone = DronesListBL.First(d => d.Id == droneID);
                 droneSimulation(drone);
@@ -119,7 +119,7 @@ namespace BL
                 drone.CurrentPosition.Latitude += drone.CurrentPosition.Latitude > targetLatitude ? -1 : 1;
                 drone.BatteryStatus -= 0.4;
                 if(drone.DroneStatus == BO.Enum.DroneStatusesBL.Shipping) {
-                    drone.delivery.Distance = BO.DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, new Position(targetLongitude, targetLatitude));
+                    drone.delivery.Distance = drone.CurrentPosition.CalculateDistanceFor(new Position(targetLongitude, targetLatitude));
                 }
                 droneSimulation(drone);
                 Thread.Sleep(DELAY);

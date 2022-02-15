@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace PL
 {
-    /// <summary>
-    /// Interaction logic for DisplayCustomer.xaml
-    /// </summary>
     public partial class DisplayCustomer : Window
     {
         BlApi.IBL Bl;
@@ -79,8 +76,6 @@ namespace PL
                     Bl.AddCustomer(Int32.Parse(IDTebtBox.Text), NameTextBox.Text, PhoneTextBox.Text,double.Parse(LongitudeTextBox.Text), double.Parse(LatitudeTextBox.Text));
                     this.Close();
                 }
-                catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-                catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
         }
@@ -91,8 +86,6 @@ namespace PL
                 Bl.UpDateCustomerData(Int32.Parse(IDTebtBox.Text), NameTextBox.Text, PhoneTextBox.Text);
                 this.Close();
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
@@ -108,8 +101,6 @@ namespace PL
                 Bl.RemoveCustomerById(Int32.Parse(IDTebtBox.Text));
                 this.Close();
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }

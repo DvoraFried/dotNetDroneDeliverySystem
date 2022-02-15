@@ -37,7 +37,6 @@ namespace Dal
 
         static Random rnd = new Random();
 
-        //=====================================================================
 
         #region add function
         /// <summary>
@@ -76,10 +75,6 @@ namespace Dal
         {
             DataSource.MyParcels.Add(DALP);
         }
-        #endregion
-
-        //=====================================================================
-        #region update functions
         /// <summary>
         /// /// <summary>
         /// function gets dal dronechareg obj and add it to the list
@@ -94,8 +89,7 @@ namespace Dal
         }
         #endregion
 
-        //=====================================================================
-        #region return functions 
+        #region return object 
         /// <summary>
         /// function returns station by given id
         /// </summary>
@@ -158,7 +152,6 @@ namespace Dal
         }
         #endregion
 
-        //=====================================================================
         #region return array
         /// <summary>
         /// functions return stations list frome the list in data
@@ -226,7 +219,6 @@ namespace Dal
         }
         #endregion
 
-        //=====================================================================
         #region replace object by id
         /// <summary>
         ///  function replace station by id from the id of the station arg

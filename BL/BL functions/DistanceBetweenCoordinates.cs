@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace BO
 {
     /// <summary>
-    /// function calculateDistance distance between to position 
+    /// Extension method for 'position' - calculateDistance distance between 2 positions:
     /// </summary>
-    internal class DistanceBetweenCoordinates
+    internal static class ExtensionMethodDistanceBetweenCoordinates
     {
-        internal static double CalculateDistance(Position c1,Position c2)  
+        public static double CalculateDistanceFor(this Position c1, Position c2)
         {
             double sLatitude = c1.Latitude;
             double sLongitude = c1.Longitude;
@@ -35,7 +35,8 @@ namespace BO
             var result2 = 3956.0 * 2.0 *
                           Math.Atan2(Math.Sqrt(result1), Math.Sqrt(1.0 - result1));
 
-            return result2*1.6;
+            return result2 * 1.6;
         }
     }
 }
+

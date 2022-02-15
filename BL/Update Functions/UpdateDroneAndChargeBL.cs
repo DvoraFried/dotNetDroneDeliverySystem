@@ -1,5 +1,4 @@
-﻿//using DalObject;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using BO;
 using Dal;
 using DO;
@@ -16,7 +15,7 @@ namespace BL
     public partial class BL : BlApi.IBL
     {
         /// <summary>
-        /// function fincd the closest station to the drone, update the drone position and battery 
+        /// function fined the closest station to the drone, update the drone and station data in accordance,
         /// than replace it and create an droneincharge intance.
         /// </summary>
         /// <param name="id"></param>
@@ -25,39 +24,38 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.Id == id))) {
+                if (!getDroneListWithoutDeletedDrones().Any(d => (d.Id == id))) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
                 BO.Drone drone = DronesListBL.First(d => (d.Id == id));
                 if (drone.DroneStatus != DroneStatusesBL.empty) {
                     throw new DroneIsNotEmptyException(); }
 
-                DO.Station station = ConvertToDal.ConvertToStationDal(findClosestStation(drone.CurrentPosition));
+                BO.Station station = (findClosestStation(drone.CurrentPosition));
                 
-                drone.BatteryStatus = updateButteryStatus(drone, new Position(station.Longitude, station.Latitude), 0);
-                drone.CurrentPosition = new Position(station.Longitude, station.Latitude);
+                drone.BatteryStatus = updateButteryStatus(drone, station.Position, 0);
+                drone.CurrentPosition = station.Position;
                 drone.DroneStatus = DroneStatusesBL.maintenance;
                
                 DronesListBL[DronesListBL.FindIndex(d => d.Id == id)] = drone;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DalObj.Charge(ConvertToDal.ConvertToDroneChargeDal(new DroneInCharge(drone), station.Id));
-                
-                station.DronesInCharging += 1;
-                station.EmptyChargeSlots -= 1;
-                DalObj.ReplaceStationById(station);
+
+                DO.Station dalStation = ConvertToDal.ConvertToStationDal(station);
+                dalStation.DronesInCharging += 1;
+                dalStation.EmptyChargeSlots -= 1;
+                DalObj.ReplaceStationById(dalStation);
 
                 if (!simulation)
                 {
                     ActionDroneChanged?.Invoke(drone);
                     ActionUpdateList?.Invoke(true);
                 }
-
-
             }
         }
 
         /// <summary>
-        /// the function releae drone from charge by calculatin ghow much battery to and change the station slots to be suitable 
+        /// the function releae drone from charge by calculatin how much battery to add and change the station slots to be suitable 
         /// </summary>
         /// <param name="id"></param>
         /// <param name="simulation"></param>
@@ -73,7 +71,7 @@ namespace BL
                     throw new DroneIsNotInMaintenanceException(id); }
                 
                 double timeInCharge = (DateTime.Now - DalObj.GetDroneInChargeByID(id).EnterTime).Minutes;
-                drone.BatteryStatus = Math.Min(drone.BatteryStatus + (timeInCharge / 60) * DalApi.Config.DroneLoadingRate, 100);
+                drone.BatteryStatus = Math.Min(drone.BatteryStatus + (timeInCharge / 60) * DroneLoadingRate, 100);
                 drone.DroneStatus = DroneStatusesBL.empty;
                 DronesListBL[DronesListBL.FindIndex(d => (d.Id == id))] = drone;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));

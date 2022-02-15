@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using static BO.Enum;
 using static BO.Exceptions;
-using static BO.DistanceBetweenCoordinates;
 using BO;
 
 namespace BL
@@ -63,7 +62,7 @@ namespace BL
                 {
                     DO.Customer currentParcelSender = DalObj.GetCustomerList().First(d => (d.Id == currentParcel.SenderId));
                     DO.Customer compairParcelSender = DalObj.GetCustomerList().First(d => (d.Id == element.SenderId));
-                    if (CalculateDistance(dronePosition, new Position(currentParcelSender.Longitude, currentParcelSender.Latitude)) > CalculateDistance(dronePosition, new Position(compairParcelSender.Longitude, compairParcelSender.Latitude)))
+                    if (dronePosition.CalculateDistanceFor(new Position(currentParcelSender.Longitude, currentParcelSender.Latitude)) > dronePosition.CalculateDistanceFor(new Position(compairParcelSender.Longitude, compairParcelSender.Latitude)))
                     {
                         currentParcel = element;
                     }
@@ -81,9 +80,9 @@ namespace BL
                              parcel.Weight == WeightCategoriesBL.medium ? mediumWeightPowerConsumption :
                              heavyWeightPowerConsumption;
 
-            double power = CalculateDistance(drone.CurrentPosition, sender.Position) * nonWeightPowerConsumption;
-            power += CalculateDistance(sender.Position, target.Position) * weightPower;
-            power += CalculateDistance(target.Position, findClosestStation(target.Position).Position) * nonWeightPowerConsumption;
+            double power = drone.CurrentPosition.CalculateDistanceFor(sender.Position) * nonWeightPowerConsumption;
+            power += sender.Position.CalculateDistanceFor(target.Position) * weightPower;
+            power += target.Position.CalculateDistanceFor(findClosestStation(target.Position).Position) * nonWeightPowerConsumption;
 
             return power < drone.BatteryStatus;
         }
@@ -101,7 +100,7 @@ namespace BL
         #endregion
 
         /// <summary>
-        /// function Assigning Package To Drone by srone id 
+        /// function Assigning Parcel To Drone by drone id 
         /// </summary>
         /// <param name="idD"></param>
         /// <param name="simulation"></param>
@@ -110,7 +109,7 @@ namespace BL
         {
             lock (DalObj)
             {
-                if (!ReturnDroneListWithoutDeletedDrones().Any(d => (d.Id == idD))) {
+                if (!getDroneListWithoutDeletedDrones().Any(d => (d.Id == idD))) {
                     throw new ObjectDoesntExistsInListException("drone"); }
 
                 BO.Drone drone = DronesListBL.First(d => (d.Id == idD));

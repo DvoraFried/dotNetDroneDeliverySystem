@@ -11,7 +11,7 @@ namespace BO
     internal class ConvertToDal
     {
         /// <summary>
-        /// function convert bo station obj to do station obj
+        /// function convert BO station obj to DO station obj:
         /// </summary>
         /// <param name="stationBl"></param>
         /// <returns></returns>
@@ -28,7 +28,7 @@ namespace BO
         }
 
         /// <summary>
-        /// function convert bo drone obj to do drone obj
+        /// function convert BO drone obj to DO drone obj
         /// </summary>
         /// <param name="droneBl"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace BO
         }
 
         /// <summary>
-        /// function convert bo customer obj to do customer obj
+        /// function convert BO customer obj to DO customer obj
         /// </summary>
         /// <param name="customerBl"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace BO
         }
 
         /// <summary>
-        /// function convert bo parcel obj to do parcel obj
+        /// function convert BO parcel obj to DO parcel obj
         /// </summary>
         /// <param name="parcelBl"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace BO
         }
 
         /// <summary>
-        /// function convert bo drone in charge obj to do drone in charge obj
+        /// function convert BO drone in charge obj to DO drone in charge obj
         /// </summary>
         /// <param name="droneBl"></param>
         /// <param name="stationIdS"></param>

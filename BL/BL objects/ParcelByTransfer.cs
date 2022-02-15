@@ -24,7 +24,7 @@ namespace BO
             CollectionLocation = new Position(dalobj.Longitude, dalobj.Latitude);
             dalobj = dalOB.GetCustomerList().ToList().First(customer => customer.Id == parcel.Target.Id);
             DeliveryDestinationLocation = new Position(dalobj.Longitude, dalobj.Latitude);
-            Distance = DistanceBetweenCoordinates.CalculateDistance(CollectionLocation, DeliveryDestinationLocation);
+            Distance = CollectionLocation.CalculateDistanceFor(DeliveryDestinationLocation);
         }
         #endregion
 

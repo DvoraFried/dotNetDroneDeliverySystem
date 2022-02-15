@@ -26,6 +26,8 @@ namespace BO
         {
             internal ObjectDoesntExistsInListException(string type) : base(string.Format($"the {type} does not exsist")) { }
         }
+
+        #region DRONE EXCEPTIONS:
         internal class DroneIsNotInMaintenanceException : Exception
         {
             internal DroneIsNotInMaintenanceException(int id):base(string.Format($"the drone {id} is not in maintenance")) { }
@@ -50,13 +52,16 @@ namespace BO
         {
             internal ThereIsNotEnoughBatteryException(): base(string.Format("There is not enough battery to reach the destination")) { }
         }
-        internal class ThePackageHasNotYetBeenCollectedException : Exception
-        {
-            internal ThePackageHasNotYetBeenCollectedException() : base(string.Format("The package has not yet been collected")) { }
-        }
         internal class TheDroneHasAlreadyPickedUpTheParcel : Exception
         {
             internal TheDroneHasAlreadyPickedUpTheParcel() : base(string.Format("The drone has already picked up the parcel")) { }
+        }
+        #endregion
+
+        #region PARCEL EXCEPTIONS:
+        internal class ThePackageHasNotYetBeenCollectedException : Exception
+        {
+            internal ThePackageHasNotYetBeenCollectedException() : base(string.Format("The parcel has not yet been collected")) { }
         }
         internal class ThereAreParcelForTheCustomer : Exception
         {
@@ -66,5 +71,6 @@ namespace BO
         {
             internal ParcelAlreadyScheduled(): base(string.Format("Sorry, the parcel already scheduled to drone")) { }
         }
+        #endregion  
     }
 }

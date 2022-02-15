@@ -1,5 +1,4 @@
-﻿//using DalObject;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using BO;
 using DO;
 using System;
@@ -13,11 +12,11 @@ using BlApi;
 namespace BL
 {
     /// <summary>
-    /// this class print object and list as string
+    /// print object and list as string - used at consoleBL... not for WPF
     /// </summary>
     public partial class BL : BlApi.IBL
     {
-        #region DISPLAY OBJECT
+        #region DISPLAY OBJECTS
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void DisplayStatoin(int idS)
         {

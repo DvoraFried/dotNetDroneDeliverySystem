@@ -14,8 +14,9 @@ namespace BL
     public partial class BL : BlApi.IBL
     {
         /// <summary>
-        /// function remove customer from dal, by id by changing the "isActiv field, 
-        /// excaption will be thrown if ther customer doesnt exist or if there are parcel he didnt get/parcels he sent
+        /// function 'remove' customer by id by changing the "isActiv" field, 
+        /// excaption will be thrown if ther customer doesnt exist or if there is a parcel on the way to it,
+        /// or a parcel he sent but not yet delivered.
         /// </summary>
         /// <param name="idCustomer"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -39,8 +40,8 @@ namespace BL
         }
 
         /// <summary>
-        /// function delete parcel by changing its "isactive" field
-        /// exception will be thrown if the parcel was already Scheduled
+        /// function delete parcel by changing its "isactive" field.
+        /// exception will be thrown if the parcel was already Scheduled.
         /// </summary>
         /// <param name="parcel"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -59,7 +60,7 @@ namespace BL
         }
 
         /// <summary>
-        /// function delete drone by id by changing its isactive field
+        /// function delete drone by id by changing its isactive field.
         /// </summary>
         /// <param name="droneId"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -67,19 +68,14 @@ namespace BL
         {
             lock (DalObj)
             {
-                BO.Drone drone = DronesListBL.First(d => d.Id == droneId);
+                BO.Drone drone = DronesListBL.First(d => d.Id == droneId); 
                 if (drone.DroneStatus == BO.Enum.DroneStatusesBL.maintenance) 
-                    ReleaseDroneFromCharging(droneId);
+                    ReleaseDroneFromCharging(droneId); // so it wont take a place...
                 drone.isActive = false;
                 DalObj.ReplaceDroneById(ConvertToDal.ConvertToDroneDal(drone));
                 DronesListBL[DronesListBL.FindIndex(d => d.Id == droneId)] = drone;
                 ActionUpdateList?.Invoke(true);
             }
-        }
-
-        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Func<bool> needToStop)
-        {
-            var simulator = new Simulation(BL, droneID, droneSimulation, needToStop);
         }
     }
 }

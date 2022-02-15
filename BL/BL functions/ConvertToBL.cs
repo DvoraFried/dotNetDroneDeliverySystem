@@ -14,36 +14,38 @@ namespace BL
         internal class ConvertToBL
         {
             /// <summary>
-            /// function converts do drone array to bo drona array
+            /// function converts DO drones ienumerable to BO drones ienumerable:
             /// </summary>
-            /// <param name="droneDalArray"></param>
+            /// <param name="dronesDal"></param>
             /// <returns></returns>
             [MethodImpl(MethodImplOptions.Synchronized)]
-            internal static IEnumerable<BO.Drone> ConvertToDroneArrayBL(IEnumerable<DO.Drone> droneDalArray)
+            internal static IEnumerable<BO.Drone> ConvertToDroneArrayBL(IEnumerable<DO.Drone> dronesDal)
             {
                 lock (DalObj)
                 {
-                    return (from d in droneDalArray
+                    return (from d in dronesDal
                             select new BO.Drone(DalObj, d.Id, d.Model, (BO.Enum.WeightCategoriesBL)(int)d.MaxWeight, 0, null, 0, d.IsActive));
                 }
             }
 
             /// <summary>
-            /// function create bo custoner obj frome do customer obj
+            /// function create BO parcels ienumerable frome DO parcels ienumerable:
             /// </summary>
-            /// <param name="customerDal"></param>
+            /// <param name="parcelsDal"></param>
             /// <returns></returns>
             [MethodImpl(MethodImplOptions.Synchronized)]
-            internal static BO.Customer ConvertToCustomrtBL(DO.Customer customerDal)
+            internal static IEnumerable<BO.Parcel> ConvertToParcelArrayBL(IEnumerable<DO.Parcel> parcelsDal)
             {
                 lock (DalObj)
                 {
-                    return new BO.Customer(DalObj, customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.GetParcelList().ToList()), customerDal.IsActive);
+                    return (from parcel in parcelsDal
+                            select ConvertToBL.ConvertToParcelBL(parcel));
                 }
             }
 
+
             /// <summary>
-            /// function create bo parcel obj frome do parcel obj
+            /// function create BO parcel obj frome DO parcel obj:
             /// </summary>
             /// <param name="parcelDal"></param>
             /// <returns></returns>
@@ -57,22 +59,21 @@ namespace BL
             }
 
             /// <summary>
-            /// function create bo custoners array  frome do customers array
+            /// function create BO custoner obj frome DO customer obj:
             /// </summary>
-            /// <param name="parcelsDal"></param>
+            /// <param name="customerDal"></param>
             /// <returns></returns>
             [MethodImpl(MethodImplOptions.Synchronized)]
-            internal static IEnumerable<BO.Parcel> ConvertToParcelArrayBL(IEnumerable<DO.Parcel> parcelsDal)
+            internal static BO.Customer ConvertToCustomrtBL(DO.Customer customerDal)
             {
                 lock (DalObj)
                 {
-                    return (from parcel in parcelsDal
-                                 select ConvertToBL.ConvertToParcelBL(parcel));
+                    return new BO.Customer(DalObj, customerDal.Id, customerDal.Name, customerDal.Phone, new Position(customerDal.Longitude, customerDal.Latitude), ConvertToBL.ConvertToParcelArrayBL(DalObj.GetParcelList().ToList()), customerDal.IsActive);
                 }
             }
 
             /// <summary>
-            /// function create bo station obj frome do station obj
+            /// function create BO station obj frome DO station obj:
             /// </summary>
             /// <param name="stationDAL"></param>
             /// <returns></returns>
@@ -82,13 +83,18 @@ namespace BL
                 return new BO.Station(stationDAL.Id, stationDAL.Name, new Position(stationDAL.Longitude, stationDAL.Latitude), stationDAL.DronesInCharging + stationDAL.EmptyChargeSlots, DronesListBL);
             }
 
+            /// <summary>
+            /// function create BO employee obj frome DO employee obj:
+            /// </summary>
+            /// <param name="idEmployee"></param>
+            /// <returns></returns>
             [MethodImpl(MethodImplOptions.Synchronized)]
-            internal static EmpolyeeBL convertToEmployee(int idE)
+            internal static EmpolyeeBL convertToEmployee(int idEmployee)
             {
                 lock (DalObj)
                 {
-                    Employee employeeDAL = DalObj.GetEmployee(idE);
-                    return new EmpolyeeBL(idE, employeeDAL.Name, employeeDAL.Manager);
+                    Employee employeeDAL = DalObj.GetEmployee(idEmployee);
+                    return new EmpolyeeBL(idEmployee, employeeDAL.Name, employeeDAL.Manager);
                 }
             }
         }

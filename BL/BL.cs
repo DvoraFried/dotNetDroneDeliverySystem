@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BO.Exceptions;
-using static BO.DistanceBetweenCoordinates;
 using BO;
+using BlApi;
 
 namespace BL
 {
@@ -48,7 +48,7 @@ namespace BL
                             List<DO.Parcel> parcelsThatDelivered = DalObj.GetParcelList().ToList().FindAll(parcel => parcel.Delivered != null);
                             DO.Customer randomCustomer = DalObj.GetCustomerByID(parcelsThatDelivered[rnd.Next(0, parcelsThatDelivered.Count)].TargetId);
                             drone.CurrentPosition = new Position(randomCustomer.Longitude, randomCustomer.Latitude);
-                            drone.BatteryStatus = rnd.Next((int)(DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, findClosestStation(drone.CurrentPosition).Position) * nonWeightPowerConsumption), 100);
+                            drone.BatteryStatus = rnd.Next((int)(drone.CurrentPosition.CalculateDistanceFor(findClosestStation(drone.CurrentPosition).Position) * nonWeightPowerConsumption), 100);
                         }
                         else
                         {
@@ -74,8 +74,8 @@ namespace BL
                     Position senderPos = new Position(DalObj.GetCustomerByID(parcel.SenderId).Longitude, DalObj.GetCustomerByID(parcel.SenderId).Latitude);
                     Position targetPos = new Position(DalObj.GetCustomerByID(parcel.TargetId).Longitude, DalObj.GetCustomerByID(parcel.TargetId).Latitude);
                     drone.CurrentPosition = parcel.PickUp == null ? findClosestStation(senderPos).Position : senderPos;
-                    double distanceToTarget = DistanceBetweenCoordinates.CalculateDistance(drone.CurrentPosition, targetPos);
-                    double PowerOfdistanceFromTargetToStation = DistanceBetweenCoordinates.CalculateDistance(targetPos, findClosestStation(targetPos).Position) * nonWeightPowerConsumption;
+                    double distanceToTarget = drone.CurrentPosition.CalculateDistanceFor(targetPos);
+                    double PowerOfdistanceFromTargetToStation = targetPos.CalculateDistanceFor(findClosestStation(targetPos).Position) * nonWeightPowerConsumption;
                     drone.BatteryStatus = (int)parcel.Weight == 1 ? rnd.Next((int)(distanceToTarget * lightWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           (int)parcel.Weight == 2 ? rnd.Next((int)(distanceToTarget * mediumWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100) :
                                           rnd.Next((int)(distanceToTarget * heavyWeightPowerConsumption + PowerOfdistanceFromTargetToStation), 100);
@@ -86,7 +86,6 @@ namespace BL
 
         internal static BL instance = null;
         private static readonly object padLock = new object();
-
         public static BL GetBl
         {
             get
@@ -134,7 +133,7 @@ namespace BL
                     else
                     {
                         Position cuurentStationP = new Position(station.Longitude, station.Latitude);
-                        if (DistanceBetweenCoordinates.CalculateDistance(cuurentStationP, current) > DistanceBetweenCoordinates.CalculateDistance(stationP, current))
+                        if (cuurentStationP.CalculateDistanceFor(current) > stationP.CalculateDistanceFor(current))
                         {
                             station = element;
                         }
@@ -176,5 +175,10 @@ namespace BL
             }
         }
         #endregion
+
+        public void StartSimulation(IBL BL, int droneID, Action<BO.Drone> droneSimulation, Func<bool> needToStop)
+        {
+            var simulator = new Simulation(BL, droneID, droneSimulation, needToStop);
+        }
     }
 }

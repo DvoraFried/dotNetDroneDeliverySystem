@@ -33,6 +33,8 @@ namespace Dal
         internal static void Initialize()
         {
             Random rnd = new Random();
+
+            #region create stations
             for (int i = 1; i < 11; i++)
             {
                 Station stationDAL = new Station() { Id = i, Name = "station" + i.ToString(), EmptyChargeSlots = rnd.Next(5, 15), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), DronesInCharging = 0 };
@@ -53,13 +55,17 @@ namespace Dal
                 }
                 MyDrones.Add(droneDAL);
             }
+            #endregion
 
+            #region create customers
             for (int i = 0; i < 13; i++)
             {
                 Customer customerDAL = new Customer() { Id = rnd.Next(100000000, 1000000000), Name = "customer " + i.ToString(), Phone = rnd.Next(5830000, 60000000).ToString(), Longitude = rnd.Next(0, 24), Latitude = rnd.Next(0, 180), IsActive = true };
                 MyCustomers.Add(customerDAL);
             }
+            #endregion
 
+            #region create parcels
             for (int i = 1; i < 11; i++)
             {
                 int senderId = MyCustomers[rnd.Next(0, 13)].Id;
@@ -81,10 +87,14 @@ namespace Dal
                 }
                 MyParcels.Add(parcel);
             }
+            #endregion
+
+            #region create employees
             Employee manager1 = new Employee() { Id = 213570302, Name = "hadas", Manager = true };
             MyEmployees.Add(manager1);
             Employee manager2 = new Employee() { Id = 212628721, Name = "dvora", Manager = true };
             MyEmployees.Add(manager2);
+            #endregion
         }
     }
 

@@ -108,8 +108,6 @@ namespace PL
             try {
                 BL.SendDroneToCharge(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         /// <summary>
@@ -122,8 +120,6 @@ namespace PL
             try {
                 BL.ReleaseDroneFromCharging(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         /// <summary>
@@ -136,8 +132,6 @@ namespace PL
             try {
                 BL.AssigningPackageToDrone(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         /// <summary>
@@ -150,8 +144,6 @@ namespace PL
             try {
                 BL.CollectionOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("data reciving error", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
 
         }
@@ -165,8 +157,6 @@ namespace PL
             try {
                 BL.DeliveryOfAParcelByDrone(Int32.Parse(IDTextBox.Text));
             }
-            catch (FormatException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
-            catch (OverflowException) { MessageBox.Show("data reciving error ~", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         
@@ -180,6 +170,7 @@ namespace PL
 
 
         BackgroundWorker worker = new BackgroundWorker();
+        #region simulation
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
             Simulation.Visibility = Visibility.Hidden;
@@ -187,6 +178,7 @@ namespace PL
             StopSimulation.Visibility = Visibility.Visible;
             StopSimulation.IsEnabled = true;
             Drone updateDrone = null;
+
             worker.DoWork += (object? sender, DoWorkEventArgs e) =>
             {
                  BL.StartSimulation(
@@ -195,7 +187,9 @@ namespace PL
                    (droneBO) => { updateDrone = droneBO; worker.ReportProgress(1); },
                    () => worker.CancellationPending);
             };
+
             worker.WorkerReportsProgress = true;
+
             worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
             {
                 dronePO.UpdatePlDrone(droneBO);
@@ -205,6 +199,7 @@ namespace PL
                     Parcel ParcelInDrone = BL.GetParcel(droneBO.delivery.Id);
                 }
             };
+
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
         }
@@ -216,5 +211,6 @@ namespace PL
             StopSimulation.Visibility = Visibility.Hidden;
             StopSimulation.IsEnabled = false;
         }
+        #endregion
     }
 }

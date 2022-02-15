@@ -17,6 +17,7 @@ namespace BL
         /// </summary>
 
         #region ACTIONS
+        // To update the PO entity with any change in the appropriate BL entity:
         public Action<BO.Drone> ActionDroneChanged { get ; set ; }
         public Action<BO.Parcel,bool> ActionParcelChanged { get; set; }
         public Action <BO.Customer> ActionCustomerChanged { get; set; }
@@ -25,7 +26,7 @@ namespace BL
 
         #region UPDATE FUNCTIONS
         /// <summary>
-        /// function updates the dron name in dal 
+        /// function updates the dron model in dal 
         /// excaption will b thrown if there is no drone in dal list
         /// </summary>
         /// <param name="id"></param>
@@ -51,6 +52,7 @@ namespace BL
                 }
             }
         }
+
         /// <summary>
         /// function updates station data in dal 
         /// </summary>
@@ -73,6 +75,7 @@ namespace BL
                 DalObj.ReplaceStationById(ConvertToDal.ConvertToStationDal(replaceStation));
             }
         }
+
         /// <summary>
         /// function updates customer data in dal 
         /// </summary>

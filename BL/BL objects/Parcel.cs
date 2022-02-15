@@ -15,7 +15,7 @@ namespace BO
         public Parcel( DalApi.IDal dalOB, int idSender, int idTarget, int weight, int priority, bool isActive = true, int id = -1, DateTime? requested = null, DateTime? scheduled = null, DateTime? pickUp = null, DateTime? delivered = null, int droneID = -1 )
         {
             DalObj = dalOB;
-            Id = id > 0 ? id : DalObj.GetNewParcelId();
+            Id = id > 0 ? id : DalObj.GetNewParcelId(); // Receiving a new 'runs number' to identify the parcel - from the data layer.
             Weight = (WeightCategoriesBL)weight;
             Priority = (PrioritiesBL)priority;
             ScheduledBL = scheduled;
