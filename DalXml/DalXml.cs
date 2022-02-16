@@ -161,7 +161,7 @@ namespace Dal
         public Parcel GetParcelByCondition(Predicate<Parcel> condition)
         {
             IEnumerable<Parcel> parcels = DL.XMLTools.LoadListFromXMLSerializer<DO.Parcel>(dir + parcelFilePath);
-            return DataSource.MyParcels.First(p => condition(p));
+            return parcels.First(p => condition(p));
         }
 
         /// <summary>
