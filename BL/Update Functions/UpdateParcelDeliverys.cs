@@ -116,7 +116,12 @@ namespace BL
                 {
                     ActionDroneChanged?.Invoke(drone);
                     ActionParcelChanged?.Invoke(theclosetParcel,true);
-                    if(ActionUpdateList != null) ActionUpdateList?.Invoke(true);
+                    // If the drones list has not been opened since the start of the run,
+                    // the delegate 'ActionUpdateList' will be empty and an error will occur.
+                    // (It is possible that the user reached the drone through a package,
+                    // and not through the drones list):
+                    if (ActionUpdateList != null) ActionUpdateList?.Invoke(true);
+                    
                 }
             }
         }
@@ -157,7 +162,11 @@ namespace BL
                 {
                     ActionDroneChanged?.Invoke(drone);
                     ActionParcelChanged?.Invoke(parcel,true);
-                    if(ActionUpdateList != null) ActionUpdateList?.Invoke(true);
+                    // If the drones list has not been opened since the start of the run,
+                    // the delegate 'ActionUpdateList' will be empty and an error will occur.
+                    // (It is possible that the user reached the drone through a package,
+                    // and not through the drones list):
+                    if (ActionUpdateList != null) ActionUpdateList?.Invoke(true);
                 }
             }
         }
@@ -197,7 +206,11 @@ namespace BL
                 {
                     ActionDroneChanged?.Invoke(drone);
                     ActionParcelChanged?.Invoke(parcel,true);
-                    if(ActionUpdateList != null) ActionUpdateList?.Invoke(true);
+                    // If the drones list has not been opened since the start of the run,
+                    // the delegate 'ActionUpdateList' will be empty and an error will occur.
+                    // (It is possible that the user reached the drone through a package,
+                    // and not through the drones list):
+                    if (ActionUpdateList != null) ActionUpdateList?.Invoke(true);
                 }
             }
         }
