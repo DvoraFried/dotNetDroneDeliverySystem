@@ -22,6 +22,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{BB714506-B3A
 		dal-config.xml = dal-config.xml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "הסבר על הפרויקט", "הסבר על הפרויקט", "{70625D41-CB7B-4554-A999-96097B5E4CAD}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Downloads\מיני פרוייקט.pdf = ..\..\..\..\Downloads\מיני פרוייקט.pdf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
