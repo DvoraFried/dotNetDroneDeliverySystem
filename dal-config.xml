@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <config>
   <dal>xml</dal>
   <dal-packages>
     <list class="MyDal" namespace="Dal">DalXml</list>
     <xml>DalXml</xml>
   </dal-packages>
+  <idParcel>12</idParcel>
+  <carryavailable>0.0003</carryavailable>
+  <carryLightWeight>0.0005</carryLightWeight>
+  <carrymediumWeight>0.001</carrymediumWeight>
+  <carryHeavyWeight>0.0015</carryHeavyWeight>
+  <DroneLoadingRate>75</DroneLoadingRate>
 </config>

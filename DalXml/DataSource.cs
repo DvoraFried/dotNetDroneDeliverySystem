@@ -16,7 +16,7 @@ namespace Dal
         public static List<Employee> MyEmployees = new List<Employee>();
         public static List<Parcel> MyParcels = new List<Parcel>();
         public static List<DroneCharge> MyDroneCharges=new List<DroneCharge>();
-
+/*
         public class Config {
             public static int idParcels = 0;
             public static double available=0.0003;
@@ -24,7 +24,7 @@ namespace Dal
             public static double carrymediumWeight=0.001;
             public static double carryHeavyWeight=0.0015;
             public static double DroneLoadingRate=100;
-        }
+        }*/
         public static void Initialize()
         {
             Random rnd = new Random();

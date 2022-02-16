@@ -313,19 +313,24 @@ namespace Dal
         /// <returns></returns>
         public int GetNewParcelId()
         {
-            return DataSource.Config.idParcels++;
+            XElement dalConfig = XElement.Load(@"..\..\..\..\dal-config.xml");
+            int idParcel = Convert.ToInt32(dalConfig.Element("idParcel").Value);
+            dalConfig.SetElementValue("idParcel", idParcel+1);
+            dalConfig.Save(@"..\..\..\..\dal-config.xml");
+            return idParcel+1;
         }
         #endregion
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] PowerRequest()
         {
+            XElement dalConfig = XElement.Load(@"..\..\..\..\dal-config.xml");
             double[] arr = new double[5];
-            arr[0] = DataSource.Config.available;
-            arr[1] = DataSource.Config.carryLightWeight;
-            arr[2] = DataSource.Config.carrymediumWeight;
-            arr[3] = DataSource.Config.carryHeavyWeight;
-            arr[4] = DataSource.Config.DroneLoadingRate;
+            arr[0] = Convert.ToDouble(dalConfig.Element("carryavailable").Value);
+            arr[1] = Convert.ToDouble(dalConfig.Element("carryLightWeight").Value);
+            arr[2] = Convert.ToDouble(dalConfig.Element("carrymediumWeight").Value);
+            arr[3] = Convert.ToDouble(dalConfig.Element("carryHeavyWeight").Value);
+            arr[4] = Convert.ToDouble(dalConfig.Element("DroneLoadingRate").Value);
             return arr;
         }
 
