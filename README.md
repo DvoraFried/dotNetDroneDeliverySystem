@@ -1,3 +1,3 @@
 # dotNet5782_8721_0302
-hadas!
-hello :)
+
+.Net project - Windows application for managing a delivery company using drones.
